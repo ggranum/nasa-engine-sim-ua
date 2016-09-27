@@ -1,0 +1,87 @@
+# Cruft
+#*.class
+*.tmp
+*.mwb.bak
+
+# Gradle Configuration
+.gradle/
+
+
+#################
+# Local config files
+#################
+*.local.*
+
+#################
+# IntelliJ Idea (this is actually including IntelliJ files!)
+#################
+.idea/artifacts
+.idea/shelf
+.idea/*.xml
+.idea/copyright/*.xml
+.idea/dictionaries/*.xml
+.idea/inspectionProfiles/*.xml
+.idea/libraries/*.xml
+.idea/scopes/*.xml
+
+### Intellij Keepers such as inspections and formatting styles. "Don't ignore" using specific inclusions, due to potential for cruft (e.g. named dictionaries)
+!.idea/.name
+!.idea/checkstyle-idea.xml
+!.idea/compiler.xml
+!.idea/encodings.xml
+!.idea/jsLibraryMappings.xml
+#!.idea/misc.xml
+!.idea/modules.xml
+
+!.idea/copyright/profiles_settings.xml
+!.idea/inspectionProfiles/Project_Default.xml
+!.idea/inspectionProfiles/profiles_settings.xml
+!.idea/scopes/SourceScope.xml
+
+
+
+
+#Build dirs
+build/
+deploy/
+out/
+
+#### From http://help.github.com/ignore-files/ ####
+###################################################
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.war
+*.ear
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.h2.db
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+#Icon?
+Thumbs.db
+
+
+#### Local property override files ####
+*.local.properties
+
+
+#### Required jar files (do NOT ignore; we do want these committed)  ####
+# Gradle wrapper
+!gradle-wrapper.jar

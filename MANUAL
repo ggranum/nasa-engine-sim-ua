@@ -1,0 +1,229 @@
+
+
+           EngineSimU  Application
+
+
+
+This is the beta 1.8a version of the NASA Glenn EngineSimU application
+program, and you are invited to participate in the beta testing. If
+you find any errors in the program or would like to suggest
+improvements, please send an e-mail to benson@grc.nasa.gov.
+
+With this software you can investigate how a turbine (or jet) engine produces
+thrust by changing the values of different engine parameters.
+
+RUNNING THE APPLICATION
+
+This program is a Java application and you must have Java installed on your computer
+to operate the program. An application works differently than a Java applet
+available on the Internet. This program runs "stand-alone" and can read and write
+files to your computer. To launch the program, you need to know the PATH to the
+folder where the program has been extracted. The PATH will be something like
+C:\My Programs\EngineSimU
+To launch the application, go to C:\      
+Assuming you have Java installed on your computer, type this command:
+
+    java -cp (the PATH) Turbo
+
+for our example PATH, this would look like:
+
+    java -cp My Programs\EngineSimU Turbo
+
+GENERAL INSTRUCTIONS
+
+This program is designed to be interactive, so you have to work with the program.
+There are a variety of choices which you must make regarding the analysis and the display
+of results by using a choice box.
+A choice box has a descriptive word displayed and an arrow at the right of the
+box. To make a choice, click on the arrow, hold down and drag to
+make your selection.
+The current values of the design variables are presented to you in boxes. By convention, a white box with
+black numbers is an input box and you can change the value of the number. A black box with
+yellow or red numbers is an output box and the value is computed by the program.
+To change the value in an input box, select the box by moving the cursor into the box
+and clicking the mouse, then backspace over the old number, enter a new number,
+then hit the "Enter" key on your keyboard. 
+
+You must hit Enter to send the new value to the program.
+
+For most input variables you can also use a slider located next to the input box.
+Click on the slider bar, hold down and drag the slider bar to change values, or
+you can click on the arrows at either end of the slider.
+If you experience difficulties when using the sliders to change variables,
+simply click away from the slider and then back to it. If
+the arrows on the end of the sliders disappear, click in the areas
+where the left and right arrow images should appear, and they should reappear.
+
+SCREEN
+
+The program screen is divided into four main parts:
+
+   On the top left side of the screen is a graphic of the engine you are designing or testing. 
+   You can move the schematic by using your mouse and you can select
+   input panels by clicking on the words above the schematic.
+
+   On the upper right side of the screen are choice buttons which
+   control the analysis. You can select the type of analysis,
+   the type of output to be displayed, and the units to be used in the calculations.
+   You will find a yellow "Reset" button which returns the program to its
+   initial state, and a red "Exit" button to kill the application.
+   You will always see the overall engine performance displayed as thrust, fuel flow, airflow,
+   and computed engine weight.
+
+   On the lower right side of the screen are the results of engine performance
+   calculations. The output can be presented as numerical values
+   of certain parameters, graphs of engine performance, or of
+   the individual components. You
+   select the type of output displayed by using the choice
+   button labeled "Output:" on the upper right panel. 
+
+   On the lower left side of the screen various input panels are displayed.
+   You can select the input panel by clicking on the name or the
+   component in the graphic at the upper left.
+   Limits are established for the variables in the program. If you
+   click on "Limits" on the schematic, you will invoke a special
+   input panel that allows you to reset those limits.
+   You must push the blue "Submit" button to send your changes
+   to the program.
+
+ENGINE DESIGN: 
+
+   You can choose from four different types of engines: a simple 
+   turbojet, a jet with afterburner,  a turbofan engine, or a ramjet.
+
+   Selections are made on the graphics window by clicking on the engine name. The chosen
+   engine is shown in yellow.
+
+   Flight Conditions include the Mach number, airspeed, altitude, pressure,
+   temperature, and throttle and afterburner settings. There are several different
+   combinations of these variables available for input using the choice button
+   on the input panel. The pressure and temperature are computed as functions
+   of the altitude by using a Standard Day atmospheric model.
+
+   Design variables for each engine component can also be varied.
+   The variables include the Inlet (pressure recovery), Fan (pressure
+   ratio, efficiency, and bypass ratio), Compressor (CPR, compressor
+   efficiency), Burner (fuel,maximum temperature, efficiency, pressure ratio),
+   Turbine (turbine efficiency) and Nozzle (maximum temperature, efficiency,
+   A8/A2). As you choose a different component the part of the engine
+   being affected is highlighted in the graphic by changing from its
+   default color to yellow. 
+
+   Engine Size can be specified by either the frontal area or the diameter.
+   As the engine size changes, the grid background changes in
+   proportion to the size. The distance between any
+   two grid lines is 1 foot.
+
+CHOICES: 
+   Mode, Units, Output Display
+
+   The program works in two modes: Design or Tunnel Test Mode. 
+
+   In the Design Mode,
+   you can change design variables including the flight conditions,
+   the engine size, the inlet performance,
+   the turbo machinery compressor and turbine
+   performance, the combustors or burner
+   performance, or the nozzle performance.
+   For a turbofan engine design you can
+   also vary the fan performance and the bypass ratio.
+   In Design Mode, any change in an input parameter produces a new engine
+   design. You have to be very careful when drawing conclusions about
+   the effects of input variables on performance because you are not comparing the effects
+   on the same engine.
+
+   In Tunnel Test Mode
+   you can vary only the flight conditions and you can not change
+   any of the component design parameters except the throttle setting.
+   The values of some of the parameters like inlet recovery and nozzle area
+   may change according to choices that you made during design.
+   In Tunnel Test Mode you are evaluating the off-design performance
+   of the engine model which you specified in Design Mode.
+   In Tunnel Test mode, you can load models
+   of existing turbine engines for comparison with your design. You
+   can always reload your design to continue testing. In Design Mode,
+   you can use the existing engine models as good starting points for
+   your design.
+
+   The calculations can be performed in either metric or English units.  
+
+MATERIALS INPUT
+
+   The program will estimate the weight of the engine that 
+   you design. The thrust to weight ratio of the engine 
+   is displayed in the numerical output and is a measure of the efficiency of 
+   the engine. The weight depends on the number of stages in the compressor and 
+   turbine, the diameter (frontal area) of the engine, and the component materials. 
+   The program begins with standard materials for the components, but you can 
+   change the materials and see the effects on weight of the engine. Just push 
+   the blue Materials choice button on any component input panel. You 
+   can also select to define your own material by choosing My Material from the 
+   menu. Just type in your own values for material density and temperature limit. 
+   The program will check the temperature throughout the engine design against 
+   the material limits. If you exceed a limit, a flashing warning will occur 
+   in the schematic. You can see the temperature limits by choosing Temp Variation 
+   in the Output Display. (For the afterburner and the ramjet, the graphical 
+   temperature limits are based on the flow temperature, not on the material 
+   temperature, and are slightly higher than the material limits. Cooling airflow 
+   is often used along the walls of these components to keep the material temperature 
+   within limits.)
+
+GRAPHICAL OUTPUT
+
+  The red Output Display menu allows you to change the contents of the output window in the 
+  lower right side of the screen. You can choose to display output boxes with 
+  numerical values of the engine performance, as described below. You can display 
+  the variation of the value of pressure and temperature at various stations 
+  through the engine. Or you can also display a T-s Plot or a P-v Plot, which 
+  are used by engineers to determine engine performance.
+
+  To generate your own performance plots, select "Generate" from the graphics window. The input 
+  panel will now display some additional buttons and sliders to generate a plot. 
+  Choose the variables to be plotted using the pulldown menus and then push 
+  the "Begin" data button. Set the value of the independent variable by using 
+  the slider or the type-in box. Push the blue "Take Data" button and a data 
+  point will appear on the graph. Set a new value for the variable and take 
+  another data point (up to 25 points in any order). When you are finished, 
+  push the "End" button and a line will be drawn through your data points. To 
+  start a new graph, push "Begin" and your old graph will vanish.
+  When you are finished, push the red "Exit" button and you will return
+  to free stream conditions.
+
+NUMERICAL OUTPUT
+
+  Numerical Output from the program is displayed on three performance panels.
+  The total engine performance is always displayed on the control panel
+  panel at the upper right and includes the engine net thrust,
+  the fuel flow rate, the engine air flow rate,
+  the engine weight, the thrust to weight ratio, and the
+  specific fuel consumption.
+  An additional Engine Performance output panel shows the
+  fuel-to-air ratio, the engine pressure ratio (EPR)and engine temperature ratio (ETR),
+  gross thrust, and ram drag. Additional component performance
+  parameters, such as the nozzle pressure ratio (NPR), engine thermal efficiency,
+  nozzle exit velocity (V exit), free stream dynamic
+  pressure (q0), and specific impulse (ISP) are also displayed.
+  The Component Performance output panel shows the variation of
+  total pressure and temperature through the engine.
+ 
+SAVING RESULTS
+
+  There are two additional input panels which are invoked from the schematic drawing.
+
+  The "Save" option allows you to provide the program
+  with a file name and then to click on a button which saves all of the inputs
+  necessary to run the program. When you begin another EngineSimU session,
+  you load this information back into the program by invoking the "Save"
+  option, providing the name of the saved file, and then clicking the "Retrieve"
+  data button. The program is then in exactly the same state as it was when you wrote
+  the save file. 
+
+  The other input panel is the "Print" option. When this option is
+  invoked from the schematic, you can give a file name to record output data
+  from the program. The format for the output is selected by several buttons on
+  the Print input panel. To record data, you press the blue "Print Data" button on the
+  control panel at the upper right of the program. When your EngineSimU session is
+  finished, you can save the results by sending the specified  output to your printer.
+
+
+
