@@ -256,10 +256,14 @@ public class Turbo extends java.applet.Applet {
       }
       else {
         airo = .25618 ;                 /* initial guess */
-        if (sub == 1) macho = 1.0 ;   /* sonic */
-        else {
-           if (sub == 2) macho = 1.703 ; /* supersonic */
-           else macho = .5;                /* subsonic */
+        if (sub == 1) {
+            macho = 1.0;   /* sonic */
+        } else {
+           if (sub == 2) {
+               macho = 1.703; /* supersonic */
+           } else {
+               macho = .5;                /* subsonic */
+           }
            iter = 1 ;
            machn = macho - .2  ;
            while (Math.abs(corair - airo) > .0001 && iter < 20) {
@@ -314,46 +318,52 @@ public class Turbo extends java.applet.Applet {
     return(number) ;
   }
 
-  class Solver {
- 
+  public class Solver {
+
      Solver () {
      }
 
-     public void comPute() { 
- 
+     public void comPute() {
+
         numeng = 1 ;
         fireflag = 0 ;
 
         getFreeStream ();
- 
+
         getThermo() ;
- 
-        if (inflag == 0) getGeo (); /* determine engine size and geometry */
+
+        if (inflag == 0) {
+            getGeo(); /* determine engine size and geometry */
+        }
         if (inflag == 1) {
-           if (entype < 3)  a8 = a8d * Math.sqrt(trat[7]) / prat[7] ;
+           if (entype < 3) {
+               a8 = a8d * Math.sqrt(trat[7]) / prat[7];
+           }
         }
 
         view.getDrawGeo() ;
-   
+
         getPerform() ;
 
         out.box.loadOut() ;
         out.vars.loadOut() ;
         in.fillBox() ;
- 
+
         if (plttyp >= 3 && plttyp <= 7)  {
             out.plot.loadPlot () ;
             out.plot.repaint() ;
         }
- 
+
         view.repaint() ;
- 
-        if (inflag == 0) myDesign() ;
+
+        if (inflag == 0) {
+            myDesign();
+        }
      }
 
      public void setDefaults() {
         int i ;
-    
+
         move = 0 ;
         inptype = 0 ;
         siztype = 0 ;
@@ -393,7 +403,7 @@ public class Turbo extends java.applet.Applet {
         prat[13] = p3fp2d = 2.0 ;
         byprat = 1.0 ;
         abflag = 0 ;
-    
+
         fueltype = 0 ;
         fhvd = fhv = 18600. ;
         a2d = a2 = acore = 2.0 ;
@@ -405,14 +415,14 @@ public class Turbo extends java.applet.Applet {
         arsched = 0 ;
         afan = 2.0 ;
         a4 = .418 ;
- 
+
         athsched = 1 ;
         aexsched = 1 ;
         arthmn = 0.1;     arthmx = 1.5 ;
         arexmn = 1.0;     arexmx = 10.0 ;
         arthd = arth = .4 ;
         arexit = arexitd = 3.0 ;
- 
+
         u0mt = 1500.;    u0mr = 4500. ;
         altmt = 60000.;  altmr = 100000. ;
 
@@ -455,7 +465,7 @@ public class Turbo extends java.applet.Applet {
         mnozl = 3; dnozl = 515.2 ; tnozl = 2500. ;
         mnozr = 5; dnozr = 515.2 ; tnozr = 4500. ;
         ncflag = 0 ; ntflag = 0 ;
- 
+
         iprint = 0 ;
         pall = 0; pfs = 1; peng = 1; pth = 1; ptrat = 0; ppres = 0;
         pvol = 0; ptrat = 0; pttot = 0; pentr = 0 ; pgam = 0;
@@ -490,15 +500,15 @@ public class Turbo extends java.applet.Applet {
         et5sav = eta[5];
         et7sav = eta[7];
         et13sav = eta[13];
-        a8sav = a8d/aconv ; 
+        a8sav = a8d/aconv ;
         a8mxsav = a8max/aconv ;
         a8rtsav = a8rat ;
-   
+
         u0mxsav = u0max/lconv2 ;
         u0sav = u0d/lconv2 ;
         altsav = altd/lconv1 ;
         arssav = arsched ;
- 
+
         wtfsav = wtflag; wtsav = weight;
         minsav = minlt; dinsav = dinlt;  tinsav = tinlt;
         mfnsav = mfan;  dfnsav = dfan;   tfnsav = tfan;
@@ -515,7 +525,7 @@ public class Turbo extends java.applet.Applet {
            artsav = arthd ;
            arexsav = arexitd ;
         }
-   
+
         return ;
      }
 
@@ -548,15 +558,15 @@ public class Turbo extends java.applet.Applet {
         eta[5] = et5sav ;
         eta[7] = et7sav ;
         eta[13] = et13sav ;
-        a8d = a8sav ; 
+        a8d = a8sav ;
         a8max = a8mxsav ;
         a8rat = a8rtsav ;
-   
+
         u0max = u0mxsav ;
         u0d = u0sav ;
         altd = altsav ;
         arsched = arssav ;
-   
+
         wtflag = wtfsav; weight = wtsav;
         minlt = minsav; dinlt = dinsav;  tinlt = tinsav;
         mfan = mfnsav;  dfan = dfnsav;   tfan = tfnsav;
@@ -573,7 +583,7 @@ public class Turbo extends java.applet.Applet {
            arthd = artsav ;
            arexitd = arexsav  ;
         }
-   
+
         con.setPanl() ;
         return ;
      }
@@ -607,16 +617,16 @@ public class Turbo extends java.applet.Applet {
         eta[5] = .982 ;
         eta[7] = 1.0 ;
         eta[13] = 1.0 ;
-        a8d = 2.436 ; 
+        a8d = 2.436 ;
         a8max = .35 ;
         a8rat = .35 ;
-   
+
         u0max = u0mt ;
         u0d = 0.0 ;
         altmax = altmt ;
         altd = 0.0 ;
         arsched = 0 ;
-   
+
         wtflag = 0; weight = 8229.;
         minlt = 1; dinlt = 170.;  tinlt = 900.;
         mfan = 2;  dfan = 293.;   tfan = 1500.;
@@ -631,7 +641,7 @@ public class Turbo extends java.applet.Applet {
      }
 
      public void loadJ85() {
-   
+
         entype = 0 ;
         abflag = 0 ;
         fueltype = 0;
@@ -658,7 +668,7 @@ public class Turbo extends java.applet.Applet {
         eta[5] = .882;
         eta[7] = .978 ;
         eta[13] = 1.0 ;
-        a8d = .818 ; 
+        a8d = .818 ;
         a8max = .467 ;
         a8rat = .467 ;
 
@@ -682,7 +692,7 @@ public class Turbo extends java.applet.Applet {
      }
 
      public void loadF100() {
-   
+
         entype = 1 ;
         abflag = 1 ;
         fueltype = 0;
@@ -709,10 +719,10 @@ public class Turbo extends java.applet.Applet {
         eta[5] = .982 ;
         eta[7] = .92 ;
         eta[13] = 1.0 ;
-        a8d = 1.524 ; 
+        a8d = 1.524 ;
         a8max = .335 ;
         a8rat = .335 ;
-   
+
         u0max = u0mt ;
         u0d = 0.0 ;
         altmax = altmt ;
@@ -733,7 +743,7 @@ public class Turbo extends java.applet.Applet {
      }
 
      public void loadRamj() {
-   
+
         entype = 3 ;
         athsched = 1  ;
         aexsched = 1 ;
@@ -765,7 +775,7 @@ public class Turbo extends java.applet.Applet {
         eta[5] = 1.0 ;
         eta[7] = 1.0 ;
         eta[13] = 1.0 ;
-        a8 = a8d = 2.00 ; 
+        a8 = a8d = 2.00 ;
         a8max = 15. ;
         a8rat = 4.0 ;
         a7 = .50 ;
@@ -821,8 +831,11 @@ public class Turbo extends java.applet.Applet {
           u0d = u0 * lconv2 / 5280.* 3600. ;      /* airspeed ft/sec */
           q0 = gama / 2.0*fsmach*fsmach*ps0 ;
        }
-       if (u0 > .0001) rho0 = q0 /(u0*u0) ;
-       else rho0 = 1.0 ;
+       if (u0 > .0001) {
+           rho0 = q0 / (u0 * u0);
+       } else {
+           rho0 = 1.0;
+       }
 
        tt[0] = ts0*(1.0 + .5 * (gama -1.0) * fsmach * fsmach) ;
        pt[0] = ps0 * Math.pow(tt[0]/ts0,gama/(gama-1.0)) ;
@@ -831,10 +844,10 @@ public class Turbo extends java.applet.Applet {
        cpair = getCp(tt[0],gamopt);              /*BTU/lbm R */
        tsout = ts0 ;
        psout = ps0 ;
-   
+
        return ;
      }
- 
+
      public void getThermo() {
        double dela,t5t4n,deriv,delan,m5;
        double delhc,delhht,delhf,delhlt;
@@ -857,11 +870,15 @@ public class Turbo extends java.applet.Applet {
           in.inlet.right.s1.setValue(i1) ;
        }
        else {                       /* enter value */
-          prat[2] = eta[2] ;          
+          prat[2] = eta[2] ;
        }
                                /* protection for overwriting input */
-       if (eta[3] < .5) eta[3] = .5 ;
-       if (eta[5] < .5) eta[5] = .5 ;
+       if (eta[3] < .5) {
+           eta[3] = .5;
+       }
+       if (eta[5] < .5) {
+           eta[5] = .5;
+       }
        trat[7] = 1.0 ;
        prat[7] = 1.0 ;
        tt[2] = tt[1] = tt[0] ;
@@ -871,10 +888,12 @@ public class Turbo extends java.applet.Applet {
        pt[2] = pt[1] * prat[2] ;
         /* design - p3p2 specified - tt4 specified */
        if(inflag == 0) {
-   
+
         if (entype <= 1) {              /* turbojet */
           prat[3] = p3p2d ;                      /* core compressor */
-          if (prat[3] < .5) prat[3] = .5 ;
+          if (prat[3] < .5) {
+              prat[3] = .5;
+          }
           delhc = (cp[2]*tt[2]/eta[3])*
                 (Math.pow(prat[3],(gam[2]-1.0)/gam[2])-1.0) ;
           deltc = delhc / cp[2] ;
@@ -911,10 +930,12 @@ public class Turbo extends java.applet.Applet {
           gam[15]  = gam[5] ;
           cp[15]   = cp[5] ;
        }
-   
+
        if(entype == 2) {                         /* turbofan */
           prat[13] = p3fp2d ;
-          if (prat[13] < .5) prat[13] = .5 ;
+          if (prat[13] < .5) {
+              prat[13] = .5;
+          }
           delhf = (cp[2]*tt[2]/eta[13])*
                 (Math.pow(prat[13],(gam[2]-1.0)/gam[2])-1.0) ;
           deltf = delhf / cp[2] ;
@@ -924,7 +945,9 @@ public class Turbo extends java.applet.Applet {
           gam[13] = getGama(tt[13],gamopt) ;
           cp[13]  = getCp(tt[13],gamopt);
           prat[3] = p3p2d ;                      /* core compressor */
-          if (prat[3] < .5) prat[3] = .5 ;
+          if (prat[3] < .5) {
+              prat[3] = .5;
+          }
           delhc = (cp[13]*tt[13]/eta[3])*
                 (Math.pow(prat[3],(gam[13]-1.0)/gam[13])-1.0) ;
           deltc = delhc / cp[13] ;
@@ -959,7 +982,7 @@ public class Turbo extends java.applet.Applet {
         }
 
         if (entype == 3) {              /* ramjet */
-          prat[3] = 1.0 ;                      
+          prat[3] = 1.0 ;
           pt[3] = pt[2] * prat[3] ;
           tt[3] = tt[2] ;
           trat[3] = 1.0 ;
@@ -999,8 +1022,10 @@ public class Turbo extends java.applet.Applet {
         tt[4] = tt4 * throtl/100.0 ;
         gam[4] = getGama(tt[4],gamopt) ;
         cp[4]  = getCp(tt[4],gamopt);
-        if (a4 < .02) a4 = .02 ;
-   
+        if (a4 < .02) {
+            a4 = .02;
+        }
+
         if (entype <= 1) {              /* turbojet */
            dela = .2 ;                           /* iterate to get t5t4 */
            trat[5] = 1.0 ;
@@ -1120,7 +1145,7 @@ public class Turbo extends java.applet.Applet {
          }
 
          if (entype == 3) {              /* ramjet */
-           prat[3] = 1.0 ;                      
+           prat[3] = 1.0 ;
            pt[3] = pt[2] * prat[3] ;
            tt[3] = tt[2] ;
            trat[3] = 1.0 ;
@@ -1150,9 +1175,11 @@ public class Turbo extends java.applet.Applet {
            cp[15]   = cp[5] ;
          }
 
-         if (abflag == 1) tt[7] = tt7 ;
+         if (abflag == 1) {
+             tt[7] = tt7;
+         }
        }
-   
+
        prat[6] = 1.0;
        pt[6] = pt[15];
        trat[6] = 1.0 ;
@@ -1174,11 +1201,11 @@ public class Turbo extends java.applet.Applet {
        etr = trat[7]*trat[15]*trat[5]*trat[4]*trat[3]*trat[13];
        return;
      }
-   
+
      public void getPerform ()  {       /* determine engine performance */
        double fac1,game,cpe,cp3,rg,p8p5,rg1 ;
        int index ;
-   
+
        rg1 = 53.3 ;
        rg = cpair * (gama-1.0)/gama ;
        cp3 = getCp(tt[3],gamopt);                  /*BTU/lbm R */
@@ -1187,8 +1214,12 @@ public class Turbo extends java.applet.Applet {
        game = getGama(tt[5],gamopt) ;
        fac1 = (game - 1.0)/game ;
        cpe = getCp(tt[5],gamopt) ;
-       if (eta[7] < .8) eta[7] = .8 ;    /* protection during overwriting */
-       if (eta[4] < .8) eta[4] = .8 ;
+       if (eta[7] < .8) {
+           eta[7] = .8;    /* protection during overwriting */
+       }
+       if (eta[4] < .8) {
+           eta[4] = .8;
+       }
 
        /*  specific net thrust  - thrust / (g0*airflow) -   lbf/lbm/sec  */
 // turbine engine core
@@ -1202,8 +1233,11 @@ public class Turbo extends java.applet.Applet {
             npr = pt[8]/ps0;
             uexit = Math.sqrt(2.0*rgas/fac1*etr*tt[0]*eta[7]*
                     (1.0-Math.pow(1.0/npr,fac1)));
-            if (npr <= 1.893) pexit = ps0 ;
-            else pexit = .52828 * pt[8] ;
+            if (npr <= 1.893) {
+                pexit = ps0;
+            } else {
+                pexit = .52828 * pt[8];
+            }
             fgros = (uexit + (pexit - ps0) * 144. *  a8 /eair) / g0 ;
        }
 
@@ -1215,8 +1249,11 @@ public class Turbo extends java.applet.Applet {
                      (1.0-Math.pow(1.0/snpr,fac1)));
             m2 = getMach(0,eair*(1.0+byprat)*Math.sqrt(tt[0]/518.)/
                      (prat[2]*pt[0]/14.7*afan*144.),gama) ;
-            if (snpr <= 1.893) pfexit = ps0 ;
-            else pfexit = .52828 * pt[13] ;
+            if (snpr <= 1.893) {
+                pfexit = ps0;
+            } else {
+                pfexit = .52828 * pt[13];
+            }
             fgros = fgros + (byprat*ues + (pfexit - ps0)*144. * byprat*acore / eair)/g0 ;
        }
 
@@ -1237,10 +1274,15 @@ public class Turbo extends java.applet.Applet {
 
 // ram drag
        dram = u0 / g0 ;
-       if (entype == 2) dram = dram + u0 * byprat / g0 ;
+       if (entype == 2) {
+           dram = dram + u0 * byprat / g0;
+       }
 // mass flow ratio
-       if (fsmach > .01) mfr = getAir(m2,gama)*prat[2]/getAir(fsmach,gama) ;
-       else mfr = 5.;
+       if (fsmach > .01) {
+           mfr = getAir(m2, gama) * prat[2] / getAir(fsmach, gama);
+       } else {
+           mfr = 5.;
+       }
 
 // net thrust
        fnet = fgros - dram;
@@ -1253,7 +1295,7 @@ public class Turbo extends java.applet.Applet {
        fnlb = fnet * eair ;
        fglb = fgros * eair ;
        drlb = dram * eair ;
- 
+
 //fuel-air ratio and sfc
        fa = (trat[4]-1.0)/(eta[4]*fhv/(cp3*tt[3])-trat[4]) +
          (trat[7]-1.0)/(fhv/(cpe*tt[15])-trat[7]) ;
@@ -1306,11 +1348,11 @@ public class Turbo extends java.applet.Applet {
     // weight  calculation
        if (wtflag == 0) {
           if (entype == 0) {
-            weight = .132 * Math.sqrt(acore*acore*acore) * 
+            weight = .132 * Math.sqrt(acore*acore*acore) *
              (dcomp * lcomp + dburner * lburn + dturbin * lturb + dnozl * lnoz);
           }
           if (entype == 1) {
-            weight = .100 * Math.sqrt(acore*acore*acore) * 
+            weight = .100 * Math.sqrt(acore*acore*acore) *
              (dcomp * lcomp + dburner * lburn + dturbin * lturb + dnozl * lnoz);
           }
           if (entype == 2) {
@@ -1331,35 +1373,35 @@ public class Turbo extends java.applet.Applet {
        out.vars.to7.setForeground(Color.yellow) ;
        if (entype < 3) {
           if (tt[2] > tinlt) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to1.setForeground(Color.red) ;
              out.vars.to2.setForeground(Color.red) ;
           }
           if (tt[13] > tfan) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to2.setForeground(Color.red) ;
           }
           if (tt[3] > tcomp) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to3.setForeground(Color.red) ;
           }
           if (tt[4] > tburner) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to4.setForeground(Color.red) ;
           }
           if (tt[5] > tturbin) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to5.setForeground(Color.red) ;
           }
           if (tt[7] > tnozl) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to6.setForeground(Color.red) ;
              out.vars.to7.setForeground(Color.red) ;
           }
        }
        if (entype == 3) {
           if (tt[3] > tinlt) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to1.setForeground(Color.red) ;
              out.vars.to2.setForeground(Color.red) ;
              out.vars.to3.setForeground(Color.red) ;
@@ -1369,15 +1411,17 @@ public class Turbo extends java.applet.Applet {
              out.vars.to4.setForeground(Color.red) ;
           }
           if (tt[7] > tnozr) {
-             fireflag =1 ;      
+             fireflag =1 ;
              out.vars.to5.setForeground(Color.red) ;
              out.vars.to6.setForeground(Color.red) ;
              out.vars.to7.setForeground(Color.red) ;
           }
        }
-       if (fireflag == 1) view.start() ;
+       if (fireflag == 1) {
+           view.start();
+       }
      }
- 
+
      public void getGeo () {
                             /* determine geometric variables */
         double game ;
@@ -1385,10 +1429,14 @@ public class Turbo extends java.applet.Applet {
         int i1 ;
 
         if (entype <= 2) {          // turbine engines
-          if (afan < acore) afan = acore ;
+          if (afan < acore) {
+              afan = acore;
+          }
           a8max = .75 * Math.sqrt(etr) / epr ; /* limits compressor face  */
                                                /*  mach number  to < .5   */
-          if (a8max > 1.0) a8max = 1.0 ;
+          if (a8max > 1.0) {
+              a8max = 1.0;
+          }
           if (a8rat > a8max) {
            a8rat = a8max ;
            if (lunits <= 1) {
@@ -1426,8 +1474,12 @@ public class Turbo extends java.applet.Applet {
           if (athsched == 0) {   // scheduled throat area
              arthd = getAir(fsmach,gama) * Math.sqrt(etr) /
                      (getAir(1.0,game) * epr * prat[2]) ;
-             if (arthd < arthmn) arthd = arthmn ;
-             if (arthd > arthmx) arthd = arthmx ;
+             if (arthd < arthmn) {
+                 arthd = arthmn;
+             }
+             if (arthd > arthmx) {
+                 arthd = arthmx;
+             }
              fl1 = filter3(arthd) ;
              in.nozr.left.f3.setText(String.valueOf(fl1)) ;
              i1 = (int) (((arthd - arthmn)/(arthmx-arthmn))*1000.) ;
@@ -1437,8 +1489,12 @@ public class Turbo extends java.applet.Applet {
              mexit = Math.sqrt((2.0/(game-1.0))*((1.0+.5*(gama-1.0)*fsmach*fsmach)
                   *Math.pow((epr*prat[2]),(game-1.0)/game) - 1.0) ) ;
              arexitd = getAir(1.0,game) / getAir(mexit,game) ;
-             if (arexitd < arexmn) arexitd = arexmn ;
-             if (arexitd > arexmx) arexitd = arexmx ;
+             if (arexitd < arexmn) {
+                 arexitd = arexmn;
+             }
+             if (arexitd > arexmx) {
+                 arexitd = arexmx;
+             }
              fl1 = filter3(arexitd) ;
              in.nozr.left.f4.setText(String.valueOf(fl1)) ;
              i1 = (int) (((arexitd - arexmn)/(arexmx-arexmn))*1000.) ;
@@ -1546,7 +1602,9 @@ public class Turbo extends java.applet.Applet {
             this.handleRefs(evt,arg) ;
             return true ;
          }
-         else return false ;
+         else {
+             return false;
+         }
        }
 
        public void handleRefs(Event evt, Object arg) {
@@ -1617,14 +1675,26 @@ public class Turbo extends java.applet.Applet {
                  prnt.println("----------------------------------------- ");
                  prnt.println(" ") ;
                  seng = "Simple Turbojet";
-                 if (entype == 1) seng = "Turbojet with Afterburner ";
-                 if (entype == 2) seng = "Turbofan";
-                 if (entype == 3) seng = "Ramjet";
-                 prnt.println(seng);
-                 if (entype == 2)  prnt.println("  Bypass Ratio  = " + String.valueOf(filter3(byprat))) ;
                  if (entype == 1) {
-                    if (abflag == 0) prnt.println("  Afterburner  OFF ");
-                    if (abflag == 1) prnt.println("  Afterburner  ON ");
+                     seng = "Turbojet with Afterburner ";
+                 }
+                 if (entype == 2) {
+                     seng = "Turbofan";
+                 }
+                 if (entype == 3) {
+                     seng = "Ramjet";
+                 }
+                 prnt.println(seng);
+                 if (entype == 2) {
+                     prnt.println("  Bypass Ratio  = " + String.valueOf(filter3(byprat)));
+                 }
+                 if (entype == 1) {
+                    if (abflag == 0) {
+                        prnt.println("  Afterburner  OFF ");
+                    }
+                    if (abflag == 1) {
+                        prnt.println("  Afterburner  ON ");
+                    }
                  }
                  if (lunits == 0) {
                     prnt.println("  Diameter  = " + String.valueOf(filter3(diameng)) + " ft ") ;
@@ -1634,10 +1704,16 @@ public class Turbo extends java.applet.Applet {
                     prnt.println("  Diameter  = " + String.valueOf(filter3(diameng)) + " m ") ;
                     prnt.println("  Estimated Weight  = " + String.valueOf(filter3(weight * fconv)) + " N ") ;
                  }
-                 if (gamopt == 1) sgamop = "  -  Gamma and Cp = f(Temp)";
-                 else             sgamop = "  -  Constant Gamma and Cp)";
-                 if (inflag == 0) smode = "  Design Mode";
-                 else             smode = "  Test Mode" ;
+                 if (gamopt == 1) {
+                     sgamop = "  -  Gamma and Cp = f(Temp)";
+                 } else {
+                     sgamop = "  -  Constant Gamma and Cp)";
+                 }
+                 if (inflag == 0) {
+                     smode = "  Design Mode";
+                 } else {
+                     smode = "  Test Mode";
+                 }
                  prnt.println(smode + sgamop);
                  if(pall == 1 || pfs == 1) {
                     prnt.println(" ") ;
@@ -1995,19 +2071,25 @@ public class Turbo extends java.applet.Applet {
              lunits = 0 ;
              setUnits () ;
              setPanl() ;
-             if (plttyp >=3) setPlot () ;
+             if (plttyp >=3) {
+                 setPlot();
+             }
           }
           if(label.equals("Metric")) {
              lunits = 1 ;
              setUnits () ;
              setPanl() ;
-             if (plttyp >=3) setPlot () ;
+             if (plttyp >=3) {
+                 setPlot();
+             }
           }
           if(label.equals("% Change")) {
              lunits = 2 ;
              setUnits () ;
              setPanl() ;
-             if (plttyp >=3) setPlot () ;
+             if (plttyp >=3) {
+                 setPlot();
+             }
           }
  // mode
           if(label.equals("Design")) {
@@ -2503,9 +2585,15 @@ public class Turbo extends java.applet.Applet {
              lines = 1;
              npt = 9;
              laby = String.valueOf("Temp");
-             if (lunits == 0) labyu = String.valueOf("R");
-             if (lunits == 1) labyu = String.valueOf("K");
-             if (lunits == 2) labyu = String.valueOf("%");
+             if (lunits == 0) {
+                 labyu = String.valueOf("R");
+             }
+             if (lunits == 1) {
+                 labyu = String.valueOf("K");
+             }
+             if (lunits == 2) {
+                 labyu = String.valueOf("%");
+             }
              begy = 0.0; endy = 5000.; 
              ntiky=11;
              labx = String.valueOf("Station");
@@ -2520,13 +2608,21 @@ public class Turbo extends java.applet.Applet {
              lines = 1;
              npt = 7;
              laby = String.valueOf("Temp");
-             if (lunits == 0) labyu = String.valueOf("R");
-             if (lunits == 1) labyu = String.valueOf("K");
+             if (lunits == 0) {
+                 labyu = String.valueOf("R");
+             }
+             if (lunits == 1) {
+                 labyu = String.valueOf("K");
+             }
              begy = 0.0; endy = 5000.; 
              ntiky=11;
              labx = String.valueOf("s");
-             if (lunits == 0) labxu = String.valueOf("Btu/lbm R");
-             if (lunits == 1) labxu = String.valueOf("kJ/kg K");
+             if (lunits == 0) {
+                 labxu = String.valueOf("Btu/lbm R");
+             }
+             if (lunits == 1) {
+                 labxu = String.valueOf("kJ/kg K");
+             }
              begx = 0.0; endx = 1.0*bconv; 
              ntikx=2;
              break;
@@ -2548,8 +2644,12 @@ public class Turbo extends java.applet.Applet {
              }
              ntiky=11;
              labx = String.valueOf("v");
-             if (lunits == 0)labxu = String.valueOf("ft^3/lb");
-             if (lunits == 1)labxu = String.valueOf("m^3/Kg");
+             if (lunits == 0) {
+                 labxu = String.valueOf("ft^3/lb");
+             }
+             if (lunits == 1) {
+                 labxu = String.valueOf("m^3/Kg");
+             }
              begx=0.0; endx=100.0*dconv; 
              ntikx=2;
              break;
@@ -2560,8 +2660,12 @@ public class Turbo extends java.applet.Applet {
              lines = 0;
              npt = 0;
              laby = String.valueOf("Fn");
-             if (lunits == 0) labyu = String.valueOf("lb");
-             if (lunits == 1) labyu = String.valueOf("N");
+             if (lunits == 0) {
+                 labyu = String.valueOf("lb");
+             }
+             if (lunits == 1) {
+                 labyu = String.valueOf("N");
+             }
              begy=0.0; endy=100000.; 
              ntiky=11 ;
              labx = String.valueOf("Mach");
@@ -2752,9 +2856,13 @@ public class Turbo extends java.applet.Applet {
         fhvd   = fhvs * flconv ;
 
         if (lunits == 2) {     // initialization of reference variables
-           if (u0d <= 10.0) u0d = 10.0 ;
+           if (u0d <= 10.0) {
+               u0d = 10.0;
+           }
            u0ref = u0d;  
-           if (altd <= 10.0) altd = 10.0 ;
+           if (altd <= 10.0) {
+               altd = 10.0;
+           }
            altref = altd;   
            thrref = throtl ;
            a2ref = a2d;  et2ref = eta[2] ; fpref = p3fp2d ;
@@ -2917,7 +3025,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
           public void handleBar(Event evt) {     // flight conditions
@@ -3024,7 +3134,9 @@ public class Turbo extends java.applet.Applet {
                throtl  = v3 * thrref/100. + thrref ;
             }
    
-            if(entype == 1) abflag = nozch.getSelectedIndex() ;
+            if(entype == 1) {
+                abflag = nozch.getSelectedIndex();
+            }
 
             left.f1.setText(String.valueOf(filter0(v1))) ;
             left.f2.setText(String.valueOf(filter0(v2))) ;
@@ -3106,7 +3218,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -3375,7 +3489,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
           public void handleBar(Event evt) {     // engine size
@@ -3418,7 +3534,9 @@ public class Turbo extends java.applet.Applet {
                 afan = a2 ;
                 acore = afan / (1.0+byprat) ;
             }
-            else acore = a2 ;
+            else {
+                acore = a2;
+            }
 
 // compute or input weight 
             wtflag = chmat.getSelectedIndex() ;
@@ -3494,7 +3612,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -3551,7 +3671,9 @@ public class Turbo extends java.applet.Applet {
                  afan = a2 ;
                  acore = afan / (1.0 + byprat) ;
               }
-              else acore = a2 ;
+              else {
+                  acore = a2;
+              }
  
               weight = v2 / fconv ;
               if (weight < 10.0 ) {
@@ -3660,7 +3782,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
            public void handleMat(Event evt) {  // materials
@@ -3728,8 +3852,12 @@ public class Turbo extends java.applet.Applet {
          
             fl1 = filter3(v1) ;
 // inlet design
-            if (lunits <= 1) eta[2] = v1 ;
-            if (lunits == 2) eta[2] = et2ref + v1 / 100. ;
+            if (lunits <= 1) {
+                eta[2] = v1;
+            }
+            if (lunits == 2) {
+                eta[2] = et2ref + v1 / 100.;
+            }
 
             left.f1.setText(String.valueOf(fl1)) ;
 
@@ -3785,7 +3913,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -3945,7 +4075,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
            }
    
            public void handleMat(Event evt) {
@@ -4093,7 +4225,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -4322,7 +4456,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
            public void handleMat(Event evt) {
@@ -4466,7 +4602,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -4678,7 +4816,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
           public void handleMat(Event evt) {
@@ -4687,8 +4827,12 @@ public class Turbo extends java.applet.Applet {
               float fl1;
 
                fueltype = fuelch.getSelectedIndex() ;
-                if (fueltype == 0) fhv = 18600. ;
-                if (fueltype == 1) fhv = 49900. ;
+                if (fueltype == 0) {
+                    fhv = 18600.;
+                }
+                if (fueltype == 1) {
+                    fhv = 49900.;
+                }
                 left.f4.setBackground(Color.black) ;
                 left.f4.setForeground(Color.yellow) ;
                 fhvd = fhv * flconv ;
@@ -4843,7 +4987,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -5077,7 +5223,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
           public void handleMat(Event evt) {
@@ -5210,7 +5358,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -5383,7 +5533,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
           public void handleMat(Event evt) {
@@ -5544,7 +5696,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -5753,7 +5907,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
           public void handleBar(Event evt) {     //  generate plot
@@ -5779,10 +5935,18 @@ public class Turbo extends java.applet.Applet {
             }
             v1 = i1 * (vmx1 - vmn1)/ 1000. + vmn1 ;
             fl1 = (float) v1 ;
-            if (nabs == 3) u0d = v1 ;
-            if (nabs == 4) altd = v1 ;
-            if (nabs == 5) throtl = v1 ;
-            if (nabs == 6) prat[3] = p3p2d = v1 ;
+            if (nabs == 3) {
+                u0d = v1;
+            }
+            if (nabs == 4) {
+                altd = v1;
+            }
+            if (nabs == 5) {
+                throtl = v1;
+            }
+            if (nabs == 6) {
+                prat[3] = p3p2d = v1;
+            }
             if (nabs == 7) {
                 tt4d = v1 ;
                 tt4 = tt4d/tconv ;
@@ -5803,7 +5967,9 @@ public class Turbo extends java.applet.Applet {
           }  // end handle
 
           public void handleBut(Event evt) {     //  generate plot
-             if (npt == 25 ) return ;
+             if (npt == 25 ) {
+                 return;
+             }
              ++npt ;
              switch (nord) {
                  case 3: plty[npt] = fnlb; break ;
@@ -5903,7 +6069,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleText(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
            }
 
            public void handlePlot(Object arg) {
@@ -6233,7 +6401,9 @@ public class Turbo extends java.applet.Applet {
                   this.handleBar(evt) ;
                   return true ;
                }
-               else return false ;
+               else {
+                   return false;
+               }
           }
    
           public void handleMat(Event evt) {
@@ -6391,7 +6561,9 @@ public class Turbo extends java.applet.Applet {
                 this.handleText(evt) ;
                 return true ;
              }
-             else return false ;
+             else {
+                 return false;
+             }
            }
    
            public void handleText(Event evt) {
@@ -6602,7 +6774,9 @@ public class Turbo extends java.applet.Applet {
              this.handleText(evt) ;
              return true ;
           }
-          else return false ;
+          else {
+              return false;
+          }
         }
 
         public void handleText(Event evt) {
@@ -6636,18 +6810,26 @@ public class Turbo extends java.applet.Applet {
      // look for exceeding limits
 
           if (u0d > u0max) {
-             if (u0max < 0) u0max = u0d + .1 ;
+             if (u0max < 0) {
+                 u0max = u0d + .1;
+             }
              u0d = u0max ;
           }
           if (altd > altmax) {
-             if (altmax < 0) altmax = altd + .1 ;
+             if (altmax < 0) {
+                 altmax = altd + .1;
+             }
              altd = altmax ;
           }
-          if (a2max <= a2min) a2max = a2min + .1 ;
+          if (a2max <= a2min) {
+              a2max = a2min + .1;
+          }
           if (a2d > a2max) {
              a2d = a2max ;
              a2 = a2d / aconv ;
-             if (entype != 2) acore = a2 ;
+             if (entype != 2) {
+                 acore = a2;
+             }
              if (entype == 2) {
                 afan = a2 ;
                 acore = afan / (1.0 + byprat) ;
@@ -6656,7 +6838,9 @@ public class Turbo extends java.applet.Applet {
           if (a2d < a2min) {
              a2d = a2min ;
              a2 = a2d / aconv ;
-             if (entype != 2) acore = a2 ;
+             if (entype != 2) {
+                 acore = a2;
+             }
              if (entype == 2) {
                 afan = a2 ;
                 acore = afan / (1.0 + byprat) ;
@@ -6676,14 +6860,22 @@ public class Turbo extends java.applet.Applet {
 
      // look for exceeding limits
 
-          if (cprmax <= cprmin) cprmax = cprmin + .1 ;
-          if (p3p2d > cprmax) p3p2d = cprmax ;
-          if (t4max <= t4min) t4max = t4min + .1 ;
+          if (cprmax <= cprmin) {
+              cprmax = cprmin + .1;
+          }
+          if (p3p2d > cprmax) {
+              p3p2d = cprmax;
+          }
+          if (t4max <= t4min) {
+              t4max = t4min + .1;
+          }
           if (tt4d > t4max) {
             tt4d = t4max ;
             tt4 = tt4d/tconv  ;
           }
-          if (t7max <= t7min) t7max = t7min + .1 ;
+          if (t7max <= t7min) {
+              t7max = t7min + .1;
+          }
           if (tt7d > t7max) {
             tt7d = t7max ;
             tt7 = tt7d/tconv  ;
@@ -6700,15 +6892,25 @@ public class Turbo extends java.applet.Applet {
           bypmax  = v2 ;
           pt4max  = v3 ;
 
-          if (fprmax <= fprmin) fprmax = fprmin + .1 ;
-          if (p3fp2d > fprmax) p3fp2d = fprmax ;
-          if (bypmax <= bypmin) bypmax = bypmin + .1 ;
+          if (fprmax <= fprmin) {
+              fprmax = fprmin + .1;
+          }
+          if (p3fp2d > fprmax) {
+              p3fp2d = fprmax;
+          }
+          if (bypmax <= bypmin) {
+              bypmax = bypmin + .1;
+          }
           if (byprat > bypmax) {
              byprat = bypmax ;
              acore = afan / (1.0 + byprat) ;
           }
-          if (pt4max <= etmin) pt4max = etmin + .1 ;
-          if (prat[4] > pt4max) prat[4] = pt4max ;
+          if (pt4max <= etmin) {
+              pt4max = etmin + .1;
+          }
+          if (prat[4] > pt4max) {
+              prat[4] = pt4max;
+          }
 
           varflag = 0 ;
           layin.show(in, "first")  ;
@@ -6772,7 +6974,9 @@ public class Turbo extends java.applet.Applet {
             this.handleRefs(evt,arg) ;
             return true ;
           }
-          else return false ;
+          else {
+              return false;
+          }
        }
 
        public void handleRefs(Event evt, Object arg) {
@@ -7064,7 +7268,9 @@ public class Turbo extends java.applet.Applet {
             this.handleRefs(evt,arg) ;
             return true ;
           }
-          else return false ;
+          else {
+              return false;
+          }
         }
 
         public void handleRefs(Event evt, Object arg) {
@@ -7450,19 +7656,33 @@ public class Turbo extends java.applet.Applet {
            int i1 ;
 
            outfor = " lbs" ;
-           if (lunits == 1) outfor = " N" ;
+           if (lunits == 1) {
+               outfor = " N";
+           }
            outful = " lb/hr" ;
-           if (lunits == 1) outful = " kg/hr" ;
+           if (lunits == 1) {
+               outful = " kg/hr";
+           }
            outair = " lb/s" ;
-           if (lunits == 1) outair = " kg/s" ;
+           if (lunits == 1) {
+               outair = " kg/s";
+           }
            outvel = " fps" ;
-           if (lunits == 1) outvel = " mps" ;
+           if (lunits == 1) {
+               outvel = " mps";
+           }
            outprs = " psf" ;
-           if (lunits == 1) outprs = " Pa" ;
+           if (lunits == 1) {
+               outprs = " Pa";
+           }
            outpri = " psi" ;
-           if (lunits == 1) outpri = " kPa" ;
+           if (lunits == 1) {
+               outpri = " kPa";
+           }
            outtmp = " R" ;
-           if (lunits == 1) outtmp = " K" ;
+           if (lunits == 1) {
+               outtmp = " K";
+           }
            outtim = " sec" ;
 
            if (inptype == 0 || inptype == 2) {
@@ -7529,8 +7749,11 @@ public class Turbo extends java.applet.Applet {
              o21.setText(String.valueOf(filter0(t8*tconv)) + outtmp) ;
              o22.setText(String.valueOf(filter3(pexit*pconv)) + outpri) ;
              o23.setText(String.valueOf(filter3(m2))) ;
-             if (entype == 2) o24.setText(String.valueOf(filter3(pfexit*pconv)) + outpri) ;
-             else o24.setText("-") ;
+             if (entype == 2) {
+                 o24.setText(String.valueOf(filter3(pfexit * pconv)) + outpri);
+             } else {
+                 o24.setText("-");
+             }
            }
            if (lunits == 2) {
              if (etr >= 1.0) {
@@ -7765,8 +7988,12 @@ public class Turbo extends java.applet.Applet {
            if (y > 27) {
               if (x >= 256) {   // zoom widget
                 sldplt = y ;
-                if (sldplt < 45) sldplt = 45;
-                if (sldplt > 155) sldplt = 155;
+                if (sldplt < 45) {
+                    sldplt = 45;
+                }
+                if (sldplt > 155) {
+                    sldplt = 155;
+                }
                 factp = 120.0 - (sldplt-45)*1.0 ;
               }
            } 
@@ -7887,8 +8114,12 @@ public class Turbo extends java.applet.Applet {
             off1Gg.setColor(Color.blue) ;
             off1Gg.fillRect(0,0,350,350) ;
 
-            if (ntikx < 2) ntikx = 2 ;     /* protection 13June96 */
-            if (ntiky < 2) ntiky = 2 ;
+            if (ntikx < 2) {
+                ntikx = 2;     /* protection 13June96 */
+            }
+            if (ntiky < 2) {
+                ntiky = 2;
+            }
             offx = 0.0 - begx ;
             scalex = 6.5/(endx-begx) ;
             incx = (endx-begx)/(ntikx-1);
@@ -8115,7 +8346,9 @@ public class Turbo extends java.applet.Applet {
            try { Thread.sleep(100); }
            catch (InterruptedException e) {}
            view.repaint() ;
-           if (counter == 3) counter = 0 ;
+           if (counter == 3) {
+               counter = 0;
+           }
            if (antim == 3) {
              antim = 0;
              ancol = - ancol ;
@@ -8140,13 +8373,19 @@ public class Turbo extends java.applet.Applet {
 
      public void handle(int x, int y) {
          // determine location and move
-         if (plttyp == 7) return ;
+         if (plttyp == 7) {
+             return;
+         }
 
          if (y > 42 ) {      // Zoom widget 
            if (x <= 35) {  
              sldloc = y ;
-             if (sldloc < 50) sldloc = 50;
-             if (sldloc > 160) sldloc = 160;
+             if (sldloc < 50) {
+                 sldloc = 50;
+             }
+             if (sldloc > 160) {
+                 sldloc = 160;
+             }
              factor = 10.0 + (sldloc-50)*1.0 ;
 
              view.repaint();
@@ -8158,10 +8397,18 @@ public class Turbo extends java.applet.Applet {
            locate = new Point(x,y) ;
            xtrans = xtrans + (int) (.2*(locate.x - anchor.x)) ;
            ytrans = ytrans + (int) (.2*(locate.y - anchor.y)) ;
-           if (xtrans > 320) xtrans = 320 ;
-           if (xtrans < -280) xtrans = -280 ;
-           if (ytrans > 300) ytrans = 300 ;
-           if (ytrans <-300) ytrans = -300 ;
+           if (xtrans > 320) {
+               xtrans = 320;
+           }
+           if (xtrans < -280) {
+               xtrans = -280;
+           }
+           if (ytrans > 300) {
+               ytrans = 300;
+           }
+           if (ytrans <-300) {
+               ytrans = -300;
+           }
            view.repaint();
            return ;
          }
@@ -8170,7 +8417,9 @@ public class Turbo extends java.applet.Applet {
 
      public void handleb(int x, int y) {
          // determine choices
-         if (plttyp == 7) return ;
+         if (plttyp == 7) {
+             return;
+         }
 
          if (y < 12 ) {   //  top labels
            if (x >= 0   && x <= 60 ) {   // flight conditions
@@ -8206,7 +8455,9 @@ public class Turbo extends java.applet.Applet {
            return ;
          }
 
-         if (inflag == 1) return ;  // end of functions for test mode
+         if (inflag == 1) {
+             return;  // end of functions for test mode
+         }
 
          if (y >= 27 && y <= 42) {                // key off the words
            if (entype <= 2) {
@@ -8215,7 +8466,9 @@ public class Turbo extends java.applet.Applet {
                varflag = 2 ;
              }
              if (x >= 40 && x <= 69) {   //fan
-               if (entype != 2) return ;
+               if (entype != 2) {
+                   return;
+               }
                layin.show(in, "fourth")  ;
                varflag = 3 ;
              }
@@ -8286,10 +8539,18 @@ public class Turbo extends java.applet.Applet {
                  t4max = 1800. ;
                  t7max = 2100. ;
              }
-             if (u0d > u0max) u0d = u0max ;
-             if (altd > altmax) altd = altmax ;
-             if (tt4d > t4max) tt4 = tt4d = t4max ;
-             if (tt7d > t7max) tt7 = tt7d = t7max ;
+             if (u0d > u0max) {
+                 u0d = u0max;
+             }
+             if (altd > altmax) {
+                 altd = altmax;
+             }
+             if (tt4d > t4max) {
+                 tt4 = tt4d = t4max;
+             }
+             if (tt7d > t7max) {
+                 tt7 = tt7d = t7max;
+             }
            }
            else {
              if (lunits != 1) {
@@ -8354,11 +8615,15 @@ public class Turbo extends java.applet.Applet {
         lxhst = 5. ;
  
         scale = Math.sqrt(acore/3.1415926) ;
-        if (scale > 10.0) scale = scale / 10.0 ;
+        if (scale > 10.0) {
+            scale = scale / 10.0;
+        }
     
         if (ncflag == 0) {
            ncomp = (int) (1.0 + p3p2d / 1.5) ;
-           if (ncomp > 15) ncomp = 15 ;
+           if (ncomp > 15) {
+               ncomp = 15;
+           }
            in.comp.left.f3.setText(String.valueOf(ncomp)) ;
         }
         sblade = .02;
@@ -8400,14 +8665,20 @@ public class Turbo extends java.applet.Applet {
         if (ntflag == 0) {
           nturb = 1 + ncomp/4 ;
           in.turb.left.f3.setText(String.valueOf(nturb)) ;
-          if (entype == 2) nturb = nturb + 1 ;
+          if (entype == 2) {
+              nturb = nturb + 1;
+          }
         }
         lturb = nturb*(tblade+sblade) ;
         xturb = xburn + lturb ;
         xturbh = xturb - 2.0*(tblade+sblade) ;
         lnoz = lburn ;
-        if (entype == 1) lnoz = 3.0 * lburn ;
-        if (entype == 3) lnoz = 3.0 * lburn ;
+        if (entype == 1) {
+            lnoz = 3.0 * lburn;
+        }
+        if (entype == 3) {
+            lnoz = 3.0 * lburn;
+        }
         xnoz = xturb + lburn ;
         xflame = xturb + lnoz ;
         xit = xflame + hblade ;
@@ -8545,8 +8816,12 @@ public class Turbo extends java.applet.Applet {
       if (entype == 2) {                        /*  fan blades */
         offsGg.setColor(Color.white) ;
         for (j=1; j<=3; ++j) {
-          if (j==3 && bcol == 0) offsGg.setColor(Color.black) ;
-          if (j==3 && bcol == 7) offsGg.setColor(Color.white) ;
+          if (j==3 && bcol == 0) {
+              offsGg.setColor(Color.black);
+          }
+          if (j==3 && bcol == 7) {
+              offsGg.setColor(Color.white);
+          }
           exes[0] = (int) (xl + factor*(.02 +(j-1)*(tblade+sblade))) ;
           whys[0] = (int) (factor*fblade + ytrans) ;
           exes[1] = exes[0] + (int) (factor*tblade) ;
@@ -8560,7 +8835,9 @@ public class Turbo extends java.applet.Applet {
       }
                            /* core */
       offsGg.setColor(Color.cyan) ;
-      if (varflag == 4) offsGg.setColor(Color.yellow) ;
+      if (varflag == 4) {
+          offsGg.setColor(Color.yellow);
+      }
       offsGg.fillArc((int)(xl-factor*radius),(int)(yl-factor*radius),
          (int)(2.0*factor*radius),(int)(2.0*factor*radius),90,180) ;
       exes[0] = (int) (xl) ;
@@ -8574,7 +8851,9 @@ public class Turbo extends java.applet.Applet {
       offsGg.fillPolygon(exes,whys,4) ;
       if (entype == 2) {  // fan
         offsGg.setColor(Color.green) ;
-        if (varflag == 3) offsGg.setColor(Color.yellow) ;
+        if (varflag == 3) {
+            offsGg.setColor(Color.yellow);
+        }
         offsGg.fillArc((int)(xl-factor*radius),(int)(yl-factor*radius),
            (int)(2.0*factor*radius),(int)(2.0*factor*radius),90,180) ;
         exes[0] = (int) (xl) ;
@@ -8608,7 +8887,9 @@ public class Turbo extends java.applet.Applet {
           (int)(2.0*factor*rburn),(int)(2.0*factor*rburn),90,180) ;  
                                    /* core */
       offsGg.setColor(Color.red) ;
-      if (varflag == 5) offsGg.setColor(Color.yellow) ;
+      if (varflag == 5) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xcomp +xtrans) ;
       whys[0] = (int) (factor*1.5 * radius + ytrans);
       exes[1] = (int) (factor*xcomp +.25*lburn + xtrans) ;
@@ -8631,8 +8912,12 @@ public class Turbo extends java.applet.Applet {
       for (j=1; j<=nturb; ++j) {
          offsGg.setColor(Color.white) ;
          if (entype == 2) {
-            if (j==(nturb-1) && bcol == 0) offsGg.setColor(Color.black) ;
-            if (j==(nturb-1) && bcol == 7) offsGg.setColor(Color.white) ;
+            if (j==(nturb-1) && bcol == 0) {
+                offsGg.setColor(Color.black);
+            }
+            if (j==(nturb-1) && bcol == 7) {
+                offsGg.setColor(Color.white);
+            }
          }
          exes[0] = (int) (factor*(xburn +.02 +(j-1)*(tblade+sblade))+xtrans) ;
          whys[0] = (int) (factor*hblade+ytrans) ;
@@ -8646,7 +8931,9 @@ public class Turbo extends java.applet.Applet {
       }
                          /* core */
       offsGg.setColor(Color.magenta) ;
-      if (varflag == 6) offsGg.setColor(Color.yellow) ;
+      if (varflag == 6) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xburn+xtrans) ;
       whys[0] = (int) (factor*1.5*radius+ytrans);
       exes[1] = (int) (factor*xnoz +xtrans) ;
@@ -8656,9 +8943,15 @@ public class Turbo extends java.applet.Applet {
       offsGg.fillPolygon(exes,whys,3) ;
   /* afterburner */
       if(entype == 1) {
-         if (dcol == 0) offsGg.setColor(Color.black) ;
-         if (dcol == 7) offsGg.setColor(Color.white) ;
-         if (varflag == 7) offsGg.setColor(Color.yellow) ;
+         if (dcol == 0) {
+             offsGg.setColor(Color.black);
+         }
+         if (dcol == 7) {
+             offsGg.setColor(Color.white);
+         }
+         if (varflag == 7) {
+             offsGg.setColor(Color.yellow);
+         }
          exes[0] = (int) (factor*(xflame - .1*lnoz)  + xtrans) ;
          whys[0] = (int) (factor*.6*hblade+ytrans) ;
          exes[1] = (int) (factor*(xflame -.2*lnoz) + xtrans) ;
@@ -8675,10 +8968,16 @@ public class Turbo extends java.applet.Applet {
       }
 
 /* cowl */
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
       if (entype == 0 ) {   /*   turbojet  */
-         if (varflag == 2) offsGg.setColor(Color.yellow) ;
+         if (varflag == 2) {
+             offsGg.setColor(Color.yellow);
+         }
          xl = xcowl + liprad ;                /*   core cowl */
          yl = rcowl ;
          offsGg.fillArc((int)(factor*(xl-liprad)+xtrans),(int)(factor*(yl-liprad)+ytrans),
@@ -8701,7 +9000,9 @@ public class Turbo extends java.applet.Applet {
          offsGg.fillPolygon(exes,whys,4) ;
                                     // compressor
          offsGg.setColor(Color.cyan) ;
-         if (varflag == 4) offsGg.setColor(Color.yellow) ;
+         if (varflag == 4) {
+             offsGg.setColor(Color.yellow);
+         }
          exes[0] = (int) (factor*-radius + xtrans) ;
          whys[0] = (int) (factor*(hblade+liprad)+ytrans)  ;
          exes[1] = (int) (factor*xcomp+xtrans) ;
@@ -8723,7 +9024,9 @@ public class Turbo extends java.applet.Applet {
       }
       if (entype == 1) {            /*   fighter plane  */
          offsGg.setColor(Color.white) ;
-         if (varflag == 2) offsGg.setColor(Color.yellow) ;
+         if (varflag == 2) {
+             offsGg.setColor(Color.yellow);
+         }
          xl = xcowl + liprad ;                     /*   inlet */
          yl = rcowl ;
          offsGg.fillArc((int)(factor*(xl-liprad)+xtrans),(int)(factor*(yl-liprad)+ytrans),
@@ -8750,7 +9053,9 @@ public class Turbo extends java.applet.Applet {
          offsGg.fillPolygon(exes,whys,5) ;
                                     // compressor
          offsGg.setColor(Color.cyan) ;
-         if (varflag == 4) offsGg.setColor(Color.yellow) ;
+         if (varflag == 4) {
+             offsGg.setColor(Color.yellow);
+         }
          exes[0] = (int) (factor*-radius + xtrans) ;
          whys[0] = (int) (factor*(hblade+liprad)+ytrans)  ;
          exes[1] = (int) (factor*xcomp+xtrans) ;
@@ -8771,9 +9076,15 @@ public class Turbo extends java.applet.Applet {
          offsGg.fillPolygon(exes,whys,5) ;
       }
       if(entype == 2) {                                  /* fan jet */
-         if (dcol == 0) offsGg.setColor(Color.black) ;
-         if (dcol == 7) offsGg.setColor(Color.white) ;
-         if (varflag == 2) offsGg.setColor(Color.yellow) ;
+         if (dcol == 0) {
+             offsGg.setColor(Color.black);
+         }
+         if (dcol == 7) {
+             offsGg.setColor(Color.white);
+         }
+         if (varflag == 2) {
+             offsGg.setColor(Color.yellow);
+         }
          xl = xcowl + liprad ;                     /*   fan cowl inlet */
          yl = rcowl ;
          offsGg.fillArc((int)(factor*(xl-liprad)+xtrans),(int)(factor*(yl-liprad)+ytrans),
@@ -8797,7 +9108,9 @@ public class Turbo extends java.applet.Applet {
          offsGg.fillPolygon(exes,whys,4) ;
 
          offsGg.setColor(Color.green) ;
-         if (varflag == 3) offsGg.setColor(Color.yellow) ;
+         if (varflag == 3) {
+             offsGg.setColor(Color.yellow);
+         }
          xl = xcowl + liprad ;                     /*   fan cowl */
          yl = rcowl ;
          exes[0] = (int) (factor*-radius + xtrans) ;
@@ -8822,7 +9135,9 @@ public class Turbo extends java.applet.Applet {
          xl = xfan + .02 ;             /* core cowl */
          yl = hblade ;
          offsGg.setColor(Color.cyan) ;
-         if (varflag == 4) offsGg.setColor(Color.yellow) ;
+         if (varflag == 4) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.fillArc((int)(factor*(xl-liprad)+xtrans),(int)(factor*(yl-liprad)+ytrans), 
               (int)(2.0*factor*liprad),(int)(2.0*factor*liprad),90,180) ;
          offsGg.fillArc((int)(factor*(xl-liprad)+xtrans),(int)(factor*(-yl-liprad)+ytrans),
@@ -8845,7 +9160,9 @@ public class Turbo extends java.applet.Applet {
       }
                                                      /* combustor */
       offsGg.setColor(Color.red) ;
-      if (varflag == 5) offsGg.setColor(Color.yellow) ;
+      if (varflag == 5) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xcomp+xtrans) ;
       whys[0] = (int) (factor*(hblade+liprad)+ytrans);
       exes[1] = (int) (factor*xburn+xtrans) ;
@@ -8869,7 +9186,9 @@ public class Turbo extends java.applet.Applet {
       offsGg.fillPolygon(exes,whys,6) ;
                                                       /* turbine */
       offsGg.setColor(Color.magenta) ;
-      if (varflag == 6) offsGg.setColor(Color.yellow) ;
+      if (varflag == 6) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xburn+xtrans) ;
       whys[0] = (int) (factor*(hblade+liprad)+ytrans);
       exes[1] = (int) (factor*xturb +xtrans) ;
@@ -8886,9 +9205,15 @@ public class Turbo extends java.applet.Applet {
       whys[3] = (int) (factor*-.8 * hblade +ytrans);
       offsGg.fillPolygon(exes,whys,4) ;
                                                      /* nozzle */
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
-      if (varflag == 7) offsGg.setColor(Color.yellow) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
+      if (varflag == 7) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xturb+xtrans) ;
       whys[0] = (int) (factor*(hblade+liprad)+ytrans);
       exes[1] = (int) (factor*xflame + xtrans) ;
@@ -9001,32 +9326,48 @@ public class Turbo extends java.applet.Applet {
          offsGg.setColor(Color.black) ;
          offsGg.fillRect(0,27,300,15) ;
          offsGg.setColor(Color.white) ;
-         if (varflag == 2) offsGg.setColor(Color.yellow) ;
+         if (varflag == 2) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Inlet",10,40) ; 
          if (entype == 2) { 
            offsGg.setColor(Color.green) ;
-           if (varflag == 3) offsGg.setColor(Color.yellow) ;
+           if (varflag == 3) {
+               offsGg.setColor(Color.yellow);
+           }
            offsGg.drawString("Fan",40,40) ; 
          }
          offsGg.setColor(Color.cyan) ;
-         if (varflag == 4) offsGg.setColor(Color.yellow) ;
+         if (varflag == 4) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Compressor",70,40) ; 
          offsGg.setColor(Color.red) ;
-         if (varflag == 5) offsGg.setColor(Color.yellow) ;
+         if (varflag == 5) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Burner",150,40) ; 
          offsGg.setColor(Color.magenta) ;
-         if (varflag == 6) offsGg.setColor(Color.yellow) ;
+         if (varflag == 6) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Turbine",200,40) ; 
          offsGg.setColor(Color.white) ;
-         if (varflag == 7) offsGg.setColor(Color.yellow) ;
+         if (varflag == 7) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Nozzle",250,40) ; 
       }
     }
 
     if (entype == 3) {                  //ramjet geom
                            /* inlet spike */
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
       exes[0] = (int) (factor*-2.0 + xtrans) ;
       whys[0] = (int) (0.0 + ytrans);
       exes[1] = (int) (factor*xcomp + xtrans) ;
@@ -9038,15 +9379,21 @@ public class Turbo extends java.applet.Applet {
       offsGg.fillPolygon(exes,whys,4) ;
                                  /* spraybars */
       offsGg.setColor(Color.white) ;
-      if (varflag == 5) offsGg.setColor(Color.yellow) ;
+      if (varflag == 5) {
+          offsGg.setColor(Color.yellow);
+      }
       xl = xcomp + .05 + rburn ;
       yl = .6*hblade ;
       offsGg.drawArc((int)(factor*(xl-rburn)+xtrans),(int)(factor*(yl-rburn)+ytrans),
           (int)(2.0*factor*rburn),(int)(2.0*factor*rburn),90,180) ;
       offsGg.drawArc((int)(factor*(xl-rburn)+xtrans),(int)(factor*(-yl-rburn)+ytrans),
           (int)(2.0*factor*rburn),(int)(2.0*factor*rburn),90,180) ;  
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
       exes[0] = (int) (factor*xcomp +xtrans) ;
       whys[0] = (int) (factor*1.5 * radius + ytrans);
       exes[1] = (int) (factor*xcomp +.25*lburn + xtrans) ;
@@ -9065,8 +9412,12 @@ public class Turbo extends java.applet.Applet {
       whys[7] = (int) (factor*-1.5 * radius + ytrans);
       offsGg.fillPolygon(exes,whys,8) ;
                          /* aft cone */
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
       exes[0] = (int) (factor*xburn+xtrans) ;
       whys[0] = (int) (factor*1.5*radius+ytrans);
       exes[1] = (int) (factor*xnoz +xtrans) ;
@@ -9076,7 +9427,9 @@ public class Turbo extends java.applet.Applet {
       offsGg.fillPolygon(exes,whys,3) ;
                            /* fame holders */
       offsGg.setColor(Color.white) ;
-      if (varflag == 5) offsGg.setColor(Color.yellow) ;
+      if (varflag == 5) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*(xnoz +.2*lnoz)  + xtrans) ;
       whys[0] = (int) (factor*.6*hblade+ytrans) ;
       exes[1] = (int) (factor*(xnoz +.1*lnoz) + xtrans) ;
@@ -9091,9 +9444,15 @@ public class Turbo extends java.applet.Applet {
       offsGg.drawLine(exes[0],whys[0],exes[1],whys[1]) ;
       offsGg.drawLine(exes[1],whys[1],exes[2],whys[2]) ;
 
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
-      if (varflag == 2) offsGg.setColor(Color.yellow) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
+      if (varflag == 2) {
+          offsGg.setColor(Color.yellow);
+      }
 
       xl = xcowl + liprad ;                /*   core cowl */
       yl = rcowl ;
@@ -9112,9 +9471,15 @@ public class Turbo extends java.applet.Applet {
       whys[3] = (int) (factor*(-yl) + ytrans);
       offsGg.fillPolygon(exes,whys,4) ;
                                     // compressor
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
-      if (varflag == 2) offsGg.setColor(Color.yellow) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
+      if (varflag == 2) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*-radius + xtrans) ;
       whys[0] = (int) (factor*(hblade+liprad)+ytrans)  ;
       exes[1] = (int) (factor*xcomp+xtrans) ;
@@ -9134,9 +9499,15 @@ public class Turbo extends java.applet.Applet {
       whys[4] = whys[3];
       offsGg.fillPolygon(exes,whys,5) ;
                                                      /* combustor */
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
-      if (varflag == 5) offsGg.setColor(Color.yellow) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
+      if (varflag == 5) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xcomp+xtrans) ;
       whys[0] = (int) (factor*(hblade+liprad)+ytrans);
       exes[1] = (int) (factor*xburn+xtrans) ;
@@ -9159,9 +9530,15 @@ public class Turbo extends java.applet.Applet {
       whys[5] = (int) (factor*-.8 * hblade+ytrans);
       offsGg.fillPolygon(exes,whys,6) ;
                                                       /* turbine */
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
-      if (varflag == 5) offsGg.setColor(Color.yellow) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
+      if (varflag == 5) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xburn+xtrans) ;
       whys[0] = (int) (factor*(hblade+liprad)+ytrans);
       exes[1] = (int) (factor*xturb +xtrans) ;
@@ -9178,9 +9555,15 @@ public class Turbo extends java.applet.Applet {
       whys[3] = (int) (factor*-.8 * hblade +ytrans);
       offsGg.fillPolygon(exes,whys,4) ;
                                                     /* nozzle */
-      if (dcol == 0) offsGg.setColor(Color.black) ;
-      if (dcol == 7) offsGg.setColor(Color.white) ;
-      if (varflag == 7) offsGg.setColor(Color.yellow) ;
+      if (dcol == 0) {
+          offsGg.setColor(Color.black);
+      }
+      if (dcol == 7) {
+          offsGg.setColor(Color.white);
+      }
+      if (varflag == 7) {
+          offsGg.setColor(Color.yellow);
+      }
       exes[0] = (int) (factor*xturb+xtrans) ;
       whys[0] = (int) (factor*(hblade+liprad)+ytrans);
       exes[1] = (int) (factor*xit+ xtrans)  ;
@@ -9243,13 +9626,19 @@ public class Turbo extends java.applet.Applet {
          offsGg.setColor(Color.black) ;
          offsGg.fillRect(0,27,300,15) ;
          offsGg.setColor(Color.white) ;
-         if (varflag == 2) offsGg.setColor(Color.yellow) ;
+         if (varflag == 2) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Inlet",10,40) ; 
          offsGg.setColor(Color.white) ;
-         if (varflag == 5) offsGg.setColor(Color.yellow) ;
+         if (varflag == 5) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Burner",100,40) ; 
          offsGg.setColor(Color.white) ;
-         if (varflag == 7) offsGg.setColor(Color.yellow) ;
+         if (varflag == 7) {
+             offsGg.setColor(Color.yellow);
+         }
          offsGg.drawString("Nozzle",250,40) ; 
       }
     }
@@ -9265,22 +9654,38 @@ public class Turbo extends java.applet.Applet {
             if ((i-antim)/3*3 == (i-antim)) {
               if (i< 15) {
                  if (ancol == -1) {
-                   if((i-antim)/6*6 ==(i-antim))offsGg.setColor(Color.white);
-                   if((i-antim)/6*6 !=(i-antim))offsGg.setColor(Color.cyan);
+                   if((i-antim)/6*6 ==(i-antim)) {
+                       offsGg.setColor(Color.white);
+                   }
+                   if((i-antim)/6*6 !=(i-antim)) {
+                       offsGg.setColor(Color.cyan);
+                   }
                  }
                  if (ancol == 1) {
-                   if((i-antim)/6*6 ==(i-antim))offsGg.setColor(Color.cyan);
-                   if((i-antim)/6*6 !=(i-antim))offsGg.setColor(Color.white);
+                   if((i-antim)/6*6 ==(i-antim)) {
+                       offsGg.setColor(Color.cyan);
+                   }
+                   if((i-antim)/6*6 !=(i-antim)) {
+                       offsGg.setColor(Color.white);
+                   }
                  }
               }
               if (i >= 16) {
                  if (ancol == -1) {
-                   if((i-antim)/6*6 ==(i-antim))offsGg.setColor(Color.yellow);
-                   if((i-antim)/6*6 !=(i-antim))offsGg.setColor(Color.red);
+                   if((i-antim)/6*6 ==(i-antim)) {
+                       offsGg.setColor(Color.yellow);
+                   }
+                   if((i-antim)/6*6 !=(i-antim)) {
+                       offsGg.setColor(Color.red);
+                   }
                  }
                  if (ancol == 1) {
-                   if((i-antim)/6*6 ==(i-antim))offsGg.setColor(Color.red);
-                   if((i-antim)/6*6 !=(i-antim))offsGg.setColor(Color.yellow);
+                   if((i-antim)/6*6 ==(i-antim)) {
+                       offsGg.setColor(Color.red);
+                   }
+                   if((i-antim)/6*6 !=(i-antim)) {
+                       offsGg.setColor(Color.yellow);
+                   }
                  }
               }
               offsGg.drawLine(exes[0],whys[0],exes[1],whys[1]) ;
@@ -9298,12 +9703,20 @@ public class Turbo extends java.applet.Applet {
             whys[1] = (int) (factor*yg[j][i] + ytrans);
             if ((i-antim)/3*3 == (i-antim)) {
               if (ancol == -1) {
-                if((i-antim)/6*6 ==(i-antim))offsGg.setColor(Color.white);
-                if((i-antim)/6*6 !=(i-antim))offsGg.setColor(Color.cyan);
+                if((i-antim)/6*6 ==(i-antim)) {
+                    offsGg.setColor(Color.white);
+                }
+                if((i-antim)/6*6 !=(i-antim)) {
+                    offsGg.setColor(Color.cyan);
+                }
               }
               if (ancol == 1) {
-                if((i-antim)/6*6 ==(i-antim))offsGg.setColor(Color.cyan);
-                if((i-antim)/6*6 !=(i-antim))offsGg.setColor(Color.white);
+                if((i-antim)/6*6 ==(i-antim)) {
+                    offsGg.setColor(Color.cyan);
+                }
+                if((i-antim)/6*6 !=(i-antim)) {
+                    offsGg.setColor(Color.white);
+                }
               }
               offsGg.drawLine(exes[0],whys[0],exes[1],whys[1]) ;
            }
@@ -9314,19 +9727,29 @@ public class Turbo extends java.applet.Applet {
     offsGg.setColor(Color.black) ;
     offsGg.fillRect(0,0,300,27) ;
     offsGg.setColor(Color.white) ;
-    if (varflag == 0) offsGg.setColor(Color.yellow) ;
+    if (varflag == 0) {
+        offsGg.setColor(Color.yellow);
+    }
     offsGg.drawString("Flight",10,10) ; 
     offsGg.setColor(Color.white) ;
-    if (varflag == 1) offsGg.setColor(Color.yellow) ;
+    if (varflag == 1) {
+        offsGg.setColor(Color.yellow);
+    }
     offsGg.drawString("Size",70,10) ; 
     offsGg.setColor(Color.white) ;
-    if (varflag == 8) offsGg.setColor(Color.yellow) ;
+    if (varflag == 8) {
+        offsGg.setColor(Color.yellow);
+    }
     offsGg.drawString("Limits",120,10) ;
     offsGg.setColor(Color.white) ;
-    if (varflag == 10) offsGg.setColor(Color.yellow) ;
+    if (varflag == 10) {
+        offsGg.setColor(Color.yellow);
+    }
     offsGg.drawString("Save",170,10) ;
     offsGg.setColor(Color.white) ;
-    if (varflag == 9) offsGg.setColor(Color.yellow) ;
+    if (varflag == 9) {
+        offsGg.setColor(Color.yellow);
+    }
     offsGg.drawString("Print",215,10) ;
     offsGg.setColor(Color.cyan) ;
     offsGg.drawString("Find",260,10) ;
@@ -9372,8 +9795,12 @@ public class Turbo extends java.applet.Applet {
     if (fireflag == 1) {
        offsGg.setColor(Color.yellow) ;
        offsGg.fillRect(50,80,200,30) ;
-       if(counter==1)offsGg.setColor(Color.black) ;
-       if(counter>=2)offsGg.setColor(Color.white) ;
+       if(counter==1) {
+           offsGg.setColor(Color.black);
+       }
+       if(counter>=2) {
+           offsGg.setColor(Color.white);
+       }
        offsGg.fillRect(55,85,190,20) ;
        offsGg.setColor(Color.red) ;
        offsGg.drawString("Temperature  Limits Exceeded",60,100) ; 
