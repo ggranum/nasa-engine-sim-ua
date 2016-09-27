@@ -1,5 +1,5 @@
 # Cruft
-#*.class
+*.class
 *.tmp
 *.mwb.bak
 
