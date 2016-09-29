@@ -177,9 +177,6 @@ public class NozzlePanel extends Panel {
             double v1;
             double v2;
             double v3;
-            float fl1;
-            float fl2;
-            float fl3;
 
             i1 = s1.getValue();
             i2 = s2.getValue();
@@ -206,10 +203,6 @@ public class NozzlePanel extends Panel {
             v2 = i2 * (Turbo.vmx2 - Turbo.vmn2) / 1000. + Turbo.vmn2;
             v3 = i3 * (Turbo.vmx3 - Turbo.vmn3) / 1000. + Turbo.vmn3;
 
-            fl1 = (float)v1;
-            fl2 = (float)v2;
-            fl3 = turbo.filter3(v3);
-
             // nozzle design
             if(turbo.lunits <= 1) {
                 Turbo.tt7d = v1;
@@ -223,9 +216,9 @@ public class NozzlePanel extends Panel {
             }
             Turbo.tt7 = Turbo.tt7d / Turbo.tconv;
 
-            nozzleLeftPanel.getF1().setText(String.valueOf(fl1));
-            nozzleLeftPanel.getF2().setText(String.valueOf(fl2));
-            nozzleLeftPanel.getF3().setText(String.valueOf(fl3));
+            nozzleLeftPanel.getF1().setText(String.valueOf((float)v1));
+            nozzleLeftPanel.getF2().setText(String.valueOf((float)v2));
+            nozzleLeftPanel.getF3().setText(String.format("%.3f", v3));
 
             turbo.solve.comPute();
         }  // end handle
@@ -333,12 +326,12 @@ public class NozzlePanel extends Panel {
             if(Turbo.mnozl == 0) {
                 if(v7 <= 1.0 * Turbo.dconv) {
                     v7 = 1.0 * Turbo.dconv;
-                    getDn().setText(String.valueOf(turbo.filter0(v7 * Turbo.dconv)));
+                    getDn().setText(String.format("%.0f", v7 * Turbo.dconv));
                 }
                 Turbo.dnozl = v7 / Turbo.dconv;
                 if(v8 <= 500. * Turbo.tconv) {
                     v8 = 500. * Turbo.tconv;
-                    getTn().setText(String.valueOf(turbo.filter0(v8 * Turbo.tconv)));
+                    getTn().setText(String.format("%.0f", v8 * Turbo.tconv));
                 }
                 Turbo.tnozl = v8 / Turbo.tconv;
             }

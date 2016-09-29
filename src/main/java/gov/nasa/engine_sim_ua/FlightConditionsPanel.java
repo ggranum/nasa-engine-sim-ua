@@ -29,10 +29,6 @@ class FlightConditionsPanel extends Panel {
         double v2;
         double v3;
         double v4;
-        float fl1;
-        float fl2;
-        float fl3;
-        float fl4;
         int i1;
         int i2;
         int i3;
@@ -63,10 +59,10 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmx3 = Turbo.thrmax;
         }
 
-        turbo.inputPanel.flightPanel.flightLeftPanel.f1.setText(String.valueOf(turbo.filter0(v1)));
-        turbo.inputPanel.flightPanel.flightLeftPanel.f2.setText(String.valueOf(turbo.filter0(v2)));
-        turbo.inputPanel.flightPanel.flightLeftPanel.f3.setText(String.valueOf(turbo.filter3(v3)));
-        turbo.inputPanel.flightPanel.flightLeftPanel.f4.setText(String.valueOf(turbo.filter3(v4)));
+        turbo.inputPanel.flightPanel.flightLeftPanel.f1.setText(String.format("%.0f", v1));
+        turbo.inputPanel.flightPanel.flightLeftPanel.f2.setText(String.format("%.0f", v2));
+        turbo.inputPanel.flightPanel.flightLeftPanel.f3.setText(String.format("%.3f", v3));
+        turbo.inputPanel.flightPanel.flightLeftPanel.f4.setText(String.format("%.3f", v4));
 
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
         i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
@@ -92,17 +88,15 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmx1 = Turbo.a2max;
             v3 = Turbo.diameng;
         }
-        fl1 = turbo.filter3(v1);
-        fl3 = turbo.filter3(v3);
-        turbo.inputPanel.sizePanel.sizeLeftPanel.f1.setText(String.valueOf(fl1));
-        turbo.inputPanel.sizePanel.sizeLeftPanel.f3.setText(String.valueOf(fl3));
+        turbo.inputPanel.sizePanel.sizeLeftPanel.f1.setText(String.format("%.3f", v1));
+        turbo.inputPanel.sizePanel.sizeLeftPanel.f3.setText(String.format("%.3f", v3));
 
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
 
         turbo.inputPanel.sizePanel.sizeRightPanel.sizch.select(turbo.siztype);
         turbo.inputPanel.sizePanel.sizeRightPanel.getS1().setValue(i1);
 
-        turbo.inputPanel.sizePanel.sizeLeftPanel.f2.setText(String.valueOf(turbo.filter0(Turbo.weight)));
+        turbo.inputPanel.sizePanel.sizeLeftPanel.f2.setText(String.format("%.0f", Turbo.weight));
         turbo.inputPanel.sizePanel.sizeRightPanel.getChmat().select(turbo.wtflag);
 
         // inletPanel
@@ -123,14 +117,14 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmx1 = 100.0 - 100.0 * Turbo.et2ref;
             Turbo.vmn1 = Turbo.vmx1 - 20.0;
         }
-        fl1 = turbo.filter3(v1);
-        turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.valueOf(fl1));
+
+        turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.format("%.3f", v1));
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
         turbo.inputPanel.inletPanel.inletRightPanel.s1.setValue(i1);
         // materials
         turbo.inputPanel.inletPanel.inletRightPanel.imat.select(Turbo.minlt);
-        turbo.inputPanel.inletPanel.inletLeftPanel.getDi().setText(String.valueOf(turbo.filter0(Turbo.dinlt)));
-        turbo.inputPanel.inletPanel.inletLeftPanel.getTi().setText(String.valueOf(turbo.filter0(Turbo.tinlt)));
+        turbo.inputPanel.inletPanel.inletLeftPanel.getDi().setText(String.format("%.0f", Turbo.dinlt));
+        turbo.inputPanel.inletPanel.inletLeftPanel.getTi().setText(String.format("%.0f", Turbo.tinlt));
         //  fanPanel
         v1 = Turbo.p3fp2d;
         Turbo.vmn1 = Turbo.fprmin;
@@ -153,13 +147,10 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmn3 = -10.0;
             Turbo.vmx3 = 10.0;
         }
-        fl1 = (float)v1;
-        fl2 = (float)v2;
-        fl3 = (float)v3;
 
-        turbo.inputPanel.fanPanel.leftPanel.getF1().setText(String.valueOf(fl1));
-        turbo.inputPanel.fanPanel.leftPanel.getF2().setText(String.valueOf(fl2));
-        turbo.inputPanel.fanPanel.leftPanel.getF3().setText(String.valueOf(fl3));
+        turbo.inputPanel.fanPanel.leftPanel.getF1().setText(String.valueOf((float)v1));
+        turbo.inputPanel.fanPanel.leftPanel.getF2().setText(String.valueOf((float)v2));
+        turbo.inputPanel.fanPanel.leftPanel.getF3().setText(String.valueOf(v3));
 
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
         i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
@@ -171,8 +162,8 @@ class FlightConditionsPanel extends Panel {
 
         // materials
         turbo.inputPanel.fanPanel.rightPanel.fmat.select(Turbo.mfan);
-        turbo.inputPanel.fanPanel.leftPanel.getDf().setText(String.valueOf(turbo.filter0(Turbo.dfan)));
-        turbo.inputPanel.fanPanel.leftPanel.getTf().setText(String.valueOf(turbo.filter0(Turbo.tfan)));
+        turbo.inputPanel.fanPanel.leftPanel.getDf().setText(String.format("%.0f", Turbo.dfan));
+        turbo.inputPanel.fanPanel.leftPanel.getTf().setText(String.format("%.0f", Turbo.tfan));
         // compressor
         v1 = Turbo.p3p2d;
         Turbo.vmn1 = Turbo.cprmin;
@@ -189,11 +180,9 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmx2 = 100.0 - 100.0 * Turbo.et3ref;
             Turbo.vmn2 = Turbo.vmx2 - 20.0;
         }
-        fl1 = (float)v1;
-        fl2 = (float)v2;
-
-        turbo.inputPanel.compressorPanel.compressorLeftPanel.getF1().setText(String.valueOf(fl1));
-        turbo.inputPanel.compressorPanel.compressorLeftPanel.getF2().setText(String.valueOf(fl2));
+        
+        turbo.inputPanel.compressorPanel.compressorLeftPanel.getF1().setText(String.valueOf((float)v1));
+        turbo.inputPanel.compressorPanel.compressorLeftPanel.getF2().setText(String.valueOf((float)v2));
 
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
         i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
@@ -202,8 +191,8 @@ class FlightConditionsPanel extends Panel {
         turbo.inputPanel.compressorPanel.compressorRightPanel.s2.setValue(i2);
         // materials
         turbo.inputPanel.compressorPanel.compressorRightPanel.cmat.select(Turbo.mcomp);
-        turbo.inputPanel.compressorPanel.compressorLeftPanel.getDc().setText(String.valueOf(turbo.filter0(Turbo.dcomp)));
-        turbo.inputPanel.compressorPanel.compressorLeftPanel.getTc().setText(String.valueOf(turbo.filter0(Turbo.tcomp)));
+        turbo.inputPanel.compressorPanel.compressorLeftPanel.getDc().setText(String.format("%.0f", Turbo.dcomp));
+        turbo.inputPanel.compressorPanel.compressorLeftPanel.getTc().setText(String.format("%.0f", Turbo.tcomp));
         //  burner
         v1 = Turbo.tt4d;
         Turbo.vmn1 = Turbo.t4min;
@@ -227,14 +216,11 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmx3 = 100.0 - 100.0 * Turbo.p4ref;
             Turbo.vmn3 = Turbo.vmx3 - 20.0;
         }
-        fl1 = (float)v1;
-        fl2 = (float)v2;
-        fl3 = (float)v3;
 
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF1().setText(String.valueOf(turbo.filter0(v1)));
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF2().setText(String.valueOf(fl2));
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF3().setText(String.valueOf(fl3));
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF4().setText(String.valueOf(turbo.filter0(v4)));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF1().setText(String.format("%.0f", v1));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF2().setText(String.valueOf(v2));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF3().setText(String.valueOf(v3));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF4().setText(String.format("%.0f", v4));
 
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
         i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
@@ -246,8 +232,8 @@ class FlightConditionsPanel extends Panel {
         turbo.inputPanel.burnerPanel.burnerRightPanel.fuelch.select(turbo.fueltype);
         // materials
         turbo.inputPanel.burnerPanel.burnerRightPanel.bmat.select(Turbo.mburner);
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getDb().setText(String.valueOf(turbo.filter0(Turbo.dburner)));
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getTb().setText(String.valueOf(turbo.filter0(Turbo.tburner)));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getDb().setText(String.format("%.0f", Turbo.dburner));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getTb().setText(String.format("%.0f", Turbo.tburner));
         //  turbine
         v1 = Turbo.eta[5];
         Turbo.vmn1 = Turbo.etmin;
@@ -257,14 +243,13 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmx1 = 100.0 - 100.0 * Turbo.et5ref;
             Turbo.vmn1 = Turbo.vmx1 - 20.0;
         }
-        fl1 = (float)v1;
-        turbo.inputPanel.turbinePanel.turbineLeftPanel.getF1().setText(String.valueOf(fl1));
+        turbo.inputPanel.turbinePanel.turbineLeftPanel.getF1().setText(String.valueOf(v1));
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
         turbo.inputPanel.turbinePanel.turbineRightPanel.s1.setValue(i1);
         // materials
         turbo.inputPanel.turbinePanel.turbineRightPanel.tmat.select(Turbo.mturbin);
-        turbo.inputPanel.turbinePanel.turbineLeftPanel.getDt().setText(String.valueOf(turbo.filter0(Turbo.dturbin)));
-        turbo.inputPanel.turbinePanel.turbineLeftPanel.getTt().setText(String.valueOf(turbo.filter0(Turbo.tturbin)));
+        turbo.inputPanel.turbinePanel.turbineLeftPanel.getDt().setText(String.format("%.0f", Turbo.dturbin));
+        turbo.inputPanel.turbinePanel.turbineLeftPanel.getTt().setText(String.format("%.0f", Turbo.tturbin));
         //  turbine nozzle
         v1 = Turbo.tt7d;
         Turbo.vmn1 = Turbo.t7min;
@@ -287,13 +272,10 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmn3 = -10.0;
             Turbo.vmx3 = 10.0;
         }
-        fl1 = turbo.filter0(v1);
-        fl2 = turbo.filter3(v2);
-        fl3 = turbo.filter3(v3);
 
-        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF1().setText(String.valueOf(fl1));
-        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF2().setText(String.valueOf(fl2));
-        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(fl3));
+        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF1().setText(String.valueOf(Math.round(v1)));
+        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF2().setText(String.format("%.3f", v2));
+        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", v3));
 
         i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
         i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
@@ -305,8 +287,8 @@ class FlightConditionsPanel extends Panel {
         turbo.inputPanel.nozzlePanel.nozzleRightPanel.arch.select(turbo.arsched);
         // materials
         turbo.inputPanel.nozzlePanel.nozzleRightPanel.nmat.select(Turbo.mnozl);
-        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getDn().setText(String.valueOf(turbo.filter0(Turbo.dnozl)));
-        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getTn().setText(String.valueOf(turbo.filter0(Turbo.tnozl)));
+        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getDn().setText(String.format("%.0f", Turbo.dnozl));
+        turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getTn().setText(String.format("%.0f", Turbo.tnozl));
         //  ramjet nozzle
         v2 = Turbo.eta[7];
         Turbo.vmn2 = Turbo.etmin;
@@ -329,13 +311,10 @@ class FlightConditionsPanel extends Panel {
             Turbo.vmn4 = -10.0;
             Turbo.vmx4 = 10.0;
         }
-        fl2 = turbo.filter3(v2);
-        fl3 = turbo.filter3(v3);
-        fl4 = turbo.filter3(v4);
 
-        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF2().setText(String.valueOf(fl2));
-        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF3().setText(String.valueOf(fl3));
-        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF4().setText(String.valueOf(fl4));
+        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF2().setText(String.format("%.3f", v2));
+        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF3().setText(String.format("%.3f", v3));
+        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF4().setText(String.format("%.3f", v4));
 
         i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
         i3 = (int)(((v3 - Turbo.vmn3) / (Turbo.vmx3 - Turbo.vmn3)) * 1000.);
@@ -346,8 +325,8 @@ class FlightConditionsPanel extends Panel {
         turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.s4.setValue(i4);
         // materials
         turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.nrmat.select(Turbo.mnozr);
-        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getDn().setText(String.valueOf(turbo.filter0(Turbo.dnozr)));
-        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getTn().setText(String.valueOf(turbo.filter0(Turbo.tnozr)));
+        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getDn().setText(String.format("%.0f", Turbo.dnozr));
+        turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getTn().setText(String.format("%.0f", Turbo.tnozr));
 
         //  variable limits
         v1 = Turbo.u0max;
@@ -355,39 +334,28 @@ class FlightConditionsPanel extends Panel {
         v3 = Turbo.a2min;
         v4 = Turbo.a2max;
 
-        fl1 = turbo.filter0(v1);
-        fl2 = turbo.filter0(v2);
-        fl3 = turbo.filter5(v3);
-        fl4 = turbo.filter0(v4);
-
-        turbo.inputPanel.limitsPanel.f1.setText(String.valueOf(fl1));
-        turbo.inputPanel.limitsPanel.f2.setText(String.valueOf(fl2));
-        turbo.inputPanel.limitsPanel.f3.setText(String.valueOf(fl3));
-        turbo.inputPanel.limitsPanel.f4.setText(String.valueOf(fl4));
+        turbo.inputPanel.limitsPanel.f1.setText(String.valueOf((float)Math.round(v1)));
+        turbo.inputPanel.limitsPanel.f2.setText(String.valueOf((float)Math.round(v2)));
+        //  output only to .00001
+        turbo.inputPanel.limitsPanel.f3.setText(String.format("%.5f", v3));
+        turbo.inputPanel.limitsPanel.f4.setText(String.valueOf((float)Math.round(v4)));
 
         v1 = Turbo.cprmax;
         v2 = Turbo.t4max;
         v3 = Turbo.t7max;
 
-        fl1 = (float)v1;
-        fl2 = turbo.filter0(v2);
-        fl3 = turbo.filter0(v3);
-
-        turbo.inputPanel.limitsPanel.f5.setText(String.valueOf(fl1));
-        turbo.inputPanel.limitsPanel.f6.setText(String.valueOf(fl2));
-        turbo.inputPanel.limitsPanel.f7.setText(String.valueOf(fl3));
+        turbo.inputPanel.limitsPanel.f5.setText(String.valueOf(v1));
+        turbo.inputPanel.limitsPanel.f6.setText(String.valueOf(Math.round(v2)));
+        turbo.inputPanel.limitsPanel.f7.setText(String.valueOf(Math.round(v3)));
 
         v1 = Turbo.fprmax;
         v2 = Turbo.bypmax;
         v3 = Turbo.pt4max;
 
-        fl1 = (float)v1;
-        fl2 = (float)v2;
-        fl3 = (float)v3;
 
-        turbo.inputPanel.limitsPanel.f9.setText(String.valueOf(fl1));
-        turbo.inputPanel.limitsPanel.f10.setText(String.valueOf(fl2));
-        turbo.inputPanel.limitsPanel.f11.setText(String.valueOf(fl3));
+        turbo.inputPanel.limitsPanel.f9.setText(String.valueOf(v1));
+        turbo.inputPanel.limitsPanel.f10.setText(String.valueOf(v2));
+        turbo.inputPanel.limitsPanel.f11.setText(String.valueOf(v3));
 
         return;
     }

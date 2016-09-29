@@ -137,7 +137,7 @@ class FlightConditionsUpperPanel extends Panel {
             }
             Turbo.prnt.println(seng);
             if(turbo.entype == 2) {
-                Turbo.prnt.println("  Bypass Ratio  = " + String.valueOf(turbo.filter3(Turbo.byprat)));
+                Turbo.prnt.println("  Bypass Ratio  = " + String.format("%.3f", Turbo.byprat));
             }
             if(turbo.entype == 1) {
                 if(turbo.abflag == 0) {
@@ -148,12 +148,12 @@ class FlightConditionsUpperPanel extends Panel {
                 }
             }
             if(turbo.lunits == 0) {
-                Turbo.prnt.println("  Diameter  = " + String.valueOf(turbo.filter3(Turbo.diameng)) + " ft ");
-                Turbo.prnt.println("  Estimated Weight  = " + String.valueOf(turbo.filter3(Turbo.weight)) + " lbs ");
+                Turbo.prnt.println("  Diameter  = " + String.format("%.3f", Turbo.diameng) + " ft ");
+                Turbo.prnt.println("  Estimated Weight  = " + String.format("%.3f", Turbo.weight) + " lbs ");
             }
             if(turbo.lunits == 1) {
-                Turbo.prnt.println("  Diameter  = " + String.valueOf(turbo.filter3(Turbo.diameng)) + " m ");
-                Turbo.prnt.println("  Estimated Weight  = " + String.valueOf(turbo.filter3(Turbo.weight * Turbo.fconv)) + " N ");
+                Turbo.prnt.println("  Diameter  = " + String.format("%.3f", Turbo.diameng) + " m ");
+                Turbo.prnt.println("  Estimated Weight  = " + String.format("%.3f", Turbo.weight * Turbo.fconv) + " N ");
             }
             if(turbo.gamopt == 1) {
                 sgamop = "  -  Gamma and Cp = f(Temp)";
@@ -170,70 +170,70 @@ class FlightConditionsUpperPanel extends Panel {
                 Turbo.prnt.println(" ");
                 Turbo.prnt.println("FlightPanel Conditions: ");
                 if(turbo.lunits == 0) {
-                    Turbo.prnt.println("  Mach = " + String.valueOf(turbo.filter3(Turbo.fsmach))
-                                       + ",  V0 = " + String.valueOf(turbo.filter0(Turbo.u0d)) + " mph ");
-                    Turbo.prnt.println("  Alt = " + String.valueOf(turbo.filter0(Turbo.altd)) + " ft ");
-                    Turbo.prnt.println("  p0 = " + String.valueOf(turbo.filter3(Turbo.ps0))
-                                       + ",  pt0 = " + String.valueOf(turbo.filter3(Turbo.pt[0])) + " psi");
-                    Turbo.prnt.println("  T0 = " + String.valueOf(turbo.filter0(Turbo.ts0))
-                                       + ",  Tt0 = " + String.valueOf(turbo.filter0(Turbo.tt[0])) + " R ");
+                    Turbo.prnt.println("  Mach = " + String.format("%.3f", Turbo.fsmach)
+                                       + ",  V0 = " + String.format("%.0f", Turbo.u0d) + " mph ");
+                    Turbo.prnt.println("  Alt = " + String.format("%.0f", Turbo.altd) + " ft ");
+                    Turbo.prnt.println("  p0 = " + String.format("%.3f", Turbo.ps0)
+                                       + ",  pt0 = " + String.format("%.3f", Turbo.pt[0]) + " psi");
+                    Turbo.prnt.println("  T0 = " + String.format("%.0f", Turbo.ts0)
+                                       + ",  Tt0 = " + String.format("%.0f", Turbo.tt[0]) + " R ");
                 }
                 if(turbo.lunits == 1) {
-                    Turbo.prnt.println("  Mach = " + String.valueOf(turbo.filter3(Turbo.fsmach))
-                                       + ",  V0 = " + String.valueOf(turbo.filter0(Turbo.u0d)) + " km/h ");
-                    Turbo.prnt.println("  Alt = " + String.valueOf(turbo.filter0(Turbo.altd)) + " m ");
-                    Turbo.prnt.println("  p0 = " + String.valueOf(turbo.filter3(Turbo.ps0 * Turbo.pconv))
-                                       + ",  pt0 = " + String.valueOf(turbo.filter3(Turbo.pt[0] * Turbo.pconv)) + " k Pa");
-                    Turbo.prnt.println("  T0 = " + String.valueOf(turbo.filter0(Turbo.ts0 * Turbo.tconv))
-                                       + ",  Tt0 = " + String.valueOf(turbo.filter0(Turbo.tt[0] * Turbo.tconv)) + " K ");
+                    Turbo.prnt.println("  Mach = " + String.format("%.3f", Turbo.fsmach)
+                                       + ",  V0 = " + String.format("%.0f", Turbo.u0d) + " km/h ");
+                    Turbo.prnt.println("  Alt = " + String.format("%.0f", Turbo.altd) + " m ");
+                    Turbo.prnt.println("  p0 = " + String.format("%.3f", Turbo.ps0 * Turbo.pconv)
+                                       + ",  pt0 = " + String.format("%.3f", Turbo.pt[0] * Turbo.pconv) + " k Pa");
+                    Turbo.prnt.println("  T0 = " + String.format("%.0f", Turbo.ts0 * Turbo.tconv)
+                                       + ",  Tt0 = " + String.format("%.0f", Turbo.tt[0] * Turbo.tconv) + " K ");
                 }
             }
             if(turbo.pall == 1 || turbo.peng == 1 || turbo.pth == 1) {
                 Turbo.prnt.println(" ");
                 Turbo.prnt.println("Engine Thrust and Fuel Flow: ");
                 if(turbo.lunits == 0) {
-                    Turbo.prnt.println(" F gross  = " + String.valueOf(turbo.filter0(Turbo.fglb))
-                                       + ",  D ram = " + String.valueOf(turbo.filter0(Turbo.drlb))
-                                       + ",  F net = " + String.valueOf(turbo.filter0(Turbo.fnlb)) + "  lbs");
-                    Turbo.prnt.println(" Fuel Flow = " + String.valueOf(turbo.filter0(Turbo.fuelrat)) + " lbm/hr"
-                                       + ",  TSFC = " + String.valueOf(turbo.filter3(Turbo.sfc)) + " lbm/(lbs*hr)");
-                    Turbo.prnt.println(" Thrust/Weight = " + String.valueOf(turbo.filter3(Turbo.fnlb / Turbo.weight)));
+                    Turbo.prnt.println(" F gross  = " + String.format("%.0f", Turbo.fglb)
+                                       + ",  D ram = " + String.format("%.0f", Turbo.drlb)
+                                       + ",  F net = " + String.format("%.0f", Turbo.fnlb) + "  lbs");
+                    Turbo.prnt.println(" Fuel Flow = " + String.format("%.0f", Turbo.fuelrat) + " lbm/hr"
+                                       + ",  TSFC = " + String.format("%.3f", Turbo.sfc) + " lbm/(lbs*hr)");
+                    Turbo.prnt.println(" Thrust/Weight = " + String.format("%.3f", Turbo.fnlb / Turbo.weight));
                 }
                 if(turbo.lunits == 1) {
-                    Turbo.prnt.println(" F gross  = " + String.valueOf(turbo.filter0(Turbo.fglb * Turbo.fconv))
-                                       + ",  D ram = " + String.valueOf(turbo.filter0(Turbo.drlb * Turbo.fconv))
-                                       + ",  F net = " + String.valueOf(turbo.filter0(Turbo.fnlb * Turbo.fconv)) + " N ");
-                    Turbo.prnt.println(" Fuel Flow = " + String.valueOf(turbo.filter0(Turbo.fuelrat * Turbo.mconv1)) + " kg/hr"
-                                       + ",  TSFC = " + String.valueOf(turbo.filter3(Turbo.sfc * Turbo.mconv1 / Turbo.fconv)) + " kg/(N*hr)");
-                    Turbo.prnt.println(" Thrust/Weight = " + String.valueOf(turbo.filter3(Turbo.fnlb / Turbo.weight)));
+                    Turbo.prnt.println(" F gross  = " + String.format("%.0f", Turbo.fglb * Turbo.fconv)
+                                       + ",  D ram = " + String.format("%.0f", Turbo.drlb * Turbo.fconv)
+                                       + ",  F net = " + String.format("%.0f", Turbo.fnlb * Turbo.fconv) + " N ");
+                    Turbo.prnt.println(" Fuel Flow = " + String.format("%.0f", Turbo.fuelrat * Turbo.mconv1) + " kg/hr"
+                                       + ",  TSFC = " + String.format("%.3f", Turbo.sfc * Turbo.mconv1 / Turbo.fconv) + " kg/(N*hr)");
+                    Turbo.prnt.println(" Thrust/Weight = " + String.format("%.3f", Turbo.fnlb / Turbo.weight));
                 }
             }
             if(turbo.pall == 1 || turbo.peng == 1) {
                 Turbo.prnt.println(" ");
                 Turbo.prnt.println("Engine Performance :");
                 if(turbo.lunits == 0) {
-                    Turbo.prnt.println(" Throttle  = " + String.valueOf(turbo.filter3(Turbo.throtl)) + " %"
-                                       + ",  core airflow (m)  = " + String.valueOf(turbo.filter3(Turbo.eair)) + " lbm/sec");
-                    Turbo.prnt.println(" EPR  = " + String.valueOf(turbo.filter3(Turbo.epr))
-                                       + ",  ETR  = " + String.valueOf(turbo.filter3(Turbo.etr))
-                                       + ",  fuel/air  = " + String.valueOf(turbo.filter3(Turbo.fa)));
-                    Turbo.prnt.println(" Nozzle Pressure Ratio  = " + String.valueOf(turbo.filter3(Turbo.npr))
-                                       + ",  Vexit  = " + String.valueOf(turbo.filter0(Turbo.uexit)) + " fps ");
-                    Turbo.prnt.println(" Fg/m  = " + String.valueOf(turbo.filter3(Turbo.fgros))
-                                       + ",  Dram/m  = " + String.valueOf(turbo.filter3(Turbo.dram))
-                                       + ",  Fn/m  = " + String.valueOf(turbo.filter3(Turbo.fnet)) + " lbs/(lbm/sec)");
+                    Turbo.prnt.println(" Throttle  = " + String.format("%.3f", Turbo.throtl) + " %"
+                                       + ",  core airflow (m)  = " + String.format("%.3f", Turbo.eair) + " lbm/sec");
+                    Turbo.prnt.println(" EPR  = " + String.format("%.3f", Turbo.epr)
+                                       + ",  ETR  = " + String.format("%.3f", Turbo.etr)
+                                       + ",  fuel/air  = " + String.format("%.3f", Turbo.fa));
+                    Turbo.prnt.println(" Nozzle Pressure Ratio  = " + String.format("%.3f", Turbo.npr)
+                                       + ",  Vexit  = " + String.format("%.0f", Turbo.uexit) + " fps ");
+                    Turbo.prnt.println(" Fg/m  = " + String.format("%.3f", Turbo.fgros)
+                                       + ",  Dram/m  = " + String.format("%.3f", Turbo.dram)
+                                       + ",  Fn/m  = " + String.format("%.3f", Turbo.fnet) + " lbs/(lbm/sec)");
                 }
                 if(turbo.lunits == 1) {
-                    Turbo.prnt.println(" Throttle  = " + String.valueOf(turbo.filter3(Turbo.throtl)) + " %"
-                                       + ",  core airflow (m)  = " + String.valueOf(turbo.filter3(Turbo.mconv1 * Turbo.eair)) + " kg/sec");
-                    Turbo.prnt.println(" EPR  = " + String.valueOf(turbo.filter3(Turbo.epr))
-                                       + ",  ETR  = " + String.valueOf(turbo.filter3(Turbo.etr))
-                                       + ",  fuel/air  = " + String.valueOf(turbo.filter3(Turbo.fa)));
-                    Turbo.prnt.println(" Nozzle Pressure Ratio  = " + String.valueOf(turbo.filter3(Turbo.npr))
-                                       + ",  Vexit  = " + String.valueOf(turbo.filter0(Turbo.lconv1 * Turbo.uexit)) + " m/s ");
-                    Turbo.prnt.println(" Fg/m  = " + String.valueOf(turbo.filter3(Turbo.fgros * Turbo.fconv / Turbo.mconv1))
-                                       + ",  Dram/m  = " + String.valueOf(turbo.filter3(Turbo.dram * Turbo.fconv / Turbo.mconv1))
-                                       + ",  Fn/m  = " + String.valueOf(turbo.filter3(Turbo.fnet * Turbo.fconv / Turbo.mconv1)) + " N/(kg/sec)");
+                    Turbo.prnt.println(" Throttle  = " + String.format("%.3f", Turbo.throtl) + " %"
+                                       + ",  core airflow (m)  = " + String.format("%.3f", Turbo.mconv1 * Turbo.eair) + " kg/sec");
+                    Turbo.prnt.println(" EPR  = " + String.format("%.3f", Turbo.epr)
+                                       + ",  ETR  = " + String.format("%.3f", Turbo.etr)
+                                       + ",  fuel/air  = " + String.format("%.3f", Turbo.fa));
+                    Turbo.prnt.println(" Nozzle Pressure Ratio  = " + String.format("%.3f", Turbo.npr)
+                                       + ",  Vexit  = " + String.format("%.0f", Turbo.lconv1 * Turbo.uexit) + " m/s ");
+                    Turbo.prnt.println(" Fg/m  = " + String.format("%.3f", Turbo.fgros * Turbo.fconv / Turbo.mconv1)
+                                       + ",  Dram/m  = " + String.format("%.3f", Turbo.dram * Turbo.fconv / Turbo.mconv1)
+                                       + ",  Fn/m  = " + String.format("%.3f", Turbo.fnet * Turbo.fconv / Turbo.mconv1) + " N/(kg/sec)");
                 }
             }
             if(turbo.pall == 1 || turbo.peta == 1 || turbo.pprat == 1 || turbo.ppres == 1 || turbo.pvol == 1 ||
@@ -244,252 +244,252 @@ class FlightConditionsUpperPanel extends Panel {
             }
             if(turbo.pall == 1 || turbo.peta == 1) {
                 Turbo.prnt.println(" Efficiency"
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.eta[2]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.eta[13]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.eta[3]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.eta[4]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.eta[5]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.eta[5]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.eta[7])));
+                                   + "\t" + String.format("%.3f", Turbo.eta[2])
+                                   + "\t" + String.format("%.3f", Turbo.eta[13])
+                                   + "\t" + String.format("%.3f", Turbo.eta[3])
+                                   + "\t" + String.format("%.3f", Turbo.eta[4])
+                                   + "\t" + String.format("%.3f", Turbo.eta[5])
+                                   + "\t" + String.format("%.3f", Turbo.eta[5])
+                                   + "\t" + String.format("%.3f", Turbo.eta[7]));
             }
             if(turbo.pall == 1 || turbo.pprat == 1) {
                 if(turbo.entype <= 1) {
                     Turbo.prnt.println(" Press Rat "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[2]))
+                                       + "\t" + String.format("%.3f", Turbo.prat[2])
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[3]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[4]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[5]))
+                                       + "\t" + String.format("%.3f", Turbo.prat[3])
+                                       + "\t" + String.format("%.3f", Turbo.prat[4])
+                                       + "\t" + String.format("%.3f", Turbo.prat[5])
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[7])));
+                                       + "\t" + String.format("%.3f", Turbo.prat[7]));
                 }
                 if(turbo.entype == 2) {
                     Turbo.prnt.println(" Press Rat "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[2]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[13]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[3]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[4]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[5]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[15]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[7])));
+                                       + "\t" + String.format("%.3f", Turbo.prat[2])
+                                       + "\t" + String.format("%.3f", Turbo.prat[13])
+                                       + "\t" + String.format("%.3f", Turbo.prat[3])
+                                       + "\t" + String.format("%.3f", Turbo.prat[4])
+                                       + "\t" + String.format("%.3f", Turbo.prat[5])
+                                       + "\t" + String.format("%.3f", Turbo.prat[15])
+                                       + "\t" + String.format("%.3f", Turbo.prat[7]));
                 }
                 if(turbo.entype == 3) {
                     Turbo.prnt.println(" Press Rat "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[2]))
+                                       + "\t" + String.format("%.3f", Turbo.prat[2])
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[4]))
+                                       + "\t" + String.format("%.3f", Turbo.prat[4])
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.prat[7])));
+                                       + "\t" + String.format("%.3f", Turbo.prat[7]));
                 }
             }
             if(turbo.pall == 1 || turbo.ppres == 1) {
                 if(turbo.entype <= 1) {
                     Turbo.prnt.println(" Press - p"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[2] * Turbo.pconv))
+                                       + "\t" + String.format("%.3f", Turbo.pt[2] * Turbo.pconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[3] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[4] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[5] * Turbo.pconv))
+                                       + "\t" + String.format("%.3f", Turbo.pt[3] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[4] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[5] * Turbo.pconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[7] * Turbo.pconv)));
+                                       + "\t" + String.format("%.3f", Turbo.pt[7] * Turbo.pconv));
                 }
                 if(turbo.entype == 2) {
                     Turbo.prnt.println(" Press - p"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[2] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[13] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[3] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[4] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[5] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[15] * Turbo.pconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[7] * Turbo.pconv)));
+                                       + "\t" + String.format("%.3f", Turbo.pt[2] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[13] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[3] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[4] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[5] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[15] * Turbo.pconv)
+                                       + "\t" + String.format("%.3f", Turbo.pt[7] * Turbo.pconv));
                 }
                 if(turbo.entype == 3) {
                     Turbo.prnt.println(" Press - p"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[2] * Turbo.pconv))
+                                       + "\t" + String.format("%.3f", Turbo.pt[2] * Turbo.pconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[4] * Turbo.pconv))
+                                       + "\t" + String.format("%.3f", Turbo.pt[4] * Turbo.pconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.pt[7] * Turbo.pconv)));
+                                       + "\t" + String.format("%.3f", Turbo.pt[7] * Turbo.pconv));
                 }
             }
             if(turbo.pall == 1 || turbo.pvol == 1) {
                 if(turbo.entype <= 1) {
                     Turbo.prnt.println(" Spec Vol - v"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[2] * Turbo.dconv))
+                                       + "\t" + String.format("%.3f", Turbo.v[2] * Turbo.dconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[3] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[4] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[5] * Turbo.dconv))
+                                       + "\t" + String.format("%.3f", Turbo.v[3] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[4] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[5] * Turbo.dconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[7] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[8] * Turbo.dconv)));
+                                       + "\t" + String.format("%.3f", Turbo.v[7] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[8] * Turbo.dconv));
                 }
                 if(turbo.entype == 2) {
                     Turbo.prnt.println(" Spec Vol - v"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[2] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[13] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[3] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[4] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[5] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[15] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[7] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[8] * Turbo.dconv)));
+                                       + "\t" + String.format("%.3f", Turbo.v[2] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[13] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[3] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[4] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[5] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[15] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[7] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[8] * Turbo.dconv));
                 }
                 if(turbo.entype == 3) {
                     Turbo.prnt.println(" Spec Vol - v"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[2] * Turbo.dconv))
+                                       + "\t" + String.format("%.3f", Turbo.v[2] * Turbo.dconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[4] * Turbo.dconv))
+                                       + "\t" + String.format("%.3f", Turbo.v[4] * Turbo.dconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[7] * Turbo.dconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.v[8] * Turbo.dconv)));
+                                       + "\t" + String.format("%.3f", Turbo.v[7] * Turbo.dconv)
+                                       + "\t" + String.format("%.3f", Turbo.v[8] * Turbo.dconv));
                 }
             }
             if(turbo.pall == 1 || turbo.ptrat == 1) {
                 if(turbo.entype <= 1) {
                     Turbo.prnt.println(" Temp Rat"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[2]))
+                                       + "\t" + String.format("%.3f", Turbo.trat[2])
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[3]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[4]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[5]))
+                                       + "\t" + String.format("%.3f", Turbo.trat[3])
+                                       + "\t" + String.format("%.3f", Turbo.trat[4])
+                                       + "\t" + String.format("%.3f", Turbo.trat[5])
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[7])));
+                                       + "\t" + String.format("%.3f", Turbo.trat[7]));
                 }
                 if(turbo.entype == 2) {
                     Turbo.prnt.println(" Temp Rat"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[2]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[13]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[3]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[4]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[5]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[15]))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[7])));
+                                       + "\t" + String.format("%.3f", Turbo.trat[2])
+                                       + "\t" + String.format("%.3f", Turbo.trat[13])
+                                       + "\t" + String.format("%.3f", Turbo.trat[3])
+                                       + "\t" + String.format("%.3f", Turbo.trat[4])
+                                       + "\t" + String.format("%.3f", Turbo.trat[5])
+                                       + "\t" + String.format("%.3f", Turbo.trat[15])
+                                       + "\t" + String.format("%.3f", Turbo.trat[7]));
                 }
                 if(turbo.entype == 3) {
                     Turbo.prnt.println(" Temp Rat"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[2]))
+                                       + "\t" + String.format("%.3f", Turbo.trat[2])
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[4]))
+                                       + "\t" + String.format("%.3f", Turbo.trat[4])
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.trat[7])));
+                                       + "\t" + String.format("%.3f", Turbo.trat[7]));
                 }
             }
             if(turbo.pall == 1 || turbo.pttot == 1) {
                 if(turbo.entype <= 1) {
                     Turbo.prnt.println(" Temp - T"
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[2] * Turbo.tconv))
+                                       + "\t" + String.format("%.0f", Turbo.tt[2] * Turbo.tconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[3] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[4] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[5] * Turbo.tconv))
+                                       + "\t" + String.format("%.0f", Turbo.tt[3] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[4] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[5] * Turbo.tconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[7] * Turbo.tconv)));
+                                       + "\t" + String.format("%.0f", Turbo.tt[7] * Turbo.tconv));
                 }
                 if(turbo.entype == 2) {
                     Turbo.prnt.println(" Temp - T"
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[2] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[13] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[3] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[4] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[5] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[15] * Turbo.tconv))
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[7] * Turbo.tconv)));
+                                       + "\t" + String.format("%.0f", Turbo.tt[2] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[13] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[3] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[4] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[5] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[15] * Turbo.tconv)
+                                       + "\t" + String.format("%.0f", Turbo.tt[7] * Turbo.tconv));
                 }
                 if(turbo.entype == 3) {
                     Turbo.prnt.println(" Temp - T"
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[2] * Turbo.tconv))
+                                       + "\t" + String.format("%.0f", Turbo.tt[2] * Turbo.tconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[4] * Turbo.tconv))
+                                       + "\t" + String.format("%.0f", Turbo.tt[4] * Turbo.tconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter0(Turbo.tt[7] * Turbo.tconv)));
+                                       + "\t" + String.format("%.0f", Turbo.tt[7] * Turbo.tconv));
                 }
             }
             if(turbo.pall == 1 || turbo.pentr == 1) {
                 if(turbo.entype <= 1) {
                     Turbo.prnt.println(" Entropy - s "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[2] * Turbo.bconv))
+                                       + "\t" + String.format("%.3f", Turbo.s[2] * Turbo.bconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[3] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[4] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[5] * Turbo.bconv))
+                                       + "\t" + String.format("%.3f", Turbo.s[3] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[4] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[5] * Turbo.bconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[7] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[8] * Turbo.bconv)));
+                                       + "\t" + String.format("%.3f", Turbo.s[7] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[8] * Turbo.bconv));
                 }
                 if(turbo.entype == 2) {
                     Turbo.prnt.println(" Entropy   "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[2] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[13] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[3] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[4] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[5] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[15] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[7] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[8] * Turbo.bconv)));
+                                       + "\t" + String.format("%.3f", Turbo.s[2] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[13] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[3] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[4] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[5] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[15] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[7] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[8] * Turbo.bconv));
                 }
                 if(turbo.entype == 3) {
                     Turbo.prnt.println(" Entropy   "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[2] * Turbo.bconv))
+                                       + "\t" + String.format("%.3f", Turbo.s[2] * Turbo.bconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[4] * Turbo.bconv))
+                                       + "\t" + String.format("%.3f", Turbo.s[4] * Turbo.bconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[7] * Turbo.bconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.s[8] * Turbo.bconv)));
+                                       + "\t" + String.format("%.3f", Turbo.s[7] * Turbo.bconv)
+                                       + "\t" + String.format("%.3f", Turbo.s[8] * Turbo.bconv));
                 }
             }
             if(turbo.pall == 1 || turbo.pgam == 1) {
                 Turbo.prnt.println(" Gamma     "
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.gam[2]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.gam[13]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.gam[3]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.gam[4]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.gam[5]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.gam[5]))
-                                   + "\t" + String.valueOf(turbo.filter3(Turbo.gam[7])));
+                                   + "\t" + String.format("%.3f", Turbo.gam[2])
+                                   + "\t" + String.format("%.3f", Turbo.gam[13])
+                                   + "\t" + String.format("%.3f", Turbo.gam[3])
+                                   + "\t" + String.format("%.3f", Turbo.gam[4])
+                                   + "\t" + String.format("%.3f", Turbo.gam[5])
+                                   + "\t" + String.format("%.3f", Turbo.gam[5])
+                                   + "\t" + String.format("%.3f", Turbo.gam[7]));
             }
             if(turbo.pall == 1 || turbo.parea == 1) {
                 if(turbo.entype <= 1) {
                     Turbo.prnt.println(" Area - A"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.ac * Turbo.aconv))
+                                       + "\t" + String.format("%.3f", Turbo.ac * Turbo.aconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.acore * Turbo.aconv))
+                                       + "\t" + String.format("%.3f", Turbo.acore * Turbo.aconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.a4 * Turbo.aconv))
+                                       + "\t" + String.format("%.3f", Turbo.a4 * Turbo.aconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.a8 * Turbo.aconv)));
+                                       + "\t" + String.format("%.3f", Turbo.a8 * Turbo.aconv));
                 }
                 if(turbo.entype == 2) {
                     Turbo.prnt.println(" Area - A"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.ac * Turbo.aconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.afan * Turbo.aconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.acore * Turbo.aconv))
+                                       + "\t" + String.format("%.3f", Turbo.ac * Turbo.aconv)
+                                       + "\t" + String.format("%.3f", Turbo.afan * Turbo.aconv)
+                                       + "\t" + String.format("%.3f", Turbo.acore * Turbo.aconv)
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.a4 * Turbo.aconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.a4p * Turbo.aconv))
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.a8 * Turbo.aconv)));
+                                       + "\t" + String.format("%.3f", Turbo.a4 * Turbo.aconv)
+                                       + "\t" + String.format("%.3f", Turbo.a4p * Turbo.aconv)
+                                       + "\t" + String.format("%.3f", Turbo.a8 * Turbo.aconv));
                 }
                 if(turbo.entype == 3) {
                     Turbo.prnt.println(" Area - A"
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.ac * Turbo.aconv))
+                                       + "\t" + String.format("%.3f", Turbo.ac * Turbo.aconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.acore * Turbo.aconv))
+                                       + "\t" + String.format("%.3f", Turbo.acore * Turbo.aconv)
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.valueOf(turbo.filter3(Turbo.a8 * Turbo.aconv)));
+                                       + "\t" + String.format("%.3f", Turbo.a8 * Turbo.aconv));
                 }
             }
             if(turbo.pall == 1 || turbo.peta == 1 || turbo.pprat == 1 || turbo.ppres == 1 || turbo.pvol == 1 ||

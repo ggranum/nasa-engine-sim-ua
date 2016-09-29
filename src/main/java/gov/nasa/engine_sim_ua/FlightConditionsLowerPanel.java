@@ -15,7 +15,7 @@ class FlightConditionsLowerPanel extends Panel {
     TextField o5;
     TextField o6;
     TextField o10;
-    TextField o11;
+    TextField tfWeight;
     TextField o12;
     TextField o14;
     TextField o15;
@@ -35,9 +35,9 @@ class FlightConditionsLowerPanel extends Panel {
         o10 = new TextField();
         o10.setBackground(Color.black);
         o10.setForeground(Color.yellow);
-        o11 = new TextField();
-        o11.setBackground(Color.black);
-        o11.setForeground(Color.yellow);
+        tfWeight = new TextField();
+        tfWeight.setBackground(Color.black);
+        tfWeight.setForeground(Color.yellow);
         o12 = new TextField();
         o12.setBackground(Color.black);
         o12.setForeground(Color.yellow);
@@ -66,7 +66,7 @@ class FlightConditionsLowerPanel extends Panel {
         add(new Label("Fnet / W ", Label.CENTER));
         add(o12);
         add(new Label("Weight", Label.CENTER));
-        add(o11);
+        add(tfWeight);
     }
 }  // end FlightConditionsLowerPanel
  

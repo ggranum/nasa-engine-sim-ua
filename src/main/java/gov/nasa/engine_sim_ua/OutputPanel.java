@@ -180,29 +180,30 @@ public class OutputPanel extends Panel {
             outtim = " sec";
 
             if(turbo.inptype == 0 || turbo.inptype == 2) {
-                turbo.inputPanel.flightPanel.flightLeftPanel.o1.setText(String.valueOf(turbo.filter3(Turbo.fsmach)));
+                turbo.inputPanel.flightPanel.flightLeftPanel.o1.setText(String.format("%.3f", Turbo.fsmach));
             }
             if(turbo.inptype == 1 || turbo.inptype == 3) {
                 Turbo.vmn1 = Turbo.u0min;
                 Turbo.vmx1 = Turbo.u0max;
-                turbo.inputPanel.flightPanel.flightLeftPanel.f1.setText(String.valueOf(turbo.filter0(Turbo.u0d)));
+                turbo.inputPanel.flightPanel.flightLeftPanel.f1.setText(String.format("%.0f", Turbo.u0d));
                 i1 = (int)(((Turbo.u0d - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
                 turbo.inputPanel.flightPanel.flightRightPanel.s1.setValue(i1);
             }
-            turbo.inputPanel.flightPanel.flightLeftPanel.o2.setText(String.valueOf(turbo.filter3(Turbo.psout * Turbo.pconv)));
-            turbo.inputPanel.flightPanel.flightLeftPanel.o3.setText(String.valueOf(turbo.filter3(Turbo.tsout * Turbo.tconv - Turbo.tref)));
+            turbo.inputPanel.flightPanel.flightLeftPanel.o2.setText(String.format("%.3f", Turbo.psout * Turbo.pconv));
+            turbo.inputPanel.flightPanel.flightLeftPanel.o3.setText(String.format("%.3f", Turbo.tsout * Turbo.tconv - Turbo.tref));
             if(turbo.lunits <= 1) {
                 if(Turbo.etr >= 1.0) {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setForeground(Color.yellow);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setText(String.valueOf(turbo.filter0(Turbo.fnlb * Turbo.fconv)) + outfor);
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setText(String.format("%.0f", Turbo.fnlb * Turbo.fconv) + outfor);
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o5.setForeground(Color.yellow);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o5.setText(String.valueOf(turbo.filter0(Turbo.mconv1 * Turbo.fuelrat)) + outful);
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o5.setText(String.format("%.0f", Turbo.mconv1 * Turbo.fuelrat) + outful);
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o6.setForeground(Color.yellow);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o6.setText(String.valueOf(turbo.filter3(Turbo.sfc * Turbo.mconv1 / Turbo.fconv)));
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o6.setText(String.format("%.3f",
+                                                                                                                   Turbo.sfc * Turbo.mconv1 / Turbo.fconv));
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o14.setForeground(Color.yellow);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o14.setText(String.valueOf(turbo.filter0(Turbo.fglb * Turbo.fconv)) + outfor);
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o14.setText(String.format("%.0f", Turbo.fglb * Turbo.fconv) + outfor);
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o15.setForeground(Color.yellow);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o15.setText(String.valueOf(turbo.filter0(Turbo.drlb * Turbo.fconv)) + outfor);
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o15.setText(String.format("%.0f", Turbo.drlb * Turbo.fconv) + outfor);
                 }
                 if(Turbo.etr < 1.0) {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setForeground(Color.yellow);
@@ -214,38 +215,38 @@ public class OutputPanel extends Panel {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o14.setForeground(Color.yellow);
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o14.setText("0.0");
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o15.setForeground(Color.yellow);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o15.setText(String.valueOf(turbo.filter0(Turbo.drlb * Turbo.fconv)) + outfor);
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o15.setText(String.format("%.0f", Turbo.drlb * Turbo.fconv) + outfor);
                 }
                 o7.setForeground(Color.yellow);
-                o7.setText(String.valueOf(turbo.filter3(Turbo.epr)));
+                o7.setText(String.format("%.3f", Turbo.epr));
                 o8.setForeground(Color.yellow);
-                o8.setText(String.valueOf(turbo.filter3(Turbo.etr)));
+                o8.setText(String.format("%.3f", Turbo.etr));
                 o9.setForeground(Color.yellow);
-                o9.setText(String.valueOf(turbo.filter3(Turbo.fa)));
+                o9.setText(String.format("%.3f", Turbo.fa));
                 turbo.flightConditionsPanel.flightConditionsLowerPanel.o10.setForeground(Color.yellow);
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o10.setText(String.valueOf(turbo.filter3(Turbo.mconv1 * Turbo.eair)) + outair);
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o11.setForeground(Color.yellow);
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o11.setText(String.valueOf(turbo.filter3(Turbo.fconv * Turbo.weight)) + outfor);
-                turbo.inputPanel.sizePanel.sizeLeftPanel.f2.setText(String.valueOf(turbo.filter0(Turbo.fconv * Turbo.weight)));
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.o10.setText(String.format("%.3f", Turbo.mconv1 * Turbo.eair) + outair);
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.tfWeight.setForeground(Color.yellow);
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.tfWeight.setText((String.format("%.3f", Turbo.fconv * Turbo.weight)) + outfor);
+                turbo.inputPanel.sizePanel.sizeLeftPanel.f2.setText(String.format("%.0f", Turbo.fconv * Turbo.weight));
                 turbo.flightConditionsPanel.flightConditionsLowerPanel.o12.setForeground(Color.yellow);
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o12.setText(String.valueOf(turbo.filter3(Turbo.fnlb / Turbo.weight)));
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.o12.setText(String.format("%.3f", Turbo.fnlb / Turbo.weight));
                 o13.setForeground(Color.yellow);
-                o13.setText(String.valueOf(turbo.filter1(Turbo.fnet * Turbo.fconv / Turbo.mconv1)));
+                o13.setText(String.format("%.1f", Turbo.fnet * Turbo.fconv / Turbo.mconv1));
                 o16.setForeground(Color.yellow);
-                o16.setText(String.valueOf(turbo.filter0(Turbo.uexit * Turbo.lconv1)) + outvel);
+                o16.setText(String.format("%.0f", Turbo.uexit * Turbo.lconv1) + outvel);
                 o17.setForeground(Color.yellow);
-                o17.setText(String.valueOf(turbo.filter3(Turbo.npr)));
+                o17.setText(String.format("%.3f", Turbo.npr));
                 o18.setForeground(Color.yellow);
-                o18.setText(String.valueOf(turbo.filter3(Turbo.eteng)));
+                o18.setText(String.format("%.3f", Turbo.eteng));
                 o19.setForeground(Color.yellow);
-                o19.setText(String.valueOf(turbo.filter0(Turbo.q0 * Turbo.fconv / Turbo.aconv)) + outprs);
+                o19.setText(String.format("%.0f", Turbo.q0 * Turbo.fconv / Turbo.aconv) + outprs);
                 o20.setForeground(Color.yellow);
-                o20.setText(String.valueOf(turbo.filter0(Turbo.isp)) + outtim);
-                o21.setText(String.valueOf(turbo.filter0(Turbo.t8 * Turbo.tconv)) + outtmp);
-                o22.setText(String.valueOf(turbo.filter3(Turbo.pexit * Turbo.pconv)) + outpri);
-                o23.setText(String.valueOf(turbo.filter3(Turbo.m2)));
+                o20.setText(String.format("%.0f", Turbo.isp) + outtim);
+                o21.setText(String.format("%.0f", Turbo.t8 * Turbo.tconv) + outtmp);
+                o22.setText(String.format("%.3f", Turbo.pexit * Turbo.pconv) + outpri);
+                o23.setText(String.format("%.3f", Turbo.m2));
                 if(turbo.entype == 2) {
-                    o24.setText(String.valueOf(turbo.filter3(Turbo.pfexit * Turbo.pconv)) + outpri);
+                    o24.setText(String.format("%.3f", Turbo.pfexit * Turbo.pconv) + outpri);
                 } else {
                     o24.setText("-");
                 }
@@ -253,14 +254,15 @@ public class OutputPanel extends Panel {
             if(turbo.lunits == 2) {
                 if(Turbo.etr >= 1.0) {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setForeground(Color.green);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setText(String.valueOf(turbo.filter3(100. * (Turbo.fnlb - Turbo.fnref)
-                                                                                                                   / Turbo.fnref)));
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setText(String.valueOf(String.format("%.3f", 100. * (Turbo.fnlb - Turbo.fnref)
+                                                                                                                           / Turbo.fnref)));
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o5.setForeground(Color.green);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o5.setText(String.valueOf(turbo.filter3(100. * (Turbo.fuelrat - Turbo.fuelref)
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o5.setText(String.valueOf(String.format("%.3f",
+                                                                                                                   100. * (Turbo.fuelrat - Turbo.fuelref)
                                                                                                                    / Turbo.fuelref)));
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o6.setForeground(Color.green);
-                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o6.setText(String.valueOf(turbo.filter3(100. * (Turbo.sfc - Turbo.sfcref)
-                                                                                                                   / Turbo.sfcref)));
+                    turbo.flightConditionsPanel.flightConditionsLowerPanel.o6.setText(String.valueOf(String.format("%.3f", 100. * (Turbo.sfc - Turbo.sfcref)
+                                                                                                                           / Turbo.sfcref)));
                 }
                 if(Turbo.etr < 1.0) {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setForeground(Color.yellow);
@@ -271,19 +273,20 @@ public class OutputPanel extends Panel {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o6.setText("-");
                 }
                 o7.setForeground(Color.green);
-                o7.setText(String.valueOf(turbo.filter3(100. * (Turbo.epr - Turbo.epref) / Turbo.epref)));
+                o7.setText(String.valueOf(String.format("%.3f", 100. * (Turbo.epr - Turbo.epref) / Turbo.epref)));
                 o8.setForeground(Color.green);
-                o8.setText(String.valueOf(turbo.filter3(100. * (Turbo.etr - Turbo.etref) / Turbo.etref)));
+                o8.setText(String.valueOf(String.format("%.3f", 100. * (Turbo.etr - Turbo.etref) / Turbo.etref)));
                 o9.setForeground(Color.green);
-                o9.setText(String.valueOf(turbo.filter3(100. * (Turbo.fa - Turbo.faref) / Turbo.faref)));
+                o9.setText(String.valueOf(String.format("%.3f", 100. * (Turbo.fa - Turbo.faref) / Turbo.faref)));
                 turbo.flightConditionsPanel.flightConditionsLowerPanel.o10.setForeground(Color.green);
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o10.setText(String.valueOf(turbo.filter3(100. * (Turbo.eair - Turbo.airref)
-                                                                                                                / Turbo.airref)));
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o11.setForeground(Color.green);
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o11.setText(String.valueOf(turbo.filter3(100. * (Turbo.weight - Turbo.wtref)
-                                                                                                                / Turbo.wtref)));
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.o10.setText(String.valueOf(String.format("%.3f", 100. * (Turbo.eair - Turbo.airref)
+                                                                                                                        / Turbo.airref)));
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.tfWeight.setForeground(Color.green);
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.tfWeight.setText(String.valueOf(String.format("%.3f", 100. * (Turbo.weight - Turbo.wtref)
+                                                                                                                             / Turbo.wtref)));
                 turbo.flightConditionsPanel.flightConditionsLowerPanel.o12.setForeground(Color.green);
-                turbo.flightConditionsPanel.flightConditionsLowerPanel.o12.setText(String.valueOf(turbo.filter3(100. * (Turbo.fnlb / Turbo.weight - Turbo.wfref)
+                turbo.flightConditionsPanel.flightConditionsLowerPanel.o12.setText(String.valueOf(String.format("%.3f",
+                                                                                                                100. * (Turbo.fnlb / Turbo.weight - Turbo.wfref)
                                                                                                                 / Turbo.wfref)));
             }
         }
@@ -419,22 +422,22 @@ public class OutputPanel extends Panel {
         }
 
         public void loadOut() {
-            po1.setText(String.valueOf(turbo.filter1(Turbo.pt[2] * Turbo.pconv)));
-            po2.setText(String.valueOf(turbo.filter1(Turbo.pt[13] * Turbo.pconv)));
-            po3.setText(String.valueOf(turbo.filter1(Turbo.pt[3] * Turbo.pconv)));
-            po4.setText(String.valueOf(turbo.filter1(Turbo.pt[4] * Turbo.pconv)));
-            po5.setText(String.valueOf(turbo.filter1(Turbo.pt[5] * Turbo.pconv)));
-            po6.setText(String.valueOf(turbo.filter1(Turbo.pt[15] * Turbo.pconv)));
-            po7.setText(String.valueOf(turbo.filter1(Turbo.pt[7] * Turbo.pconv)));
-            po8.setText(String.valueOf(turbo.filter1(Turbo.pt[8] * Turbo.pconv)));
-            to1.setText(String.valueOf(turbo.filter0(Turbo.tt[2] * Turbo.tconv)));
-            to2.setText(String.valueOf(turbo.filter0(Turbo.tt[13] * Turbo.tconv)));
-            to3.setText(String.valueOf(turbo.filter0(Turbo.tt[3] * Turbo.tconv)));
-            to4.setText(String.valueOf(turbo.filter0(Turbo.tt[4] * Turbo.tconv)));
-            to5.setText(String.valueOf(turbo.filter0(Turbo.tt[5] * Turbo.tconv)));
-            to6.setText(String.valueOf(turbo.filter0(Turbo.tt[15] * Turbo.tconv)));
-            to7.setText(String.valueOf(turbo.filter0(Turbo.tt[7] * Turbo.tconv)));
-            to8.setText(String.valueOf(turbo.filter0(Turbo.tt[8] * Turbo.tconv)));
+            po1.setText(String.format("%.1f", Turbo.pt[2] * Turbo.pconv));
+            po2.setText(String.format("%.1f", Turbo.pt[13] * Turbo.pconv));
+            po3.setText(String.format("%.1f", Turbo.pt[3] * Turbo.pconv));
+            po4.setText(String.format("%.1f", Turbo.pt[4] * Turbo.pconv));
+            po5.setText(String.format("%.1f", Turbo.pt[5] * Turbo.pconv));
+            po6.setText(String.format("%.1f", Turbo.pt[15] * Turbo.pconv));
+            po7.setText(String.format("%.1f", Turbo.pt[7] * Turbo.pconv));
+            po8.setText(String.format("%.1f", Turbo.pt[8] * Turbo.pconv));
+            to1.setText(String.format("%.0f", Turbo.tt[2] * Turbo.tconv));
+            to2.setText(String.format("%.0f", Turbo.tt[13] * Turbo.tconv));
+            to3.setText(String.format("%.0f", Turbo.tt[3] * Turbo.tconv));
+            to4.setText(String.format("%.0f", Turbo.tt[4] * Turbo.tconv));
+            to5.setText(String.format("%.0f", Turbo.tt[5] * Turbo.tconv));
+            to6.setText(String.format("%.0f", Turbo.tt[15] * Turbo.tconv));
+            to7.setText(String.format("%.0f", Turbo.tt[7] * Turbo.tconv));
+            to8.setText(String.format("%.0f", Turbo.tt[8] * Turbo.tconv));
         }
     } //  end OutputVariablesPanel Output
 
@@ -699,7 +702,7 @@ public class OutputPanel extends Panel {
                     if(turbo.nord != 5) {
                         turbo.off1Gg.drawString(String.valueOf((int)yl), xlabel, ylabel);
                     } else {
-                        turbo.off1Gg.drawString(String.valueOf(turbo.filter3(yl)), xlabel, ylabel);
+                        turbo.off1Gg.drawString(String.format("%.3f", yl), xlabel, ylabel);
                     }
                 }
                 xlabel = (int)(75. + Turbo.xtranp);       /*   label x axis */
@@ -712,7 +715,7 @@ public class OutputPanel extends Panel {
                     xl = Turbo.begx + (ind - 1) * incx;
                     xlabel = (int)(33. * (scalex * (xl + offx) - .05) + Turbo.xtranp);
                     if(turbo.nabs >= 2 && turbo.nabs <= 3) {
-                        turbo.off1Gg.drawString(String.valueOf(turbo.filter3(xl)), xlabel, ylabel);
+                        turbo.off1Gg.drawString(String.format("%.3f", xl), xlabel, ylabel);
                     }
                     if(turbo.nabs < 2 || turbo.nabs > 3) {
                         turbo.off1Gg.drawString(String.valueOf((int)xl), xlabel, ylabel);

@@ -434,46 +434,6 @@ public class Turbo extends Applet {
         return new Insets(10, 10, 10, 10) ;
     }
 
-    public int filter0(double inumbr) {
-        //  output only to .
-        float number;
-        int intermed;
-
-        intermed = (int) (inumbr) ;
-        number = (float)(intermed);
-        return intermed;
-    }
-
-    public float filter1(double inumbr) {
-        //  output only to .1
-        float number;
-        int intermed ;
-
-        intermed = (int) (inumbr * 10.) ;
-        number = (float) (intermed / 10. );
-        return number ;
-    }
-
-    public float filter3(double inumbr) {
-        //  output only to .001
-        float number ;
-        int intermed ;
-
-        intermed = (int) (inumbr * 1000.) ;
-        number = (float) (intermed / 1000. );
-        return number ;
-    }
-
-    public float filter5(double inumbr) {
-        //  output only to .00001
-        float number ;
-        int intermed ;
-
-        intermed = (int) (inumbr * 100000.) ;
-        number = (float) (intermed / 100000. );
-        return number ;
-    }
-
     public double getGama(double temp, int opt) {
         // Utility to get gamma as a function of temp
         double number;
@@ -655,20 +615,20 @@ public class Turbo extends Applet {
         }
 
         public void fillBox() {
-            inletPanel.inletLeftPanel.getDi().setText(String.valueOf(filter0(Turbo.dinlt * Turbo.dconv)));
-            fanPanel.leftPanel.getDf().setText(String.valueOf(filter0(Turbo.dfan * Turbo.dconv)));
-            compressorPanel.compressorLeftPanel.getDc().setText(String.valueOf(filter0(Turbo.dcomp * Turbo.dconv)));
-            burnerPanel.burnerLeftPanel.getDb().setText(String.valueOf(filter0(Turbo.dburner * Turbo.dconv)));
-            turbinePanel.turbineLeftPanel.getDt().setText(String.valueOf(filter0(Turbo.dturbin * Turbo.dconv)));
-            nozzlePanel.nozzleLeftPanel.getDn().setText(String.valueOf(filter0(Turbo.dnozl * Turbo.dconv)));
-            ramjetNozzlePanel.ramjetNozzleLeftPanel.getDn().setText(String.valueOf(filter0(Turbo.dnozr * Turbo.dconv)));
-            inletPanel.inletLeftPanel.getTi().setText(String.valueOf(filter0(Turbo.tinlt * Turbo.tconv)));
-            fanPanel.leftPanel.getTf().setText(String.valueOf(filter0(Turbo.tfan * Turbo.tconv)));
-            compressorPanel.compressorLeftPanel.getTc().setText(String.valueOf(filter0(Turbo.tcomp * Turbo.tconv)));
-            burnerPanel.burnerLeftPanel.getTb().setText(String.valueOf(filter0(Turbo.tburner * Turbo.tconv)));
-            turbinePanel.turbineLeftPanel.getTt().setText(String.valueOf(filter0(Turbo.tturbin * Turbo.tconv)));
-            nozzlePanel.nozzleLeftPanel.getTn().setText(String.valueOf(filter0(Turbo.tnozl * Turbo.tconv)));
-            ramjetNozzlePanel.ramjetNozzleLeftPanel.getTn().setText(String.valueOf(filter0(Turbo.tnozr * Turbo.tconv)));
+            inletPanel.inletLeftPanel.getDi().setText(String.format("%.0f", Turbo.dinlt * Turbo.dconv));
+            fanPanel.leftPanel.getDf().setText(String.format("%.0f", Turbo.dfan * Turbo.dconv));
+            compressorPanel.compressorLeftPanel.getDc().setText(String.format("%.0f", Turbo.dcomp * Turbo.dconv));
+            burnerPanel.burnerLeftPanel.getDb().setText(String.format("%.0f", Turbo.dburner * Turbo.dconv));
+            turbinePanel.turbineLeftPanel.getDt().setText(String.format("%.0f", Turbo.dturbin * Turbo.dconv));
+            nozzlePanel.nozzleLeftPanel.getDn().setText(String.format("%.0f", Turbo.dnozl * Turbo.dconv));
+            ramjetNozzlePanel.ramjetNozzleLeftPanel.getDn().setText(String.format("%.0f", Turbo.dnozr * Turbo.dconv));
+            inletPanel.inletLeftPanel.getTi().setText(String.format("%.0f", Turbo.tinlt * Turbo.tconv));
+            fanPanel.leftPanel.getTf().setText(String.format("%.0f", Turbo.tfan * Turbo.tconv));
+            compressorPanel.compressorLeftPanel.getTc().setText(String.format("%.0f", Turbo.tcomp * Turbo.tconv));
+            burnerPanel.burnerLeftPanel.getTb().setText(String.format("%.0f", Turbo.tburner * Turbo.tconv));
+            turbinePanel.turbineLeftPanel.getTt().setText(String.format("%.0f", Turbo.tturbin * Turbo.tconv));
+            nozzlePanel.nozzleLeftPanel.getTn().setText(String.format("%.0f", Turbo.tnozl * Turbo.tconv));
+            ramjetNozzlePanel.ramjetNozzleLeftPanel.getTn().setText(String.format("%.0f", Turbo.tnozr * Turbo.tconv));
         }
     }  // end Inppnl
 

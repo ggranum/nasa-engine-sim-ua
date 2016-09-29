@@ -313,12 +313,12 @@ public class CompressorPanel extends Panel {
             if(Turbo.mcomp == 0) {
                 if(v4 <= 1.0 * Turbo.dconv) {
                     v4 = 1.0 * Turbo.dconv;
-                    getDc().setText(String.valueOf(turbo.filter0(v4 * Turbo.dconv)));
+                    getDc().setText(String.format("%.0f", v4 * Turbo.dconv));
                 }
                 Turbo.dcomp = v4 / Turbo.dconv;
                 if(v6 <= 500. * Turbo.tconv) {
                     v6 = 500. * Turbo.tconv;
-                    getTc().setText(String.valueOf(turbo.filter0(v6 * Turbo.tconv)));
+                    getTc().setText(String.format("%.0f", v6 * Turbo.tconv));
                 }
                 Turbo.tcomp = v6 / Turbo.tconv;
             }

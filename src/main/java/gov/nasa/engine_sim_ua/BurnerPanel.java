@@ -128,7 +128,7 @@ public class BurnerPanel extends Panel {
             burnerLeftPanel.getF4().setForeground(Color.yellow);
             Turbo.fhvd = Turbo.fhv * Turbo.flconv;
             fl1 = (float)(Turbo.fhvd);
-            burnerLeftPanel.getF4().setText(String.valueOf(turbo.filter0(Turbo.fhvd)));
+            burnerLeftPanel.getF4().setText(String.format("%.0f", Turbo.fhvd));
 
             if(turbo.fueltype == 2) {
                 burnerLeftPanel.getF4().setBackground(Color.white);
@@ -355,12 +355,12 @@ public class BurnerPanel extends Panel {
             if(Turbo.mburner == 0) {
                 if(v4 <= 1.0 * Turbo.dconv) {
                     v4 = 1.0 * Turbo.dconv;
-                    getDb().setText(String.valueOf(turbo.filter0(v4 * Turbo.dconv)));
+                    getDb().setText(String.format("%.0f", v4 * Turbo.dconv));
                 }
                 Turbo.dburner = v4 / Turbo.dconv;
                 if(v5 <= 500. * Turbo.tconv) {
                     v5 = 500. * Turbo.tconv;
-                    getTb().setText(String.valueOf(turbo.filter0(v5 * Turbo.tconv)));
+                    getTb().setText(String.format("%.0f", v5 * Turbo.tconv));
                 }
                 Turbo.tburner = v5 / Turbo.tconv;
             }

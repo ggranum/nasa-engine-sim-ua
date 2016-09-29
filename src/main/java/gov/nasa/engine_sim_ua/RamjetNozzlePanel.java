@@ -337,12 +337,12 @@ public class RamjetNozzlePanel extends Panel {
             if(Turbo.mnozr == 0) {
                 if(v7 <= 1.0 * Turbo.dconv) {
                     v7 = 1.0 * Turbo.dconv;
-                    getDn().setText(String.valueOf(turbo.filter0(v7 * Turbo.dconv)));
+                    getDn().setText(String.format("%.0f", v7 * Turbo.dconv));
                 }
                 Turbo.dnozr = v7 / Turbo.dconv;
                 if(v8 <= 500. * Turbo.tconv) {
                     v8 = 500. * Turbo.tconv;
-                    getTn().setText(String.valueOf(turbo.filter0(v8 * Turbo.tconv)));
+                    getTn().setText(String.format("%.0f", v8 * Turbo.tconv));
                 }
                 Turbo.tnozr = v8 / Turbo.tconv;
             }

@@ -696,7 +696,7 @@ class Solver {
         double deltf;
         double deltlt;
         int itcount;
-        float fl1;
+
         int i1;
                                      /*   inletPanel recovery  */
         if(turbo.pt2flag == 0) {                    /*     mil spec      */
@@ -706,8 +706,7 @@ class Solver {
                 Turbo.prat[2] = 1.0;
             }
             Turbo.eta[2] = Turbo.prat[2];
-            fl1 = turbo.filter3(Turbo.prat[2]);
-            turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.valueOf(fl1));
+            turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.format("%.3f", Turbo.prat[2]));
             i1 = (int)(((Turbo.prat[2] - Turbo.etmin) / (Turbo.etmax - Turbo.etmin)) * 1000.);
             turbo.inputPanel.inletPanel.inletRightPanel.s1.setValue(i1);
         } else {                       /* enter value */
@@ -1270,7 +1269,6 @@ class Solver {
     public void getGeo() {
                         /* determine geometric variables */
         double game;
-        float fl1;
         int i1;
 
         if(turbo.entype <= 2) {          // turbine engines
@@ -1285,14 +1283,13 @@ class Solver {
             if(Turbo.a8rat > Turbo.a8max) {
                 Turbo.a8rat = Turbo.a8max;
                 if(turbo.lunits <= 1) {
-                    fl1 = turbo.filter3(Turbo.a8rat);
-                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(fl1));
+                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", Turbo.a8rat));
                     i1 = (int)(((Turbo.a8rat - Turbo.a8min) / (Turbo.a8max - Turbo.a8min)) * 1000.);
                     turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
                 }
                 if(turbo.lunits == 2) {
-                    fl1 = turbo.filter3(100. * (Turbo.a8rat - Turbo.a8ref) / Turbo.a8ref);
-                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(fl1));
+                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(String.format("%.3f",
+                                                                                                              100. * (Turbo.a8rat - Turbo.a8ref) / Turbo.a8ref)));
                     i1 = (int)((((100. * (Turbo.a8rat - Turbo.a8ref) / Turbo.a8ref) + 10.0) / 20.0) * 1000.);
                     turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
                 }
@@ -1300,8 +1297,7 @@ class Solver {
           /*    dumb flightConditionsLowerPanel limit - a8 schedule */
             if(turbo.arsched == 0) {
                 Turbo.a8rat = Turbo.a8max;
-                fl1 = turbo.filter3(Turbo.a8rat);
-                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(fl1));
+                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", Turbo.a8rat));
                 i1 = (int)(((Turbo.a8rat - Turbo.a8min) / (Turbo.a8max - Turbo.a8min)) * 1000.);
                 turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
             }
@@ -1325,8 +1321,7 @@ class Solver {
                 if(Turbo.arthd > Turbo.arthmx) {
                     Turbo.arthd = Turbo.arthmx;
                 }
-                fl1 = turbo.filter3(Turbo.arthd);
-                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF3().setText(String.valueOf(fl1));
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF3().setText(String.format("%.3f", Turbo.arthd));
                 i1 = (int)(((Turbo.arthd - Turbo.arthmn) / (Turbo.arthmx - Turbo.arthmn)) * 1000.);
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.s3.setValue(i1);
             }
@@ -1340,8 +1335,7 @@ class Solver {
                 if(Turbo.arexitd > Turbo.arexmx) {
                     Turbo.arexitd = Turbo.arexmx;
                 }
-                fl1 = turbo.filter3(Turbo.arexitd);
-                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF4().setText(String.valueOf(fl1));
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF4().setText(String.format("%.3f", Turbo.arexitd));
                 i1 = (int)(((Turbo.arexitd - Turbo.arexmn) / (Turbo.arexmx - Turbo.arexmn)) * 1000.);
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.s4.setValue(i1);
             }

@@ -435,12 +435,12 @@ public class FanPanel extends Panel {
             if(Turbo.mfan == 0) {
                 if(v4 <= 1.0 * Turbo.dconv) {
                     v4 = 1.0 * Turbo.dconv;
-                    getDf().setText(String.valueOf(turbo.filter0(v4 * Turbo.dconv)));
+                    getDf().setText(String.format("%.0f", v4 * Turbo.dconv));
                 }
                 Turbo.dfan = v4 / Turbo.dconv;
                 if(v5 <= 500. * Turbo.tconv) {
                     v5 = 500. * Turbo.tconv;
-                    getTf().setText(String.valueOf(turbo.filter0(v5 * Turbo.tconv)));
+                    getTf().setText(String.format("%.0f", v5 * Turbo.tconv));
                 }
                 Turbo.tfan = v5 / Turbo.tconv;
             }

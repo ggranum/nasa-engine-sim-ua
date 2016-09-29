@@ -228,9 +228,9 @@ public class FlightPanel extends Panel {
                 turbo.abflag = nozch.getSelectedIndex();
             }
 
-            flightLeftPanel.f1.setText(String.valueOf(turbo.filter0(v1)));
-            flightLeftPanel.f2.setText(String.valueOf(turbo.filter0(v2)));
-            flightLeftPanel.f3.setText(String.valueOf(turbo.filter3(v3)));
+            flightLeftPanel.f1.setText(String.format("%.0f", v1));
+            flightLeftPanel.f2.setText(String.format("%.0f", v2));
+            flightLeftPanel.f3.setText(String.format("%.3f", v3));
 
             turbo.solve.comPute();
         }  // end handle

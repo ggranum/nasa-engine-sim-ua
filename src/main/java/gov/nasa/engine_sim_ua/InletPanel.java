@@ -164,7 +164,6 @@ public class InletPanel extends Panel {
         public void handleBar() {     // inletPanel recovery
             int i1;
             double v1;
-            float fl1;
 
             i1 = s1.getValue();
 
@@ -179,7 +178,6 @@ public class InletPanel extends Panel {
 
             v1 = i1 * (Turbo.vmx1 - Turbo.vmn1) / 1000. + Turbo.vmn1;
 
-            fl1 = turbo.filter3(v1);
             // inletPanel design
             if(turbo.lunits <= 1) {
                 Turbo.eta[2] = v1;
@@ -188,7 +186,7 @@ public class InletPanel extends Panel {
                 Turbo.eta[2] = Turbo.et2ref + v1 / 100.;
             }
 
-            inletLeftPanel.getF1().setText(String.valueOf(fl1));
+            inletLeftPanel.getF1().setText(String.format("%.3f", v1));
 
             turbo.solve.comPute();
         }  // end handle
@@ -269,12 +267,12 @@ public class InletPanel extends Panel {
             if(Turbo.minlt == 0) {
                 if(v3 <= 1.0 * Turbo.dconv) {
                     v3 = 1.0 * Turbo.dconv;
-                    getDi().setText(String.valueOf(turbo.filter0(v3 * Turbo.dconv)));
+                    getDi().setText(String.format("%.0f", v3 * Turbo.dconv));
                 }
                 Turbo.dinlt = v3 / Turbo.dconv;
                 if(v5 <= 500. * Turbo.tconv) {
                     v5 = 500. * Turbo.tconv;
-                    getTi().setText(String.valueOf(turbo.filter0(v5 * Turbo.tconv)));
+                    getTi().setText(String.format("%.0f", v5 * Turbo.tconv));
                 }
                 Turbo.tinlt = v5 / Turbo.tconv;
             }

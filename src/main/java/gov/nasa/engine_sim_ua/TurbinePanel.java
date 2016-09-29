@@ -287,12 +287,12 @@ public class TurbinePanel extends Panel {
             if(Turbo.mturbin == 0) {
                 if(v4 <= 1.0 * Turbo.dconv) {
                     v4 = 1.0 * Turbo.dconv;
-                    getDt().setText(String.valueOf(turbo.filter0(v4 * Turbo.dconv)));
+                    getDt().setText(String.format("%.0f", v4 * Turbo.dconv));
                 }
                 Turbo.dturbin = v4 / Turbo.dconv;
                 if(v8 <= 500. * Turbo.tconv) {
                     v8 = 500. * Turbo.tconv;
-                    getTt().setText(String.valueOf(turbo.filter0(v8 * Turbo.tconv)));
+                    getTt().setText(String.format("%.0f", v8 * Turbo.tconv));
                 }
                 Turbo.tturbin = v8 / Turbo.tconv;
             }
