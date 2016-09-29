@@ -44,7 +44,9 @@ public class FanPanel extends Panel {
 
         RightPanel(Turbo target) {
 
-            int i1, i2, i3;
+            int i1;
+            int i2;
+            int i3;
 
             turbo = target;
             setLayout(new GridLayout(6, 1, 10, 5));
@@ -102,8 +104,10 @@ public class FanPanel extends Panel {
         }
 
         public void handleMat() {
-            Double V1, V2;
-            double v1, v2;
+            Double V1;
+            Double V2;
+            double v1;
+            double v2;
 
             // fanPanel
             Turbo.mfan = fmat.getSelectedIndex();
@@ -158,9 +162,15 @@ public class FanPanel extends Panel {
         }
 
         public void handleBar() {     // fanPanel design
-            int i1, i2, i3;
-            double v1, v2, v3;
-            float fl1, fl2, fl3;
+            int i1;
+            int i2;
+            int i3;
+            double v1;
+            double v2;
+            double v3;
+            float fl1;
+            float fl2;
+            float fl3;
 
             i1 = getS1().getValue();
             i2 = getS2().getValue();
@@ -249,7 +259,12 @@ public class FanPanel extends Panel {
         private TextField df;
         private TextField tf;
 
-        Label l1, l2, l3, l5, lmat, lm2;
+        Label l1;
+        Label l2;
+        Label l3;
+        Label l5;
+        Label lmat;
+        Label lm2;
 
         LeftPanel(Turbo target) {
 
@@ -297,9 +312,19 @@ public class FanPanel extends Panel {
         }
 
         public void handleText() {
-            Double V1, V2, V3, V4, V5;
-            double v1, v2, v3, v4, v5;
-            int i1, i2, i3;
+            Double V1;
+            Double V2;
+            Double V3;
+            Double V4;
+            Double V5;
+            double v1;
+            double v2;
+            double v3;
+            double v4;
+            double v5;
+            int i1;
+            int i2;
+            int i3;
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());

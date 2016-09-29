@@ -25,9 +25,18 @@ class FlightConditionsPanel extends Panel {
     }
 
     public void setPanl() {
-        double v1, v2, v3, v4;
-        float fl1, fl2, fl3, fl4;
-        int i1, i2, i3, i4;
+        double v1;
+        double v2;
+        double v3;
+        double v4;
+        float fl1;
+        float fl2;
+        float fl3;
+        float fl4;
+        int i1;
+        int i2;
+        int i3;
+        int i4;
 
         // set limits and labels
         // flightPanel conditions
@@ -523,9 +532,29 @@ class FlightConditionsPanel extends Panel {
     }
 
     public void setUnits() {   // Switching Units
-        double alts, alm1s, ars, arm1s, arm2s, t4s, t7s, t4m1s, t4m2s, t7m1s, t7m2s;
-        double u0s, pmxs, tmns, tmxs, diars, dim1s, dim2s;
-        double u0mts, u0mrs, altmts, altmrs, fhvs;
+        double alts;
+        double alm1s;
+        double ars;
+        double arm1s;
+        double arm2s;
+        double t4s;
+        double t7s;
+        double t4m1s;
+        double t4m2s;
+        double t7m1s;
+        double t7m2s;
+        double u0s;
+        double pmxs;
+        double tmns;
+        double tmxs;
+        double diars;
+        double dim1s;
+        double dim2s;
+        double u0mts;
+        double u0mrs;
+        double altmts;
+        double altmrs;
+        double fhvs;
         int i1;
 
         alts = Turbo.altd / Turbo.lconv1;

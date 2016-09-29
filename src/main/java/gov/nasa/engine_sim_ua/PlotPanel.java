@@ -14,7 +14,7 @@ import java.awt.TextField;
 
 public class PlotPanel extends Panel {
 
-    private PlotRightPanel plotRightPanel;
+    private final PlotRightPanel plotRightPanel;
     PlotLeftPanel plotLeftPanel;
 
     PlotPanel(Turbo turbo) {
@@ -198,9 +198,13 @@ public class PlotPanel extends Panel {
     public class PlotLeftPanel extends Panel {
 
         Turbo turbo;
-        TextField fplt, oplt;
-        Button strbt, endbt, exitpan;
-        Choice absch, ordch;
+        TextField fplt;
+        TextField oplt;
+        Button strbt;
+        Button endbt;
+        Button exitpan;
+        Choice absch;
+        Choice ordch;
 
         PlotLeftPanel(Turbo target) {
 
@@ -281,8 +285,10 @@ public class PlotPanel extends Panel {
 
         public void handlePlot(Object arg) {
             String label = (String)arg;
-            int item, i;
-            double tempx, tempy;
+            int item;
+            int i;
+            double tempx;
+            double tempy;
             double v1;
             int i1;
             float fl1;

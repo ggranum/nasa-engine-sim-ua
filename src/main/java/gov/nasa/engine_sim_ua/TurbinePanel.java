@@ -38,7 +38,8 @@ public class TurbinePanel extends Panel {
         Turbo turbo;
         Scrollbar s1;
         Label lmat;
-        Choice tmat, stgch;
+        Choice tmat;
+        Choice stgch;
 
         TurbineRightPanel(Turbo target) {
 
@@ -101,8 +102,10 @@ public class TurbinePanel extends Panel {
         }
 
         public void handleMat() {
-            Double V1, V2;
-            double v1, v2;
+            Double V1;
+            Double V2;
+            double v1;
+            double v2;
 
             Turbo.ntflag = stgch.getSelectedIndex();
             if(Turbo.ntflag == 0) {
@@ -205,7 +208,10 @@ public class TurbinePanel extends Panel {
         private TextField f3;
         private TextField dt;
         private TextField tt;
-        Label l1, l5, lmat, lm2;
+        Label l1;
+        Label l5;
+        Label lmat;
+        Label lm2;
 
         TurbineLeftPanel(Turbo target) {
 
@@ -253,10 +259,15 @@ public class TurbinePanel extends Panel {
         }
 
         public void handleText() {
-            Double V1, V4, V8;
-            double v1, v4, v8;
+            Double V1;
+            Double V4;
+            Double V8;
+            double v1;
+            double v4;
+            double v8;
             Integer I3;
-            int i1, i3;
+            int i1;
+            int i3;
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());

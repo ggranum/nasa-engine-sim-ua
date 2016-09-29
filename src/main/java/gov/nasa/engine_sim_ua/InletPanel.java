@@ -35,7 +35,8 @@ public class InletPanel extends Panel {
 
         Turbo turbo;
         Scrollbar s1;
-        Choice inltch, imat;
+        Choice inltch;
+        Choice imat;
         Label lmat;
 
         InletRightPanel(Turbo target) {
@@ -98,8 +99,10 @@ public class InletPanel extends Panel {
         }
 
         public void handleMat() {  // materials
-            Double V1, V2;
-            double v1, v2;
+            Double V1;
+            Double V2;
+            double v1;
+            double v2;
 
             // inletPanel
             turbo.pt2flag = inltch.getSelectedIndex();
@@ -197,7 +200,10 @@ public class InletPanel extends Panel {
         private TextField f1;
         private TextField ti;
         private TextField di;
-        Label l1, l5, lmat, lm2;
+        Label l1;
+        Label l5;
+        Label lmat;
+        Label lm2;
 
         InletLeftPanel(Turbo target) {
 
@@ -243,8 +249,12 @@ public class InletPanel extends Panel {
         }
 
         public void handleText() {
-            Double V1, V3, V5;
-            double v1, v3, v5;
+            Double V1;
+            Double V3;
+            Double V5;
+            double v1;
+            double v3;
+            double v5;
             int i1;
             float fl1;
 

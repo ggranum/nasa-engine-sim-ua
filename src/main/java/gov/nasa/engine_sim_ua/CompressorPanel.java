@@ -37,13 +37,16 @@ public class CompressorPanel extends Panel {
     public class CompressorRightPanel extends Panel {
 
         Turbo turbo;
-        Scrollbar s1, s2;
-        Choice stgch, cmat;
+        Scrollbar s1;
+        Scrollbar s2;
+        Choice stgch;
+        Choice cmat;
         Label lmat;
 
         CompressorRightPanel(Turbo target) {
 
-            int i1, i2;
+            int i1;
+            int i2;
 
             turbo = target;
             setLayout(new GridLayout(6, 1, 10, 5));
@@ -104,8 +107,10 @@ public class CompressorPanel extends Panel {
         }
 
         public void handleMat() {
-            Double V1, V2;
-            double v1, v2;
+            Double V1;
+            Double V2;
+            double v1;
+            double v2;
 
             // compressor
             Turbo.ncflag = stgch.getSelectedIndex();
@@ -170,9 +175,12 @@ public class CompressorPanel extends Panel {
         }
 
         public void handleBar() {  // compressor design
-            int i1, i2;
-            double v1, v2;
-            float fl1, fl2;
+            int i1;
+            int i2;
+            double v1;
+            double v2;
+            float fl1;
+            float fl2;
 
             i1 = s1.getValue();
             i2 = s2.getValue();
@@ -221,7 +229,11 @@ public class CompressorPanel extends Panel {
         private TextField f3;
         private TextField dc;
         private TextField tc;
-        Label l1, l2, l5, lmat, lm2;
+        Label l1;
+        Label l2;
+        Label l5;
+        Label lmat;
+        Label lm2;
 
         CompressorLeftPanel(Turbo target) {
 
@@ -271,10 +283,18 @@ public class CompressorPanel extends Panel {
         }
 
         public void handleText() {
-            Double V1, V2, V4, V6;
-            double v1, v2, v4, v6;
+            Double V1;
+            Double V2;
+            Double V4;
+            Double V6;
+            double v1;
+            double v2;
+            double v4;
+            double v6;
             Integer I3;
-            int i1, i2, i3;
+            int i1;
+            int i2;
+            int i3;
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());

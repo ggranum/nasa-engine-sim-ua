@@ -14,16 +14,39 @@ import java.awt.event.MouseMotionAdapter;
 public class EngineModelViewCanvas extends Canvas implements Runnable {
 
     private Turbo turbo;
-    Point locate, anchor;
+    Point locate;
+    Point anchor;
     Thread runner;
     Image displimg;
-    double r0, x0, xcowl, rcowl, liprad;  /* cowl  and free stream */
-    double capa, capb, capc;           /* capture tube coefficients */
-    double cepa, cepb, cepc, lxhst;     /* exhaust tube coefficients */
-    double xfan, fblade;              /* fanPanel blade */
-    double xcomp, hblade, tblade, sblade; /* compressor blades */
-    double xburn, rburn, tsig, radius;   /* combustor */
-    double xturb, xturbh, rnoz, xnoz, xflame, xit, rthroat;
+    double r0;
+    double x0;
+    double xcowl;
+    double rcowl;
+    double liprad;  /* cowl  and free stream */
+    double capa;
+    double capb;
+    double capc;           /* capture tube coefficients */
+    double cepa;
+    double cepb;
+    double cepc;
+    double lxhst;     /* exhaust tube coefficients */
+    double xfan;
+    double fblade;              /* fanPanel blade */
+    double xcomp;
+    double hblade;
+    double tblade;
+    double sblade; /* compressor blades */
+    double xburn;
+    double rburn;
+    double tsig;
+    double radius;   /* combustor */
+    double xturb;
+    double xturbh;
+    double rnoz;
+    double xnoz;
+    double xflame;
+    double xit;
+    double rthroat;
 
     EngineModelViewCanvas(Turbo turbo) {
         this.turbo = turbo;
@@ -346,8 +369,11 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
     }
 
     public void getDrawGeo() { /* get the drawing geometry */
-        double delx, delt;
-        int index, i, j;
+        double delx;
+        double delt;
+        int index;
+        int i;
+        int j;
 
         lxhst = 5.;
 
@@ -503,13 +529,25 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
     }
 
     public void paint(Graphics g) {
-        int i, j, k;
-        int bcol, dcol;
+        int i;
+        int j;
+        int k;
+        int bcol;
+        int dcol;
         int exes[] = new int[8];
         int whys[] = new int[8];
-        int xlabel, ylabel, ind;
-        double xl, yl;
-        double offx, scalex, offy, scaley, waste, incy, incx;
+        int xlabel;
+        int ylabel;
+        int ind;
+        double xl;
+        double yl;
+        double offx;
+        double scalex;
+        double offy;
+        double scaley;
+        double waste;
+        double incy;
+        double incx;
 
         bcol = 0;
         dcol = 7;

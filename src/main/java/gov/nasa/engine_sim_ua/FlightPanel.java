@@ -37,13 +37,19 @@ public class FlightPanel extends Panel {
     public class FlightRightPanel extends Panel {
 
         Turbo turbo;
-        Scrollbar s1, s2, s3;
-        Label l2, l3;
-        Choice nozch, inptch;
+        Scrollbar s1;
+        Scrollbar s2;
+        Scrollbar s3;
+        Label l2;
+        Label l3;
+        Choice nozch;
+        Choice inptch;
 
         FlightRightPanel(Turbo target) {
 
-            int i1, i2, i3;
+            int i1;
+            int i2;
+            int i3;
 
             turbo = target;
             setLayout(new GridLayout(7, 1, 10, 5));
@@ -102,10 +108,19 @@ public class FlightPanel extends Panel {
         }
 
         public void handleBar() {     // flightPanel conditions
-            int i1, i2, i3;
-            Double V6, V7;
-            double v1, v2, v3, v6, v7;
-            float fl1, fl2, fl3;
+            int i1;
+            int i2;
+            int i3;
+            Double V6;
+            Double V7;
+            double v1;
+            double v2;
+            double v3;
+            double v6;
+            double v7;
+            float fl1;
+            float fl2;
+            float fl3;
 
             i1 = s1.getValue();
             i2 = s2.getValue();
@@ -226,9 +241,17 @@ public class FlightPanel extends Panel {
     public class FlightLeftPanel extends Panel {
 
         Turbo turbo;
-        TextField f1, f2, f3, f4;
-        TextField o1, o2, o3;
-        Label l1, l2, l3, lmach;
+        TextField f1;
+        TextField f2;
+        TextField f3;
+        TextField f4;
+        TextField o1;
+        TextField o2;
+        TextField o3;
+        Label l1;
+        Label l2;
+        Label l3;
+        Label lmach;
         Choice inpch;
 
         FlightLeftPanel(Turbo target) {
@@ -297,9 +320,23 @@ public class FlightPanel extends Panel {
         }
 
         public void handleText() {
-            Double V1, V2, V3, V4, V5, V6, V7;
-            double v1, v2, v3, v4, v5, v6, v7;
-            int i1, i2, i3;
+            Double V1;
+            Double V2;
+            Double V3;
+            Double V4;
+            Double V5;
+            Double V6;
+            Double V7;
+            double v1;
+            double v2;
+            double v3;
+            double v4;
+            double v5;
+            double v6;
+            double v7;
+            int i1;
+            int i2;
+            int i3;
             float fl1;
 
             turbo.gamopt = inpch.getSelectedIndex();

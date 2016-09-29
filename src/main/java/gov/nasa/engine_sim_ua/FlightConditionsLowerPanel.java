@@ -11,7 +11,14 @@ import java.awt.TextField;
  */
 class FlightConditionsLowerPanel extends Panel {
 
-    TextField o4, o5, o6, o10, o11, o12, o14, o15;
+    TextField o4;
+    TextField o5;
+    TextField o6;
+    TextField o10;
+    TextField o11;
+    TextField o12;
+    TextField o14;
+    TextField o15;
 
     FlightConditionsLowerPanel() {
         setLayout(new GridLayout(4, 4, 1, 5));

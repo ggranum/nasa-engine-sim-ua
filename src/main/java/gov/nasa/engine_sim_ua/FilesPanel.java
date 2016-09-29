@@ -16,8 +16,11 @@ import java.io.IOException;
 public class FilesPanel extends Panel {  // save file
 
     private Turbo turbo;
-    TextField nsavin, nsavout;
-    Button savread, savwrit, cancel;
+    TextField nsavin;
+    TextField nsavout;
+    Button savread;
+    Button savwrit;
+    Button cancel;
 
     FilesPanel(Turbo turbo) {
         this.turbo = turbo;

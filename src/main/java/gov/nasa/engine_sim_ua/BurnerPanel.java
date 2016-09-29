@@ -34,13 +34,18 @@ public class BurnerPanel extends Panel {
     public class BurnerRightPanel extends Panel {
 
         Turbo turbo;
-        Scrollbar s1, s2, s3;
+        Scrollbar s1;
+        Scrollbar s2;
+        Scrollbar s3;
         Label lmat;
-        Choice bmat, fuelch;
+        Choice bmat;
+        Choice fuelch;
 
         BurnerRightPanel(Turbo target) {
 
-            int i1, i2, i3;
+            int i1;
+            int i2;
+            int i3;
 
             turbo = target;
             setLayout(new GridLayout(7, 1, 10, 5));
@@ -106,8 +111,10 @@ public class BurnerPanel extends Panel {
         }
 
         public void handleMat() {
-            Double V1, V2;
-            double v1, v2;
+            Double V1;
+            Double V2;
+            double v1;
+            double v2;
             float fl1;
 
             turbo.fueltype = fuelch.getSelectedIndex();
@@ -185,9 +192,15 @@ public class BurnerPanel extends Panel {
         }
 
         public void handleBar() {     // burner design
-            int i1, i2, i3;
-            double v1, v2, v3;
-            float fl1, fl2, fl3;
+            int i1;
+            int i2;
+            int i3;
+            double v1;
+            double v2;
+            double v3;
+            float fl1;
+            float fl2;
+            float fl3;
 
             i1 = s1.getValue();
             i2 = s2.getValue();
@@ -245,7 +258,13 @@ public class BurnerPanel extends Panel {
         private TextField f2;
         private TextField f3;
         private TextField f4;
-        Label l1, l2, l3, l4, l5, lmat, lm2;
+        Label l1;
+        Label l2;
+        Label l3;
+        Label l4;
+        Label l5;
+        Label lmat;
+        Label lm2;
         private TextField db;
         private TextField tb;
 
@@ -302,9 +321,21 @@ public class BurnerPanel extends Panel {
         }
 
         public void handleText() {
-            Double V1, V2, V3, V4, V5, V6;
-            double v1, v2, v3, v4, v5, v6;
-            int i1, i2, i3;
+            Double V1;
+            Double V2;
+            Double V3;
+            Double V4;
+            Double V5;
+            Double V6;
+            double v1;
+            double v2;
+            double v3;
+            double v4;
+            double v5;
+            double v6;
+            int i1;
+            int i2;
+            int i3;
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());

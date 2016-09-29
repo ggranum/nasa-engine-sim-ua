@@ -36,8 +36,20 @@ public class OutputPanel extends Panel {
 
     public class OutputMainPanel extends Panel {
 
-        TextField o7, o8, o9, o13, o16, o17;
-        TextField o18, o19, o20, o21, o22, o23, o24, o25;
+        TextField o7;
+        TextField o8;
+        TextField o9;
+        TextField o13;
+        TextField o16;
+        TextField o17;
+        TextField o18;
+        TextField o19;
+        TextField o20;
+        TextField o21;
+        TextField o22;
+        TextField o23;
+        TextField o24;
+        TextField o25;
 
         OutputMainPanel() {
 
@@ -127,7 +139,14 @@ public class OutputPanel extends Panel {
         }
 
         public void loadOut() {
-            String outfor, outful, outair, outvel, outprs, outtmp, outtim, outpri;
+            String outfor;
+            String outful;
+            String outair;
+            String outvel;
+            String outprs;
+            String outtmp;
+            String outtim;
+            String outpri;
             int i1;
 
             outfor = " lbs";
@@ -272,9 +291,26 @@ public class OutputPanel extends Panel {
 
     public class OutputVariablesPanel extends Panel {
 
-        TextField po1, po2, po3, po4, po5, po6, po7, po8;
-        TextField to1, to2, to3, to4, to5, to6, to7, to8;
-        Label lpa, lpb, lta, ltb;
+        TextField po1;
+        TextField po2;
+        TextField po3;
+        TextField po4;
+        TextField po5;
+        TextField po6;
+        TextField po7;
+        TextField po8;
+        TextField to1;
+        TextField to2;
+        TextField to3;
+        TextField to4;
+        TextField to5;
+        TextField to6;
+        TextField to7;
+        TextField to8;
+        Label lpa;
+        Label lpb;
+        Label lta;
+        Label ltb;
 
         OutputVariablesPanel() {
 
@@ -498,7 +534,8 @@ public class OutputPanel extends Panel {
         }
 
         public void loadPlot() {
-            double cnst, delp;
+            double cnst;
+            double delp;
             int ic;
 
             switch (turbo.plttyp) {
@@ -612,12 +649,23 @@ public class OutputPanel extends Panel {
         public void paint(Graphics g) {
             //          int iwidth = partimg.getWidth(this) ;
             //         int iheight = partimg.getHeight(this) ;
-            int i, j, k;
+            int i;
+            int j;
+            int k;
             int exes[] = new int[8];
             int whys[] = new int[8];
-            int xlabel, ylabel, ind;
-            double xl, yl;
-            double offx, scalex, offy, scaley, waste, incy, incx;
+            int xlabel;
+            int ylabel;
+            int ind;
+            double xl;
+            double yl;
+            double offx;
+            double scalex;
+            double offy;
+            double scaley;
+            double waste;
+            double incy;
+            double incx;
 
             if(turbo.plttyp >= 3 && turbo.plttyp <= 7) {         //  perform a plotPanel
                 turbo.off1Gg.setColor(Color.blue);

@@ -683,10 +683,21 @@ class Solver {
     }
 
     public void getThermo() {
-        double dela, t5t4n, deriv, delan, m5;
-        double delhc, delhht, delhf, delhlt;
-        double deltc, deltht, deltf, deltlt;
-        int itcount, index;
+        double dela;
+        double t5t4n;
+        double deriv;
+        double delan;
+        double m5;
+        double delhc;
+        double delhht;
+        double delhf;
+        double delhlt;
+        double deltc;
+        double deltht;
+        double deltf;
+        double deltlt;
+        int itcount;
+        int index;
         float fl1;
         int i1;
                                      /*   inletPanel recovery  */
@@ -1035,7 +1046,13 @@ class Solver {
     }
 
     public void getPerform() {       /* determine engine performance */
-        double fac1, game, cpe, cp3, rg, p8p5, rg1;
+        double fac1;
+        double game;
+        double cpe;
+        double cp3;
+        double rg;
+        double p8p5;
+        double rg1;
         int index;
 
         rg1 = 53.3;

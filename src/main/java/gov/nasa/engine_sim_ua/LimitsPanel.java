@@ -12,10 +12,30 @@ import java.awt.TextField;
 public class LimitsPanel extends Panel {
 
     private Turbo turbo;
-    TextField f1, f2, f3, f4, f5, f6, f7, f8;
-    TextField f9, f10, f11, f12;
-    Label l1, l2, l3, l4, l5, l6, l7, l8;
-    Label l9, l10, l11, l12;
+    TextField f1;
+    TextField f2;
+    TextField f3;
+    TextField f4;
+    TextField f5;
+    TextField f6;
+    TextField f7;
+    TextField f8;
+    TextField f9;
+    TextField f10;
+    TextField f11;
+    TextField f12;
+    Label l1;
+    Label l2;
+    Label l3;
+    Label l4;
+    Label l5;
+    Label l6;
+    Label l7;
+    Label l8;
+    Label l9;
+    Label l10;
+    Label l11;
+    Label l12;
     Button submit;
 
     LimitsPanel(Turbo turbo) {
@@ -92,9 +112,17 @@ public class LimitsPanel extends Panel {
     }
 
     public void handleText(Event evt) {
-        Double V1, V2, V3, V4;
-        double v1, v2, v3, v4;
-        int i1, i2, i3;
+        Double V1;
+        Double V2;
+        Double V3;
+        Double V4;
+        double v1;
+        double v2;
+        double v3;
+        double v4;
+        int i1;
+        int i2;
+        int i3;
         float fl1;
 
         V1 = Double.valueOf(f1.getText());

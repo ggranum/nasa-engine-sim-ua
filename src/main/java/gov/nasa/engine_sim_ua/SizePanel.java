@@ -91,10 +91,16 @@ public class SizePanel extends Panel {
         }
 
         public void handleBar() {     // engine sizePanel
-            int i1, i3;
-            Double V2, V3;
-            double v1, v2, v3;
-            float fl1, fl2, fl3;
+            int i1;
+            int i3;
+            Double V2;
+            Double V3;
+            double v1;
+            double v2;
+            double v3;
+            float fl1;
+            float fl2;
+            float fl3;
 
             turbo.siztype = sizch.getSelectedIndex();
 
@@ -182,8 +188,13 @@ public class SizePanel extends Panel {
     public class SizeLeftPanel extends Panel {
 
         Turbo turbo;
-        TextField f1, f2, f3;
-        Label l1, l2, l3, lab;
+        TextField f1;
+        TextField f2;
+        TextField f3;
+        Label l1;
+        Label l2;
+        Label l3;
+        Label lab;
 
         SizeLeftPanel(Turbo target) {
 
@@ -226,10 +237,17 @@ public class SizePanel extends Panel {
         }
 
         public void handleText() {
-            Double V1, V2, V3;
-            double v1, v2, v3;
-            int i1, i3;
-            float fl1, fl2, fl3;
+            Double V1;
+            Double V2;
+            Double V3;
+            double v1;
+            double v2;
+            double v3;
+            int i1;
+            int i3;
+            float fl1;
+            float fl2;
+            float fl3;
 
             V1 = Double.valueOf(f1.getText());
             v1 = V1.doubleValue();

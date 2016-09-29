@@ -14,9 +14,22 @@ import java.io.PrintStream;
 public class FilePrintPanel extends Panel {
 
     private Turbo turbo;
-TextField namprnt,namlab ;
-Button pbopen,pball,pbfs,pbeng,pbth,pbprat,pbpres,pbvol,
-       pbtrat,pbttot,pbentr,pbgam,pbeta,pbarea ;
+TextField namprnt;
+    TextField namlab ;
+Button pbopen;
+    Button pball;
+    Button pbfs;
+    Button pbeng;
+    Button pbth;
+    Button pbprat;
+    Button pbpres;
+    Button pbvol;
+    Button pbtrat;
+    Button pbttot;
+    Button pbentr;
+    Button pbgam;
+    Button pbeta;
+    Button pbarea ;
 
 FilePrintPanel(Turbo turbo) {
     this.turbo = turbo;
@@ -127,8 +140,9 @@ public boolean action(Event evt, Object arg) {
 }
 
 public void handleRefs(Event evt, Object arg) {
-  String filnam, fillab ;
-  String label = (String)arg ;
+  String filnam;
+    String fillab ;
+    String label = (String)arg ;
 
   if(label.equals("All")) {
      if (turbo.pall == 1) {

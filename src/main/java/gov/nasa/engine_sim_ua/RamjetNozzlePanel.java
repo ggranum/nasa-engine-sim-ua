@@ -34,14 +34,20 @@ public class RamjetNozzlePanel extends Panel {
     public class RamjetNozzleRightPanel extends Panel {
 
         Turbo turbo;
-        Scrollbar s1, s2, s3, s4;
+        Scrollbar s1;
+        Scrollbar s2;
+        Scrollbar s3;
+        Scrollbar s4;
         Label lmat;
         Choice nrmat;
-        Choice atch, aech;
+        Choice atch;
+        Choice aech;
 
         RamjetNozzleRightPanel(Turbo target) {
 
-            int i2, i3, i4;
+            int i2;
+            int i3;
+            int i4;
 
             turbo = target;
             setLayout(new GridLayout(7, 1, 10, 5));
@@ -109,8 +115,10 @@ public class RamjetNozzlePanel extends Panel {
         }
 
         public void handleMat() {
-            Double V1, V2;
-            double v1, v2;
+            Double V1;
+            Double V2;
+            double v1;
+            double v2;
 
             turbo.athsched = atch.getSelectedIndex();
             if(turbo.athsched == 0) {
@@ -176,9 +184,15 @@ public class RamjetNozzlePanel extends Panel {
         }
 
         public void handleBar() { // ramjet burnerPanel -nozzle design
-            int i2, i3, i4;
-            double v2, v3, v4;
-            float fl2, fl3, fl4;
+            int i2;
+            int i3;
+            int i4;
+            double v2;
+            double v3;
+            double v4;
+            float fl2;
+            float fl3;
+            float fl4;
 
             i2 = s2.getValue();
             i3 = s3.getValue();
@@ -238,7 +252,12 @@ public class RamjetNozzlePanel extends Panel {
         private TextField f4;
         private TextField dn;
         private TextField tn;
-        Label l1, l2, l3, l5, lmat, lm2;
+        Label l1;
+        Label l2;
+        Label l3;
+        Label l5;
+        Label lmat;
+        Label lm2;
 
         RamjetNozzleLeftPanel(Turbo target) {
 
@@ -290,9 +309,19 @@ public class RamjetNozzlePanel extends Panel {
         }
 
         public void handleText() {
-            Double V2, V3, V4, V7, V8;
-            double v2, v3, v4, v7, v8;
-            int i2, i3, i4;
+            Double V2;
+            Double V3;
+            Double V4;
+            Double V7;
+            Double V8;
+            double v2;
+            double v3;
+            double v4;
+            double v7;
+            double v8;
+            int i2;
+            int i3;
+            int i4;
             float fl1;
 
             V2 = Double.valueOf(getF2().getText());
