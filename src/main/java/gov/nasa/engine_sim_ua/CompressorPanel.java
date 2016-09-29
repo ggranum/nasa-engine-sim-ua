@@ -52,7 +52,7 @@ public class CompressorPanel extends Panel {
             setLayout(new GridLayout(6, 1, 10, 5));
 
             i1 = (int)(((turbo.p3p2d - turbo.cprmin) / (turbo.cprmax - turbo.cprmin)) * 1000.);
-            i2 = (int)(((turbo.eta[3] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            i2 = (int)(((turbo.efficiency[3] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
             s2 = new Scrollbar(Scrollbar.HORIZONTAL, i2, 10, 0, 1000);
@@ -185,13 +185,13 @@ public class CompressorPanel extends Panel {
             i1 = s1.getValue();
             i2 = s2.getValue();
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn1 = turbo.cprmin;
                 turbo.vmx1 = turbo.cprmax;
                 turbo.vmn2 = turbo.etmin;
                 turbo.vmx2 = turbo.etmax;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et3ref;
@@ -205,13 +205,13 @@ public class CompressorPanel extends Panel {
             fl2 = (float)v2;
 
             //  compressor design
-            if(turbo.lunits <= 1) {
-                turbo.prat[3] = turbo.p3p2d = v1;
-                turbo.eta[3] = v2;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.pressureRatio[3] = turbo.p3p2d = v1;
+                turbo.efficiency[3] = v2;
             }
-            if(turbo.lunits == 2) {
-                turbo.prat[3] = turbo.p3p2d = v1 * turbo.cpref / 100. + turbo.cpref;
-                turbo.eta[3] = turbo.et3ref + v2 / 100.;
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
+                turbo.pressureRatio[3] = turbo.p3p2d = v1 * turbo.cpref / 100. + turbo.cpref;
+                turbo.efficiency[3] = turbo.et3ref + v2 / 100.;
             }
 
             compressorLeftPanel.getF1().setText(String.valueOf(fl1));
@@ -229,7 +229,7 @@ public class CompressorPanel extends Panel {
         private TextField f3;
         private TextField dc;
         private TextField tc;
-        Label l1;
+        Label lblPressureRatio3_2;
         Label l2;
         Label l5;
         Label lmat;
@@ -240,31 +240,31 @@ public class CompressorPanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(6, 2, 5, 5));
 
-            l1 = new Label("Press. Ratio", Label.CENTER);
-            setF1(new TextField(String.valueOf((float)turbo.p3p2d), 5));
+            lblPressureRatio3_2 = new Label("Press. Ratio", Label.CENTER);
+            setF1(new TextField(String.valueOf(turbo.p3p2d), 5));
             l2 = new Label("Efficiency", Label.CENTER);
-            setF2(new TextField(String.valueOf((float)turbo.eta[13]), 5));
-            lmat = new Label("T lim-R", Label.CENTER);
+            setF2(new TextField(String.valueOf((float)turbo.efficiency[13]), 5));
+            lmat = new Label("T lim ºR", Label.CENTER);
             lmat.setForeground(Color.blue);
             lm2 = new Label("Materials:", Label.CENTER);
             lm2.setForeground(Color.blue);
             l5 = new Label("Density", Label.CENTER);
             l5.setForeground(Color.blue);
 
-            setF3(new TextField(String.valueOf((int)turbo.ncomp), 5));
+            setF3(new TextField(String.valueOf(turbo.ncomp), 5));
             getF3().setBackground(Color.black);
             getF3().setForeground(Color.yellow);
 
-            setDc(new TextField(String.valueOf((float)turbo.dcomp), 5));
+            setDc(new TextField(String.valueOf(turbo.dcomp), 5));
             getDc().setBackground(Color.black);
             getDc().setForeground(Color.yellow);
-            setTc(new TextField(String.valueOf((float)turbo.tcomp), 5));
+            setTc(new TextField(String.valueOf(turbo.tcomp), 5));
             getTc().setBackground(Color.black);
             getTc().setForeground(Color.yellow);
 
             add(new Label("Stages ", Label.CENTER));
             add(getF3());
-            add(l1);
+            add(lblPressureRatio3_2);
             add(getF1());
             add(l2);
             add(getF2());
@@ -331,37 +331,37 @@ public class CompressorPanel extends Panel {
                 }
             }
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 // Compressor pressure ratio
-                turbo.prat[3] = turbo.p3p2d = v1;
+                turbo.pressureRatio[3] = turbo.p3p2d = v1;
                 turbo.vmn1 = turbo.cprmin;
                 turbo.vmx1 = turbo.cprmax;
                 if(v1 < turbo.vmn1) {
-                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmn1;
+                    turbo.pressureRatio[3] = turbo.p3p2d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
                 if(v1 > turbo.vmx1) {
-                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmx1;
+                    turbo.pressureRatio[3] = turbo.p3p2d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
                 // Compressor efficiency
-                turbo.eta[3] = v2;
+                turbo.efficiency[3] = v2;
                 turbo.vmn2 = turbo.etmin;
                 turbo.vmx2 = turbo.etmax;
                 if(v2 < turbo.vmn2) {
-                    turbo.eta[3] = v2 = turbo.vmn2;
+                    turbo.efficiency[3] = v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
                 if(v2 > turbo.vmx2) {
-                    turbo.eta[3] = v2 = turbo.vmx2;
+                    turbo.efficiency[3] = v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 // Compressor pressure ratio
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
@@ -375,7 +375,7 @@ public class CompressorPanel extends Panel {
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                turbo.prat[3] = turbo.p3p2d = v1 * turbo.cpref / 100. + turbo.cpref;
+                turbo.pressureRatio[3] = turbo.p3p2d = v1 * turbo.cpref / 100. + turbo.cpref;
                 // Compressor efficiency
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et3ref;
                 turbo.vmn2 = turbo.vmx2 - 20.0;
@@ -389,7 +389,7 @@ public class CompressorPanel extends Panel {
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                turbo.eta[3] = turbo.et3ref + v2 / 100.;
+                turbo.efficiency[3] = turbo.et3ref + v2 / 100.;
             }
 
             i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);

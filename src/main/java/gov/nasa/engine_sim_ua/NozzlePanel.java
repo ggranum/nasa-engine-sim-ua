@@ -51,7 +51,7 @@ public class NozzlePanel extends Panel {
             setLayout(new GridLayout(7, 1, 10, 5));
 
             i1 = (int)(((turbo.tt7d - turbo.t7min) / (turbo.t7max - turbo.t7min)) * 1000.);
-            i2 = (int)(((turbo.eta[7] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            i2 = (int)(((turbo.efficiency[7] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
             i3 = (int)(((turbo.a8rat - turbo.a8min) / (turbo.a8max - turbo.a8min)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
@@ -182,7 +182,7 @@ public class NozzlePanel extends Panel {
             i2 = s2.getValue();
             i3 = s3.getValue();
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn1 = turbo.t7min;
                 turbo.vmx1 = turbo.t7max;
                 turbo.vmn2 = turbo.etmin;
@@ -190,7 +190,7 @@ public class NozzlePanel extends Panel {
                 turbo.vmn3 = turbo.a8min;
                 turbo.vmx3 = turbo.a8max;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et7ref;
@@ -204,14 +204,14 @@ public class NozzlePanel extends Panel {
             v3 = i3 * (turbo.vmx3 - turbo.vmn3) / 1000. + turbo.vmn3;
 
             // nozzle design
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.tt7d = v1;
-                turbo.eta[7] = v2;
+                turbo.efficiency[7] = v2;
                 turbo.a8rat = v3;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.tt7d = v1 * turbo.t7ref / 100. + turbo.t7ref;
-                turbo.eta[7] = turbo.et7ref + v2 / 100.;
+                turbo.efficiency[7] = turbo.et7ref + v2 / 100.;
                 turbo.a8rat = v3 * turbo.a8ref / 100. + turbo.a8ref;
             }
             turbo.tt7 = turbo.tt7d / turbo.tconv;
@@ -247,7 +247,7 @@ public class NozzlePanel extends Panel {
             setF1(new TextField(String.valueOf((float)turbo.tt7d), 5));
 
             l2 = new Label("Efficiency", Label.CENTER);
-            setF2(new TextField(String.valueOf((float)turbo.eta[7]), 5));
+            setF2(new TextField(String.valueOf((float)turbo.efficiency[7]), 5));
 
             setF3(new TextField(String.valueOf((float)turbo.a8rat), 5));
             getF3().setBackground(Color.black);
@@ -336,7 +336,7 @@ public class NozzlePanel extends Panel {
                 turbo.tnozl = v8 / turbo.tconv;
             }
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 // Max afterburner temp
                 turbo.tt7d = v1;
                 turbo.vmn1 = turbo.t7min;
@@ -353,16 +353,16 @@ public class NozzlePanel extends Panel {
                 }
                 turbo.tt7 = turbo.tt7d / turbo.tconv;
                 // nozzle  efficiency
-                turbo.eta[7] = v2;
+                turbo.efficiency[7] = v2;
                 turbo.vmn2 = turbo.etmin;
                 turbo.vmx2 = turbo.etmax;
                 if(v2 < turbo.vmn2) {
-                    turbo.eta[7] = v2 = turbo.vmn2;
+                    turbo.efficiency[7] = v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
                 if(v2 > turbo.vmx2) {
-                    turbo.eta[7] = v2 = turbo.vmx2;
+                    turbo.efficiency[7] = v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
@@ -381,7 +381,7 @@ public class NozzlePanel extends Panel {
                     getF3().setText(String.valueOf(fl1));
                 }
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 // Max afterburner temp
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
@@ -410,7 +410,7 @@ public class NozzlePanel extends Panel {
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                turbo.eta[7] = turbo.et7ref + v2 / 100.;
+                turbo.efficiency[7] = turbo.et7ref + v2 / 100.;
                 //  nozzle area ratio
                 turbo.vmn3 = -10.0;
                 turbo.vmx3 = 10.0;

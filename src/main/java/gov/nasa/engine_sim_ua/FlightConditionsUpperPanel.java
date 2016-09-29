@@ -113,7 +113,7 @@ class FlightConditionsUpperPanel extends Panel {
         }
 
         if(label.equals("Exit")) {
-            turbo.f.dispose();
+            turbo.mainFrame.dispose();
             System.exit(1);
         }
     }
@@ -147,11 +147,11 @@ class FlightConditionsUpperPanel extends Panel {
                     turbo.prnt.println("  Afterburner  ON ");
                 }
             }
-            if(turbo.lunits == 0) {
+            if(turbo.units == Turbo.Unit.ENGLISH) {
                 turbo.prnt.println("  Diameter  = " + String.format("%.3f", turbo.diameng) + " ft ");
                 turbo.prnt.println("  Estimated Weight  = " + String.format("%.3f", turbo.weight) + " lbs ");
             }
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 turbo.prnt.println("  Diameter  = " + String.format("%.3f", turbo.diameng) + " m ");
                 turbo.prnt.println("  Estimated Weight  = " + String.format("%.3f", turbo.weight * turbo.fconv) + " N ");
             }
@@ -169,7 +169,7 @@ class FlightConditionsUpperPanel extends Panel {
             if(turbo.pall == 1 || turbo.pfs == 1) {
                 turbo.prnt.println(" ");
                 turbo.prnt.println("FlightPanel Conditions: ");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.prnt.println("  Mach = " + String.format("%.3f", turbo.fsmach)
                                        + ",  V0 = " + String.format("%.0f", turbo.u0d) + " mph ");
                     turbo.prnt.println("  Alt = " + String.format("%.0f", turbo.altd) + " ft ");
@@ -178,7 +178,7 @@ class FlightConditionsUpperPanel extends Panel {
                     turbo.prnt.println("  T0 = " + String.format("%.0f", turbo.ts0)
                                        + ",  Tt0 = " + String.format("%.0f", turbo.tt[0]) + " R ");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.prnt.println("  Mach = " + String.format("%.3f", turbo.fsmach)
                                        + ",  V0 = " + String.format("%.0f", turbo.u0d) + " km/h ");
                     turbo.prnt.println("  Alt = " + String.format("%.0f", turbo.altd) + " m ");
@@ -191,7 +191,7 @@ class FlightConditionsUpperPanel extends Panel {
             if(turbo.pall == 1 || turbo.peng == 1 || turbo.pth == 1) {
                 turbo.prnt.println(" ");
                 turbo.prnt.println("Engine Thrust and Fuel Flow: ");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.prnt.println(" F gross  = " + String.format("%.0f", turbo.fglb)
                                        + ",  D ram = " + String.format("%.0f", turbo.drlb)
                                        + ",  F net = " + String.format("%.0f", turbo.fnlb) + "  lbs");
@@ -199,7 +199,7 @@ class FlightConditionsUpperPanel extends Panel {
                                        + ",  TSFC = " + String.format("%.3f", turbo.sfc) + " lbm/(lbs*hr)");
                     turbo.prnt.println(" Thrust/Weight = " + String.format("%.3f", turbo.fnlb / turbo.weight));
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.prnt.println(" F gross  = " + String.format("%.0f", turbo.fglb * turbo.fconv)
                                        + ",  D ram = " + String.format("%.0f", turbo.drlb * turbo.fconv)
                                        + ",  F net = " + String.format("%.0f", turbo.fnlb * turbo.fconv) + " N ");
@@ -211,7 +211,7 @@ class FlightConditionsUpperPanel extends Panel {
             if(turbo.pall == 1 || turbo.peng == 1) {
                 turbo.prnt.println(" ");
                 turbo.prnt.println("Engine Performance :");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.prnt.println(" Throttle  = " + String.format("%.3f", turbo.throtl) + " %"
                                        + ",  core airflow (m)  = " + String.format("%.3f", turbo.eair) + " lbm/sec");
                     turbo.prnt.println(" EPR  = " + String.format("%.3f", turbo.epr)
@@ -223,7 +223,7 @@ class FlightConditionsUpperPanel extends Panel {
                                        + ",  Dram/m  = " + String.format("%.3f", turbo.dram)
                                        + ",  Fn/m  = " + String.format("%.3f", turbo.fnet) + " lbs/(lbm/sec)");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.prnt.println(" Throttle  = " + String.format("%.3f", turbo.throtl) + " %"
                                        + ",  core airflow (m)  = " + String.format("%.3f", turbo.mconv1 * turbo.eair) + " kg/sec");
                     turbo.prnt.println(" EPR  = " + String.format("%.3f", turbo.epr)
@@ -244,44 +244,44 @@ class FlightConditionsUpperPanel extends Panel {
             }
             if(turbo.pall == 1 || turbo.peta == 1) {
                 turbo.prnt.println(" Efficiency"
-                                   + "\t" + String.format("%.3f", turbo.eta[2])
-                                   + "\t" + String.format("%.3f", turbo.eta[13])
-                                   + "\t" + String.format("%.3f", turbo.eta[3])
-                                   + "\t" + String.format("%.3f", turbo.eta[4])
-                                   + "\t" + String.format("%.3f", turbo.eta[5])
-                                   + "\t" + String.format("%.3f", turbo.eta[5])
-                                   + "\t" + String.format("%.3f", turbo.eta[7]));
+                                   + "\t" + String.format("%.3f", turbo.efficiency[2])
+                                   + "\t" + String.format("%.3f", turbo.efficiency[13])
+                                   + "\t" + String.format("%.3f", turbo.efficiency[3])
+                                   + "\t" + String.format("%.3f", turbo.efficiency[4])
+                                   + "\t" + String.format("%.3f", turbo.efficiency[5])
+                                   + "\t" + String.format("%.3f", turbo.efficiency[5])
+                                   + "\t" + String.format("%.3f", turbo.efficiency[7]));
             }
             if(turbo.pall == 1 || turbo.pprat == 1) {
                 if(turbo.entype <= 1) {
                     turbo.prnt.println(" Press Rat "
-                                       + "\t" + String.format("%.3f", turbo.prat[2])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[2])
                                        + "\t" + " - "
-                                       + "\t" + String.format("%.3f", turbo.prat[3])
-                                       + "\t" + String.format("%.3f", turbo.prat[4])
-                                       + "\t" + String.format("%.3f", turbo.prat[5])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[3])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[4])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[5])
                                        + "\t" + " - "
-                                       + "\t" + String.format("%.3f", turbo.prat[7]));
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[7]));
                 }
                 if(turbo.entype == 2) {
                     turbo.prnt.println(" Press Rat "
-                                       + "\t" + String.format("%.3f", turbo.prat[2])
-                                       + "\t" + String.format("%.3f", turbo.prat[13])
-                                       + "\t" + String.format("%.3f", turbo.prat[3])
-                                       + "\t" + String.format("%.3f", turbo.prat[4])
-                                       + "\t" + String.format("%.3f", turbo.prat[5])
-                                       + "\t" + String.format("%.3f", turbo.prat[15])
-                                       + "\t" + String.format("%.3f", turbo.prat[7]));
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[2])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[13])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[3])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[4])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[5])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[15])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[7]));
                 }
                 if(turbo.entype == 3) {
                     turbo.prnt.println(" Press Rat "
-                                       + "\t" + String.format("%.3f", turbo.prat[2])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[2])
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.format("%.3f", turbo.prat[4])
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[4])
                                        + "\t" + " - "
                                        + "\t" + " - "
-                                       + "\t" + String.format("%.3f", turbo.prat[7]));
+                                       + "\t" + String.format("%.3f", turbo.pressureRatio[7]));
                 }
             }
             if(turbo.pall == 1 || turbo.ppres == 1) {
@@ -494,10 +494,10 @@ class FlightConditionsUpperPanel extends Panel {
             }
             if(turbo.pall == 1 || turbo.peta == 1 || turbo.pprat == 1 || turbo.ppres == 1 || turbo.pvol == 1 ||
                turbo.ptrat == 1 || turbo.pttot == 1 || turbo.pentr == 1 || turbo.pgam == 1 || turbo.parea == 1) {
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.prnt.println(" p = psi,  v = ft3/lbm,  T = R,  s = BTU/lbm R,  A = ft2 ");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.prnt.println(" p = kPa,  v = m3/kg,  T = K,   s = kJ/kg K,   A = m2 ");
                 }
             }
@@ -509,24 +509,24 @@ class FlightConditionsUpperPanel extends Panel {
     }
 
     private void handleResetClicked() {
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             // reset reference variables
             turbo.u0ref = turbo.u0d;
             turbo.altref = turbo.altd;
             turbo.thrref = turbo.throtl;
             turbo.a2ref = turbo.a2d;
-            turbo.et2ref = turbo.eta[2];
+            turbo.et2ref = turbo.efficiency[2];
             turbo.fpref = turbo.p3fp2d;
-            turbo.et13ref = turbo.eta[13];
+            turbo.et13ref = turbo.efficiency[13];
             turbo.bpref = turbo.byprat;
             turbo.cpref = turbo.p3p2d;
-            turbo.et3ref = turbo.eta[3];
-            turbo.et4ref = turbo.eta[4];
-            turbo.et5ref = turbo.eta[5];
+            turbo.et3ref = turbo.efficiency[3];
+            turbo.et4ref = turbo.efficiency[4];
+            turbo.et5ref = turbo.efficiency[5];
             turbo.t4ref = turbo.tt4d;
-            turbo.p4ref = turbo.prat[4];
+            turbo.p4ref = turbo.pressureRatio[4];
             turbo.t7ref = turbo.tt7d;
-            turbo.et7ref = turbo.eta[7];
+            turbo.et7ref = turbo.efficiency[7];
             turbo.a8ref = turbo.a8rat;
             turbo.fnref = turbo.fnlb;
             turbo.fuelref = turbo.fuelrat;
@@ -575,7 +575,7 @@ class FlightConditionsUpperPanel extends Panel {
             turbo.inputPanel.inletPanel.inletRightPanel.imat.select(turbo.minlt);
             turbo.inputPanel.fanPanel.rightPanel.fmat.select(turbo.mfan);
             turbo.inputPanel.compressorPanel.compressorRightPanel.cmat.select(turbo.mcomp);
-            turbo.inputPanel.burnerPanel.burnerRightPanel.bmat.select(turbo.mburner);
+            turbo.inputPanel.burnerPanel.burnerRightPanel.chcMaterial.select(turbo.burnerMaterial);
             turbo.inputPanel.turbinePanel.turbineRightPanel.tmat.select(turbo.mturbin);
             turbo.inputPanel.nozzlePanel.nozzleRightPanel.nmat.select(turbo.mnozl);
             turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.nrmat.select(turbo.mnozr);
@@ -590,7 +590,7 @@ class FlightConditionsUpperPanel extends Panel {
         if(turbo.plttyp != 7) {
             // units change
             if(label.equals("English")) {
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 flightConditionsPanel.setUnits();
                 flightConditionsPanel.setPanl();
                 if(turbo.plttyp >= 3) {
@@ -598,7 +598,7 @@ class FlightConditionsUpperPanel extends Panel {
                 }
             }
             if(label.equals("Metric")) {
-                turbo.lunits = 1;
+                turbo.units = Turbo.Unit.METRIC;
                 flightConditionsPanel.setUnits();
                 flightConditionsPanel.setPanl();
                 if(turbo.plttyp >= 3) {
@@ -606,7 +606,7 @@ class FlightConditionsUpperPanel extends Panel {
                 }
             }
             if(label.equals("% Change")) {
-                turbo.lunits = 2;
+                turbo.units = Turbo.Unit.PERCENT_CHANGE;
                 flightConditionsPanel.setUnits();
                 flightConditionsPanel.setPanl();
                 if(turbo.plttyp >= 3) {
@@ -619,9 +619,9 @@ class FlightConditionsUpperPanel extends Panel {
             }
             if(label.equals("Test")) {
                 turbo.inflag = 1;
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 flightConditionsPanel.setUnits();
-                chcUnits.select(turbo.lunits);
+                chcUnits.select(turbo.units.value);
                 turbo.solve.compute();
                 turbo.solve.myDesign();
                 turbo.ytrans = 115.0;
@@ -633,41 +633,41 @@ class FlightConditionsUpperPanel extends Panel {
             if(label.equals("My Design")) {
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 flightConditionsPanel.setUnits();
-                chcUnits.select(turbo.lunits);
+                chcUnits.select(turbo.units.value);
                 turbo.solve.loadMine();
             }
             if(label.equals("J85 Model")) {
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 flightConditionsPanel.setUnits();
-                chcUnits.select(turbo.lunits);
+                chcUnits.select(turbo.units.value);
                 turbo.solve.loadJ85();
             }
             if(label.equals("F100 Model")) {
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 flightConditionsPanel.setUnits();
-                chcUnits.select(turbo.lunits);
+                chcUnits.select(turbo.units.value);
                 turbo.solve.loadF100();
             }
             if(label.equals("CF6 Model")) {
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 flightConditionsPanel.setUnits();
-                chcUnits.select(turbo.lunits);
+                chcUnits.select(turbo.units.value);
                 turbo.solve.loadCF6();
             }
             if(label.equals("Ramjet Model")) {
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 flightConditionsPanel.setUnits();
-                chcUnits.select(turbo.lunits);
+                chcUnits.select(turbo.units.value);
                 turbo.solve.loadRamj();
             }
 

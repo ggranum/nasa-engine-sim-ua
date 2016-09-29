@@ -121,7 +121,7 @@ public class PlotPanel extends Panel {
                 turbo.throtl = v1;
             }
             if(turbo.nabs == 6) {
-                turbo.prat[3] = turbo.p3p2d = v1;
+                turbo.pressureRatio[3] = turbo.p3p2d = v1;
             }
             if(turbo.nabs == 7) {
                 turbo.tt4d = v1;
@@ -184,7 +184,7 @@ public class PlotPanel extends Panel {
                     turbo.pltx[turbo.npt] = turbo.throtl;
                     break;
                 case 6:
-                    turbo.pltx[turbo.npt] = turbo.prat[3];
+                    turbo.pltx[turbo.npt] = turbo.pressureRatio[3];
                     break;
                 case 7:
                     turbo.pltx[turbo.npt] = turbo.tt[4];
@@ -495,16 +495,16 @@ public class PlotPanel extends Panel {
                 }
             }
             if(turbo.nabs == 6) {  //  Compressor pressure ratio
-                turbo.prat[3] = turbo.p3p2d = v1;
+                turbo.pressureRatio[3] = turbo.p3p2d = v1;
                 turbo.vmn1 = turbo.cprmin;
                 turbo.vmx1 = turbo.cprmax;
                 if(v1 < turbo.vmn1) {
-                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmn1;
+                    turbo.pressureRatio[3] = turbo.p3p2d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
                 if(v1 > turbo.vmx1) {
-                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmx1;
+                    turbo.pressureRatio[3] = turbo.p3p2d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }

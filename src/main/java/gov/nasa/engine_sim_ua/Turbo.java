@@ -49,10 +49,23 @@ import java.io.PrintStream;
  */
 public class Turbo extends Applet {
 
+    public static enum Unit {
+        ENGLISH(0),
+        METRIC(1),
+        PERCENT_CHANGE(2);
+
+        public final int value;
+
+        Unit(int value) {
+            this.value = value;
+        }
+
+
+    }
 
     int abflag;
     int entype;
-    int lunits;
+    Unit units = Unit.ENGLISH;
     int inflag;
     int varflag;
     int pt2flag;
@@ -139,7 +152,7 @@ public class Turbo extends Applet {
     double acore;
     double a4;
     double a4p;
-    double fhv;
+    double fuelHeatValue;
     double fhvd;
     double mfr;
     double diameng;
@@ -204,7 +217,7 @@ public class Turbo extends Applet {
     int mcomp;
     int mfan;
     int mturbin;
-    int mburner;
+    int burnerMaterial;
     int minlt;
     int mnozl;
     int mnozr;
@@ -234,9 +247,9 @@ public class Turbo extends Applet {
     // Station Variables
     double[] trat = new double[20];
     double[] tt   = new double[20];
-    double[] prat = new double[20];
+    double[] pressureRatio = new double[20];
     double[] pt   = new double[20];
-    double[] eta  = new double[20];
+    double[] efficiency = new double[20];
     double[] gam  = new double[20];
     double[] cp   = new double[20];
     double[] s    = new double[20];
@@ -390,7 +403,7 @@ public class Turbo extends Applet {
     Image offImg1;
     Graphics off1Gg;
 
-    Frame f;
+    Frame mainFrame;
     PrintStream prnt;
     OutputStream pfile;
     OutputStream sfilo;
@@ -422,7 +435,7 @@ public class Turbo extends Applet {
         add(inputPanel);
         add(outputPanel);
 
-        f.setVisible(true);
+        mainFrame.setVisible(true);
 
         solve.compute();
         layout.show(outputPanel, "first");
@@ -507,10 +520,10 @@ public class Turbo extends Applet {
     public static void main(String args[]) {
         Turbo turbo = new Turbo();
 
-        turbo.f = new Frame("EngineSim Application Version 1.7a");
-        turbo.f.add("Center", turbo);
-        turbo.f.setSize(710, 450);
-        turbo.f.setVisible(true);
+        turbo.mainFrame = new Frame("EngineSim Application Version 1.7a");
+        turbo.mainFrame.add("Center", turbo);
+        turbo.mainFrame.setSize(710, 450);
+        turbo.mainFrame.setVisible(true);
 
         turbo.init();
         turbo.start();

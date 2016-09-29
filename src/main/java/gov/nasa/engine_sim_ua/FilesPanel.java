@@ -90,18 +90,18 @@ public class FilesPanel extends Panel {  // save file
                 turbo.flightConditionsPanel.flightConditionsUpperPanel.chcMode.select(0);
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-                turbo.lunits = 0;
+                turbo.units = Turbo.Unit.ENGLISH;
                 turbo.flightConditionsPanel.setUnits();
-                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcUnits.select(turbo.lunits);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcUnits.select(turbo.units.value);
 
                 turbo.entype = turbo.savin.readInt();
                 turbo.abflag = turbo.savin.readInt();
                 turbo.fueltype = turbo.savin.readInt();
-                turbo.fhvd = turbo.fhv = turbo.savin.readDouble();
+                turbo.fhvd = turbo.fuelHeatValue = turbo.savin.readDouble();
                 turbo.tt[4] = turbo.tt4 = turbo.tt4d = turbo.savin.readDouble();
                 turbo.tt[7] = turbo.tt7 = turbo.tt7d = turbo.savin.readDouble();
-                turbo.prat[3] = turbo.p3p2d = turbo.savin.readDouble();
-                turbo.prat[13] = turbo.p3fp2d = turbo.savin.readDouble();
+                turbo.pressureRatio[3] = turbo.p3p2d = turbo.savin.readDouble();
+                turbo.pressureRatio[13] = turbo.p3fp2d = turbo.savin.readDouble();
                 turbo.byprat = turbo.savin.readDouble();
                 turbo.acore = turbo.savin.readDouble();
                 turbo.afan = turbo.acore * (1.0 + turbo.byprat);
@@ -112,14 +112,14 @@ public class FilesPanel extends Panel {  // save file
                 turbo.gama = turbo.savin.readDouble();
                 turbo.gamopt = turbo.savin.readInt();
                 turbo.pt2flag = turbo.savin.readInt();
-                turbo.eta[2] = turbo.savin.readDouble();
-                turbo.prat[2] = turbo.savin.readDouble();
-                turbo.prat[4] = turbo.savin.readDouble();
-                turbo.eta[3] = turbo.savin.readDouble();
-                turbo.eta[4] = turbo.savin.readDouble();
-                turbo.eta[5] = turbo.savin.readDouble();
-                turbo.eta[7] = turbo.savin.readDouble();
-                turbo.eta[13] = turbo.savin.readDouble();
+                turbo.efficiency[2] = turbo.savin.readDouble();
+                turbo.pressureRatio[2] = turbo.savin.readDouble();
+                turbo.pressureRatio[4] = turbo.savin.readDouble();
+                turbo.efficiency[3] = turbo.savin.readDouble();
+                turbo.efficiency[4] = turbo.savin.readDouble();
+                turbo.efficiency[5] = turbo.savin.readDouble();
+                turbo.efficiency[7] = turbo.savin.readDouble();
+                turbo.efficiency[13] = turbo.savin.readDouble();
                 turbo.a8d = turbo.savin.readDouble();
                 turbo.a8max = turbo.savin.readDouble();
                 turbo.a8rat = turbo.savin.readDouble();
@@ -141,7 +141,7 @@ public class FilesPanel extends Panel {  // save file
                 turbo.mcomp = turbo.savin.readInt();
                 turbo.dcomp = turbo.savin.readDouble();
                 turbo.tcomp = turbo.savin.readDouble();
-                turbo.mburner = turbo.savin.readInt();
+                turbo.burnerMaterial = turbo.savin.readInt();
                 turbo.dburner = turbo.savin.readDouble();
                 turbo.tburner = turbo.savin.readDouble();
                 turbo.mturbin = turbo.savin.readInt();
@@ -165,7 +165,8 @@ public class FilesPanel extends Panel {  // save file
 
                 turbo.flightConditionsPanel.setPanl();
                 turbo.solve.compute();
-            } catch (IOException n) {
+            } catch (IOException e) {
+                System.err.println("Unhandled Error: " + e.getMessage());
             }
         }
 
@@ -179,7 +180,7 @@ public class FilesPanel extends Panel {  // save file
                 turbo.savout.writeInt(turbo.entype);
                 turbo.savout.writeInt(turbo.abflag);
                 turbo.savout.writeInt(turbo.fueltype);
-                turbo.savout.writeDouble(turbo.fhv / turbo.flconv);
+                turbo.savout.writeDouble(turbo.fuelHeatValue / turbo.flconv);
                 turbo.savout.writeDouble(turbo.tt4d / turbo.tconv);
                 turbo.savout.writeDouble(turbo.tt7d / turbo.tconv);
                 turbo.savout.writeDouble(turbo.p3p2d);
@@ -192,14 +193,14 @@ public class FilesPanel extends Panel {  // save file
                 turbo.savout.writeDouble(turbo.gama);
                 turbo.savout.writeInt(turbo.gamopt);
                 turbo.savout.writeInt(turbo.pt2flag);
-                turbo.savout.writeDouble(turbo.eta[2]);
-                turbo.savout.writeDouble(turbo.prat[2]);
-                turbo.savout.writeDouble(turbo.prat[4]);
-                turbo.savout.writeDouble(turbo.eta[3]);
-                turbo.savout.writeDouble(turbo.eta[4]);
-                turbo.savout.writeDouble(turbo.eta[5]);
-                turbo.savout.writeDouble(turbo.eta[7]);
-                turbo.savout.writeDouble(turbo.eta[13]);
+                turbo.savout.writeDouble(turbo.efficiency[2]);
+                turbo.savout.writeDouble(turbo.pressureRatio[2]);
+                turbo.savout.writeDouble(turbo.pressureRatio[4]);
+                turbo.savout.writeDouble(turbo.efficiency[3]);
+                turbo.savout.writeDouble(turbo.efficiency[4]);
+                turbo.savout.writeDouble(turbo.efficiency[5]);
+                turbo.savout.writeDouble(turbo.efficiency[7]);
+                turbo.savout.writeDouble(turbo.efficiency[13]);
                 turbo.savout.writeDouble(turbo.a8d / turbo.aconv);
                 turbo.savout.writeDouble(turbo.a8max / turbo.aconv);
                 turbo.savout.writeDouble(turbo.a8rat);
@@ -221,7 +222,7 @@ public class FilesPanel extends Panel {  // save file
                 turbo.savout.writeInt(turbo.mcomp);
                 turbo.savout.writeDouble(turbo.dcomp);
                 turbo.savout.writeDouble(turbo.tcomp);
-                turbo.savout.writeInt(turbo.mburner);
+                turbo.savout.writeInt(turbo.burnerMaterial);
                 turbo.savout.writeDouble(turbo.dburner);
                 turbo.savout.writeDouble(turbo.tburner);
                 turbo.savout.writeInt(turbo.mturbin);
@@ -245,7 +246,8 @@ public class FilesPanel extends Panel {  // save file
 
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-            } catch (IOException n) {
+            } catch (IOException e) {
+                System.err.println("Unhandled Error: " + e.getMessage());
             }
         }
         if(label.equals("Cancel")) {  // Forget it

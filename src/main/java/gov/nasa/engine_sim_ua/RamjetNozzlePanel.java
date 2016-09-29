@@ -52,7 +52,7 @@ public class RamjetNozzlePanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(7, 1, 10, 5));
 
-            i2 = (int)(((turbo.eta[7] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            i2 = (int)(((turbo.efficiency[7] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
             i3 = (int)(((turbo.arthd - turbo.arthmn) / (turbo.arthmx - turbo.arthmn)) * 1000.);
             i4 = (int)(((turbo.arexitd - turbo.arexmn) / (turbo.arexmx - turbo.arexmn)) * 1000.);
 
@@ -198,7 +198,7 @@ public class RamjetNozzlePanel extends Panel {
             i3 = s3.getValue();
             i4 = s4.getValue();
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn2 = turbo.etmin;
                 turbo.vmx2 = turbo.etmax;
                 turbo.vmn3 = turbo.arthmn;
@@ -206,7 +206,7 @@ public class RamjetNozzlePanel extends Panel {
                 turbo.vmn4 = turbo.arexmn;
                 turbo.vmx4 = turbo.arexmx;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et7ref;
                 turbo.vmn2 = turbo.vmx2 - 20.0;
                 turbo.vmn3 = -10.0;
@@ -224,13 +224,13 @@ public class RamjetNozzlePanel extends Panel {
             fl4 = (float)v4;
 
             // nozzle design
-            if(turbo.lunits <= 1) {
-                turbo.eta[7] = v2;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.efficiency[7] = v2;
                 turbo.arthd = v3;
                 turbo.arexitd = v4;
             }
-            if(turbo.lunits == 2) {
-                turbo.eta[7] = turbo.et7ref + v2 / 100.;
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
+                turbo.efficiency[7] = turbo.et7ref + v2 / 100.;
                 turbo.arthd = v3 * turbo.a8ref / 100. + turbo.a8ref;
                 turbo.arexitd = v4 * turbo.a8ref / 100. + turbo.a8ref;
             }
@@ -263,7 +263,7 @@ public class RamjetNozzlePanel extends Panel {
             setLayout(new GridLayout(7, 2, 5, 5));
 
             l2 = new Label("Efficiency", Label.CENTER);
-            setF2(new TextField(String.valueOf((float)turbo.eta[7]), 5));
+            setF2(new TextField(String.valueOf((float)turbo.efficiency[7]), 5));
             setF3(new TextField(String.valueOf((float)turbo.arthd), 5));
             getF3().setForeground(Color.black);
             getF3().setBackground(Color.white);
@@ -347,18 +347,18 @@ public class RamjetNozzlePanel extends Panel {
                 turbo.tnozr = v8 / turbo.tconv;
             }
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 // nozzle  efficiency
-                turbo.eta[7] = v2;
+                turbo.efficiency[7] = v2;
                 turbo.vmn2 = turbo.etmin;
                 turbo.vmx2 = turbo.etmax;
                 if(v2 < turbo.vmn2) {
-                    turbo.eta[7] = v2 = turbo.vmn2;
+                    turbo.efficiency[7] = v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
                 if(v2 > turbo.vmx2) {
-                    turbo.eta[7] = v2 = turbo.vmx2;
+                    turbo.efficiency[7] = v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
@@ -392,7 +392,7 @@ public class RamjetNozzlePanel extends Panel {
                 }
             }
 
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 // nozzle efficiency
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et7ref;
                 turbo.vmn2 = turbo.vmx2 - 20.0;
@@ -406,7 +406,7 @@ public class RamjetNozzlePanel extends Panel {
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                turbo.eta[7] = turbo.et7ref + v2 / 100.;
+                turbo.efficiency[7] = turbo.et7ref + v2 / 100.;
                 //  throat area ratio
                 turbo.vmn3 = -10.0;
                 turbo.vmx3 = 10.0;

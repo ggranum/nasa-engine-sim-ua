@@ -8,8 +8,10 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.Scrollbar;
 import java.awt.TextField;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class BurnerPanel extends Panel {
 
@@ -34,123 +36,113 @@ public class BurnerPanel extends Panel {
     public class BurnerRightPanel extends Panel {
 
         Turbo turbo;
-        Scrollbar s1;
-        Scrollbar s2;
-        Scrollbar s3;
-        Label lmat;
-        Choice bmat;
-        Choice fuelch;
+        JSlider sldMaxTemp;
+        JSlider sldEfficiency;
+        JSlider sldPressureRatio;
+        Label lblMaterial;
+        Choice chcMaterial;
+        Choice chcFuel;
 
         BurnerRightPanel(Turbo target) {
 
-            int i1;
-            int i2;
-            int i3;
+            int maxTemp;
+            int efficiency;
+            int pressureRatio;
 
             turbo = target;
             setLayout(new GridLayout(7, 1, 10, 5));
 
-            i1 = (int)(((turbo.tt4d - turbo.t4min) / (turbo.t4max - turbo.t4min)) * 1000.);
-            i2 = (int)(((turbo.eta[4] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
-            i3 = (int)(((turbo.prat[4] - turbo.etmin) / (turbo.pt4max - turbo.etmin)) * 1000.);
+            maxTemp = (int)(((turbo.tt4d - turbo.t4min) / (turbo.t4max - turbo.t4min)) * 1000.);
+            efficiency = (int)(((turbo.efficiency[4] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            pressureRatio = (int)(((turbo.pressureRatio[4] - turbo.etmin) / (turbo.pt4max - turbo.etmin)) * 1000.);
 
-            s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
-            s2 = new Scrollbar(Scrollbar.HORIZONTAL, i2, 10, 0, 1000);
-            s3 = new Scrollbar(Scrollbar.HORIZONTAL, i3, 10, 0, 1000);
+            sldMaxTemp = new JSlider(JSlider.HORIZONTAL, 0, 1000, maxTemp);
+            sldMaxTemp.setMajorTickSpacing(100);
+            sldMaxTemp.setMinorTickSpacing(10);
+            sldEfficiency = new JSlider(JSlider.HORIZONTAL, 0, 1000, efficiency);
+            sldPressureRatio = new JSlider(JSlider.HORIZONTAL, 0, 1000, pressureRatio);
 
-            bmat = new Choice();
-            bmat.setBackground(Color.white);
-            bmat.setForeground(Color.blue);
-            bmat.addItem("<-- My Material");
-            bmat.addItem("Aluminum");
-            bmat.addItem("Titanium ");
-            bmat.addItem("Stainless Steel");
-            bmat.addItem("Nickel Alloy");
-            bmat.addItem("Nickel Crystal");
-            bmat.addItem("Ceramic");
-            bmat.addItem("Actively Cooled");
-            bmat.select(4);
+            chcMaterial = new Choice();
+            chcMaterial.setBackground(Color.white);
+            chcMaterial.setForeground(Color.blue);
+            chcMaterial.addItem("<-- My Material");
+            chcMaterial.addItem("Aluminum");
+            chcMaterial.addItem("Titanium ");
+            chcMaterial.addItem("Stainless Steel");
+            chcMaterial.addItem("Nickel Alloy");
+            chcMaterial.addItem("Nickel Crystal");
+            chcMaterial.addItem("Ceramic");
+            chcMaterial.addItem("Actively Cooled");
+            chcMaterial.select(4);
 
-            fuelch = new Choice();
-            fuelch.addItem("Jet - A");
-            fuelch.addItem("Hydrogen");
-            fuelch.addItem("<-- Your Fuel");
-            fuelch.select(0);
+            chcFuel = new Choice();
+            chcFuel.addItem("Jet - A");
+            chcFuel.addItem("Hydrogen");
+            chcFuel.addItem("<-- Your Fuel");
+            chcFuel.select(0);
 
-            lmat = new Label("lbm/ft^3 ", Label.LEFT);
-            lmat.setForeground(Color.blue);
+            lblMaterial = new Label("lbm/ft^3 ", Label.LEFT);
+            lblMaterial.setForeground(Color.blue);
 
-            add(fuelch);
-            add(s1);
-            add(s3);
-            add(s2);
+            add(chcFuel);
+            add(sldMaxTemp);
+            add(sldPressureRatio);
+            add(sldEfficiency);
             add(new Label(" ", Label.LEFT));
-            add(bmat);
-            add(lmat);
+            add(chcMaterial);
+            add(lblMaterial);
+
+            ChangeListener sliderChanged = new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    onSliderValueChange();
+                }
+            };
+            sldEfficiency.addChangeListener(sliderChanged);
+            sldPressureRatio.addChangeListener(sliderChanged);
+            sldMaxTemp.addChangeListener(sliderChanged);
         }
 
-        public void processEvent(AWTEvent evt) {
-            if(evt.getID() == Event.ACTION_EVENT) {
-                this.handleMat();
-            }
-            if(evt.getID() == Event.SCROLL_ABSOLUTE) {
-                this.handleBar();
-            }
-            if(evt.getID() == Event.SCROLL_LINE_DOWN) {
-                this.handleBar();
-            }
-            if(evt.getID() == Event.SCROLL_LINE_UP) {
-                this.handleBar();
-            }
-            if(evt.getID() == Event.SCROLL_PAGE_DOWN) {
-                this.handleBar();
-            }
-            if(evt.getID() == Event.SCROLL_PAGE_UP) {
-                this.handleBar();
-            }
-        }
 
         public void handleMat() {
             Double V1;
             Double V2;
             double v1;
             double v2;
-            float fl1;
 
-            turbo.fueltype = fuelch.getSelectedIndex();
+            turbo.fueltype = chcFuel.getSelectedIndex();
             if(turbo.fueltype == 0) {
-                turbo.fhv = 18600.;
+                turbo.fuelHeatValue = 18600.;
             }
             if(turbo.fueltype == 1) {
-                turbo.fhv = 49900.;
+                turbo.fuelHeatValue = 49900.;
             }
-            burnerLeftPanel.getF4().setBackground(Color.black);
-            burnerLeftPanel.getF4().setForeground(Color.yellow);
-            turbo.fhvd = turbo.fhv * turbo.flconv;
-            fl1 = (float)(turbo.fhvd);
-            burnerLeftPanel.getF4().setText(String.format("%.0f", turbo.fhvd));
+            burnerLeftPanel.getTfFuelHeatValue().setBackground(Color.black);
+            burnerLeftPanel.getTfFuelHeatValue().setForeground(Color.yellow);
+            turbo.fhvd = turbo.fuelHeatValue * turbo.flconv;
+            burnerLeftPanel.getTfFuelHeatValue().setText(String.format("%.0f", turbo.fhvd));
 
             if(turbo.fueltype == 2) {
-                burnerLeftPanel.getF4().setBackground(Color.white);
-                burnerLeftPanel.getF4().setForeground(Color.black);
+                burnerLeftPanel.getTfFuelHeatValue().setBackground(Color.white);
+                burnerLeftPanel.getTfFuelHeatValue().setForeground(Color.black);
             }
 
             // burner
-            turbo.mburner = bmat.getSelectedIndex();
-            if(turbo.mburner > 0) {
+            turbo.burnerMaterial = chcMaterial.getSelectedIndex();
+            if(turbo.burnerMaterial > 0) {
                 burnerLeftPanel.getDb().setBackground(Color.black);
                 burnerLeftPanel.getDb().setForeground(Color.yellow);
                 burnerLeftPanel.getTb().setBackground(Color.black);
                 burnerLeftPanel.getTb().setForeground(Color.yellow);
             }
-            if(turbo.mburner == 0) {
+            if(turbo.burnerMaterial == 0) {
                 burnerLeftPanel.getDb().setBackground(Color.white);
                 burnerLeftPanel.getDb().setForeground(Color.blue);
                 burnerLeftPanel.getTb().setBackground(Color.white);
                 burnerLeftPanel.getTb().setForeground(Color.blue);
             }
-            switch (turbo.mburner) {
-                case 0: {
+            switch (turbo.burnerMaterial) {
+                case 0:
                     V1 = Double.valueOf(burnerLeftPanel.getDb().getText());
                     v1 = V1;
                     V2 = Double.valueOf(burnerLeftPanel.getTb().getText());
@@ -158,7 +150,6 @@ public class BurnerPanel extends Panel {
                     turbo.dburner = v1 / turbo.dconv;
                     turbo.tburner = v2 / turbo.tconv;
                     break;
-                }
                 case 1:
                     turbo.dburner = 170.7;
                     turbo.tburner = 900.;
@@ -191,22 +182,12 @@ public class BurnerPanel extends Panel {
             turbo.solve.compute();
         }
 
-        public void handleBar() {     // burner design
-            int i1;
-            int i2;
-            int i3;
-            double v1;
-            double v2;
-            double v3;
-            float fl1;
-            float fl2;
-            float fl3;
+        public void onSliderValueChange() {     // burner design
+            int maxTemp = sldMaxTemp.getValue();
+            int efficiency = sldEfficiency.getValue();
+            int pressureRatio = sldPressureRatio.getValue();
 
-            i1 = s1.getValue();
-            i2 = s2.getValue();
-            i3 = s3.getValue();
-
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn1 = turbo.t4min;
                 turbo.vmx1 = turbo.t4max;
                 turbo.vmn2 = turbo.etmin;
@@ -214,7 +195,7 @@ public class BurnerPanel extends Panel {
                 turbo.vmn3 = turbo.etmin;
                 turbo.vmx3 = turbo.pt4max;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et4ref;
@@ -223,29 +204,26 @@ public class BurnerPanel extends Panel {
                 turbo.vmn3 = turbo.vmx3 - 20.0;
             }
 
-            v1 = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
-            v2 = i2 * (turbo.vmx2 - turbo.vmn2) / 1000. + turbo.vmn2;
-            v3 = i3 * (turbo.vmx3 - turbo.vmn3) / 1000. + turbo.vmn3;
+            double tt4d = maxTemp * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
+            double efficiency4 = efficiency * (turbo.vmx2 - turbo.vmn2) / 1000. + turbo.vmn2;
+            double pressureRatio4 = pressureRatio * (turbo.vmx3 - turbo.vmn3) / 1000. + turbo.vmn3;
 
-            fl1 = (float)v1;
-            fl2 = (float)v2;
-            fl3 = (float)v3;
             // burner design
-            if(turbo.lunits <= 1) {
-                turbo.tt4d = v1;
-                turbo.eta[4] = v2;
-                turbo.prat[4] = v3;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.tt4d = tt4d;
+                turbo.efficiency[4] = efficiency4;
+                turbo.pressureRatio[4] = pressureRatio4;
             }
-            if(turbo.lunits == 2) {
-                turbo.tt4d = v1 * turbo.t4ref / 100. + turbo.t4ref;
-                turbo.eta[4] = turbo.et4ref + v2 / 100.;
-                turbo.prat[4] = turbo.p4ref + v3 / 100.;
+            else if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
+                turbo.tt4d = tt4d * turbo.t4ref / 100. + turbo.t4ref;
+                turbo.efficiency[4] = turbo.et4ref + efficiency4 / 100.;
+                turbo.pressureRatio[4] = turbo.p4ref + pressureRatio4 / 100.;
             }
             turbo.tt4 = turbo.tt4d / turbo.tconv;
 
-            burnerLeftPanel.getF1().setText(String.valueOf(fl1));
-            burnerLeftPanel.getF2().setText(String.valueOf(fl2));
-            burnerLeftPanel.getF3().setText(String.valueOf(fl3));
+            burnerLeftPanel.getTfMaxTemp().setText(String.valueOf(tt4d));
+            burnerLeftPanel.getTfEfficiency().setText(String.valueOf(efficiency4));
+            burnerLeftPanel.getTfPressureRatio().setText(String.valueOf(pressureRatio4));
 
             turbo.solve.compute();
         }  // end handle
@@ -254,17 +232,17 @@ public class BurnerPanel extends Panel {
     public class BurnerLeftPanel extends Panel {
 
         Turbo turbo;
-        private TextField f1;
-        private TextField f2;
-        private TextField f3;
-        private TextField f4;
-        Label l1;
-        Label l2;
-        Label l3;
-        Label l4;
-        Label l5;
-        Label lmat;
-        Label lm2;
+        private TextField tfMaxTemp;
+        private TextField tfEfficiency;
+        private TextField tfPressureRatio;
+        private TextField tfFuelHeatValue;
+        Label lblTmax;
+        Label lblEfficiency;
+        Label lblPressureRatio;
+        Label lblFuelHV;
+        Label lblDensity;
+        Label lblMaterialMaxTemp;
+        Label lblMaterials;
         private TextField db;
         private TextField tb;
 
@@ -273,23 +251,23 @@ public class BurnerPanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(7, 2, 5, 5));
 
-            l1 = new Label("Tmax -R", Label.CENTER);
-            setF1(new TextField(String.valueOf((float)turbo.tt4d), 5));
-            l2 = new Label("Efficiency", Label.CENTER);
-            setF2(new TextField(String.valueOf((float)turbo.eta[4]), 5));
-            l3 = new Label("Press. Ratio", Label.CENTER);
-            setF3(new TextField(String.valueOf((float)turbo.prat[4]), 5));
-            l4 = new Label("FHV Btu/lb", Label.CENTER);
-            setF4(new TextField(String.valueOf((float)turbo.fhv), 5));
-            getF4().setBackground(Color.black);
-            getF4().setForeground(Color.yellow);
+            lblTmax = new Label("Tmax ºR", Label.CENTER);
+            setTfMaxTemp(new TextField(String.valueOf((float)turbo.tt4d), 5));
+            lblEfficiency = new Label("Efficiency", Label.CENTER);
+            setTfEfficiency(new TextField(String.valueOf((float)turbo.efficiency[4]), 5));
+            lblPressureRatio = new Label("Press. Ratio", Label.CENTER);
+            setTfPressureRatio(new TextField(String.valueOf((float)turbo.pressureRatio[4]), 5));
+            lblFuelHV = new Label("FHV Btu/lb", Label.CENTER);
+            setTfFuelHeatValue(new TextField(String.valueOf((float)turbo.fuelHeatValue), 5));
+            getTfFuelHeatValue().setBackground(Color.black);
+            getTfFuelHeatValue().setForeground(Color.yellow);
 
-            lmat = new Label("T lim-R", Label.CENTER);
-            lmat.setForeground(Color.blue);
-            lm2 = new Label("Materials:", Label.CENTER);
-            lm2.setForeground(Color.blue);
-            l5 = new Label("Density", Label.CENTER);
-            l5.setForeground(Color.blue);
+            lblMaterialMaxTemp = new Label("T lim ºR", Label.CENTER);
+            lblMaterialMaxTemp.setForeground(Color.blue);
+            lblMaterials = new Label("Materials:", Label.CENTER);
+            lblMaterials.setForeground(Color.blue);
+            lblDensity = new Label("Density", Label.CENTER);
+            lblDensity.setForeground(Color.blue);
 
             setDb(new TextField(String.valueOf((float)turbo.dburner), 5));
             getDb().setBackground(Color.black);
@@ -298,19 +276,19 @@ public class BurnerPanel extends Panel {
             getTb().setBackground(Color.black);
             getTb().setForeground(Color.yellow);
 
-            add(l4);
-            add(getF4());
-            add(l1);
-            add(getF1());
-            add(l3);
-            add(getF3());
-            add(l2);
-            add(getF2());
-            add(lm2);
+            add(lblFuelHV);
+            add(getTfFuelHeatValue());
+            add(lblTmax);
+            add(getTfMaxTemp());
+            add(lblPressureRatio);
+            add(getTfPressureRatio());
+            add(lblEfficiency);
+            add(getTfEfficiency());
+            add(lblMaterials);
             add(new Label(" ", Label.CENTER));
-            add(lmat);
+            add(lblMaterialMaxTemp);
             add(getTb());
-            add(l5);
+            add(lblDensity);
             add(getDb());
         }
 
@@ -338,13 +316,13 @@ public class BurnerPanel extends Panel {
             int i3;
             float fl1;
 
-            V1 = Double.valueOf(getF1().getText());
+            V1 = Double.valueOf(getTfMaxTemp().getText());
             v1 = V1;
-            V2 = Double.valueOf(getF2().getText());
+            V2 = Double.valueOf(getTfEfficiency().getText());
             v2 = V2;
-            V3 = Double.valueOf(getF3().getText());
+            V3 = Double.valueOf(getTfPressureRatio().getText());
             v3 = V3;
-            V6 = Double.valueOf(getF4().getText());
+            V6 = Double.valueOf(getTfFuelHeatValue().getText());
             v6 = V6;
             V4 = Double.valueOf(getDb().getText());
             v4 = V4;
@@ -352,7 +330,7 @@ public class BurnerPanel extends Panel {
             v5 = V5;
 
             // Materials
-            if(turbo.mburner == 0) {
+            if(turbo.burnerMaterial == 0) {
                 if(v4 <= 1.0 * turbo.dconv) {
                     v4 = 1.0 * turbo.dconv;
                     getDb().setText(String.format("%.0f", v4 * turbo.dconv));
@@ -365,7 +343,7 @@ public class BurnerPanel extends Panel {
                 turbo.tburner = v5 / turbo.tconv;
             }
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 // Max burner temp
                 turbo.tt4d = v1;
                 turbo.vmn1 = turbo.t4min;
@@ -373,62 +351,62 @@ public class BurnerPanel extends Panel {
                 if(v1 < turbo.vmn1) {
                     turbo.tt4d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
-                    getF1().setText(String.valueOf(fl1));
+                    getTfMaxTemp().setText(String.valueOf(fl1));
                 }
                 if(v1 > turbo.vmx1) {
                     turbo.tt4d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
-                    getF1().setText(String.valueOf(fl1));
+                    getTfMaxTemp().setText(String.valueOf(fl1));
                 }
                 turbo.tt4 = turbo.tt4d / turbo.tconv;
                 // burner  efficiency
-                turbo.eta[4] = v2;
+                turbo.efficiency[4] = v2;
                 turbo.vmn2 = turbo.etmin;
                 turbo.vmx2 = turbo.etmax;
                 if(v2 < turbo.vmn2) {
-                    turbo.eta[4] = v2 = turbo.vmn2;
+                    turbo.efficiency[4] = v2 = turbo.vmn2;
                     fl1 = (float)v2;
-                    getF2().setText(String.valueOf(fl1));
+                    getTfEfficiency().setText(String.valueOf(fl1));
                 }
                 if(v2 > turbo.vmx2) {
-                    turbo.eta[4] = v2 = turbo.vmx2;
+                    turbo.efficiency[4] = v2 = turbo.vmx2;
                     fl1 = (float)v2;
-                    getF2().setText(String.valueOf(fl1));
+                    getTfEfficiency().setText(String.valueOf(fl1));
                 }
                 //  burner pressure ratio
-                turbo.prat[4] = v3;
+                turbo.pressureRatio[4] = v3;
                 turbo.vmn3 = turbo.etmin;
                 turbo.vmx3 = turbo.pt4max;
                 if(v3 < turbo.vmn3) {
-                    turbo.prat[4] = v3 = turbo.vmn3;
+                    turbo.pressureRatio[4] = v3 = turbo.vmn3;
                     fl1 = (float)v3;
-                    getF3().setText(String.valueOf(fl1));
+                    getTfPressureRatio().setText(String.valueOf(fl1));
                 }
                 if(v3 > turbo.vmx3) {
-                    turbo.prat[4] = v3 = turbo.vmx3;
+                    turbo.pressureRatio[4] = v3 = turbo.vmx3;
                     fl1 = (float)v3;
-                    getF3().setText(String.valueOf(fl1));
+                    getTfPressureRatio().setText(String.valueOf(fl1));
                 }
                 // fuel heating value
                 if(turbo.fueltype == 2) {
                     turbo.fhvd = v6;
-                    turbo.fhv = turbo.fhvd / turbo.flconv;
+                    turbo.fuelHeatValue = turbo.fhvd / turbo.flconv;
                 }
             }
 
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 // Max burner temp
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
                 if(v1 < turbo.vmn1) {
                     v1 = turbo.vmn1;
                     fl1 = (float)v1;
-                    getF1().setText(String.valueOf(fl1));
+                    getTfMaxTemp().setText(String.valueOf(fl1));
                 }
                 if(v1 > turbo.vmx1) {
                     v1 = turbo.vmx1;
                     fl1 = (float)v1;
-                    getF1().setText(String.valueOf(fl1));
+                    getTfMaxTemp().setText(String.valueOf(fl1));
                 }
                 turbo.tt4d = v1 * turbo.t4ref / 100. + turbo.t4ref;
                 turbo.tt4 = turbo.tt4d / turbo.tconv;
@@ -438,71 +416,71 @@ public class BurnerPanel extends Panel {
                 if(v2 < turbo.vmn2) {
                     v2 = turbo.vmn2;
                     fl1 = (float)v2;
-                    getF2().setText(String.valueOf(fl1));
+                    getTfEfficiency().setText(String.valueOf(fl1));
                 }
                 if(v2 > turbo.vmx2) {
                     v2 = turbo.vmx2;
                     fl1 = (float)v2;
-                    getF2().setText(String.valueOf(fl1));
+                    getTfEfficiency().setText(String.valueOf(fl1));
                 }
-                turbo.eta[4] = turbo.et4ref + v2 / 100.;
+                turbo.efficiency[4] = turbo.et4ref + v2 / 100.;
                 //  burner pressure ratio
                 turbo.vmx3 = 100.0 - 100.0 * turbo.p4ref;
                 turbo.vmn3 = turbo.vmx3 - 20.0;
                 if(v3 < turbo.vmn3) {
                     v3 = turbo.vmn3;
                     fl1 = (float)v3;
-                    getF3().setText(String.valueOf(fl1));
+                    getTfPressureRatio().setText(String.valueOf(fl1));
                 }
                 if(v3 > turbo.vmx3) {
                     v3 = turbo.vmx3;
                     fl1 = (float)v3;
-                    getF3().setText(String.valueOf(fl1));
+                    getTfPressureRatio().setText(String.valueOf(fl1));
                 }
-                turbo.prat[4] = turbo.p4ref + v3 / 100.;
+                turbo.pressureRatio[4] = turbo.p4ref + v3 / 100.;
             }
 
             i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
             i2 = (int)(((v2 - turbo.vmn2) / (turbo.vmx2 - turbo.vmn2)) * 1000.);
             i3 = (int)(((v3 - turbo.vmn3) / (turbo.vmx3 - turbo.vmn3)) * 1000.);
 
-            burnerRightPanel.s1.setValue(i1);
-            burnerRightPanel.s2.setValue(i2);
-            burnerRightPanel.s3.setValue(i3);
+            burnerRightPanel.sldMaxTemp.setValue(i1);
+            burnerRightPanel.sldEfficiency.setValue(i2);
+            burnerRightPanel.sldPressureRatio.setValue(i3);
 
             turbo.solve.compute();
         }  // end handle
 
-        public TextField getF1() {
-            return f1;
+        public TextField getTfMaxTemp() {
+            return tfMaxTemp;
         }
 
-        public void setF1(TextField f1) {
-            this.f1 = f1;
+        public void setTfMaxTemp(TextField tfMaxTemp) {
+            this.tfMaxTemp = tfMaxTemp;
         }
 
-        public TextField getF2() {
-            return f2;
+        public TextField getTfEfficiency() {
+            return tfEfficiency;
         }
 
-        public void setF2(TextField f2) {
-            this.f2 = f2;
+        public void setTfEfficiency(TextField tfEfficiency) {
+            this.tfEfficiency = tfEfficiency;
         }
 
-        public TextField getF3() {
-            return f3;
+        public TextField getTfPressureRatio() {
+            return tfPressureRatio;
         }
 
-        public void setF3(TextField f3) {
-            this.f3 = f3;
+        public void setTfPressureRatio(TextField tfPressureRatio) {
+            this.tfPressureRatio = tfPressureRatio;
         }
 
-        public TextField getF4() {
-            return f4;
+        public TextField getTfFuelHeatValue() {
+            return tfFuelHeatValue;
         }
 
-        public void setF4(TextField f4) {
-            this.f4 = f4;
+        public void setTfFuelHeatValue(TextField tfFuelHeatValue) {
+            this.tfFuelHeatValue = tfFuelHeatValue;
         }
 
         public TextField getDb() {

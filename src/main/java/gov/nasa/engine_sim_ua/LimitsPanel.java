@@ -240,8 +240,8 @@ public class LimitsPanel extends Panel {
         if(turbo.pt4max <= turbo.etmin) {
             turbo.pt4max = turbo.etmin + .1;
         }
-        if(turbo.prat[4] > turbo.pt4max) {
-            turbo.prat[4] = turbo.pt4max;
+        if(turbo.pressureRatio[4] > turbo.pt4max) {
+            turbo.pressureRatio[4] = turbo.pt4max;
         }
 
         turbo.varflag = 0;

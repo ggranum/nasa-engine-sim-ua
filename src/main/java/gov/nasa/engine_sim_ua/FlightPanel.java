@@ -154,7 +154,7 @@ public class FlightPanel extends Panel {
                 flightLeftPanel.f2.setForeground(Color.yellow);
             }
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn1 = turbo.u0min;
                 turbo.vmx1 = turbo.u0max;
                 turbo.vmn2 = turbo.altmin;
@@ -162,7 +162,7 @@ public class FlightPanel extends Panel {
                 turbo.vmn3 = turbo.thrmin;
                 turbo.vmx3 = turbo.thrmax;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
                 turbo.vmn2 = -10.0;
@@ -213,12 +213,12 @@ public class FlightPanel extends Panel {
             }
 
             // flightPanel conditions
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.u0d = v1;
                 turbo.altd = v2;
                 turbo.throtl = v3;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.u0d = v1 * turbo.u0ref / 100. + turbo.u0ref;
                 turbo.altd = v2 * turbo.altref / 100. + turbo.altref;
                 turbo.throtl = v3 * turbo.thrref / 100. + turbo.thrref;
@@ -354,7 +354,7 @@ public class FlightPanel extends Panel {
             V7 = Double.valueOf(o3.getText());
             v7 = V7;
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 // Airspeed
                 if(turbo.inptype == 0 || turbo.inptype == 2) {
                     turbo.u0d = v1;
@@ -453,7 +453,7 @@ public class FlightPanel extends Panel {
                     f3.setText(String.valueOf(fl1));
                 }
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 // Airspeed
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;

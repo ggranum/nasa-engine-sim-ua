@@ -280,13 +280,13 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             turbo.layin.show(turbo.inputPanel, "first");
             // reset limits
             if(turbo.entype <= 2) {
-                if(turbo.lunits != 1) {
+                if(turbo.units != Turbo.Unit.METRIC) {
                     turbo.u0max = 1500.;
                     turbo.altmax = 60000.;
                     turbo.t4max = 3200.;
                     turbo.t7max = 4100.;
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.u0max = 2500.;
                     turbo.altmax = 20000.;
                     turbo.t4max = 1800.;
@@ -305,13 +305,13 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                     turbo.tt7 = turbo.tt7d = turbo.t7max;
                 }
             } else {
-                if(turbo.lunits != 1) {
+                if(turbo.units != Turbo.Unit.METRIC) {
                     turbo.u0max = 4500.;
                     turbo.altmax = 100000.;
                     turbo.t4max = 4500.;
                     turbo.t7max = 4500.;
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.u0max = 7500.;
                     turbo.altmax = 35000.;
                     turbo.t4max = 2500.;

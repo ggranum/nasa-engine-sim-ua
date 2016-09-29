@@ -52,7 +52,7 @@ public class FanPanel extends Panel {
             setLayout(new GridLayout(6, 1, 10, 5));
 
             i1 = (int)(((turbo.p3fp2d - turbo.fprmin) / (turbo.fprmax - turbo.fprmin)) * 1000.);
-            i2 = (int)(((turbo.eta[13] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            i2 = (int)(((turbo.efficiency[13] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
             i3 = (int)(((turbo.byprat - turbo.bypmin) / (turbo.bypmax - turbo.bypmin)) * 1000.);
 
             setS1(new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000));
@@ -176,7 +176,7 @@ public class FanPanel extends Panel {
             i2 = getS2().getValue();
             i3 = getS3().getValue();
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn1 = turbo.fprmin;
                 turbo.vmx1 = turbo.fprmax;
                 turbo.vmn2 = turbo.etmin;
@@ -184,7 +184,7 @@ public class FanPanel extends Panel {
                 turbo.vmn3 = turbo.bypmin;
                 turbo.vmx3 = turbo.bypmax;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et13ref;
@@ -202,14 +202,14 @@ public class FanPanel extends Panel {
             fl3 = (float)v3;
 
             // fanPanel design
-            if(turbo.lunits <= 1) {
-                turbo.prat[13] = turbo.p3fp2d = v1;
-                turbo.eta[13] = v2;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.pressureRatio[13] = turbo.p3fp2d = v1;
+                turbo.efficiency[13] = v2;
                 turbo.byprat = v3;
             }
-            if(turbo.lunits == 2) {
-                turbo.prat[13] = turbo.p3fp2d = v1 * turbo.fpref / 100. + turbo.fpref;
-                turbo.eta[13] = turbo.et13ref + v2 / 100.;
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
+                turbo.pressureRatio[13] = turbo.p3fp2d = v1 * turbo.fpref / 100. + turbo.fpref;
+                turbo.efficiency[13] = turbo.et13ref + v2 / 100.;
                 turbo.byprat = v3 * turbo.bpref / 100. + turbo.bpref;
             }
             if(turbo.entype == 2) {
@@ -274,7 +274,7 @@ public class FanPanel extends Panel {
             l1 = new Label("Press. Ratio", Label.CENTER);
             setF1(new TextField(String.valueOf((float)turbo.p3fp2d), 5));
             l2 = new Label("Efficiency", Label.CENTER);
-            setF2(new TextField(String.valueOf((float)turbo.eta[13]), 5));
+            setF2(new TextField(String.valueOf((float)turbo.efficiency[13]), 5));
             l3 = new Label("Bypass Rat.", Label.CENTER);
             setF3(new TextField(String.valueOf((float)turbo.byprat), 5));
             lmat = new Label("T lim-R", Label.CENTER);
@@ -338,32 +338,32 @@ public class FanPanel extends Panel {
             V5 = Double.valueOf(getTf().getText());
             v5 = V5;
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 // FanPanel pressure ratio
-                turbo.prat[13] = turbo.p3fp2d = v1;
+                turbo.pressureRatio[13] = turbo.p3fp2d = v1;
                 turbo.vmn1 = turbo.fprmin;
                 turbo.vmx1 = turbo.fprmax;
                 if(v1 < turbo.vmn1) {
-                    turbo.prat[13] = turbo.p3fp2d = v1 = turbo.vmn1;
+                    turbo.pressureRatio[13] = turbo.p3fp2d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
                 if(v1 > turbo.vmx1) {
-                    turbo.prat[13] = turbo.p3fp2d = v1 = turbo.vmx1;
+                    turbo.pressureRatio[13] = turbo.p3fp2d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
                 // FanPanel efficiency
-                turbo.eta[13] = v2;
+                turbo.efficiency[13] = v2;
                 turbo.vmn2 = turbo.etmin;
                 turbo.vmx2 = turbo.etmax;
                 if(v2 < turbo.vmn2) {
-                    turbo.eta[13] = v2 = turbo.vmn2;
+                    turbo.efficiency[13] = v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
                 if(v2 > turbo.vmx2) {
-                    turbo.eta[13] = v2 = turbo.vmx2;
+                    turbo.efficiency[13] = v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
@@ -382,7 +382,7 @@ public class FanPanel extends Panel {
                     getF3().setText(String.valueOf(fl1));
                 }
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 // FanPanel pressure ratio
                 turbo.vmn1 = -10.0;
                 turbo.vmx1 = 10.0;
@@ -396,7 +396,7 @@ public class FanPanel extends Panel {
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                turbo.prat[13] = turbo.p3fp2d = v1 * turbo.fpref / 100. + turbo.fpref;
+                turbo.pressureRatio[13] = turbo.p3fp2d = v1 * turbo.fpref / 100. + turbo.fpref;
                 // FanPanel efficiency
                 turbo.vmx2 = 100.0 - 100.0 * turbo.et13ref;
                 turbo.vmn2 = turbo.vmx2 - 20.0;
@@ -410,7 +410,7 @@ public class FanPanel extends Panel {
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                turbo.eta[13] = turbo.et13ref + v2 / 100.;
+                turbo.efficiency[13] = turbo.et13ref + v2 / 100.;
                 // bypass ratio
                 turbo.vmn3 = -10.0;
                 turbo.vmx3 = 10.0;

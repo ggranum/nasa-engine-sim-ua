@@ -47,7 +47,7 @@ class FlightConditionsPanel extends Panel {
         turbo.vmx3 = 10.0;
         v4 = turbo.gama;
 
-        if(turbo.lunits <= 1) {
+        if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
             v1 = turbo.u0d;
             turbo.vmn1 = turbo.u0min;
             turbo.vmx1 = turbo.u0max;
@@ -82,7 +82,7 @@ class FlightConditionsPanel extends Panel {
         turbo.vmx1 = 10.0;
         turbo.vmn3 = -10.0;
         turbo.vmx3 = 10.0;
-        if(turbo.lunits <= 1) {
+        if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
             v1 = turbo.a2d;
             turbo.vmn1 = turbo.a2min;
             turbo.vmx1 = turbo.a2max;
@@ -102,17 +102,17 @@ class FlightConditionsPanel extends Panel {
         // inletPanel
         if(turbo.pt2flag == 0) {             /*     mil spec      */
             if(turbo.fsmach > 1.0) {          /* supersonic */
-                turbo.eta[2] = 1.0 - .075 * Math.pow(turbo.fsmach - 1.0, 1.35);
+                turbo.efficiency[2] = 1.0 - .075 * Math.pow(turbo.fsmach - 1.0, 1.35);
             } else {
-                turbo.eta[2] = 1.0;
+                turbo.efficiency[2] = 1.0;
             }
         }
 
-        v1 = turbo.eta[2];
+        v1 = turbo.efficiency[2];
         turbo.vmn1 = turbo.etmin;
         turbo.vmx1 = turbo.etmax;
 
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             v1 = 0.0;
             turbo.vmx1 = 100.0 - 100.0 * turbo.et2ref;
             turbo.vmn1 = turbo.vmx1 - 20.0;
@@ -129,14 +129,14 @@ class FlightConditionsPanel extends Panel {
         v1 = turbo.p3fp2d;
         turbo.vmn1 = turbo.fprmin;
         turbo.vmx1 = turbo.fprmax;
-        v2 = turbo.eta[13];
+        v2 = turbo.efficiency[13];
         turbo.vmn2 = turbo.etmin;
         turbo.vmx2 = turbo.etmax;
         v3 = turbo.byprat;
         turbo.vmn3 = turbo.bypmin;
         turbo.vmx3 = turbo.bypmax;
 
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             v1 = 0.0;
             turbo.vmn1 = -10.0;
             turbo.vmx1 = 10.0;
@@ -168,11 +168,11 @@ class FlightConditionsPanel extends Panel {
         v1 = turbo.p3p2d;
         turbo.vmn1 = turbo.cprmin;
         turbo.vmx1 = turbo.cprmax;
-        v2 = turbo.eta[3];
+        v2 = turbo.efficiency[3];
         turbo.vmn2 = turbo.etmin;
         turbo.vmx2 = turbo.etmax;
 
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             v1 = 0.0;
             turbo.vmn1 = -10.0;
             turbo.vmx1 = 10.0;
@@ -197,15 +197,15 @@ class FlightConditionsPanel extends Panel {
         v1 = turbo.tt4d;
         turbo.vmn1 = turbo.t4min;
         turbo.vmx1 = turbo.t4max;
-        v2 = turbo.eta[4];
+        v2 = turbo.efficiency[4];
         turbo.vmn2 = turbo.etmin;
         turbo.vmx2 = turbo.etmax;
-        v3 = turbo.prat[4];
+        v3 = turbo.pressureRatio[4];
         turbo.vmn3 = turbo.etmin;
         turbo.vmx3 = turbo.pt4max;
         v4 = turbo.fhvd;
 
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             v1 = 0.0;
             turbo.vmn1 = -10.0;
             turbo.vmx1 = 10.0;
@@ -217,28 +217,28 @@ class FlightConditionsPanel extends Panel {
             turbo.vmn3 = turbo.vmx3 - 20.0;
         }
 
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF1().setText(String.format("%.0f", v1));
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF2().setText(String.valueOf(v2));
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF3().setText(String.valueOf(v3));
-        turbo.inputPanel.burnerPanel.burnerLeftPanel.getF4().setText(String.format("%.0f", v4));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getTfMaxTemp().setText(String.format("%.0f", v1));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getTfEfficiency().setText(String.valueOf(v2));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getTfPressureRatio().setText(String.valueOf(v3));
+        turbo.inputPanel.burnerPanel.burnerLeftPanel.getTfFuelHeatValue().setText(String.format("%.0f", v4));
 
         i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
         i2 = (int)(((v2 - turbo.vmn2) / (turbo.vmx2 - turbo.vmn2)) * 1000.);
         i3 = (int)(((v3 - turbo.vmn3) / (turbo.vmx3 - turbo.vmn3)) * 1000.);
 
-        turbo.inputPanel.burnerPanel.burnerRightPanel.s1.setValue(i1);
-        turbo.inputPanel.burnerPanel.burnerRightPanel.s2.setValue(i2);
-        turbo.inputPanel.burnerPanel.burnerRightPanel.s3.setValue(i3);
-        turbo.inputPanel.burnerPanel.burnerRightPanel.fuelch.select(turbo.fueltype);
+        turbo.inputPanel.burnerPanel.burnerRightPanel.sldMaxTemp.setValue(i1);
+        turbo.inputPanel.burnerPanel.burnerRightPanel.sldEfficiency.setValue(i2);
+        turbo.inputPanel.burnerPanel.burnerRightPanel.sldPressureRatio.setValue(i3);
+        turbo.inputPanel.burnerPanel.burnerRightPanel.chcFuel.select(turbo.fueltype);
         // materials
-        turbo.inputPanel.burnerPanel.burnerRightPanel.bmat.select(turbo.mburner);
+        turbo.inputPanel.burnerPanel.burnerRightPanel.chcMaterial.select(turbo.burnerMaterial);
         turbo.inputPanel.burnerPanel.burnerLeftPanel.getDb().setText(String.format("%.0f", turbo.dburner));
         turbo.inputPanel.burnerPanel.burnerLeftPanel.getTb().setText(String.format("%.0f", turbo.tburner));
         //  turbine
-        v1 = turbo.eta[5];
+        v1 = turbo.efficiency[5];
         turbo.vmn1 = turbo.etmin;
         turbo.vmx1 = turbo.etmax;
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             v1 = 0.0;
             turbo.vmx1 = 100.0 - 100.0 * turbo.et5ref;
             turbo.vmn1 = turbo.vmx1 - 20.0;
@@ -254,14 +254,14 @@ class FlightConditionsPanel extends Panel {
         v1 = turbo.tt7d;
         turbo.vmn1 = turbo.t7min;
         turbo.vmx1 = turbo.t7max;
-        v2 = turbo.eta[7];
+        v2 = turbo.efficiency[7];
         turbo.vmn2 = turbo.etmin;
         turbo.vmx2 = turbo.etmax;
         v3 = turbo.a8rat;
         turbo.vmn3 = turbo.a8min;
         turbo.vmx3 = turbo.a8max;
 
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             v1 = 0.0;
             turbo.vmn1 = -10.0;
             turbo.vmx1 = 10.0;
@@ -290,7 +290,7 @@ class FlightConditionsPanel extends Panel {
         turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getDn().setText(String.format("%.0f", turbo.dnozl));
         turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getTn().setText(String.format("%.0f", turbo.tnozl));
         //  ramjet nozzle
-        v2 = turbo.eta[7];
+        v2 = turbo.efficiency[7];
         turbo.vmn2 = turbo.etmin;
         turbo.vmx2 = turbo.etmax;
         v3 = turbo.arthd;
@@ -300,7 +300,7 @@ class FlightConditionsPanel extends Panel {
         turbo.vmn4 = turbo.arexmn;
         turbo.vmx4 = turbo.arexmx;
 
-        if(turbo.lunits == 2) {
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
             v2 = 0.0;
             turbo.vmx2 = 100.0 - 100.0 * turbo.et7ref;
             turbo.vmn2 = turbo.vmx2 - 20.0;
@@ -372,11 +372,11 @@ class FlightConditionsPanel extends Panel {
                 turbo.npt = 9;
                 turbo.laby = String.valueOf("Press");
                 turbo.begy = 0.0;
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.labyu = String.valueOf("psi");
                     turbo.endy = 1000.;
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.labyu = String.valueOf("kPa");
                     turbo.endy = 5000.;
                 }
@@ -394,13 +394,13 @@ class FlightConditionsPanel extends Panel {
                 turbo.lines = 1;
                 turbo.npt = 9;
                 turbo.laby = String.valueOf("Temp");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.labyu = String.valueOf("R");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.labyu = String.valueOf("K");
                 }
-                if(turbo.lunits == 2) {
+                if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                     turbo.labyu = String.valueOf("%");
                 }
                 turbo.begy = 0.0;
@@ -419,20 +419,20 @@ class FlightConditionsPanel extends Panel {
                 turbo.lines = 1;
                 turbo.npt = 7;
                 turbo.laby = String.valueOf("Temp");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.labyu = String.valueOf("R");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.labyu = String.valueOf("K");
                 }
                 turbo.begy = 0.0;
                 turbo.endy = 5000.;
                 turbo.ntiky = 11;
                 turbo.labx = String.valueOf("s");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.labxu = String.valueOf("Btu/lbm R");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.labxu = String.valueOf("kJ/kg K");
                 }
                 turbo.begx = 0.0;
@@ -447,20 +447,20 @@ class FlightConditionsPanel extends Panel {
                 turbo.npt = 25;
                 turbo.laby = String.valueOf("Press");
                 turbo.begy = 0.0;
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.labyu = String.valueOf("psi");
                     turbo.endy = 1000.;
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.labyu = String.valueOf("kPa");
                     turbo.endy = 5000.;
                 }
                 turbo.ntiky = 11;
                 turbo.labx = String.valueOf("v");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.labxu = String.valueOf("ft^3/lb");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.labxu = String.valueOf("m^3/Kg");
                 }
                 turbo.begx = 0.0;
@@ -474,10 +474,10 @@ class FlightConditionsPanel extends Panel {
                 turbo.lines = 0;
                 turbo.npt = 0;
                 turbo.laby = String.valueOf("Fn");
-                if(turbo.lunits == 0) {
+                if(turbo.units == Turbo.Unit.ENGLISH) {
                     turbo.labyu = String.valueOf("lb");
                 }
-                if(turbo.lunits == 1) {
+                if(turbo.units == Turbo.Unit.METRIC) {
                     turbo.labyu = String.valueOf("N");
                 }
                 turbo.begy = 0.0;
@@ -547,8 +547,8 @@ class FlightConditionsPanel extends Panel {
         t7m1s = turbo.t7min / turbo.tconv;
         t7m2s = turbo.t7max / turbo.tconv;
         fhvs = turbo.fhvd / turbo.flconv;
-        switch (turbo.lunits) {
-            case 0: {                   /* English Units */
+        switch (turbo.units) {
+            case ENGLISH: {                   /* English Units */
                 turbo.lconv1 = 1.0;
                 turbo.lconv2 = 1.0;
                 turbo.fconv = 1.0;
@@ -560,39 +560,39 @@ class FlightConditionsPanel extends Panel {
                 turbo.econv2 = 1.0;
                 turbo.bconv = turbo.econv / turbo.tconv / turbo.mconv1;
                 turbo.tref = 459.7;
-                turbo.outputPanel.outputVariablesPanel.lpa.setText("Pres-psi");
-                turbo.outputPanel.outputVariablesPanel.lpb.setText("Pres-psi");
-                turbo.outputPanel.outputVariablesPanel.lta.setText("Temp-R");
-                turbo.outputPanel.outputVariablesPanel.ltb.setText("Temp-R");
+                turbo.inputPanel.burnerPanel.burnerLeftPanel.lblTmax.setText("Tmax -R");
+                turbo.inputPanel.burnerPanel.burnerLeftPanel.lblFuelHV.setText("FHV BTU/lb");
+                turbo.inputPanel.burnerPanel.burnerRightPanel.lblMaterial.setText("lbm/ft^3");
+                turbo.inputPanel.burnerPanel.burnerLeftPanel.lblMaterialMaxTemp.setText("T lim -R");
+                turbo.inputPanel.compressorPanel.compressorRightPanel.lmat.setText("lbm/ft^3");
+                turbo.inputPanel.compressorPanel.compressorLeftPanel.lmat.setText("T lim -R");
+                turbo.inputPanel.fanPanel.rightPanel.lmat.setText("lbm/ft^3");
+                turbo.inputPanel.fanPanel.leftPanel.lmat.setText("T lim -R");
                 turbo.inputPanel.flightPanel.flightRightPanel.l2.setText("lb/sq inputPanel");
                 turbo.inputPanel.flightPanel.flightRightPanel.l3.setText("F");
                 turbo.inputPanel.flightPanel.flightLeftPanel.l1.setText("Speed-mph");
                 turbo.inputPanel.flightPanel.flightLeftPanel.l2.setText("Altitude-ft");
+                turbo.inputPanel.inletPanel.inletRightPanel.lmat.setText("lbm/ft^3");
+                turbo.inputPanel.inletPanel.inletLeftPanel.lmat.setText("T lim -R");
+                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.l1.setText("Tmax -R");
+                turbo.inputPanel.nozzlePanel.nozzleRightPanel.lmat.setText("lbm/ft^3");
+                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.lmat.setText("T lim -R");
+                turbo.outputPanel.outputVariablesPanel.lpa.setText("Pres-psi");
+                turbo.outputPanel.outputVariablesPanel.lpb.setText("Pres-psi");
+                turbo.outputPanel.outputVariablesPanel.lta.setText("Temp-R");
+                turbo.outputPanel.outputVariablesPanel.ltb.setText("Temp-R");
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l2.setText("Weight-lbs");
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l1.setText("Area-sq ft");
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l3.setText("Diameter-ft");
-                turbo.inputPanel.burnerPanel.burnerLeftPanel.l1.setText("Tmax -R");
-                turbo.inputPanel.burnerPanel.burnerLeftPanel.l4.setText("FHV BTU/lb");
-                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.l1.setText("Tmax -R");
-                turbo.inputPanel.inletPanel.inletRightPanel.lmat.setText("lbm/ft^3");
-                turbo.inputPanel.fanPanel.rightPanel.lmat.setText("lbm/ft^3");
-                turbo.inputPanel.compressorPanel.compressorRightPanel.lmat.setText("lbm/ft^3");
-                turbo.inputPanel.burnerPanel.burnerRightPanel.lmat.setText("lbm/ft^3");
                 turbo.inputPanel.turbinePanel.turbineRightPanel.lmat.setText("lbm/ft^3");
-                turbo.inputPanel.nozzlePanel.nozzleRightPanel.lmat.setText("lbm/ft^3");
-                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.lmat.setText("lbm/ft^3");
-                turbo.inputPanel.inletPanel.inletLeftPanel.lmat.setText("T lim -R");
-                turbo.inputPanel.fanPanel.leftPanel.lmat.setText("T lim -R");
-                turbo.inputPanel.compressorPanel.compressorLeftPanel.lmat.setText("T lim -R");
-                turbo.inputPanel.burnerPanel.burnerLeftPanel.lmat.setText("T lim -R");
                 turbo.inputPanel.turbinePanel.turbineLeftPanel.lmat.setText("T lim -R");
-                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.lmat.setText("T lim -R");
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.lmat.setText("lbm/ft^3");
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.lmat.setText("T lim -R");
                 turbo.g0d = 32.2;
                 //                 setref.setVisible(false);
                 break;
             }
-            case 1: {                   /* Metric Units */
+            case METRIC: {                   /* Metric Units */
                 turbo.lconv1 = .3048;
                 turbo.lconv2 = 1.609;
                 turbo.fconv = 4.448;
@@ -615,20 +615,20 @@ class FlightConditionsPanel extends Panel {
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l2.setText("Weight-N");
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l1.setText("Area-sq m");
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l3.setText("Diameter-m");
-                turbo.inputPanel.burnerPanel.burnerLeftPanel.l1.setText("Tmax -K");
-                turbo.inputPanel.burnerPanel.burnerLeftPanel.l4.setText("FHV kJ/kg");
+                turbo.inputPanel.burnerPanel.burnerLeftPanel.lblTmax.setText("Tmax -K");
+                turbo.inputPanel.burnerPanel.burnerLeftPanel.lblFuelHV.setText("FHV kJ/kg");
                 turbo.inputPanel.nozzlePanel.nozzleLeftPanel.l1.setText("Tmax -K");
                 turbo.inputPanel.inletPanel.inletRightPanel.lmat.setText("kg/m^3");
                 turbo.inputPanel.fanPanel.rightPanel.lmat.setText("kg/m^3");
                 turbo.inputPanel.compressorPanel.compressorRightPanel.lmat.setText("kg/m^3");
-                turbo.inputPanel.burnerPanel.burnerRightPanel.lmat.setText("kg/m^3");
+                turbo.inputPanel.burnerPanel.burnerRightPanel.lblMaterial.setText("kg/m^3");
                 turbo.inputPanel.turbinePanel.turbineRightPanel.lmat.setText("kg/m^3");
                 turbo.inputPanel.nozzlePanel.nozzleRightPanel.lmat.setText("kg/m^3");
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.lmat.setText("kg/m^3");
                 turbo.inputPanel.inletPanel.inletLeftPanel.lmat.setText("T lim -K");
                 turbo.inputPanel.fanPanel.leftPanel.lmat.setText("T lim -K");
                 turbo.inputPanel.compressorPanel.compressorLeftPanel.lmat.setText("T lim -K");
-                turbo.inputPanel.burnerPanel.burnerLeftPanel.lmat.setText("T lim -K");
+                turbo.inputPanel.burnerPanel.burnerLeftPanel.lblMaterialMaxTemp.setText("T lim -K");
                 turbo.inputPanel.turbinePanel.turbineLeftPanel.lmat.setText("T lim -K");
                 turbo.inputPanel.nozzlePanel.nozzleLeftPanel.lmat.setText("T lim -K");
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.lmat.setText("T lim -K");
@@ -636,7 +636,7 @@ class FlightConditionsPanel extends Panel {
                 //                 setref.setVisible(false);
                 break;
             }
-            case 2: {            /* Percent Change .. convert to English */
+            case PERCENT_CHANGE: {            /* Percent Change .. convert to English */
                 turbo.lconv1 = 1.0;
                 turbo.lconv2 = 1.0;
                 turbo.fconv = 1.0;
@@ -652,12 +652,12 @@ class FlightConditionsPanel extends Panel {
                 turbo.inputPanel.flightPanel.flightLeftPanel.l2.setText("Altitude-%");
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l2.setText("Weight-lbs");
                 turbo.inputPanel.sizePanel.sizeLeftPanel.l1.setText("Area-%");
-                turbo.inputPanel.burnerPanel.burnerLeftPanel.l1.setText("Tmax -%");
+                turbo.inputPanel.burnerPanel.burnerLeftPanel.lblTmax.setText("Tmax -%");
                 turbo.inputPanel.nozzlePanel.nozzleLeftPanel.l1.setText("Tmax -%");
                 turbo.inputPanel.inletPanel.inletRightPanel.lmat.setText("<-lbm/ft^3 -Rankine");
                 turbo.inputPanel.fanPanel.rightPanel.lmat.setText("<-lbm/ft^3 -Rankine");
                 turbo.inputPanel.compressorPanel.compressorRightPanel.lmat.setText("<-lbm/ft^3 -Rankine");
-                turbo.inputPanel.burnerPanel.burnerRightPanel.lmat.setText("<-lbm/ft^3 -Rankine");
+                turbo.inputPanel.burnerPanel.burnerRightPanel.lblMaterial.setText("<-lbm/ft^3 -Rankine");
                 turbo.inputPanel.turbinePanel.turbineRightPanel.lmat.setText("<-lbm/ft^3 -Rankine");
                 turbo.inputPanel.nozzlePanel.nozzleRightPanel.lmat.setText("<-lbm/ft^3 -Rankine");
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.lmat.setText("<-lbm/ft^3 -Rankine");
@@ -709,7 +709,7 @@ class FlightConditionsPanel extends Panel {
         turbo.t7max = t7m2s * turbo.tconv;
         turbo.fhvd = fhvs * turbo.flconv;
 
-        if(turbo.lunits == 2) {     // initialization of reference variables
+        if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {     // initialization of reference variables
             if(turbo.u0d <= 10.0) {
                 turbo.u0d = 10.0;
             }
@@ -720,18 +720,18 @@ class FlightConditionsPanel extends Panel {
             turbo.altref = turbo.altd;
             turbo.thrref = turbo.throtl;
             turbo.a2ref = turbo.a2d;
-            turbo.et2ref = turbo.eta[2];
+            turbo.et2ref = turbo.efficiency[2];
             turbo.fpref = turbo.p3fp2d;
-            turbo.et13ref = turbo.eta[13];
+            turbo.et13ref = turbo.efficiency[13];
             turbo.bpref = turbo.byprat;
             turbo.cpref = turbo.p3p2d;
-            turbo.et3ref = turbo.eta[3];
-            turbo.et4ref = turbo.eta[4];
-            turbo.et5ref = turbo.eta[5];
+            turbo.et3ref = turbo.efficiency[3];
+            turbo.et4ref = turbo.efficiency[4];
+            turbo.et5ref = turbo.efficiency[5];
             turbo.t4ref = turbo.tt4d;
-            turbo.p4ref = turbo.prat[4];
+            turbo.p4ref = turbo.pressureRatio[4];
             turbo.t7ref = turbo.tt7d;
-            turbo.et7ref = turbo.eta[7];
+            turbo.et7ref = turbo.efficiency[7];
             turbo.a8ref = turbo.a8rat;
             turbo.fnref = turbo.fnlb;
             turbo.fuelref = turbo.fuelrat;

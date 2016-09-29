@@ -27,7 +27,7 @@ class Solver {
         }
         if(turbo.inflag == 1) {
             if(turbo.entype < 3) {
-                turbo.a8 = turbo.a8d * Math.sqrt(turbo.trat[7]) / turbo.prat[7];
+                turbo.a8 = turbo.a8d * Math.sqrt(turbo.trat[7]) / turbo.pressureRatio[7];
             }
         }
 
@@ -56,7 +56,7 @@ class Solver {
 
         turbo.inptype = 0;
         turbo.siztype = 0;
-        turbo.lunits = 0;
+        turbo.units = Turbo.Unit.ENGLISH;
         turbo.lconv1 = 1.0;
         turbo.lconv2 = 1.0;
         turbo.fconv = 1.0;
@@ -92,19 +92,19 @@ class Solver {
         for (i = 0; i <= 19; ++i) {
             turbo.trat[i] = 1.0;
             turbo.tt[i] = 518.6;
-            turbo.prat[i] = 1.0;
+            turbo.pressureRatio[i] = 1.0;
             turbo.pt[i] = 14.7;
-            turbo.eta[i] = 1.0;
+            turbo.efficiency[i] = 1.0;
         }
         turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2500.;
         turbo.tt[7] = turbo.tt7 = turbo.tt7d = 2500.;
-        turbo.prat[3] = turbo.p3p2d = 8.0;
-        turbo.prat[13] = turbo.p3fp2d = 2.0;
+        turbo.pressureRatio[3] = turbo.p3p2d = 8.0;
+        turbo.pressureRatio[13] = turbo.p3fp2d = 2.0;
         turbo.byprat = 1.0;
         turbo.abflag = 0;
 
         turbo.fueltype = 0;
-        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.fhvd = turbo.fuelHeatValue = 18600.;
         turbo.a2d = turbo.a2 = turbo.acore = 2.0;
         turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
         turbo.ac = .9 * turbo.a2;
@@ -186,7 +186,7 @@ class Solver {
         turbo.mcomp = 2;
         turbo.dcomp = 293.02;
         turbo.tcomp = 1500.;
-        turbo.mburner = 4;
+        turbo.burnerMaterial = 4;
         turbo.dburner = 515.2;
         turbo.tburner = 2500.;
         turbo.mturbin = 4;
@@ -237,14 +237,14 @@ class Solver {
         turbo.gamsav = turbo.gama;
         turbo.gamosav = turbo.gamopt;
         turbo.ptfsav = turbo.pt2flag;
-        turbo.et2sav = turbo.eta[2];
-        turbo.pr2sav = turbo.prat[2];
-        turbo.pr4sav = turbo.prat[4];
-        turbo.et3sav = turbo.eta[3];
-        turbo.et4sav = turbo.eta[4];
-        turbo.et5sav = turbo.eta[5];
-        turbo.et7sav = turbo.eta[7];
-        turbo.et13sav = turbo.eta[13];
+        turbo.et2sav = turbo.efficiency[2];
+        turbo.pr2sav = turbo.pressureRatio[2];
+        turbo.pr4sav = turbo.pressureRatio[4];
+        turbo.et3sav = turbo.efficiency[3];
+        turbo.et4sav = turbo.efficiency[4];
+        turbo.et5sav = turbo.efficiency[5];
+        turbo.et7sav = turbo.efficiency[7];
+        turbo.et13sav = turbo.efficiency[13];
         turbo.a8sav = turbo.a8d / turbo.aconv;
         turbo.a8mxsav = turbo.a8max / turbo.aconv;
         turbo.a8rtsav = turbo.a8rat;
@@ -265,7 +265,7 @@ class Solver {
         turbo.mcmsav = turbo.mcomp;
         turbo.dcmsav = turbo.dcomp;
         turbo.tcmsav = turbo.tcomp;
-        turbo.mbrsav = turbo.mburner;
+        turbo.mbrsav = turbo.burnerMaterial;
         turbo.dbrsav = turbo.dburner;
         turbo.tbrsav = turbo.tburner;
         turbo.mtrsav = turbo.mturbin;
@@ -295,11 +295,11 @@ class Solver {
         turbo.entype = turbo.ensav;
         turbo.abflag = turbo.absav;
         turbo.fueltype = turbo.flsav;
-        turbo.fhvd = turbo.fhv = turbo.fhsav;
+        turbo.fhvd = turbo.fuelHeatValue = turbo.fhsav;
         turbo.tt[4] = turbo.tt4 = turbo.tt4d = turbo.t4sav;
         turbo.tt[7] = turbo.tt7 = turbo.tt7d = turbo.t7sav;
-        turbo.prat[3] = turbo.p3p2d = turbo.p3sav;
-        turbo.prat[13] = turbo.p3fp2d = turbo.p3fsav;
+        turbo.pressureRatio[3] = turbo.p3p2d = turbo.p3sav;
+        turbo.pressureRatio[13] = turbo.p3fp2d = turbo.p3fsav;
         turbo.byprat = turbo.bysav;
         turbo.acore = turbo.acsav;
         turbo.afan = turbo.acore * (1.0 + turbo.byprat);
@@ -311,14 +311,14 @@ class Solver {
         turbo.gama = turbo.gamsav;
         turbo.gamopt = turbo.gamosav;
         turbo.pt2flag = turbo.ptfsav;
-        turbo.eta[2] = turbo.et2sav;
-        turbo.prat[2] = turbo.pr2sav;
-        turbo.prat[4] = turbo.pr4sav;
-        turbo.eta[3] = turbo.et3sav;
-        turbo.eta[4] = turbo.et4sav;
-        turbo.eta[5] = turbo.et5sav;
-        turbo.eta[7] = turbo.et7sav;
-        turbo.eta[13] = turbo.et13sav;
+        turbo.efficiency[2] = turbo.et2sav;
+        turbo.pressureRatio[2] = turbo.pr2sav;
+        turbo.pressureRatio[4] = turbo.pr4sav;
+        turbo.efficiency[3] = turbo.et3sav;
+        turbo.efficiency[4] = turbo.et4sav;
+        turbo.efficiency[5] = turbo.et5sav;
+        turbo.efficiency[7] = turbo.et7sav;
+        turbo.efficiency[13] = turbo.et13sav;
         turbo.a8d = turbo.a8sav;
         turbo.a8max = turbo.a8mxsav;
         turbo.a8rat = turbo.a8rtsav;
@@ -339,7 +339,7 @@ class Solver {
         turbo.mcomp = turbo.mcmsav;
         turbo.dcomp = turbo.dcmsav;
         turbo.tcomp = turbo.tcmsav;
-        turbo.mburner = turbo.mbrsav;
+        turbo.burnerMaterial = turbo.mbrsav;
         turbo.dburner = turbo.dbrsav;
         turbo.tburner = turbo.tbrsav;
         turbo.mturbin = turbo.mtrsav;
@@ -370,11 +370,11 @@ class Solver {
         turbo.entype = 2;
         turbo.abflag = 0;
         turbo.fueltype = 0;
-        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.fhvd = turbo.fuelHeatValue = 18600.;
         turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2500.;
         turbo.tt[7] = turbo.tt7 = turbo.tt7d = 2500.;
-        turbo.prat[3] = turbo.p3p2d = 21.86;
-        turbo.prat[13] = turbo.p3fp2d = 1.745;
+        turbo.pressureRatio[3] = turbo.p3p2d = 21.86;
+        turbo.pressureRatio[13] = turbo.p3fp2d = 1.745;
         turbo.byprat = 3.3;
         turbo.acore = 6.965;
         turbo.afan = turbo.acore * (1.0 + turbo.byprat);
@@ -386,14 +386,14 @@ class Solver {
         turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        turbo.eta[2] = 1.0;
-        turbo.prat[2] = 1.0;
-        turbo.prat[4] = 1.0;
-        turbo.eta[3] = .959;
-        turbo.eta[4] = .984;
-        turbo.eta[5] = .982;
-        turbo.eta[7] = 1.0;
-        turbo.eta[13] = 1.0;
+        turbo.efficiency[2] = 1.0;
+        turbo.pressureRatio[2] = 1.0;
+        turbo.pressureRatio[4] = 1.0;
+        turbo.efficiency[3] = .959;
+        turbo.efficiency[4] = .984;
+        turbo.efficiency[5] = .982;
+        turbo.efficiency[7] = 1.0;
+        turbo.efficiency[13] = 1.0;
         turbo.a8d = 2.436;
         turbo.a8max = .35;
         turbo.a8rat = .35;
@@ -415,7 +415,7 @@ class Solver {
         turbo.mcomp = 0;
         turbo.dcomp = 293.;
         turbo.tcomp = 1600.;
-        turbo.mburner = 4;
+        turbo.burnerMaterial = 4;
         turbo.dburner = 515.;
         turbo.tburner = 2500.;
         turbo.mturbin = 4;
@@ -436,11 +436,11 @@ class Solver {
         turbo.entype = 0;
         turbo.abflag = 0;
         turbo.fueltype = 0;
-        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.fhvd = turbo.fuelHeatValue = 18600.;
         turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2260.;
         turbo.tt[7] = turbo.tt7 = turbo.tt7d = 4000.;
-        turbo.prat[3] = turbo.p3p2d = 8.3;
-        turbo.prat[13] = turbo.p3fp2d = 1.0;
+        turbo.pressureRatio[3] = turbo.p3p2d = 8.3;
+        turbo.pressureRatio[13] = turbo.p3fp2d = 1.0;
         turbo.byprat = 0.0;
         turbo.a2d = turbo.a2 = turbo.acore = 1.753;
         turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
@@ -451,14 +451,14 @@ class Solver {
         turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        turbo.eta[2] = 1.0;
-        turbo.prat[2] = 1.0;
-        turbo.prat[4] = .85;
-        turbo.eta[3] = .822;
-        turbo.eta[4] = .982;
-        turbo.eta[5] = .882;
-        turbo.eta[7] = .978;
-        turbo.eta[13] = 1.0;
+        turbo.efficiency[2] = 1.0;
+        turbo.pressureRatio[2] = 1.0;
+        turbo.pressureRatio[4] = .85;
+        turbo.efficiency[3] = .822;
+        turbo.efficiency[4] = .982;
+        turbo.efficiency[5] = .882;
+        turbo.efficiency[7] = .978;
+        turbo.efficiency[13] = 1.0;
         turbo.a8d = .818;
         turbo.a8max = .467;
         turbo.a8rat = .467;
@@ -480,7 +480,7 @@ class Solver {
         turbo.mcomp = 2;
         turbo.dcomp = 293.;
         turbo.tcomp = 1500.;
-        turbo.mburner = 4;
+        turbo.burnerMaterial = 4;
         turbo.dburner = 515.;
         turbo.tburner = 2500.;
         turbo.mturbin = 4;
@@ -501,11 +501,11 @@ class Solver {
         turbo.entype = 1;
         turbo.abflag = 1;
         turbo.fueltype = 0;
-        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.fhvd = turbo.fuelHeatValue = 18600.;
         turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2499.;
         turbo.tt[7] = turbo.tt7 = turbo.tt7d = 3905.;
-        turbo.prat[3] = turbo.p3p2d = 20.04;
-        turbo.prat[13] = turbo.p3fp2d = 1.745;
+        turbo.pressureRatio[3] = turbo.p3p2d = 20.04;
+        turbo.pressureRatio[13] = turbo.p3fp2d = 1.745;
         turbo.byprat = 0.0;
         turbo.a2d = turbo.a2 = turbo.acore = 6.00;
         turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
@@ -516,14 +516,14 @@ class Solver {
         turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        turbo.eta[2] = 1.0;
-        turbo.prat[2] = 1.0;
-        turbo.prat[4] = 1.0;
-        turbo.eta[3] = .959;
-        turbo.eta[4] = .984;
-        turbo.eta[5] = .982;
-        turbo.eta[7] = .92;
-        turbo.eta[13] = 1.0;
+        turbo.efficiency[2] = 1.0;
+        turbo.pressureRatio[2] = 1.0;
+        turbo.pressureRatio[4] = 1.0;
+        turbo.efficiency[3] = .959;
+        turbo.efficiency[4] = .984;
+        turbo.efficiency[5] = .982;
+        turbo.efficiency[7] = .92;
+        turbo.efficiency[13] = 1.0;
         turbo.a8d = 1.524;
         turbo.a8max = .335;
         turbo.a8rat = .335;
@@ -545,7 +545,7 @@ class Solver {
         turbo.mcomp = 2;
         turbo.dcomp = 293.;
         turbo.tcomp = 1500.;
-        turbo.mburner = 4;
+        turbo.burnerMaterial = 4;
         turbo.dburner = 515.;
         turbo.tburner = 2500.;
         turbo.mturbin = 4;
@@ -570,12 +570,12 @@ class Solver {
         turbo.arexitd = 3.0;
         turbo.abflag = 0;
         turbo.fueltype = 0;
-        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.fhvd = turbo.fuelHeatValue = 18600.;
         turbo.tt[4] = turbo.tt4 = turbo.tt4d = 4000.;
         turbo.t4max = 4500.;
         turbo.tt[7] = turbo.tt7 = turbo.tt7d = 4000.;
-        turbo.prat[3] = turbo.p3p2d = 1.0;
-        turbo.prat[13] = turbo.p3fp2d = 1.0;
+        turbo.pressureRatio[3] = turbo.p3p2d = 1.0;
+        turbo.pressureRatio[13] = turbo.p3fp2d = 1.0;
         turbo.byprat = 0.0;
         turbo.a2d = turbo.a2 = turbo.acore = 1.753;
         turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
@@ -586,14 +586,14 @@ class Solver {
         turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        turbo.eta[2] = 1.0;
-        turbo.prat[2] = 1.0;
-        turbo.prat[4] = 1.0;
-        turbo.eta[3] = 1.0;
-        turbo.eta[4] = .982;
-        turbo.eta[5] = 1.0;
-        turbo.eta[7] = 1.0;
-        turbo.eta[13] = 1.0;
+        turbo.efficiency[2] = 1.0;
+        turbo.pressureRatio[2] = 1.0;
+        turbo.pressureRatio[4] = 1.0;
+        turbo.efficiency[3] = 1.0;
+        turbo.efficiency[4] = .982;
+        turbo.efficiency[5] = 1.0;
+        turbo.efficiency[7] = 1.0;
+        turbo.efficiency[13] = 1.0;
         turbo.a8 = turbo.a8d = 2.00;
         turbo.a8max = 15.;
         turbo.a8rat = 4.0;
@@ -616,7 +616,7 @@ class Solver {
         turbo.mcomp = 2;
         turbo.dcomp = 293.;
         turbo.tcomp = 1500.;
-        turbo.mburner = 7;
+        turbo.burnerMaterial = 7;
         turbo.dburner = 515.;
         turbo.tburner = 4500.;
         turbo.mturbin = 4;
@@ -700,43 +700,43 @@ class Solver {
                                      /*   inletPanel recovery  */
         if(turbo.pt2flag == 0) {                    /*     mil spec      */
             if(turbo.fsmach > 1.0) {          /* supersonic */
-                turbo.prat[2] = 1.0 - .075 * Math.pow(turbo.fsmach - 1.0, 1.35);
+                turbo.pressureRatio[2] = 1.0 - .075 * Math.pow(turbo.fsmach - 1.0, 1.35);
             } else {
-                turbo.prat[2] = 1.0;
+                turbo.pressureRatio[2] = 1.0;
             }
-            turbo.eta[2] = turbo.prat[2];
-            turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.format("%.3f", turbo.prat[2]));
-            i1 = (int)(((turbo.prat[2] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            turbo.efficiency[2] = turbo.pressureRatio[2];
+            turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.format("%.3f", turbo.pressureRatio[2]));
+            i1 = (int)(((turbo.pressureRatio[2] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
             turbo.inputPanel.inletPanel.inletRightPanel.s1.setValue(i1);
         } else {                       /* enter value */
-            turbo.prat[2] = turbo.eta[2];
+            turbo.pressureRatio[2] = turbo.efficiency[2];
         }
                            /* protection for overwriting input */
-        if(turbo.eta[3] < .5) {
-            turbo.eta[3] = .5;
+        if(turbo.efficiency[3] < .5) {
+            turbo.efficiency[3] = .5;
         }
-        if(turbo.eta[5] < .5) {
-            turbo.eta[5] = .5;
+        if(turbo.efficiency[5] < .5) {
+            turbo.efficiency[5] = .5;
         }
         turbo.trat[7] = 1.0;
-        turbo.prat[7] = 1.0;
+        turbo.pressureRatio[7] = 1.0;
         turbo.tt[2] = turbo.tt[1] = turbo.tt[0];
         turbo.pt[1] = turbo.pt[0];
         turbo.gam[2] = AeroUtil.getGamma(turbo.tt[2], turbo.gamopt);
         turbo.cp[2] = AeroUtil.getCp(turbo.tt[2], turbo.gamopt);
-        turbo.pt[2] = turbo.pt[1] * turbo.prat[2];
+        turbo.pt[2] = turbo.pt[1] * turbo.pressureRatio[2];
     /* design - p3p2 specified - tt4 specified */
         if(turbo.inflag == 0) {
 
             if(turbo.entype <= 1) {              /* turbojet */
-                turbo.prat[3] = turbo.p3p2d;                      /* core compressor */
-                if(turbo.prat[3] < .5) {
-                    turbo.prat[3] = .5;
+                turbo.pressureRatio[3] = turbo.p3p2d;                      /* core compressor */
+                if(turbo.pressureRatio[3] < .5) {
+                    turbo.pressureRatio[3] = .5;
                 }
-                delhc = (turbo.cp[2] * turbo.tt[2] / turbo.eta[3]) *
-                        (Math.pow(turbo.prat[3], (turbo.gam[2] - 1.0) / turbo.gam[2]) - 1.0);
+                delhc = (turbo.cp[2] * turbo.tt[2] / turbo.efficiency[3]) *
+                        (Math.pow(turbo.pressureRatio[3], (turbo.gam[2] - 1.0) / turbo.gam[2]) - 1.0);
                 deltc = delhc / turbo.cp[2];
-                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
+                turbo.pt[3] = turbo.pt[2] * turbo.pressureRatio[3];
                 turbo.tt[3] = turbo.tt[2] + deltc;
                 turbo.trat[3] = turbo.tt[3] / turbo.tt[2];
                 turbo.gam[3] = AeroUtil.getGamma(turbo.tt[3], turbo.gamopt);
@@ -745,24 +745,24 @@ class Solver {
                 turbo.gam[4] = AeroUtil.getGamma(turbo.tt[4], turbo.gamopt);
                 turbo.cp[4] = AeroUtil.getCp(turbo.tt[4], turbo.gamopt);
                 turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
-                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.pt[4] = turbo.pt[3] * turbo.pressureRatio[4];
                 delhht = delhc;
                 deltht = delhht / turbo.cp[4];
                 turbo.tt[5] = turbo.tt[4] - deltht;
                 turbo.gam[5] = AeroUtil.getGamma(turbo.tt[5], turbo.gamopt);
                 turbo.cp[5] = AeroUtil.getCp(turbo.tt[5], turbo.gamopt);
                 turbo.trat[5] = turbo.tt[5] / turbo.tt[4];
-                turbo.prat[5] = Math.pow((1.0 - delhht / turbo.cp[4] / turbo.tt[4] / turbo.eta[5]),
-                                         (turbo.gam[4] / (turbo.gam[4] - 1.0)));
-                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
+                turbo.pressureRatio[5] = Math.pow((1.0 - delhht / turbo.cp[4] / turbo.tt[4] / turbo.efficiency[5]),
+                                                  (turbo.gam[4] / (turbo.gam[4] - 1.0)));
+                turbo.pt[5] = turbo.pt[4] * turbo.pressureRatio[5];
                                     /* fanPanel conditions */
-                turbo.prat[13] = 1.0;
+                turbo.pressureRatio[13] = 1.0;
                 turbo.trat[13] = 1.0;
                 turbo.tt[13] = turbo.tt[2];
                 turbo.pt[13] = turbo.pt[2];
                 turbo.gam[13] = turbo.gam[2];
                 turbo.cp[13] = turbo.cp[2];
-                turbo.prat[15] = 1.0;
+                turbo.pressureRatio[15] = 1.0;
                 turbo.pt[15] = turbo.pt[5];
                 turbo.trat[15] = 1.0;
                 turbo.tt[15] = turbo.tt[5];
@@ -771,32 +771,32 @@ class Solver {
             }
 
             if(turbo.entype == 2) {                         /* turbofan */
-                turbo.prat[13] = turbo.p3fp2d;
-                if(turbo.prat[13] < .5) {
-                    turbo.prat[13] = .5;
+                turbo.pressureRatio[13] = turbo.p3fp2d;
+                if(turbo.pressureRatio[13] < .5) {
+                    turbo.pressureRatio[13] = .5;
                 }
-                delhf = (turbo.cp[2] * turbo.tt[2] / turbo.eta[13]) *
-                        (Math.pow(turbo.prat[13], (turbo.gam[2] - 1.0) / turbo.gam[2]) - 1.0);
+                delhf = (turbo.cp[2] * turbo.tt[2] / turbo.efficiency[13]) *
+                        (Math.pow(turbo.pressureRatio[13], (turbo.gam[2] - 1.0) / turbo.gam[2]) - 1.0);
                 deltf = delhf / turbo.cp[2];
                 turbo.tt[13] = turbo.tt[2] + deltf;
-                turbo.pt[13] = turbo.pt[2] * turbo.prat[13];
+                turbo.pt[13] = turbo.pt[2] * turbo.pressureRatio[13];
                 turbo.trat[13] = turbo.tt[13] / turbo.tt[2];
                 turbo.gam[13] = AeroUtil.getGamma(turbo.tt[13], turbo.gamopt);
                 turbo.cp[13] = AeroUtil.getCp(turbo.tt[13], turbo.gamopt);
-                turbo.prat[3] = turbo.p3p2d;                      /* core compressor */
-                if(turbo.prat[3] < .5) {
-                    turbo.prat[3] = .5;
+                turbo.pressureRatio[3] = turbo.p3p2d;                      /* core compressor */
+                if(turbo.pressureRatio[3] < .5) {
+                    turbo.pressureRatio[3] = .5;
                 }
-                delhc = (turbo.cp[13] * turbo.tt[13] / turbo.eta[3]) *
-                        (Math.pow(turbo.prat[3], (turbo.gam[13] - 1.0) / turbo.gam[13]) - 1.0);
+                delhc = (turbo.cp[13] * turbo.tt[13] / turbo.efficiency[3]) *
+                        (Math.pow(turbo.pressureRatio[3], (turbo.gam[13] - 1.0) / turbo.gam[13]) - 1.0);
                 deltc = delhc / turbo.cp[13];
                 turbo.tt[3] = turbo.tt[13] + deltc;
-                turbo.pt[3] = turbo.pt[13] * turbo.prat[3];
+                turbo.pt[3] = turbo.pt[13] * turbo.pressureRatio[3];
                 turbo.trat[3] = turbo.tt[3] / turbo.tt[13];
                 turbo.gam[3] = AeroUtil.getGamma(turbo.tt[3], turbo.gamopt);
                 turbo.cp[3] = AeroUtil.getCp(turbo.tt[3], turbo.gamopt);
                 turbo.tt[4] = turbo.tt4 * turbo.throtl / 100.0;
-                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.pt[4] = turbo.pt[3] * turbo.pressureRatio[4];
                 turbo.gam[4] = AeroUtil.getGamma(turbo.tt[4], turbo.gamopt);
                 turbo.cp[4] = AeroUtil.getCp(turbo.tt[4], turbo.gamopt);
                 turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
@@ -806,23 +806,23 @@ class Solver {
                 turbo.gam[5] = AeroUtil.getGamma(turbo.tt[5], turbo.gamopt);
                 turbo.cp[5] = AeroUtil.getCp(turbo.tt[5], turbo.gamopt);
                 turbo.trat[5] = turbo.tt[5] / turbo.tt[4];
-                turbo.prat[5] = Math.pow((1.0 - delhht / turbo.cp[4] / turbo.tt[4] / turbo.eta[5]),
-                                         (turbo.gam[4] / (turbo.gam[4] - 1.0)));
-                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
+                turbo.pressureRatio[5] = Math.pow((1.0 - delhht / turbo.cp[4] / turbo.tt[4] / turbo.efficiency[5]),
+                                                  (turbo.gam[4] / (turbo.gam[4] - 1.0)));
+                turbo.pt[5] = turbo.pt[4] * turbo.pressureRatio[5];
                 delhlt = (1.0 + turbo.byprat) * delhf;
                 deltlt = delhlt / turbo.cp[5];
                 turbo.tt[15] = turbo.tt[5] - deltlt;
                 turbo.gam[15] = AeroUtil.getGamma(turbo.tt[15], turbo.gamopt);
                 turbo.cp[15] = AeroUtil.getCp(turbo.tt[15], turbo.gamopt);
                 turbo.trat[15] = turbo.tt[15] / turbo.tt[5];
-                turbo.prat[15] = Math.pow((1.0 - delhlt / turbo.cp[5] / turbo.tt[5] / turbo.eta[5]),
-                                          (turbo.gam[5] / (turbo.gam[5] - 1.0)));
-                turbo.pt[15] = turbo.pt[5] * turbo.prat[15];
+                turbo.pressureRatio[15] = Math.pow((1.0 - delhlt / turbo.cp[5] / turbo.tt[5] / turbo.efficiency[5]),
+                                                   (turbo.gam[5] / (turbo.gam[5] - 1.0)));
+                turbo.pt[15] = turbo.pt[5] * turbo.pressureRatio[15];
             }
 
             if(turbo.entype == 3) {              /* ramjet */
-                turbo.prat[3] = 1.0;
-                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
+                turbo.pressureRatio[3] = 1.0;
+                turbo.pt[3] = turbo.pt[2] * turbo.pressureRatio[3];
                 turbo.tt[3] = turbo.tt[2];
                 turbo.trat[3] = 1.0;
                 turbo.gam[3] = AeroUtil.getGamma(turbo.tt[3], turbo.gamopt);
@@ -831,21 +831,21 @@ class Solver {
                 turbo.gam[4] = AeroUtil.getGamma(turbo.tt[4], turbo.gamopt);
                 turbo.cp[4] = AeroUtil.getCp(turbo.tt[4], turbo.gamopt);
                 turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
-                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.pt[4] = turbo.pt[3] * turbo.pressureRatio[4];
                 turbo.tt[5] = turbo.tt[4];
                 turbo.gam[5] = AeroUtil.getGamma(turbo.tt[5], turbo.gamopt);
                 turbo.cp[5] = AeroUtil.getCp(turbo.tt[5], turbo.gamopt);
                 turbo.trat[5] = 1.0;
-                turbo.prat[5] = 1.0;
+                turbo.pressureRatio[5] = 1.0;
                 turbo.pt[5] = turbo.pt[4];
                                     /* fanPanel conditions */
-                turbo.prat[13] = 1.0;
+                turbo.pressureRatio[13] = 1.0;
                 turbo.trat[13] = 1.0;
                 turbo.tt[13] = turbo.tt[2];
                 turbo.pt[13] = turbo.pt[2];
                 turbo.gam[13] = turbo.gam[2];
                 turbo.cp[13] = turbo.cp[2];
-                turbo.prat[15] = 1.0;
+                turbo.pressureRatio[15] = 1.0;
                 turbo.pt[15] = turbo.pt[5];
                 turbo.trat[15] = 1.0;
                 turbo.tt[15] = turbo.tt[5];
@@ -873,7 +873,7 @@ class Solver {
                 while (Math.abs(dela) > .001 && itcount < 20) {
                     ++itcount;
                     delan = turbo.a8d / turbo.a4 - Math.sqrt(t5t4n) *
-                                                   Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - t5t4n)),
+                                                   Math.pow((1.0 - (1.0 / turbo.efficiency[5]) * (1.0 - t5t4n)),
                                                             -turbo.gam[4] / (turbo.gam[4] - 1.0));
                     deriv = (delan - dela) / (t5t4n - turbo.trat[5]);
                     dela = delan;
@@ -885,7 +885,7 @@ class Solver {
                 turbo.cp[5] = AeroUtil.getCp(turbo.tt[5], turbo.gamopt);
                 deltht = turbo.tt[5] - turbo.tt[4];
                 delhht = turbo.cp[4] * deltht;
-                turbo.prat[5] = Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - turbo.trat[5])),
+                turbo.pressureRatio[5] = Math.pow((1.0 - (1.0 / turbo.efficiency[5]) * (1.0 - turbo.trat[5])),
                                          turbo.gam[4] / (turbo.gam[4] - 1.0));
                 delhc = delhht;           /* compressor work */
                 deltc = -delhc / turbo.cp[2];
@@ -893,20 +893,20 @@ class Solver {
                 turbo.gam[3] = AeroUtil.getGamma(turbo.tt[3], turbo.gamopt);
                 turbo.cp[3] = AeroUtil.getCp(turbo.tt[3], turbo.gamopt);
                 turbo.trat[3] = turbo.tt[3] / turbo.tt[2];
-                turbo.prat[3] = Math.pow((1.0 + turbo.eta[3] * (turbo.trat[3] - 1.0)),
+                turbo.pressureRatio[3] = Math.pow((1.0 + turbo.efficiency[3] * (turbo.trat[3] - 1.0)),
                                          turbo.gam[2] / (turbo.gam[2] - 1.0));
                 turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
-                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
-                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
-                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
+                turbo.pt[3] = turbo.pt[2] * turbo.pressureRatio[3];
+                turbo.pt[4] = turbo.pt[3] * turbo.pressureRatio[4];
+                turbo.pt[5] = turbo.pt[4] * turbo.pressureRatio[5];
                                     /* fanPanel conditions */
-                turbo.prat[13] = 1.0;
+                turbo.pressureRatio[13] = 1.0;
                 turbo.trat[13] = 1.0;
                 turbo.tt[13] = turbo.tt[2];
                 turbo.pt[13] = turbo.pt[2];
                 turbo.gam[13] = turbo.gam[2];
                 turbo.cp[13] = turbo.cp[2];
-                turbo.prat[15] = 1.0;
+                turbo.pressureRatio[15] = 1.0;
                 turbo.pt[15] = turbo.pt[5];
                 turbo.trat[15] = 1.0;
                 turbo.tt[15] = turbo.tt[5];
@@ -922,7 +922,7 @@ class Solver {
                 while (Math.abs(dela) > .001 && itcount < 20) {
                     ++itcount;
                     delan = turbo.a4p / turbo.a4 - Math.sqrt(t5t4n) *
-                                                   Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - t5t4n)),
+                                                   Math.pow((1.0 - (1.0 / turbo.efficiency[5]) * (1.0 - t5t4n)),
                                                             -turbo.gam[4] / (turbo.gam[4] - 1.0));
                     deriv = (delan - dela) / (t5t4n - turbo.trat[5]);
                     dela = delan;
@@ -934,7 +934,7 @@ class Solver {
                 turbo.cp[5] = AeroUtil.getCp(turbo.tt[5], turbo.gamopt);
                 deltht = turbo.tt[5] - turbo.tt[4];
                 delhht = turbo.cp[4] * deltht;
-                turbo.prat[5] = Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - turbo.trat[5])),
+                turbo.pressureRatio[5] = Math.pow((1.0 - (1.0 / turbo.efficiency[5]) * (1.0 - turbo.trat[5])),
                                          turbo.gam[4] / (turbo.gam[4] - 1.0));
                                    /* iterate to get t15t14 */
                 dela = .2;
@@ -944,7 +944,7 @@ class Solver {
                 while (Math.abs(dela) > .001 && itcount < 20) {
                     ++itcount;
                     delan = turbo.a8d / turbo.a4p - Math.sqrt(t5t4n) *
-                                                    Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - t5t4n)),
+                                                    Math.pow((1.0 - (1.0 / turbo.efficiency[5]) * (1.0 - t5t4n)),
                                                              -turbo.gam[5] / (turbo.gam[5] - 1.0));
                     deriv = (delan - dela) / (t5t4n - turbo.trat[15]);
                     dela = delan;
@@ -956,7 +956,7 @@ class Solver {
                 turbo.cp[15] = AeroUtil.getCp(turbo.tt[15], turbo.gamopt);
                 deltlt = turbo.tt[15] - turbo.tt[5];
                 delhlt = turbo.cp[5] * deltlt;
-                turbo.prat[15] = Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - turbo.trat[15])),
+                turbo.pressureRatio[15] = Math.pow((1.0 - (1.0 / turbo.efficiency[5]) * (1.0 - turbo.trat[15])),
                                           turbo.gam[5] / (turbo.gam[5] - 1.0));
                 turbo.byprat = turbo.afan / turbo.acore - 1.0;
                 delhf = delhlt / (1.0 + turbo.byprat);              /* fanPanel work */
@@ -965,7 +965,7 @@ class Solver {
                 turbo.gam[13] = AeroUtil.getGamma(turbo.tt[13], turbo.gamopt);
                 turbo.cp[13] = AeroUtil.getCp(turbo.tt[13], turbo.gamopt);
                 turbo.trat[13] = turbo.tt[13] / turbo.tt[2];
-                turbo.prat[13] = Math.pow((1.0 + turbo.eta[13] * (turbo.trat[13] - 1.0)),
+                turbo.pressureRatio[13] = Math.pow((1.0 + turbo.efficiency[13] * (turbo.trat[13] - 1.0)),
                                           turbo.gam[2] / (turbo.gam[2] - 1.0));
                 delhc = delhht;                         /* compressor work */
                 deltc = -delhc / turbo.cp[13];
@@ -973,40 +973,40 @@ class Solver {
                 turbo.gam[3] = AeroUtil.getGamma(turbo.tt[3], turbo.gamopt);
                 turbo.cp[3] = AeroUtil.getCp(turbo.tt[3], turbo.gamopt);
                 turbo.trat[3] = turbo.tt[3] / turbo.tt[13];
-                turbo.prat[3] = Math.pow((1.0 + turbo.eta[3] * (turbo.trat[3] - 1.0)),
+                turbo.pressureRatio[3] = Math.pow((1.0 + turbo.efficiency[3] * (turbo.trat[3] - 1.0)),
                                          turbo.gam[13] / (turbo.gam[13] - 1.0));
                 turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
-                turbo.pt[13] = turbo.pt[2] * turbo.prat[13];
-                turbo.pt[3] = turbo.pt[13] * turbo.prat[3];
-                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
-                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
-                turbo.pt[15] = turbo.pt[5] * turbo.prat[15];
+                turbo.pt[13] = turbo.pt[2] * turbo.pressureRatio[13];
+                turbo.pt[3] = turbo.pt[13] * turbo.pressureRatio[3];
+                turbo.pt[4] = turbo.pt[3] * turbo.pressureRatio[4];
+                turbo.pt[5] = turbo.pt[4] * turbo.pressureRatio[5];
+                turbo.pt[15] = turbo.pt[5] * turbo.pressureRatio[15];
             }
 
             if(turbo.entype == 3) {              /* ramjet */
-                turbo.prat[3] = 1.0;
-                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
+                turbo.pressureRatio[3] = 1.0;
+                turbo.pt[3] = turbo.pt[2] * turbo.pressureRatio[3];
                 turbo.tt[3] = turbo.tt[2];
                 turbo.trat[3] = 1.0;
                 turbo.gam[3] = AeroUtil.getGamma(turbo.tt[3], turbo.gamopt);
                 turbo.cp[3] = AeroUtil.getCp(turbo.tt[3], turbo.gamopt);
                 turbo.tt[4] = turbo.tt4 * turbo.throtl / 100.0;
                 turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
-                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.pt[4] = turbo.pt[3] * turbo.pressureRatio[4];
                 turbo.tt[5] = turbo.tt[4];
                 turbo.gam[5] = AeroUtil.getGamma(turbo.tt[5], turbo.gamopt);
                 turbo.cp[5] = AeroUtil.getCp(turbo.tt[5], turbo.gamopt);
                 turbo.trat[5] = 1.0;
-                turbo.prat[5] = 1.0;
+                turbo.pressureRatio[5] = 1.0;
                 turbo.pt[5] = turbo.pt[4];
                                      /* fanPanel conditions */
-                turbo.prat[13] = 1.0;
+                turbo.pressureRatio[13] = 1.0;
                 turbo.trat[13] = 1.0;
                 turbo.tt[13] = turbo.tt[2];
                 turbo.pt[13] = turbo.pt[2];
                 turbo.gam[13] = turbo.gam[2];
                 turbo.cp[13] = turbo.cp[2];
-                turbo.prat[15] = 1.0;
+                turbo.pressureRatio[15] = 1.0;
                 turbo.pt[15] = turbo.pt[5];
                 turbo.trat[15] = 1.0;
                 turbo.tt[15] = turbo.tt[5];
@@ -1019,7 +1019,7 @@ class Solver {
             }
         }
 
-        turbo.prat[6] = 1.0;
+        turbo.pressureRatio[6] = 1.0;
         turbo.pt[6] = turbo.pt[15];
         turbo.trat[6] = 1.0;
         turbo.tt[6] = turbo.tt[15];
@@ -1028,14 +1028,14 @@ class Solver {
         if(turbo.abflag > 0) {                   /* afterburner */
             turbo.trat[7] = turbo.tt[7] / turbo.tt[6];
             m5 = AeroUtil.getMach(0, AeroUtil.getAirflowPerArea(1.0, turbo.gam[5]) * turbo.a4 / turbo.acore, turbo.gam[5]);
-            turbo.prat[7] = AeroUtil.getRayleighLoss(m5, turbo.trat[7], turbo.tt[6], turbo.gamopt);
+            turbo.pressureRatio[7] = AeroUtil.getRayleighLoss(m5, turbo.trat[7], turbo.tt[6], turbo.gamopt);
         }
         turbo.tt[7] = turbo.tt[6] * turbo.trat[7];
-        turbo.pt[7] = turbo.pt[6] * turbo.prat[7];
+        turbo.pt[7] = turbo.pt[6] * turbo.pressureRatio[7];
         turbo.gam[7] = AeroUtil.getGamma(turbo.tt[7], turbo.gamopt);
         turbo.cp[7] = AeroUtil.getCp(turbo.tt[7], turbo.gamopt);
              /* engine press ratio EPR*/
-        turbo.epr = turbo.prat[7] * turbo.prat[15] * turbo.prat[5] * turbo.prat[4] * turbo.prat[3] * turbo.prat[13];
+        turbo.epr = turbo.pressureRatio[7] * turbo.pressureRatio[15] * turbo.pressureRatio[5] * turbo.pressureRatio[4] * turbo.pressureRatio[3] * turbo.pressureRatio[13];
           /* engine temp ratio ETR */
         turbo.etr = turbo.trat[7] * turbo.trat[15] * turbo.trat[5] * turbo.trat[4] * turbo.trat[3] * turbo.trat[13];
         return;
@@ -1059,24 +1059,24 @@ class Solver {
         game = AeroUtil.getGamma(turbo.tt[5], turbo.gamopt);
         fac1 = (game - 1.0) / game;
         cpe = AeroUtil.getCp(turbo.tt[5], turbo.gamopt);
-        if(turbo.eta[7] < .8) {
-            turbo.eta[7] = .8;    /* protection during overwriting */
+        if(turbo.efficiency[7] < .8) {
+            turbo.efficiency[7] = .8;    /* protection during overwriting */
         }
-        if(turbo.eta[4] < .8) {
-            turbo.eta[4] = .8;
+        if(turbo.efficiency[4] < .8) {
+            turbo.efficiency[4] = .8;
         }
 
    /*  specific net thrust  - thrust / (g0*airflow) -   lbf/lbm/sec  */
         // turbine engine core
         if(turbo.entype <= 2) {
                         /* airflow determined at choked nozzle exit */
-            turbo.pt[8] = turbo.epr * turbo.prat[2] * turbo.pt[0];
+            turbo.pt[8] = turbo.epr * turbo.pressureRatio[2] * turbo.pt[0];
             turbo.eair = AeroUtil.getAirflowPerArea(1.0, game) * 144. * turbo.a8 * turbo.pt[8] / 14.7 /
                          Math.sqrt(turbo.etr * turbo.tt[0] / 518.);
             turbo.m2 = AeroUtil.getMach(0, turbo.eair * Math.sqrt(turbo.tt[0] / 518.) /
-                                           (turbo.prat[2] * turbo.pt[0] / 14.7 * turbo.acore * 144.), turbo.gama);
+                                           (turbo.pressureRatio[2] * turbo.pt[0] / 14.7 * turbo.acore * 144.), turbo.gama);
             turbo.npr = turbo.pt[8] / turbo.ps0;
-            turbo.uexit = Math.sqrt(2.0 * turbo.rgas / fac1 * turbo.etr * turbo.tt[0] * turbo.eta[7] *
+            turbo.uexit = Math.sqrt(2.0 * turbo.rgas / fac1 * turbo.etr * turbo.tt[0] * turbo.efficiency[7] *
                                     (1.0 - Math.pow(1.0 / turbo.npr, fac1)));
             if(turbo.npr <= 1.893) {
                 turbo.pexit = turbo.ps0;
@@ -1090,10 +1090,10 @@ class Solver {
         if(turbo.entype == 2) {
             fac1 = (turbo.gama - 1.0) / turbo.gama;
             turbo.snpr = turbo.pt[13] / turbo.ps0;
-            turbo.ues = Math.sqrt(2.0 * turbo.rgas / fac1 * turbo.tt[13] * turbo.eta[7] *
+            turbo.ues = Math.sqrt(2.0 * turbo.rgas / fac1 * turbo.tt[13] * turbo.efficiency[7] *
                                   (1.0 - Math.pow(1.0 / turbo.snpr, fac1)));
             turbo.m2 = AeroUtil.getMach(0, turbo.eair * (1.0 + turbo.byprat) * Math.sqrt(turbo.tt[0] / 518.) /
-                                           (turbo.prat[2] * turbo.pt[0] / 14.7 * turbo.afan * 144.), turbo.gama);
+                                           (turbo.pressureRatio[2] * turbo.pt[0] / 14.7 * turbo.afan * 144.), turbo.gama);
             if(turbo.snpr <= 1.893) {
                 turbo.pfexit = turbo.ps0;
             } else {
@@ -1105,15 +1105,15 @@ class Solver {
         // ramjets
         if(turbo.entype == 3) {
                        /* airflow determined at nozzle throat */
-            turbo.eair = AeroUtil.getAirflowPerArea(1.0, game) * 144.0 * turbo.a2 * turbo.arthd * turbo.epr * turbo.prat[2] * turbo.pt[0] / 14.7 /
+            turbo.eair = AeroUtil.getAirflowPerArea(1.0, game) * 144.0 * turbo.a2 * turbo.arthd * turbo.epr * turbo.pressureRatio[2] * turbo.pt[0] / 14.7 /
                          Math.sqrt(turbo.etr * turbo.tt[0] / 518.);
             turbo.m2 = AeroUtil.getMach(0, turbo.eair * Math.sqrt(turbo.tt[0] / 518.) /
-                                           (turbo.prat[2] * turbo.pt[0] / 14.7 * turbo.acore * 144.), turbo.gama);
+                                           (turbo.pressureRatio[2] * turbo.pt[0] / 14.7 * turbo.acore * 144.), turbo.gama);
             turbo.mexit = AeroUtil.getMach(2, (AeroUtil.getAirflowPerArea(1.0, game) / turbo.arexitd), game);
-            turbo.uexit = turbo.mexit * Math.sqrt(game * turbo.rgas * turbo.etr * turbo.tt[0] * turbo.eta[7] /
+            turbo.uexit = turbo.mexit * Math.sqrt(game * turbo.rgas * turbo.etr * turbo.tt[0] * turbo.efficiency[7] /
                                                   (1.0 + .5 * (game - 1.0) * turbo.mexit * turbo.mexit));
             turbo.pexit = Math.pow((1.0 + .5 * (game - 1.0) * turbo.mexit * turbo.mexit), (-game / (game - 1.0)))
-                          * turbo.epr * turbo.prat[2] * turbo.pt[0];
+                          * turbo.epr * turbo.pressureRatio[2] * turbo.pt[0];
             turbo.fgros = (turbo.uexit + (turbo.pexit - turbo.ps0) * turbo.arexitd * turbo.arthd * turbo.a2 / turbo.eair / 144.) / turbo.g0;
         }
 
@@ -1124,7 +1124,7 @@ class Solver {
         }
         // mass flow ratio
         if(turbo.fsmach > .01) {
-            turbo.mfr = AeroUtil.getAirflowPerArea(turbo.m2, turbo.gama) * turbo.prat[2] / AeroUtil.getAirflowPerArea(turbo.fsmach, turbo.gama);
+            turbo.mfr = AeroUtil.getAirflowPerArea(turbo.m2, turbo.gama) * turbo.pressureRatio[2] / AeroUtil.getAirflowPerArea(turbo.fsmach, turbo.gama);
         } else {
             turbo.mfr = 5.;
         }
@@ -1142,8 +1142,8 @@ class Solver {
         turbo.drlb = turbo.dram * turbo.eair;
 
         //fuel-air ratio and sfc
-        turbo.fa = (turbo.trat[4] - 1.0) / (turbo.eta[4] * turbo.fhv / (cp3 * turbo.tt[3]) - turbo.trat[4]) +
-                   (turbo.trat[7] - 1.0) / (turbo.fhv / (cpe * turbo.tt[15]) - turbo.trat[7]);
+        turbo.fa = (turbo.trat[4] - 1.0) / (turbo.efficiency[4] * turbo.fuelHeatValue / (cp3 * turbo.tt[3]) - turbo.trat[4]) +
+                   (turbo.trat[7] - 1.0) / (turbo.fuelHeatValue / (cpe * turbo.tt[15]) - turbo.trat[7]);
         if(turbo.fnet > 0.0) {
             turbo.sfc = 3600. * turbo.fa / turbo.fnet;
             turbo.flflo = turbo.sfc * turbo.fnlb;
@@ -1157,30 +1157,31 @@ class Solver {
         turbo.tt[8] = turbo.tt[7];
         turbo.t8 = turbo.etr * turbo.tt[0] - turbo.uexit * turbo.uexit / (2.0 * turbo.rgas * game / (game - 1.0));
         turbo.trat[8] = 1.0;
-        p8p5 = turbo.ps0 / (turbo.epr * turbo.prat[2] * turbo.pt[0]);
+        p8p5 = turbo.ps0 / (turbo.epr * turbo.pressureRatio[2] * turbo.pt[0]);
         turbo.cp[8] = AeroUtil.getCp(turbo.tt[8], turbo.gamopt);
         turbo.pt[8] = turbo.pt[7];
-        turbo.prat[8] = turbo.pt[8] / turbo.pt[7];
+        turbo.pressureRatio[8] = turbo.pt[8] / turbo.pt[7];
     /* thermal effeciency */
         if(turbo.entype == 2) {
             turbo.eteng = (turbo.a0 * turbo.a0 * ((1.0 + turbo.fa) * (turbo.uexit * turbo.uexit / (turbo.a0 * turbo.a0))
                                                   + turbo.byprat * (turbo.ues * turbo.ues / (turbo.a0 * turbo.a0))
-                                                  - (1.0 + turbo.byprat) * turbo.fsmach * turbo.fsmach)) / (2.0 * turbo.g0 * turbo.fa * turbo.fhv * 778.16);
+                                                  - (1.0 + turbo.byprat) * turbo.fsmach * turbo.fsmach)) / (2.0 * turbo.g0 * turbo.fa * turbo.fuelHeatValue
+                                                                                                            * 778.16);
         } else {
             turbo.eteng = (turbo.a0 * turbo.a0 * ((1.0 + turbo.fa) * (turbo.uexit * turbo.uexit / (turbo.a0 * turbo.a0))
-                                                  - turbo.fsmach * turbo.fsmach)) / (2.0 * turbo.g0 * turbo.fa * turbo.fhv * 778.16);
+                                                  - turbo.fsmach * turbo.fsmach)) / (2.0 * turbo.g0 * turbo.fa * turbo.fuelHeatValue * 778.16);
         }
 
         turbo.s[0] = turbo.s[1] = .2;
         turbo.v[0] = turbo.v[1] = rg1 * turbo.ts0 / (turbo.ps0 * 144.);
         for (index = 2; index <= 7; ++index) {     /* compute entropy */
             turbo.s[index] = turbo.s[index - 1] + turbo.cpair * Math.log(turbo.trat[index])
-                             - rg * Math.log(turbo.prat[index]);
+                             - rg * Math.log(turbo.pressureRatio[index]);
             turbo.v[index] = rg1 * turbo.tt[index] / (turbo.pt[index] * 144.);
         }
-        turbo.s[13] = turbo.s[2] + turbo.cpair * Math.log(turbo.trat[13]) - rg * Math.log(turbo.prat[13]);
+        turbo.s[13] = turbo.s[2] + turbo.cpair * Math.log(turbo.trat[13]) - rg * Math.log(turbo.pressureRatio[13]);
         turbo.v[13] = rg1 * turbo.tt[13] / (turbo.pt[13] * 144.);
-        turbo.s[15] = turbo.s[5] + turbo.cpair * Math.log(turbo.trat[15]) - rg * Math.log(turbo.prat[15]);
+        turbo.s[15] = turbo.s[5] + turbo.cpair * Math.log(turbo.trat[15]) - rg * Math.log(turbo.pressureRatio[15]);
         turbo.v[15] = rg1 * turbo.tt[15] / (turbo.pt[15] * 144.);
         turbo.s[8] = turbo.s[7] + turbo.cpair * Math.log(turbo.t8 / (turbo.etr * turbo.tt[0])) - rg * Math.log(p8p5);
         turbo.v[8] = rg1 * turbo.t8 / (turbo.ps0 * 144.);
@@ -1281,12 +1282,12 @@ class Solver {
             }
             if(turbo.a8rat > turbo.a8max) {
                 turbo.a8rat = turbo.a8max;
-                if(turbo.lunits <= 1) {
+                if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                     turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", turbo.a8rat));
                     i1 = (int)(((turbo.a8rat - turbo.a8min) / (turbo.a8max - turbo.a8min)) * 1000.);
                     turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
                 }
-                if(turbo.lunits == 2) {
+                if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                     turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(String.format("%.3f",
                                                                                                               100. * (turbo.a8rat - turbo.a8ref) / turbo.a8ref)));
                     i1 = (int)((((100. * (turbo.a8rat - turbo.a8ref) / turbo.a8ref) + 10.0) / 20.0) * 1000.);
@@ -1301,11 +1302,11 @@ class Solver {
                 turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
             }
             turbo.a8 = turbo.a8rat * turbo.acore;
-            turbo.a8d = turbo.a8 * turbo.prat[7] / Math.sqrt(turbo.trat[7]);
+            turbo.a8d = turbo.a8 * turbo.pressureRatio[7] / Math.sqrt(turbo.trat[7]);
          /* assumes choked a8 and a4 */
-            turbo.a4 = turbo.a8 * turbo.prat[5] * turbo.prat[15] * turbo.prat[7] /
+            turbo.a4 = turbo.a8 * turbo.pressureRatio[5] * turbo.pressureRatio[15] * turbo.pressureRatio[7] /
                        Math.sqrt(turbo.trat[7] * turbo.trat[5] * turbo.trat[15]);
-            turbo.a4p = turbo.a8 * turbo.prat[15] * turbo.prat[7] / Math.sqrt(turbo.trat[7] * turbo.trat[15]);
+            turbo.a4p = turbo.a8 * turbo.pressureRatio[15] * turbo.pressureRatio[7] / Math.sqrt(turbo.trat[7] * turbo.trat[15]);
             turbo.ac = .9 * turbo.a2;
         }
 
@@ -1313,7 +1314,7 @@ class Solver {
             game = AeroUtil.getGamma(turbo.tt[4], turbo.gamopt);
             if(turbo.athsched == 0) {   // scheduled throat area
                 turbo.arthd = AeroUtil.getAirflowPerArea(turbo.fsmach, turbo.gama) * Math.sqrt(turbo.etr) /
-                              (AeroUtil.getAirflowPerArea(1.0, game) * turbo.epr * turbo.prat[2]);
+                              (AeroUtil.getAirflowPerArea(1.0, game) * turbo.epr * turbo.pressureRatio[2]);
                 if(turbo.arthd < turbo.arthmn) {
                     turbo.arthd = turbo.arthmn;
                 }
@@ -1326,7 +1327,7 @@ class Solver {
             }
             if(turbo.aexsched == 0) {   // scheduled exit area
                 turbo.mexit = Math.sqrt((2.0 / (game - 1.0)) * ((1.0 + .5 * (turbo.gama - 1.0) * turbo.fsmach * turbo.fsmach)
-                                                                * Math.pow((turbo.epr * turbo.prat[2]), (game - 1.0) / game) - 1.0));
+                                                                * Math.pow((turbo.epr * turbo.pressureRatio[2]), (game - 1.0) / game) - 1.0));
                 turbo.arexitd = AeroUtil.getAirflowPerArea(1.0, game) / AeroUtil.getAirflowPerArea(turbo.mexit, game);
                 if(turbo.arexitd < turbo.arexmn) {
                     turbo.arexitd = turbo.arexmn;

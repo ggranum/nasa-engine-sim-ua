@@ -150,31 +150,31 @@ public class OutputPanel extends Panel {
             int i1;
 
             outfor = " lbs";
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 outfor = " N";
             }
             outful = " lb/hr";
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 outful = " kg/hr";
             }
             outair = " lb/s";
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 outair = " kg/s";
             }
             outvel = " fps";
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 outvel = " mps";
             }
             outprs = " psf";
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 outprs = " Pa";
             }
             outpri = " psi";
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 outpri = " kPa";
             }
             outtmp = " R";
-            if(turbo.lunits == 1) {
+            if(turbo.units == Turbo.Unit.METRIC) {
                 outtmp = " K";
             }
             outtim = " sec";
@@ -191,7 +191,7 @@ public class OutputPanel extends Panel {
             }
             turbo.inputPanel.flightPanel.flightLeftPanel.o2.setText(String.format("%.3f", turbo.psout * turbo.pconv));
             turbo.inputPanel.flightPanel.flightLeftPanel.o3.setText(String.format("%.3f", turbo.tsout * turbo.tconv - turbo.tref));
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 if(turbo.etr >= 1.0) {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setForeground(Color.yellow);
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setText(String.format("%.0f", turbo.fnlb * turbo.fconv) + outfor);
@@ -251,7 +251,7 @@ public class OutputPanel extends Panel {
                     o24.setText("-");
                 }
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 if(turbo.etr >= 1.0) {
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setForeground(Color.green);
                     turbo.flightConditionsPanel.flightConditionsLowerPanel.o4.setText(String.valueOf(String.format("%.3f", 100. * (turbo.fnlb - turbo.fnref)
@@ -501,10 +501,10 @@ public class OutputPanel extends Panel {
                 if(x > 211 && x < 290) {    //  generate plotPanel
                     turbo.plttyp = 7;
                     turbo.layin.show(turbo.inputPanel, "ninth");
-                    turbo.lunits = 0;
+                    turbo.units = Turbo.Unit.ENGLISH;
                     turbo.varflag = 0;
                     turbo.flightConditionsPanel.setUnits();
-                    turbo.flightConditionsPanel.flightConditionsUpperPanel.chcUnits.select(turbo.lunits);
+                    turbo.flightConditionsPanel.flightConditionsUpperPanel.chcUnits.select(turbo.units.value);
                     turbo.inputPanel.plotPanel.plotLeftPanel.ordch.select(0);
                     turbo.inputPanel.plotPanel.plotLeftPanel.absch.select(0);
                 }
@@ -525,7 +525,6 @@ public class OutputPanel extends Panel {
             }
             turbo.solve.compute();
             outputPlotCanvas.repaint();
-            return;
         }
 
         public void update(Graphics g) {

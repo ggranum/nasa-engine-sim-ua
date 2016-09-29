@@ -48,7 +48,7 @@ public class TurbinePanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(6, 1, 10, 5));
 
-            i1 = (int)(((turbo.eta[5] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            i1 = (int)(((turbo.efficiency[5] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
 
@@ -175,11 +175,11 @@ public class TurbinePanel extends Panel {
 
             i1 = s1.getValue();
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn1 = turbo.etmin;
                 turbo.vmx1 = turbo.etmax;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmx1 = 100.0 - 100.0 * turbo.et5ref;
                 turbo.vmn1 = turbo.vmx1 - 20.0;
             }
@@ -188,11 +188,11 @@ public class TurbinePanel extends Panel {
 
             fl1 = (float)v1;
 
-            if(turbo.lunits <= 1) {
-                turbo.eta[5] = v1;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.efficiency[5] = v1;
             }
-            if(turbo.lunits == 2) {
-                turbo.eta[5] = turbo.et5ref + v1 / 100.;
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
+                turbo.efficiency[5] = turbo.et5ref + v1 / 100.;
             }
 
             turbineLeftPanel.getF1().setText(String.valueOf(fl1));
@@ -223,7 +223,7 @@ public class TurbinePanel extends Panel {
             getF3().setForeground(Color.yellow);
 
             l1 = new Label("Efficiency", Label.CENTER);
-            setF1(new TextField(String.valueOf((float)turbo.eta[5]), 5));
+            setF1(new TextField(String.valueOf((float)turbo.efficiency[5]), 5));
             lmat = new Label("T lim-R", Label.CENTER);
             lmat.setForeground(Color.blue);
             lm2 = new Label("Materials:", Label.CENTER);
@@ -297,22 +297,22 @@ public class TurbinePanel extends Panel {
                 turbo.tturbin = v8 / turbo.tconv;
             }
             // turbine efficiency
-            if(turbo.lunits <= 1) {
-                turbo.eta[5] = v1;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.efficiency[5] = v1;
                 turbo.vmn1 = turbo.etmin;
                 turbo.vmx1 = turbo.etmax;
                 if(v1 < turbo.vmn1) {
-                    turbo.eta[5] = v1 = turbo.vmn1;
+                    turbo.efficiency[5] = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
                 if(v1 > turbo.vmx1) {
-                    turbo.eta[5] = v1 = turbo.vmx1;
+                    turbo.efficiency[5] = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 // Turbine efficiency
                 turbo.vmx1 = 100.0 - 100.0 * turbo.et5ref;
                 turbo.vmn1 = turbo.vmx1 - 20.0;
@@ -326,7 +326,7 @@ public class TurbinePanel extends Panel {
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                turbo.eta[5] = turbo.et5ref + v1 / 100.;
+                turbo.efficiency[5] = turbo.et5ref + v1 / 100.;
             }
 
             i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);

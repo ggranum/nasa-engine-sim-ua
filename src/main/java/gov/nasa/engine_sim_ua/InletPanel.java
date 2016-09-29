@@ -51,7 +51,7 @@ public class InletPanel extends Panel {
             inltch.addItem("Input Recovery");
             inltch.select(0);
 
-            i1 = (int)(((turbo.eta[2] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            i1 = (int)(((turbo.efficiency[2] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
 
@@ -167,11 +167,11 @@ public class InletPanel extends Panel {
 
             i1 = s1.getValue();
 
-            if(turbo.lunits <= 1) {
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
                 turbo.vmn1 = turbo.etmin;
                 turbo.vmx1 = turbo.etmax;
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmx1 = 100.0 - 100.0 * turbo.et2ref;
                 turbo.vmn1 = turbo.vmx1 - 20.0;
             }
@@ -179,11 +179,11 @@ public class InletPanel extends Panel {
             v1 = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
 
             // inletPanel design
-            if(turbo.lunits <= 1) {
-                turbo.eta[2] = v1;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.efficiency[2] = v1;
             }
-            if(turbo.lunits == 2) {
-                turbo.eta[2] = turbo.et2ref + v1 / 100.;
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
+                turbo.efficiency[2] = turbo.et2ref + v1 / 100.;
             }
 
             inletLeftPanel.getF1().setText(String.format("%.3f", v1));
@@ -209,7 +209,7 @@ public class InletPanel extends Panel {
             setLayout(new GridLayout(6, 2, 5, 5));
 
             l1 = new Label("Pres Recov.", Label.CENTER);
-            setF1(new TextField(String.valueOf((float)turbo.eta[2]), 5));
+            setF1(new TextField(String.valueOf((float)turbo.efficiency[2]), 5));
             getF1().setBackground(Color.black);
             getF1().setForeground(Color.yellow);
             lmat = new Label("T lim -R", Label.CENTER);
@@ -277,22 +277,22 @@ public class InletPanel extends Panel {
                 turbo.tinlt = v5 / turbo.tconv;
             }
             // InletPanel pressure ratio
-            if(turbo.lunits <= 1) {
-                turbo.eta[2] = v1;
+            if(turbo.units == Turbo.Unit.ENGLISH || turbo.units == Turbo.Unit.METRIC) {
+                turbo.efficiency[2] = v1;
                 turbo.vmn1 = turbo.etmin;
                 turbo.vmx1 = turbo.etmax;
                 if(v1 < turbo.vmn1) {
-                    turbo.eta[2] = v1 = turbo.vmn1;
+                    turbo.efficiency[2] = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
                 if(v1 > turbo.vmx1) {
-                    turbo.eta[2] = v1 = turbo.vmx1;
+                    turbo.efficiency[2] = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
             }
-            if(turbo.lunits == 2) {
+            if(turbo.units == Turbo.Unit.PERCENT_CHANGE) {
                 turbo.vmx1 = 100.0 - 100.0 * turbo.et2ref;
                 turbo.vmn1 = turbo.vmx1 - 20.0;
                 if(v1 < turbo.vmn1) {
@@ -305,7 +305,7 @@ public class InletPanel extends Panel {
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                turbo.eta[2] = turbo.et2ref + v1 / 100.;
+                turbo.efficiency[2] = turbo.et2ref + v1 / 100.;
             }
 
             i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
