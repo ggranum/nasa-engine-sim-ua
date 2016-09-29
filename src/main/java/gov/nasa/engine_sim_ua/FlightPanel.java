@@ -119,8 +119,6 @@ public class FlightPanel extends Panel {
             double v6;
             double v7;
             float fl1;
-            float fl2;
-            float fl3;
 
             i1 = s1.getValue();
             i2 = s2.getValue();

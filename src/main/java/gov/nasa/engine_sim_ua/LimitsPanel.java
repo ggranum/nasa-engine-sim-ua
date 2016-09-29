@@ -19,11 +19,9 @@ public class LimitsPanel extends Panel {
     TextField f5;
     TextField f6;
     TextField f7;
-    TextField f8;
     TextField f9;
     TextField f10;
     TextField f11;
-    TextField f12;
     Label l1;
     Label l2;
     Label l3;
@@ -31,11 +29,9 @@ public class LimitsPanel extends Panel {
     Label l5;
     Label l6;
     Label l7;
-    Label l8;
     Label l9;
     Label l10;
     Label l11;
-    Label l12;
     Button submit;
 
     LimitsPanel(Turbo turbo) {
@@ -104,14 +100,14 @@ public class LimitsPanel extends Panel {
 
     public boolean action(Event evt, Object arg) {
         if(evt.target instanceof Button) {
-            this.handleText(evt);
+            this.handleText();
             return true;
         } else {
             return false;
         }
     }
 
-    public void handleText(Event evt) {
+    public void handleText() {
         Double V1;
         Double V2;
         Double V3;
@@ -120,10 +116,6 @@ public class LimitsPanel extends Panel {
         double v2;
         double v3;
         double v4;
-        int i1;
-        int i2;
-        int i3;
-        float fl1;
 
         V1 = Double.valueOf(f1.getText());
         v1 = V1.doubleValue();

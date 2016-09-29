@@ -131,7 +131,7 @@ FilePrintPanel(Turbo turbo) {
 
 public boolean action(Event evt, Object arg) {
   if(evt.target instanceof Button) {
-    this.handleRefs(evt,arg) ;
+    this.handleRefs(arg) ;
     return true ;
   }
   else {
@@ -139,7 +139,7 @@ public boolean action(Event evt, Object arg) {
   }
 }
 
-public void handleRefs(Event evt, Object arg) {
+public void handleRefs(Object arg) {
   String filnam;
     String fillab ;
     String label = (String)arg ;

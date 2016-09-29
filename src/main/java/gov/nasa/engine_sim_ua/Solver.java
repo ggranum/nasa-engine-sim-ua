@@ -54,7 +54,6 @@ class Solver {
     public void setDefaults() {
         int i;
 
-        turbo.move = 0;
         turbo.inptype = 0;
         turbo.siztype = 0;
         turbo.lunits = 0;
@@ -697,7 +696,6 @@ class Solver {
         double deltf;
         double deltlt;
         int itcount;
-        int index;
         float fl1;
         int i1;
                                      /*   inletPanel recovery  */

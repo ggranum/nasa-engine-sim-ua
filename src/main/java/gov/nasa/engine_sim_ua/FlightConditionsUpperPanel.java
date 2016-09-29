@@ -20,7 +20,6 @@ class FlightConditionsUpperPanel extends Panel {
     Choice chcMode;
     Choice chcOutput;
     Choice chcUnits;
-    Label l1;
 
     FlightConditionsUpperPanel(FlightConditionsPanel flightConditionsPanel, Turbo target) {
         this.flightConditionsPanel = flightConditionsPanel;

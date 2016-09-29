@@ -17,15 +17,17 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
     Point locate;
     Point anchor;
     Thread runner;
-    Image displimg;
     double r0;
     double x0;
     double xcowl;
     double rcowl;
     double liprad;  /* cowl  and free stream */
+    @SuppressWarnings("unused")
     double capa;
+    @SuppressWarnings("unused")
     double capb;
     double capc;           /* capture tube coefficients */
+    @SuppressWarnings("unused")
     double cepa;
     double cepb;
     double cepc;
@@ -38,6 +40,7 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
     double sblade; /* compressor blades */
     double xburn;
     double rburn;
+    @SuppressWarnings("unused")
     double tsig;
     double radius;   /* combustor */
     double xturb;
@@ -90,10 +93,6 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         handle(event.getX(), event.getY());
 
         handleb(event.getX(), event.getY());
-    }
-
-    public Insets getInsets() {
-        return new Insets(0, 10, 0, 10);
     }
 
     public void start() {
@@ -369,9 +368,6 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
     }
 
     public void getDrawGeo() { /* get the drawing geometry */
-        double delx;
-        double delt;
-        int index;
         int i;
         int j;
 
@@ -531,23 +527,14 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
     public void paint(Graphics g) {
         int i;
         int j;
-        int k;
         int bcol;
         int dcol;
         int exes[] = new int[8];
         int whys[] = new int[8];
         int xlabel;
         int ylabel;
-        int ind;
         double xl;
         double yl;
-        double offx;
-        double scalex;
-        double offy;
-        double scaley;
-        double waste;
-        double incy;
-        double incx;
 
         bcol = 0;
         dcol = 7;

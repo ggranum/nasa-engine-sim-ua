@@ -555,7 +555,6 @@ class FlightConditionsPanel extends Panel {
         double altmts;
         double altmrs;
         double fhvs;
-        int i1;
 
         alts = Turbo.altd / Turbo.lconv1;
         alm1s = Turbo.altmin / Turbo.lconv1;

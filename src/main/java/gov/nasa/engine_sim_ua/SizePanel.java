@@ -92,10 +92,8 @@ public class SizePanel extends Panel {
 
         public void handleBar() {     // engine sizePanel
             int i1;
-            int i3;
             Double V2;
             Double V3;
-            double v1;
             double v2;
             double v3;
             float fl1;
@@ -194,7 +192,6 @@ public class SizePanel extends Panel {
         Label l1;
         Label l2;
         Label l3;
-        Label lab;
 
         SizeLeftPanel(Turbo target) {
 
@@ -244,7 +241,6 @@ public class SizePanel extends Panel {
             double v2;
             double v3;
             int i1;
-            int i3;
             float fl1;
             float fl2;
             float fl3;

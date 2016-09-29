@@ -241,7 +241,6 @@ public class NozzlePanel extends Panel {
         private TextField tn;
         Label l1;
         Label l2;
-        Label l3;
         Label l5;
         Label lmat;
         Label lm2;

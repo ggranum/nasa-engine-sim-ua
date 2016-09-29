@@ -49,7 +49,6 @@ import java.io.PrintStream;
  */
 public class Turbo extends Applet {
 
-    final double convdr = 3.14515926 / 180.;
 
     int abflag;
     int entype;
@@ -58,10 +57,8 @@ public class Turbo extends Applet {
     int varflag;
     int pt2flag;
     int wtflag ;
-    int abkeep;
     int pltkeep;
     int iprint;
-    int move ;
     int numeng;
     int gamopt;
     int arsched;
@@ -111,7 +108,6 @@ public class Turbo extends Applet {
     static double eair;
     static double uexit;
     static double ues;
-    static double fnd;
     static double fnlb;
     static double fglb;
     static double drlb;
@@ -249,7 +245,6 @@ public class Turbo extends Applet {
     static double xtrans;
     static double ytrans;
     static double factor;
-    static double gains;
     static double scale ;
     static double xtranp;
     static double ytranp;
@@ -320,7 +315,6 @@ public class Turbo extends Applet {
     static double u0mxsav;
     static double u0sav;
     static double altsav ;
-    static double trsav;
     static double artsav;
     static double arexsav ;
     // save materials info
@@ -353,7 +347,6 @@ public class Turbo extends Applet {
     int lines;
     int nord;
     int nabs;
-    int param;
     int npt;
     int ntikx;
     int ntiky ;

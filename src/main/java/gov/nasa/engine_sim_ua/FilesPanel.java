@@ -68,14 +68,14 @@ public class FilesPanel extends Panel {  // save file
 
     public boolean action(Event evt, Object arg) {
         if(evt.target instanceof Button) {
-            this.handleRefs(evt, arg);
+            this.handleRefs(arg);
             return true;
         } else {
             return false;
         }
     }
 
-    public void handleRefs(Event evt, Object arg) {
+    public void handleRefs(Object arg) {
         String filnam;
         String label = (String)arg;
 

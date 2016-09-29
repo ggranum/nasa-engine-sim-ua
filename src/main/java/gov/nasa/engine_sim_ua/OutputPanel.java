@@ -457,10 +457,6 @@ public class OutputPanel extends Panel {
             });
         }
 
-        public Insets getInsets() {
-            return new Insets(0, 10, 0, 10);
-        }
-
         public void onMouseDrag(MouseEvent event) {
             handle(event.getX(), event.getY());
         }
@@ -650,8 +646,6 @@ public class OutputPanel extends Panel {
             //          int iwidth = partimg.getWidth(this) ;
             //         int iheight = partimg.getHeight(this) ;
             int i;
-            int j;
-            int k;
             int exes[] = new int[8];
             int whys[] = new int[8];
             int xlabel;
@@ -663,7 +657,6 @@ public class OutputPanel extends Panel {
             double scalex;
             double offy;
             double scaley;
-            double waste;
             double incy;
             double incx;
 

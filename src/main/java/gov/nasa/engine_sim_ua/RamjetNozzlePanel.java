@@ -252,9 +252,7 @@ public class RamjetNozzlePanel extends Panel {
         private TextField f4;
         private TextField dn;
         private TextField tn;
-        Label l1;
         Label l2;
-        Label l3;
         Label l5;
         Label lmat;
         Label lm2;
@@ -450,13 +448,6 @@ public class RamjetNozzlePanel extends Panel {
             turbo.solve.comPute();
         }  // end handle
 
-        public TextField getF1() {
-            return f1;
-        }
-
-        public void setF1(TextField f1) {
-            this.f1 = f1;
-        }
 
         public TextField getF2() {
             return f2;

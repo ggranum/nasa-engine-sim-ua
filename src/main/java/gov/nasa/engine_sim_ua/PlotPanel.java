@@ -276,7 +276,7 @@ public class PlotPanel extends Panel {
                 return true;
             }
             if(evt.id == Event.ACTION_EVENT) {
-                this.handleText(evt);
+                this.handleText();
                 return true;
             } else {
                 return false;
@@ -440,7 +440,7 @@ public class PlotPanel extends Panel {
             turbo.solve.comPute();
         }
 
-        public void handleText(Event evt) {
+        public void handleText() {
             Double V1;
             double v1;
             int i1;
