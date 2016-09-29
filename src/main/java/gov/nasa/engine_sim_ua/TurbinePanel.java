@@ -133,9 +133,9 @@ public class TurbinePanel extends Panel {
             switch (Turbo.mturbin) {
                 case 0: {
                     V1 = Double.valueOf(turbineLeftPanel.getDt().getText());
-                    v1 = V1.doubleValue();
+                    v1 = V1;
                     V2 = Double.valueOf(turbineLeftPanel.getTt().getText());
-                    v2 = V2.doubleValue();
+                    v2 = V2;
                     Turbo.dturbin = v1 / Turbo.dconv;
                     Turbo.tturbin = v2 / Turbo.tconv;
                     break;
@@ -271,14 +271,14 @@ public class TurbinePanel extends Panel {
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             V4 = Double.valueOf(getDt().getText());
-            v4 = V4.doubleValue();
+            v4 = V4;
             V8 = Double.valueOf(getTt().getText());
-            v8 = V8.doubleValue();
+            v8 = V8;
 
             I3 = Integer.valueOf(getF3().getText());
-            i3 = I3.intValue();
+            i3 = I3;
             // number of stages
             if(Turbo.ntflag == 1 && i3 >= 1) {
                 Turbo.nturb = i3;

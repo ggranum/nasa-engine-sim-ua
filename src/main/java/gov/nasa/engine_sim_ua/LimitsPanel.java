@@ -118,13 +118,13 @@ public class LimitsPanel extends Panel {
         double v4;
 
         V1 = Double.valueOf(f1.getText());
-        v1 = V1.doubleValue();
+        v1 = V1;
         V2 = Double.valueOf(f2.getText());
-        v2 = V2.doubleValue();
+        v2 = V2;
         V3 = Double.valueOf(f3.getText());
-        v3 = V3.doubleValue();
+        v3 = V3;
         V4 = Double.valueOf(f4.getText());
-        v4 = V4.doubleValue();
+        v4 = V4;
 
         Turbo.u0max = v1;
         Turbo.altmax = v2;
@@ -180,11 +180,11 @@ public class LimitsPanel extends Panel {
         }
 
         V1 = Double.valueOf(f5.getText());
-        v1 = V1.doubleValue();
+        v1 = V1;
         V2 = Double.valueOf(f6.getText());
-        v2 = V2.doubleValue();
+        v2 = V2;
         V3 = Double.valueOf(f7.getText());
-        v3 = V3.doubleValue();
+        v3 = V3;
 
         Turbo.cprmax = v1;
         Turbo.t4max = v2;
@@ -214,11 +214,11 @@ public class LimitsPanel extends Panel {
         }
 
         V1 = Double.valueOf(f9.getText());
-        v1 = V1.doubleValue();
+        v1 = V1;
         V2 = Double.valueOf(f10.getText());
-        v2 = V2.doubleValue();
+        v2 = V2;
         V3 = Double.valueOf(f11.getText());
-        v3 = V3.doubleValue();
+        v3 = V3;
 
         Turbo.fprmax = v1;
         Turbo.bypmax = v2;

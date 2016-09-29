@@ -126,9 +126,9 @@ public class FanPanel extends Panel {
             switch (Turbo.mfan) {
                 case 0: {
                     V1 = Double.valueOf(leftPanel.getDf().getText());
-                    v1 = V1.doubleValue();
+                    v1 = V1;
                     V2 = Double.valueOf(leftPanel.getTf().getText());
-                    v2 = V2.doubleValue();
+                    v2 = V2;
                     Turbo.dfan = v1 / Turbo.dconv;
                     Turbo.tfan = v2 / Turbo.tconv;
                     break;
@@ -328,15 +328,15 @@ public class FanPanel extends Panel {
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             V2 = Double.valueOf(getF2().getText());
-            v2 = V2.doubleValue();
+            v2 = V2;
             V3 = Double.valueOf(getF3().getText());
-            v3 = V3.doubleValue();
+            v3 = V3;
             V4 = Double.valueOf(getDf().getText());
-            v4 = V4.doubleValue();
+            v4 = V4;
             V5 = Double.valueOf(getTf().getText());
-            v5 = V5.doubleValue();
+            v5 = V5;
 
             if(turbo.lunits <= 1) {
                 // FanPanel pressure ratio

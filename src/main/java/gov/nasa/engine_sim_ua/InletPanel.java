@@ -130,9 +130,9 @@ public class InletPanel extends Panel {
             switch (Turbo.minlt) {
                 case 0: {
                     V1 = Double.valueOf(inletLeftPanel.getDi().getText());
-                    v1 = V1.doubleValue();
+                    v1 = V1;
                     V2 = Double.valueOf(inletLeftPanel.getTi().getText());
-                    v2 = V2.doubleValue();
+                    v2 = V2;
                     Turbo.dinlt = v1 / Turbo.dconv;
                     Turbo.tinlt = v2 / Turbo.tconv;
                     break;
@@ -257,11 +257,11 @@ public class InletPanel extends Panel {
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             V3 = Double.valueOf(getDi().getText());
-            v3 = V3.doubleValue();
+            v3 = V3;
             V5 = Double.valueOf(getTi().getText());
-            v5 = V5.doubleValue();
+            v5 = V5;
 
             // materials
             if(Turbo.minlt == 0) {

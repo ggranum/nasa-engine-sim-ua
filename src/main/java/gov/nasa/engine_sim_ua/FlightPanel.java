@@ -181,9 +181,9 @@ public class FlightPanel extends Panel {
                 s2.setValue(i2);
 
                 V6 = Double.valueOf(flightLeftPanel.o2.getText());
-                v6 = V6.doubleValue();
+                v6 = V6;
                 V7 = Double.valueOf(flightLeftPanel.o3.getText());
-                v7 = V7.doubleValue();
+                v7 = V7;
                 Turbo.ps0 = v6;
                 if(v6 <= 0.0) {
                     Turbo.ps0 = v6 = 0.0;
@@ -340,19 +340,19 @@ public class FlightPanel extends Panel {
             turbo.gamopt = inpch.getSelectedIndex();
 
             V1 = Double.valueOf(f1.getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             V2 = Double.valueOf(f2.getText());
-            v2 = V2.doubleValue();
+            v2 = V2;
             V3 = Double.valueOf(f3.getText());
-            v3 = V3.doubleValue();
+            v3 = V3;
             V4 = Double.valueOf(f4.getText());
-            v4 = V4.doubleValue();
+            v4 = V4;
             V5 = Double.valueOf(o1.getText());
-            v5 = V5.doubleValue();
+            v5 = V5;
             V6 = Double.valueOf(o2.getText());
-            v6 = V6.doubleValue();
+            v6 = V6;
             V7 = Double.valueOf(o3.getText());
-            v7 = V7.doubleValue();
+            v7 = V7;
 
             if(turbo.lunits <= 1) {
                 // Airspeed

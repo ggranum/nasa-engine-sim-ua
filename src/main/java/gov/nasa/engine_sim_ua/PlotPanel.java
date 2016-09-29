@@ -447,7 +447,7 @@ public class PlotPanel extends Panel {
             float fl1;
 
             V1 = Double.valueOf(fplt.getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             fl1 = (float)v1;
             if(turbo.nabs == 3) {  //  speed
                 Turbo.u0d = v1;

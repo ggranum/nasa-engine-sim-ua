@@ -139,9 +139,9 @@ public class NozzlePanel extends Panel {
             switch (Turbo.mnozl) {
                 case 0: {
                     V1 = Double.valueOf(nozzleLeftPanel.getDn().getText());
-                    v1 = V1.doubleValue();
+                    v1 = V1;
                     V2 = Double.valueOf(nozzleLeftPanel.getTn().getText());
-                    v2 = V2.doubleValue();
+                    v2 = V2;
                     Turbo.dnozl = v1 / Turbo.dconv;
                     Turbo.tnozl = v2 / Turbo.tconv;
                     break;
@@ -312,15 +312,15 @@ public class NozzlePanel extends Panel {
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             V2 = Double.valueOf(getF2().getText());
-            v2 = V2.doubleValue();
+            v2 = V2;
             V3 = Double.valueOf(getF3().getText());
-            v3 = V3.doubleValue();
+            v3 = V3;
             V7 = Double.valueOf(getDn().getText());
-            v7 = V7.doubleValue();
+            v7 = V7;
             V8 = Double.valueOf(getTn().getText());
-            v8 = V8.doubleValue();
+            v8 = V8;
 
             // Materials
             if(Turbo.mnozl == 0) {

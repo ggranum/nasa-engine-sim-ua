@@ -117,7 +117,7 @@ public class SizePanel extends Panel {
             if(turbo.siztype == 1) {
                 // diameter input
                 V3 = Double.valueOf(sizeLeftPanel.f3.getText());
-                Turbo.diameng = v3 = V3.doubleValue();
+                Turbo.diameng = v3 = V3;
 
                 Turbo.a2d = 3.14159 * Turbo.diameng * Turbo.diameng / 4.0;
 
@@ -141,7 +141,7 @@ public class SizePanel extends Panel {
                 sizeLeftPanel.f2.setForeground(Color.black);
                 sizeLeftPanel.f2.setBackground(Color.white);
                 V2 = Double.valueOf(sizeLeftPanel.f2.getText());
-                v2 = V2.doubleValue();
+                v2 = V2;
                 Turbo.weight = v2 / Turbo.fconv;
                 if(Turbo.weight < 10.0) {
                     Turbo.weight = v2 = 10.0;
@@ -236,11 +236,11 @@ public class SizePanel extends Panel {
             int i1;
 
             V1 = Double.valueOf(f1.getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             V2 = Double.valueOf(f2.getText());
-            v2 = V2.doubleValue();
+            v2 = V2;
             V3 = Double.valueOf(f3.getText());
-            v3 = V3.doubleValue();
+            v3 = V3;
             // area input
             if(turbo.siztype == 0) {
                 Turbo.a2d = v1;

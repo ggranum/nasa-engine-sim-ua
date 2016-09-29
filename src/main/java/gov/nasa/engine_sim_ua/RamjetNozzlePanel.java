@@ -152,9 +152,9 @@ public class RamjetNozzlePanel extends Panel {
             switch (Turbo.mnozr) {
                 case 0: {
                     V1 = Double.valueOf(ramjetNozzleLeftPanel.getDn().getText());
-                    v1 = V1.doubleValue();
+                    v1 = V1;
                     V2 = Double.valueOf(ramjetNozzleLeftPanel.getTn().getText());
-                    v2 = V2.doubleValue();
+                    v2 = V2;
                     Turbo.dnozr = v1 / Turbo.dconv;
                     Turbo.tnozr = v2 / Turbo.tconv;
                     break;
@@ -323,15 +323,15 @@ public class RamjetNozzlePanel extends Panel {
             float fl1;
 
             V2 = Double.valueOf(getF2().getText());
-            v2 = V2.doubleValue();
+            v2 = V2;
             V3 = Double.valueOf(getF3().getText());
-            v3 = V3.doubleValue();
+            v3 = V3;
             V4 = Double.valueOf(getF4().getText());
-            v4 = V4.doubleValue();
+            v4 = V4;
             V7 = Double.valueOf(getDn().getText());
-            v7 = V7.doubleValue();
+            v7 = V7;
             V8 = Double.valueOf(getTn().getText());
-            v8 = V8.doubleValue();
+            v8 = V8;
 
             // Materials
             if(Turbo.mnozr == 0) {

@@ -139,9 +139,9 @@ public class CompressorPanel extends Panel {
             switch (Turbo.mcomp) {
                 case 0: {
                     V1 = Double.valueOf(compressorLeftPanel.getDc().getText());
-                    v1 = V1.doubleValue();
+                    v1 = V1;
                     V2 = Double.valueOf(compressorLeftPanel.getTc().getText());
-                    v2 = V2.doubleValue();
+                    v2 = V2;
                     Turbo.dcomp = v1 / Turbo.dconv;
                     Turbo.tcomp = v2 / Turbo.tconv;
                     break;
@@ -298,16 +298,16 @@ public class CompressorPanel extends Panel {
             float fl1;
 
             V1 = Double.valueOf(getF1().getText());
-            v1 = V1.doubleValue();
+            v1 = V1;
             V2 = Double.valueOf(getF2().getText());
-            v2 = V2.doubleValue();
+            v2 = V2;
             V4 = Double.valueOf(getDc().getText());
-            v4 = V4.doubleValue();
+            v4 = V4;
             V6 = Double.valueOf(getTc().getText());
-            v6 = V6.doubleValue();
+            v6 = V6;
 
             I3 = Integer.valueOf(getF3().getText());
-            i3 = I3.intValue();
+            i3 = I3;
 
             // materials
             if(Turbo.mcomp == 0) {
