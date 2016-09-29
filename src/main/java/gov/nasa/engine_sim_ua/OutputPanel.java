@@ -3,13 +3,14 @@ package gov.nasa.engine_sim_ua;
 import java.awt.Canvas;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class OutputPanel extends Panel {
 
@@ -404,21 +405,32 @@ public class OutputPanel extends Panel {
     public class OutputPlotCanvas extends Canvas {
 
         OutputPlotCanvas() {
+
             setBackground(Color.black);
+            this.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    onMouseUp(e);
+                }
+
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    onMouseDrag(e);
+                }
+            });
         }
 
         public Insets getInsets() {
             return new Insets(0, 10, 0, 10);
         }
 
-        public boolean mouseDrag(Event evt, int x, int y) {
-            handle(x, y);
-            return true;
+        public void onMouseDrag(MouseEvent event) {
+            handle(event.getX(), event.getY());
         }
 
-        public boolean mouseUp(Event evt, int x, int y) {
-            handle(x, y);
-            return true;
+        public void onMouseUp(MouseEvent event) {
+            handle(event.getX(), event.getY());
         }
 
         public void handle(int x, int y) {
@@ -457,7 +469,7 @@ public class OutputPanel extends Panel {
                     turbo.lunits = 0;
                     turbo.varflag = 0;
                     turbo.flightConditionsPanel.setUnits();
-                    turbo.flightConditionsPanel.flightConditionsUpperPanel.untch.select(turbo.lunits);
+                    turbo.flightConditionsPanel.flightConditionsUpperPanel.chcUnits.select(turbo.lunits);
                     turbo.inputPanel.plotPanel.plotLeftPanel.ordch.select(0);
                     turbo.inputPanel.plotPanel.plotLeftPanel.absch.select(0);
                 }

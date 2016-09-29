@@ -1,5 +1,6 @@
 package gov.nasa.engine_sim_ua;
 
+import java.awt.AWTEvent;
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Color;
@@ -61,36 +62,28 @@ public class PlotPanel extends Panel {
             add(new Label(" ", Label.CENTER));
         }
 
-        public boolean handleEvent(Event evt) {
-            if(evt.id == Event.ACTION_EVENT) {
-                this.handleBut(evt);
-                return true;
+        public void processEvent(AWTEvent evt) {
+            if(evt.getID() == Event.ACTION_EVENT) {
+                this.handleBut();
             }
-            if(evt.id == Event.SCROLL_ABSOLUTE) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_ABSOLUTE) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_LINE_DOWN) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_LINE_DOWN) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_LINE_UP) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_LINE_UP) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_PAGE_DOWN) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_PAGE_DOWN) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_PAGE_UP) {
-                this.handleBar(evt);
-                return true;
-            } else {
-                return false;
+            if(evt.getID() == Event.SCROLL_PAGE_UP) {
+                this.handleBar();
             }
         }
 
-        public void handleBar(Event evt) {     //  generate plotPanel
+        public void handleBar() {     //  generate plotPanel
             int i1;
             double v1;
             float fl1;
@@ -158,7 +151,7 @@ public class PlotPanel extends Panel {
             plotLeftPanel.oplt.setText(String.valueOf(fl1));
         }  // end handle
 
-        public void handleBut(Event evt) {     //  generate plotPanel
+        public void handleBut() {     //  generate plotPanel
             if(turbo.npt == 25) {
                 return;
             }
@@ -429,13 +422,13 @@ public class PlotPanel extends Panel {
             if(label.equals("Exit")) {
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
-                turbo.flightConditionsPanel.flightConditionsUpperPanel.pltch.select(0);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcOutput.select(0);
                 turbo.solve.loadMine();
                 turbo.plttyp = 3;
                 turbo.flightConditionsPanel.setPlot();
-                turbo.flightConditionsPanel.flightConditionsUpperPanel.untch.select(0);
-                turbo.flightConditionsPanel.flightConditionsUpperPanel.engch.select(0);
-                turbo.flightConditionsPanel.flightConditionsUpperPanel.modch.select(turbo.inflag);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcUnits.select(0);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcTemplate.select(0);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcMode.select(turbo.inflag);
             }
 
             turbo.solve.comPute();

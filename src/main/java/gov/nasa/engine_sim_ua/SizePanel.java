@@ -1,5 +1,6 @@
 package gov.nasa.engine_sim_ua;
 
+import java.awt.AWTEvent;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Event;
@@ -29,7 +30,7 @@ public class SizePanel extends Panel {
         add(sizeRightPanel);
     }
 
-    public Insets insets() {
+    public Insets getInsets() {
         return new Insets(5, 0, 5, 0);
     }
 
@@ -68,36 +69,28 @@ public class SizePanel extends Panel {
             add(new Label(" ", Label.CENTER));
         }
 
-        public boolean handleEvent(Event evt) {
-            if(evt.id == Event.ACTION_EVENT) {
-                this.handleBar(evt);
-                return true;
+        public void processEvent(AWTEvent evt) {
+            if(evt.getID() == Event.ACTION_EVENT) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_ABSOLUTE) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_ABSOLUTE) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_LINE_DOWN) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_LINE_DOWN) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_LINE_UP) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_LINE_UP) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_PAGE_DOWN) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_PAGE_DOWN) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_PAGE_UP) {
-                this.handleBar(evt);
-                return true;
-            } else {
-                return false;
+            if(evt.getID() == Event.SCROLL_PAGE_UP) {
+                this.handleBar();
             }
         }
 
-        public void handleBar(Event evt) {     // engine sizePanel
+        public void handleBar() {     // engine sizePanel
             int i1, i3;
             Double V2, V3;
             double v1, v2, v3;
@@ -226,16 +219,13 @@ public class SizePanel extends Panel {
             add(new Label(" ", Label.CENTER));
         }
 
-        public boolean handleEvent(Event evt) {
-            if(evt.id == Event.ACTION_EVENT) {
-                this.handleText(evt);
-                return true;
-            } else {
-                return false;
+        public void processEvent(AWTEvent evt) {
+            if(evt.getID() == Event.ACTION_EVENT) {
+                this.handleText();
             }
         }
 
-        public void handleText(Event evt) {
+        public void handleText() {
             Double V1, V2, V3;
             double v1, v2, v3;
             int i1, i3;

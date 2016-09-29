@@ -1,5 +1,6 @@
 package gov.nasa.engine_sim_ua;
 
+import java.awt.AWTEvent;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Event;
@@ -86,36 +87,28 @@ public class RamjetNozzlePanel extends Panel {
             add(lmat);
         }
 
-        public boolean handleEvent(Event evt) {
-            if(evt.id == Event.ACTION_EVENT) {
-                this.handleMat(evt);
-                return true;
+        public void processEvent(AWTEvent evt) {
+            if(evt.getID() == Event.ACTION_EVENT) {
+                this.handleMat();
             }
-            if(evt.id == Event.SCROLL_ABSOLUTE) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_ABSOLUTE) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_LINE_DOWN) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_LINE_DOWN) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_LINE_UP) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_LINE_UP) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_PAGE_DOWN) {
-                this.handleBar(evt);
-                return true;
+            if(evt.getID() == Event.SCROLL_PAGE_DOWN) {
+                this.handleBar();
             }
-            if(evt.id == Event.SCROLL_PAGE_UP) {
-                this.handleBar(evt);
-                return true;
-            } else {
-                return false;
+            if(evt.getID() == Event.SCROLL_PAGE_UP) {
+                this.handleBar();
             }
         }
 
-        public void handleMat(Event evt) {
+        public void handleMat() {
             Double V1, V2;
             double v1, v2;
 
@@ -182,7 +175,7 @@ public class RamjetNozzlePanel extends Panel {
             turbo.solve.comPute();
         }
 
-        public void handleBar(Event evt) { // ramjet burnerPanel -nozzle design
+        public void handleBar() { // ramjet burnerPanel -nozzle design
             int i2, i3, i4;
             double v2, v3, v4;
             float fl2, fl3, fl4;
@@ -290,16 +283,13 @@ public class RamjetNozzlePanel extends Panel {
             add(getDn());
         }
 
-        public boolean handleEvent(Event evt) {
-            if(evt.id == Event.ACTION_EVENT) {
-                this.handleText(evt);
-                return true;
-            } else {
-                return false;
+        public void processEvent(AWTEvent evt) {
+            if(evt.getID() == Event.ACTION_EVENT) {
+                this.handleText();
             }
         }
 
-        public void handleText(Event evt) {
+        public void handleText() {
             Double V2, V3, V4, V7, V8;
             double v2, v3, v4, v7, v8;
             int i2, i3, i4;

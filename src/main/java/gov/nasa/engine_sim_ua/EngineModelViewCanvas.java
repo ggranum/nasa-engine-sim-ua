@@ -7,6 +7,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class EngineModelViewCanvas extends Canvas implements Runnable {
 
@@ -26,7 +29,44 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         this.turbo = turbo;
         setBackground(Color.black);
         runner = null;
+
+        this.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                onMouseDown(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                onMouseUp(e);
+            }
+
+
+        });
+
+        this.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                onMouseDrag(e);
+            }
+        });
+
         //         displimg = getImage(getCodeBase(),"ab1.gif") ;
+    }
+
+    private void onMouseDown(MouseEvent event) {
+        anchor = event.getPoint();
+    }
+
+    private void onMouseDrag(MouseEvent event) {
+        handle(event.getX(), event.getY());
+    }
+
+    private void onMouseUp(MouseEvent event) {
+        handle(event.getX(), event.getY());
+
+        handleb(event.getX(), event.getY());
     }
 
     public Insets getInsets() {
@@ -70,20 +110,7 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         }
     }
 
-    public boolean mouseDown(Event evt, int x, int y) {
-        anchor = new Point(x, y);
-        return true;
-    }
 
-    public boolean mouseDrag(Event evt, int x, int y) {
-        handle(x, y);
-        return true;
-    }
-
-    public boolean mouseUp(Event evt, int x, int y) {
-        handleb(x, y);
-        return true;
-    }
 
     public void handle(int x, int y) {
         // determine location and move

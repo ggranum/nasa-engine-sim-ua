@@ -84,12 +84,12 @@ public class FilesPanel extends Panel {  // save file
                 Turbo.savin = new DataInputStream(Turbo.sfili);
 
                 turbo.inflag = 0;
-                turbo.flightConditionsPanel.flightConditionsUpperPanel.modch.select(0);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcMode.select(0);
                 turbo.varflag = 0;
                 turbo.layin.show(turbo.inputPanel, "first");
                 turbo.lunits = 0;
                 turbo.flightConditionsPanel.setUnits();
-                turbo.flightConditionsPanel.flightConditionsUpperPanel.untch.select(turbo.lunits);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.chcUnits.select(turbo.lunits);
 
                 turbo.entype = Turbo.savin.readInt();
                 turbo.abflag = Turbo.savin.readInt();
