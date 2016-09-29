@@ -523,7 +523,7 @@ public class OutputPanel extends Panel {
                     turbo.factp = 120.0 - (turbo.sldplt - 45) * 1.0;
                 }
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
             outputPlotCanvas.repaint();
             return;
         }

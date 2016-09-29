@@ -167,7 +167,7 @@ public class NozzlePanel extends Panel {
                     turbo.tnozl = 4100.;
                     break;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleBar() {     // nozzle design
@@ -220,7 +220,7 @@ public class NozzlePanel extends Panel {
             nozzleLeftPanel.getF2().setText(String.valueOf((float)v2));
             nozzleLeftPanel.getF3().setText(String.format("%.3f", v3));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  // end rightPanel
 
@@ -435,7 +435,7 @@ public class NozzlePanel extends Panel {
             nozzleRightPanel.s2.setValue(i2);
             nozzleRightPanel.s3.setValue(i3);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public TextField getF1() {

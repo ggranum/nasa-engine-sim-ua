@@ -156,7 +156,7 @@ public class SizePanel extends Panel {
             sizeLeftPanel.f1.setText(String.format("%.3f", turbo.a2d));
             sizeLeftPanel.f3.setText(String.format("%.3f", turbo.diameng));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public Scrollbar getS1() {
@@ -292,7 +292,7 @@ public class SizePanel extends Panel {
 
             sizeRightPanel.getS1().setValue(i1);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  //  end  inletLeftPanel
 }  // end SizePanel input

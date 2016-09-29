@@ -158,7 +158,7 @@ public class InletPanel extends Panel {
                     turbo.tinlt = 4000.;
                     break;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleBar() {     // inletPanel recovery
@@ -188,7 +188,7 @@ public class InletPanel extends Panel {
 
             inletLeftPanel.getF1().setText(String.format("%.3f", v1));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  // end rightPanel
 
@@ -312,7 +312,7 @@ public class InletPanel extends Panel {
 
             inletRightPanel.s1.setValue(i1);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public TextField getDi() {

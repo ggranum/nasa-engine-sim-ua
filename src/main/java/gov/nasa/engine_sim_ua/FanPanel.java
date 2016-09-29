@@ -158,7 +158,7 @@ public class FanPanel extends Panel {
                     turbo.tfan = 3000.;
                     break;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleBar() {     // fanPanel design
@@ -222,7 +222,7 @@ public class FanPanel extends Panel {
             leftPanel.getF2().setText(String.valueOf(fl2));
             leftPanel.getF3().setText(String.valueOf(fl3));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public Scrollbar getS1() {
@@ -453,7 +453,7 @@ public class FanPanel extends Panel {
             rightPanel.getS2().setValue(i2);
             rightPanel.getS3().setValue(i3);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public TextField getF1() {

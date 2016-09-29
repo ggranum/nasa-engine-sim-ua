@@ -232,7 +232,7 @@ public class FlightPanel extends Panel {
             flightLeftPanel.f2.setText(String.format("%.0f", v2));
             flightLeftPanel.f3.setText(String.format("%.3f", v3));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  // end rightPanel
 
@@ -518,7 +518,7 @@ public class FlightPanel extends Panel {
             flightRightPanel.s2.setValue(i2);
             flightRightPanel.s3.setValue(i3);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  //  end  inletLeftPanel
 }  // end FlightPanel input

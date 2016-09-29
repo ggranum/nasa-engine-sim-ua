@@ -188,7 +188,7 @@ public class BurnerPanel extends Panel {
                     turbo.tburner = 4500.;
                     break;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleBar() {     // burner design
@@ -247,7 +247,7 @@ public class BurnerPanel extends Panel {
             burnerLeftPanel.getF2().setText(String.valueOf(fl2));
             burnerLeftPanel.getF3().setText(String.valueOf(fl3));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  // end rightPanel
 
@@ -470,7 +470,7 @@ public class BurnerPanel extends Panel {
             burnerRightPanel.s2.setValue(i2);
             burnerRightPanel.s3.setValue(i3);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public TextField getF1() {

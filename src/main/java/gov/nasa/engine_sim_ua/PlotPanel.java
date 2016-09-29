@@ -129,7 +129,7 @@ public class PlotPanel extends Panel {
             }
             plotLeftPanel.fplt.setText(String.valueOf(fl1));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
 
             switch (turbo.nord) {
                 case 3:
@@ -437,7 +437,7 @@ public class PlotPanel extends Panel {
                 turbo.flightConditionsPanel.flightConditionsUpperPanel.chcMode.select(turbo.inflag);
             }
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleText() {
@@ -528,7 +528,7 @@ public class PlotPanel extends Panel {
             i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
             plotRightPanel.splt.setValue(i1);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
 
             switch (turbo.nord) {
                 case 3:

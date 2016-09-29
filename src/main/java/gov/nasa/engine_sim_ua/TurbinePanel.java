@@ -165,7 +165,7 @@ public class TurbinePanel extends Panel {
                     turbo.tturbin = 3000.;
                     break;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleBar() {     // turbine
@@ -197,7 +197,7 @@ public class TurbinePanel extends Panel {
 
             turbineLeftPanel.getF1().setText(String.valueOf(fl1));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  // end rightPanel
 
@@ -333,7 +333,7 @@ public class TurbinePanel extends Panel {
 
             turbineRightPanel.s1.setValue(i1);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public TextField getF1() {

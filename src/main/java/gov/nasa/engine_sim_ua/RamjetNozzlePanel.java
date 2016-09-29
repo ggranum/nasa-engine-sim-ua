@@ -180,7 +180,7 @@ public class RamjetNozzlePanel extends Panel {
                     turbo.tnozr = 4500.;
                     break;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleBar() { // ramjet burnerPanel -nozzle design
@@ -239,7 +239,7 @@ public class RamjetNozzlePanel extends Panel {
             ramjetNozzleLeftPanel.getF3().setText(String.valueOf(fl3));
             ramjetNozzleLeftPanel.getF4().setText(String.valueOf(fl4));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  // end rightPanel
 
@@ -445,7 +445,7 @@ public class RamjetNozzlePanel extends Panel {
             ramjetNozzleRightPanel.s3.setValue(i3);
             ramjetNozzleRightPanel.s4.setValue(i4);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
 

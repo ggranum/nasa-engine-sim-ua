@@ -246,7 +246,7 @@ public class LimitsPanel extends Panel {
 
         turbo.varflag = 0;
         turbo.layin.show(turbo.inputPanel, "first");
-        turbo.solve.comPute();
+        turbo.solve.compute();
         turbo.flightConditionsPanel.setPanl();
     }  // end handle
 }  // end inlimit

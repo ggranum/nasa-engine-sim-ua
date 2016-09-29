@@ -201,7 +201,7 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 turbo.factor = 35.;
                 turbo.sldloc = 75;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
             turbo.view.repaint();
             turbo.outputPanel.outputPlotCanvas.repaint();
             turbo.flightConditionsPanel.setPanl();
@@ -347,7 +347,7 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
 
             turbo.flightConditionsPanel.setUnits();
             turbo.flightConditionsPanel.setPanl();
-            turbo.solve.comPute();
+            turbo.solve.compute();
             turbo.view.repaint();
             turbo.outputPanel.outputPlotCanvas.repaint();
             return;

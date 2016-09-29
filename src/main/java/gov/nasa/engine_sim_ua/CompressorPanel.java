@@ -171,7 +171,7 @@ public class CompressorPanel extends Panel {
                     turbo.tcomp = 3000.;
                     break;
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
 
         public void handleBar() {  // compressor design
@@ -217,7 +217,7 @@ public class CompressorPanel extends Panel {
             compressorLeftPanel.getF1().setText(String.valueOf(fl1));
             compressorLeftPanel.getF2().setText(String.valueOf(fl2));
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
     }  // end rightPanel
 
@@ -398,7 +398,7 @@ public class CompressorPanel extends Panel {
             compressorRightPanel.s1.setValue(i1);
             compressorRightPanel.s2.setValue(i2);
 
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }  // end handle
 
         public TextField getF1() {

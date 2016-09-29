@@ -164,7 +164,7 @@ public class FilesPanel extends Panel {  // save file
                 }
 
                 turbo.flightConditionsPanel.setPanl();
-                turbo.solve.comPute();
+                turbo.solve.compute();
             } catch (IOException n) {
             }
         }

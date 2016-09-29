@@ -579,7 +579,7 @@ class FlightConditionsUpperPanel extends Panel {
             turbo.inputPanel.turbinePanel.turbineRightPanel.tmat.select(turbo.mturbin);
             turbo.inputPanel.nozzlePanel.nozzleRightPanel.nmat.select(turbo.mnozl);
             turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.nrmat.select(turbo.mnozr);
-            turbo.solve.comPute();
+            turbo.solve.compute();
             turbo.outputPanel.outputPlotCanvas.repaint();
         }
     }
@@ -622,7 +622,7 @@ class FlightConditionsUpperPanel extends Panel {
                 turbo.lunits = 0;
                 flightConditionsPanel.setUnits();
                 chcUnits.select(turbo.lunits);
-                turbo.solve.comPute();
+                turbo.solve.compute();
                 turbo.solve.myDesign();
                 turbo.ytrans = 115.0;
                 turbo.view.start();
@@ -688,7 +688,7 @@ class FlightConditionsUpperPanel extends Panel {
                 flightConditionsPanel.setPlot();
                 turbo.outputPanel.outputPlotCanvas.repaint();
             }
-            turbo.solve.comPute();
+            turbo.solve.compute();
         }
     }
 }
