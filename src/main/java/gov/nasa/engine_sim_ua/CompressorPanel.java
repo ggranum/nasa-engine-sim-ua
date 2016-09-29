@@ -51,8 +51,8 @@ public class CompressorPanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(6, 1, 10, 5));
 
-            i1 = (int)(((Turbo.p3p2d - Turbo.cprmin) / (Turbo.cprmax - Turbo.cprmin)) * 1000.);
-            i2 = (int)(((Turbo.eta[3] - Turbo.etmin) / (Turbo.etmax - Turbo.etmin)) * 1000.);
+            i1 = (int)(((turbo.p3p2d - turbo.cprmin) / (turbo.cprmax - turbo.cprmin)) * 1000.);
+            i2 = (int)(((turbo.eta[3] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
             s2 = new Scrollbar(Scrollbar.HORIZONTAL, i2, 10, 0, 1000);
@@ -113,62 +113,62 @@ public class CompressorPanel extends Panel {
             double v2;
 
             // compressor
-            Turbo.ncflag = stgch.getSelectedIndex();
-            if(Turbo.ncflag == 0) {
+            turbo.ncflag = stgch.getSelectedIndex();
+            if(turbo.ncflag == 0) {
                 compressorLeftPanel.getF3().setBackground(Color.black);
                 compressorLeftPanel.getF3().setForeground(Color.yellow);
             }
-            if(Turbo.ncflag == 1) {
+            if(turbo.ncflag == 1) {
                 compressorLeftPanel.getF3().setBackground(Color.white);
                 compressorLeftPanel.getF3().setForeground(Color.black);
             }
 
-            Turbo.mcomp = cmat.getSelectedIndex();
-            if(Turbo.mcomp > 0) {
+            turbo.mcomp = cmat.getSelectedIndex();
+            if(turbo.mcomp > 0) {
                 compressorLeftPanel.getDc().setBackground(Color.black);
                 compressorLeftPanel.getDc().setForeground(Color.yellow);
                 compressorLeftPanel.getTc().setBackground(Color.black);
                 compressorLeftPanel.getTc().setForeground(Color.yellow);
             }
-            if(Turbo.mcomp == 0) {
+            if(turbo.mcomp == 0) {
                 compressorLeftPanel.getDc().setBackground(Color.white);
                 compressorLeftPanel.getDc().setForeground(Color.blue);
                 compressorLeftPanel.getTc().setBackground(Color.white);
                 compressorLeftPanel.getTc().setForeground(Color.blue);
             }
-            switch (Turbo.mcomp) {
+            switch (turbo.mcomp) {
                 case 0: {
                     V1 = Double.valueOf(compressorLeftPanel.getDc().getText());
                     v1 = V1;
                     V2 = Double.valueOf(compressorLeftPanel.getTc().getText());
                     v2 = V2;
-                    Turbo.dcomp = v1 / Turbo.dconv;
-                    Turbo.tcomp = v2 / Turbo.tconv;
+                    turbo.dcomp = v1 / turbo.dconv;
+                    turbo.tcomp = v2 / turbo.tconv;
                     break;
                 }
                 case 1:
-                    Turbo.dcomp = 170.7;
-                    Turbo.tcomp = 900.;
+                    turbo.dcomp = 170.7;
+                    turbo.tcomp = 900.;
                     break;
                 case 2:
-                    Turbo.dcomp = 293.02;
-                    Turbo.tcomp = 1500.;
+                    turbo.dcomp = 293.02;
+                    turbo.tcomp = 1500.;
                     break;
                 case 3:
-                    Turbo.dcomp = 476.56;
-                    Turbo.tcomp = 2000.;
+                    turbo.dcomp = 476.56;
+                    turbo.tcomp = 2000.;
                     break;
                 case 4:
-                    Turbo.dcomp = 515.2;
-                    Turbo.tcomp = 2500.;
+                    turbo.dcomp = 515.2;
+                    turbo.tcomp = 2500.;
                     break;
                 case 5:
-                    Turbo.dcomp = 515.2;
-                    Turbo.tcomp = 3000.;
+                    turbo.dcomp = 515.2;
+                    turbo.tcomp = 3000.;
                     break;
                 case 6:
-                    Turbo.dcomp = 164.2;
-                    Turbo.tcomp = 3000.;
+                    turbo.dcomp = 164.2;
+                    turbo.tcomp = 3000.;
                     break;
             }
             turbo.solve.comPute();
@@ -186,32 +186,32 @@ public class CompressorPanel extends Panel {
             i2 = s2.getValue();
 
             if(turbo.lunits <= 1) {
-                Turbo.vmn1 = Turbo.cprmin;
-                Turbo.vmx1 = Turbo.cprmax;
-                Turbo.vmn2 = Turbo.etmin;
-                Turbo.vmx2 = Turbo.etmax;
+                turbo.vmn1 = turbo.cprmin;
+                turbo.vmx1 = turbo.cprmax;
+                turbo.vmn2 = turbo.etmin;
+                turbo.vmx2 = turbo.etmax;
             }
             if(turbo.lunits == 2) {
-                Turbo.vmn1 = -10.0;
-                Turbo.vmx1 = 10.0;
-                Turbo.vmx2 = 100.0 - 100.0 * Turbo.et3ref;
-                Turbo.vmn2 = Turbo.vmx2 - 20.0;
+                turbo.vmn1 = -10.0;
+                turbo.vmx1 = 10.0;
+                turbo.vmx2 = 100.0 - 100.0 * turbo.et3ref;
+                turbo.vmn2 = turbo.vmx2 - 20.0;
             }
 
-            v1 = i1 * (Turbo.vmx1 - Turbo.vmn1) / 1000. + Turbo.vmn1;
-            v2 = i2 * (Turbo.vmx2 - Turbo.vmn2) / 1000. + Turbo.vmn2;
+            v1 = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
+            v2 = i2 * (turbo.vmx2 - turbo.vmn2) / 1000. + turbo.vmn2;
 
             fl1 = (float)v1;
             fl2 = (float)v2;
 
             //  compressor design
             if(turbo.lunits <= 1) {
-                Turbo.prat[3] = Turbo.p3p2d = v1;
-                Turbo.eta[3] = v2;
+                turbo.prat[3] = turbo.p3p2d = v1;
+                turbo.eta[3] = v2;
             }
             if(turbo.lunits == 2) {
-                Turbo.prat[3] = Turbo.p3p2d = v1 * Turbo.cpref / 100. + Turbo.cpref;
-                Turbo.eta[3] = Turbo.et3ref + v2 / 100.;
+                turbo.prat[3] = turbo.p3p2d = v1 * turbo.cpref / 100. + turbo.cpref;
+                turbo.eta[3] = turbo.et3ref + v2 / 100.;
             }
 
             compressorLeftPanel.getF1().setText(String.valueOf(fl1));
@@ -241,9 +241,9 @@ public class CompressorPanel extends Panel {
             setLayout(new GridLayout(6, 2, 5, 5));
 
             l1 = new Label("Press. Ratio", Label.CENTER);
-            setF1(new TextField(String.valueOf((float)Turbo.p3p2d), 5));
+            setF1(new TextField(String.valueOf((float)turbo.p3p2d), 5));
             l2 = new Label("Efficiency", Label.CENTER);
-            setF2(new TextField(String.valueOf((float)Turbo.eta[13]), 5));
+            setF2(new TextField(String.valueOf((float)turbo.eta[13]), 5));
             lmat = new Label("T lim-R", Label.CENTER);
             lmat.setForeground(Color.blue);
             lm2 = new Label("Materials:", Label.CENTER);
@@ -251,14 +251,14 @@ public class CompressorPanel extends Panel {
             l5 = new Label("Density", Label.CENTER);
             l5.setForeground(Color.blue);
 
-            setF3(new TextField(String.valueOf((int)Turbo.ncomp), 5));
+            setF3(new TextField(String.valueOf((int)turbo.ncomp), 5));
             getF3().setBackground(Color.black);
             getF3().setForeground(Color.yellow);
 
-            setDc(new TextField(String.valueOf((float)Turbo.dcomp), 5));
+            setDc(new TextField(String.valueOf((float)turbo.dcomp), 5));
             getDc().setBackground(Color.black);
             getDc().setForeground(Color.yellow);
-            setTc(new TextField(String.valueOf((float)Turbo.tcomp), 5));
+            setTc(new TextField(String.valueOf((float)turbo.tcomp), 5));
             getTc().setBackground(Color.black);
             getTc().setForeground(Color.yellow);
 
@@ -310,90 +310,90 @@ public class CompressorPanel extends Panel {
             i3 = I3;
 
             // materials
-            if(Turbo.mcomp == 0) {
-                if(v4 <= 1.0 * Turbo.dconv) {
-                    v4 = 1.0 * Turbo.dconv;
-                    getDc().setText(String.format("%.0f", v4 * Turbo.dconv));
+            if(turbo.mcomp == 0) {
+                if(v4 <= 1.0 * turbo.dconv) {
+                    v4 = 1.0 * turbo.dconv;
+                    getDc().setText(String.format("%.0f", v4 * turbo.dconv));
                 }
-                Turbo.dcomp = v4 / Turbo.dconv;
-                if(v6 <= 500. * Turbo.tconv) {
-                    v6 = 500. * Turbo.tconv;
-                    getTc().setText(String.format("%.0f", v6 * Turbo.tconv));
+                turbo.dcomp = v4 / turbo.dconv;
+                if(v6 <= 500. * turbo.tconv) {
+                    v6 = 500. * turbo.tconv;
+                    getTc().setText(String.format("%.0f", v6 * turbo.tconv));
                 }
-                Turbo.tcomp = v6 / Turbo.tconv;
+                turbo.tcomp = v6 / turbo.tconv;
             }
             // number of stages
-            if(Turbo.ncflag == 1) {
-                Turbo.ncomp = i3;
-                if(Turbo.ncomp <= 0) {
-                    Turbo.ncomp = 1;
-                    getF3().setText(String.valueOf(Turbo.ncomp));
+            if(turbo.ncflag == 1) {
+                turbo.ncomp = i3;
+                if(turbo.ncomp <= 0) {
+                    turbo.ncomp = 1;
+                    getF3().setText(String.valueOf(turbo.ncomp));
                 }
             }
 
             if(turbo.lunits <= 1) {
                 // Compressor pressure ratio
-                Turbo.prat[3] = Turbo.p3p2d = v1;
-                Turbo.vmn1 = Turbo.cprmin;
-                Turbo.vmx1 = Turbo.cprmax;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.prat[3] = Turbo.p3p2d = v1 = Turbo.vmn1;
+                turbo.prat[3] = turbo.p3p2d = v1;
+                turbo.vmn1 = turbo.cprmin;
+                turbo.vmx1 = turbo.cprmax;
+                if(v1 < turbo.vmn1) {
+                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.prat[3] = Turbo.p3p2d = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
                 // Compressor efficiency
-                Turbo.eta[3] = v2;
-                Turbo.vmn2 = Turbo.etmin;
-                Turbo.vmx2 = Turbo.etmax;
-                if(v2 < Turbo.vmn2) {
-                    Turbo.eta[3] = v2 = Turbo.vmn2;
+                turbo.eta[3] = v2;
+                turbo.vmn2 = turbo.etmin;
+                turbo.vmx2 = turbo.etmax;
+                if(v2 < turbo.vmn2) {
+                    turbo.eta[3] = v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                if(v2 > Turbo.vmx2) {
-                    Turbo.eta[3] = v2 = Turbo.vmx2;
+                if(v2 > turbo.vmx2) {
+                    turbo.eta[3] = v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
             }
             if(turbo.lunits == 2) {
                 // Compressor pressure ratio
-                Turbo.vmn1 = -10.0;
-                Turbo.vmx1 = 10.0;
-                if(v1 < Turbo.vmn1) {
-                    v1 = Turbo.vmn1;
+                turbo.vmn1 = -10.0;
+                turbo.vmx1 = 10.0;
+                if(v1 < turbo.vmn1) {
+                    v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                Turbo.prat[3] = Turbo.p3p2d = v1 * Turbo.cpref / 100. + Turbo.cpref;
+                turbo.prat[3] = turbo.p3p2d = v1 * turbo.cpref / 100. + turbo.cpref;
                 // Compressor efficiency
-                Turbo.vmx2 = 100.0 - 100.0 * Turbo.et3ref;
-                Turbo.vmn2 = Turbo.vmx2 - 20.0;
-                if(v2 < Turbo.vmn2) {
-                    v2 = Turbo.vmn2;
+                turbo.vmx2 = 100.0 - 100.0 * turbo.et3ref;
+                turbo.vmn2 = turbo.vmx2 - 20.0;
+                if(v2 < turbo.vmn2) {
+                    v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                if(v2 > Turbo.vmx2) {
-                    v2 = Turbo.vmx2;
+                if(v2 > turbo.vmx2) {
+                    v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                Turbo.eta[3] = Turbo.et3ref + v2 / 100.;
+                turbo.eta[3] = turbo.et3ref + v2 / 100.;
             }
 
-            i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
-            i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
+            i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
+            i2 = (int)(((v2 - turbo.vmn2) / (turbo.vmx2 - turbo.vmn2)) * 1000.);
 
             compressorRightPanel.s1.setValue(i1);
             compressorRightPanel.s2.setValue(i2);

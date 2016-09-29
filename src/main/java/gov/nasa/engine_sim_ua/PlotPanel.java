@@ -49,7 +49,7 @@ public class PlotPanel extends Panel {
             takbt.setBackground(Color.blue);
             takbt.setForeground(Color.white);
 
-            i1 = (int)(((Turbo.u0d - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
+            i1 = (int)(((turbo.u0d - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
 
             splt = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
             splt.setBackground(Color.white);
@@ -90,42 +90,42 @@ public class PlotPanel extends Panel {
 
             i1 = splt.getValue();
             if(turbo.nabs == 3) {  //  speed
-                Turbo.vmn1 = Turbo.u0min;
-                Turbo.vmx1 = Turbo.u0max;
+                turbo.vmn1 = turbo.u0min;
+                turbo.vmx1 = turbo.u0max;
             }
             if(turbo.nabs == 4) {  //  altitude
-                Turbo.vmn2 = Turbo.altmin;
-                Turbo.vmx2 = Turbo.altmax;
+                turbo.vmn2 = turbo.altmin;
+                turbo.vmx2 = turbo.altmax;
             }
             if(turbo.nabs == 5) {  //  throttle
-                Turbo.vmn3 = Turbo.thrmin;
-                Turbo.vmx3 = Turbo.thrmax;
+                turbo.vmn3 = turbo.thrmin;
+                turbo.vmx3 = turbo.thrmax;
             }
             if(turbo.nabs == 6) {  //  cpr
-                Turbo.vmn1 = Turbo.cprmin;
-                Turbo.vmx1 = Turbo.cprmax;
+                turbo.vmn1 = turbo.cprmin;
+                turbo.vmx1 = turbo.cprmax;
             }
             if(turbo.nabs == 7) {  // burner temp
-                Turbo.vmn1 = Turbo.t4min;
-                Turbo.vmx1 = Turbo.t4max;
+                turbo.vmn1 = turbo.t4min;
+                turbo.vmx1 = turbo.t4max;
             }
-            v1 = i1 * (Turbo.vmx1 - Turbo.vmn1) / 1000. + Turbo.vmn1;
+            v1 = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
             fl1 = (float)v1;
             if(turbo.nabs == 3) {
-                Turbo.u0d = v1;
+                turbo.u0d = v1;
             }
             if(turbo.nabs == 4) {
-                Turbo.altd = v1;
+                turbo.altd = v1;
             }
             if(turbo.nabs == 5) {
-                Turbo.throtl = v1;
+                turbo.throtl = v1;
             }
             if(turbo.nabs == 6) {
-                Turbo.prat[3] = Turbo.p3p2d = v1;
+                turbo.prat[3] = turbo.p3p2d = v1;
             }
             if(turbo.nabs == 7) {
-                Turbo.tt4d = v1;
-                Turbo.tt4 = Turbo.tt4d / Turbo.tconv;
+                turbo.tt4d = v1;
+                turbo.tt4 = turbo.tt4d / turbo.tconv;
             }
             plotLeftPanel.fplt.setText(String.valueOf(fl1));
 
@@ -133,19 +133,19 @@ public class PlotPanel extends Panel {
 
             switch (turbo.nord) {
                 case 3:
-                    fl1 = (float)Turbo.fnlb;
+                    fl1 = (float)turbo.fnlb;
                     break;
                 case 4:
-                    fl1 = (float)Turbo.flflo;
+                    fl1 = (float)turbo.flflo;
                     break;
                 case 5:
-                    fl1 = (float)Turbo.sfc;
+                    fl1 = (float)turbo.sfc;
                     break;
                 case 6:
-                    fl1 = (float)Turbo.epr;
+                    fl1 = (float)turbo.epr;
                     break;
                 case 7:
-                    fl1 = (float)Turbo.etr;
+                    fl1 = (float)turbo.etr;
                     break;
             }
             plotLeftPanel.oplt.setText(String.valueOf(fl1));
@@ -158,36 +158,36 @@ public class PlotPanel extends Panel {
             ++turbo.npt;
             switch (turbo.nord) {
                 case 3:
-                    Turbo.plty[turbo.npt] = Turbo.fnlb;
+                    turbo.plty[turbo.npt] = turbo.fnlb;
                     break;
                 case 4:
-                    Turbo.plty[turbo.npt] = Turbo.flflo;
+                    turbo.plty[turbo.npt] = turbo.flflo;
                     break;
                 case 5:
-                    Turbo.plty[turbo.npt] = Turbo.sfc;
+                    turbo.plty[turbo.npt] = turbo.sfc;
                     break;
                 case 6:
-                    Turbo.plty[turbo.npt] = Turbo.epr;
+                    turbo.plty[turbo.npt] = turbo.epr;
                     break;
                 case 7:
-                    Turbo.plty[turbo.npt] = Turbo.etr;
+                    turbo.plty[turbo.npt] = turbo.etr;
                     break;
             }
             switch (turbo.nabs) {
                 case 3:
-                    Turbo.pltx[turbo.npt] = Turbo.fsmach;
+                    turbo.pltx[turbo.npt] = turbo.fsmach;
                     break;
                 case 4:
-                    Turbo.pltx[turbo.npt] = Turbo.alt;
+                    turbo.pltx[turbo.npt] = turbo.alt;
                     break;
                 case 5:
-                    Turbo.pltx[turbo.npt] = Turbo.throtl;
+                    turbo.pltx[turbo.npt] = turbo.throtl;
                     break;
                 case 6:
-                    Turbo.pltx[turbo.npt] = Turbo.prat[3];
+                    turbo.pltx[turbo.npt] = turbo.prat[3];
                     break;
                 case 7:
-                    Turbo.pltx[turbo.npt] = Turbo.tt[4];
+                    turbo.pltx[turbo.npt] = turbo.tt[4];
                     break;
             }
 
@@ -228,7 +228,7 @@ public class PlotPanel extends Panel {
             ordch.setBackground(Color.red);
             ordch.setForeground(Color.white);
 
-            oplt = new TextField(String.valueOf(Turbo.fnlb), 5);
+            oplt = new TextField(String.valueOf(turbo.fnlb), 5);
             oplt.setBackground(Color.black);
             oplt.setForeground(Color.yellow);
 
@@ -242,7 +242,7 @@ public class PlotPanel extends Panel {
             absch.setBackground(Color.red);
             absch.setForeground(Color.white);
 
-            fplt = new TextField(String.valueOf(Turbo.u0d), 5);
+            fplt = new TextField(String.valueOf(turbo.u0d), 5);
             fplt.setBackground(Color.white);
             fplt.setForeground(Color.red);
 
@@ -296,38 +296,38 @@ public class PlotPanel extends Panel {
             turbo.nord = 3 + ordch.getSelectedIndex();
             if(turbo.nord != turbo.ordkeep) {  // set the plotPanel parameters
                 if(turbo.nord == 3) {  // Thrust
-                    Turbo.laby = String.valueOf("Fn");
-                    Turbo.labyu = String.valueOf("lb");
-                    Turbo.begy = 0.0;
-                    Turbo.endy = 100000.0;
+                    turbo.laby = String.valueOf("Fn");
+                    turbo.labyu = String.valueOf("lb");
+                    turbo.begy = 0.0;
+                    turbo.endy = 100000.0;
                     turbo.ntiky = 11;
                 }
                 if(turbo.nord == 4) {  //  Fuel
-                    Turbo.laby = String.valueOf("Fuel Rate");
-                    Turbo.labyu = String.valueOf("lbs/hr");
-                    Turbo.begy = 0.0;
-                    Turbo.endy = 100000.0;
+                    turbo.laby = String.valueOf("Fuel Rate");
+                    turbo.labyu = String.valueOf("lbs/hr");
+                    turbo.begy = 0.0;
+                    turbo.endy = 100000.0;
                     turbo.ntiky = 11;
                 }
                 if(turbo.nord == 5) {  //  TSFC
-                    Turbo.laby = String.valueOf("TSFC");
-                    Turbo.labyu = String.valueOf("lbm/hr/lb");
-                    Turbo.begy = 0.0;
-                    Turbo.endy = 2.0;
+                    turbo.laby = String.valueOf("TSFC");
+                    turbo.labyu = String.valueOf("lbm/hr/lb");
+                    turbo.begy = 0.0;
+                    turbo.endy = 2.0;
                     turbo.ntiky = 11;
                 }
                 if(turbo.nord == 6) {  //  EPR
-                    Turbo.laby = String.valueOf("EPR");
-                    Turbo.labyu = String.valueOf(" ");
-                    Turbo.begy = 0.0;
-                    Turbo.endy = 50.0;
+                    turbo.laby = String.valueOf("EPR");
+                    turbo.labyu = String.valueOf(" ");
+                    turbo.begy = 0.0;
+                    turbo.endy = 50.0;
                     turbo.ntiky = 11;
                 }
                 if(turbo.nord == 7) {  //  ETR
-                    Turbo.laby = String.valueOf("ETR");
-                    Turbo.labyu = String.valueOf(" ");
-                    Turbo.begy = 0.0;
-                    Turbo.endy = 50.0;
+                    turbo.laby = String.valueOf("ETR");
+                    turbo.labyu = String.valueOf(" ");
+                    turbo.begy = 0.0;
+                    turbo.endy = 50.0;
                     turbo.ntiky = 11;
                 }
                 turbo.ordkeep = turbo.nord;
@@ -336,68 +336,68 @@ public class PlotPanel extends Panel {
             }
 
             turbo.nabs = 3 + absch.getSelectedIndex();
-            v1 = Turbo.u0d;
+            v1 = turbo.u0d;
             if(turbo.nabs != turbo.abskeep) {  // set the plotPanel parameters
                 if(turbo.nabs == 3) {  //  speed
-                    Turbo.labx = String.valueOf("Mach");
-                    Turbo.labxu = String.valueOf(" ");
+                    turbo.labx = String.valueOf("Mach");
+                    turbo.labxu = String.valueOf(" ");
                     if(turbo.entype <= 2) {
-                        Turbo.begx = 0.0;
-                        Turbo.endx = 2.0;
+                        turbo.begx = 0.0;
+                        turbo.endx = 2.0;
                         turbo.ntikx = 5;
                     }
                     if(turbo.entype == 3) {
-                        Turbo.begx = 0.0;
-                        Turbo.endx = 6.0;
+                        turbo.begx = 0.0;
+                        turbo.endx = 6.0;
                         turbo.ntikx = 5;
                     }
-                    v1 = Turbo.u0d;
-                    Turbo.vmn1 = Turbo.u0min;
-                    Turbo.vmx1 = Turbo.u0max;
+                    v1 = turbo.u0d;
+                    turbo.vmn1 = turbo.u0min;
+                    turbo.vmx1 = turbo.u0max;
                 }
                 if(turbo.nabs == 4) {  //  altitude
-                    Turbo.labx = String.valueOf("Alt");
-                    Turbo.labxu = String.valueOf("ft");
-                    Turbo.begx = 0.0;
-                    Turbo.endx = 60000.0;
+                    turbo.labx = String.valueOf("Alt");
+                    turbo.labxu = String.valueOf("ft");
+                    turbo.begx = 0.0;
+                    turbo.endx = 60000.0;
                     turbo.ntikx = 4;
-                    v1 = Turbo.altd;
-                    Turbo.vmn1 = Turbo.altmin;
-                    Turbo.vmx1 = Turbo.altmax;
+                    v1 = turbo.altd;
+                    turbo.vmn1 = turbo.altmin;
+                    turbo.vmx1 = turbo.altmax;
                 }
                 if(turbo.nabs == 5) {  //  throttle
-                    Turbo.labx = String.valueOf("Throttle");
-                    Turbo.labxu = String.valueOf(" %");
-                    Turbo.begx = 0.0;
-                    Turbo.endx = 100.0;
+                    turbo.labx = String.valueOf("Throttle");
+                    turbo.labxu = String.valueOf(" %");
+                    turbo.begx = 0.0;
+                    turbo.endx = 100.0;
                     turbo.ntikx = 5;
-                    v1 = Turbo.throtl;
-                    Turbo.vmn1 = Turbo.thrmin;
-                    Turbo.vmx1 = Turbo.thrmax;
+                    v1 = turbo.throtl;
+                    turbo.vmn1 = turbo.thrmin;
+                    turbo.vmx1 = turbo.thrmax;
                 }
                 if(turbo.nabs == 6) {  //  Compressor pressure ratio
-                    Turbo.labx = String.valueOf("CPR");
-                    Turbo.labxu = String.valueOf(" ");
-                    Turbo.begx = 0.0;
-                    Turbo.endx = 50.0;
+                    turbo.labx = String.valueOf("CPR");
+                    turbo.labxu = String.valueOf(" ");
+                    turbo.begx = 0.0;
+                    turbo.endx = 50.0;
                     turbo.ntikx = 6;
-                    v1 = Turbo.p3p2d;
-                    Turbo.vmn1 = Turbo.cprmin;
-                    Turbo.vmx1 = Turbo.cprmax;
+                    v1 = turbo.p3p2d;
+                    turbo.vmn1 = turbo.cprmin;
+                    turbo.vmx1 = turbo.cprmax;
                 }
                 if(turbo.nabs == 7) {  // Burner temp
-                    Turbo.labx = String.valueOf("Temp");
-                    Turbo.labxu = String.valueOf("R");
-                    Turbo.begx = 1000.0;
-                    Turbo.endx = 4000.0;
+                    turbo.labx = String.valueOf("Temp");
+                    turbo.labxu = String.valueOf("R");
+                    turbo.begx = 1000.0;
+                    turbo.endx = 4000.0;
                     turbo.ntikx = 4;
-                    v1 = Turbo.tt4d;
-                    Turbo.vmn1 = Turbo.t4min;
-                    Turbo.vmx1 = Turbo.t4max;
+                    v1 = turbo.tt4d;
+                    turbo.vmn1 = turbo.t4min;
+                    turbo.vmx1 = turbo.t4max;
                 }
                 fl1 = (float)v1;
                 fplt.setText(String.valueOf(fl1));
-                i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
+                i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
                 plotRightPanel.splt.setValue(i1);
                 turbo.abskeep = turbo.nabs;
                 turbo.npt = 0;
@@ -413,13 +413,13 @@ public class PlotPanel extends Panel {
                 turbo.lines = 1;
                 for (item = 1; item <= turbo.npt - 1; ++item) {
                     for (i = item + 1; i <= turbo.npt; ++i) {
-                        if(Turbo.pltx[i] < Turbo.pltx[item]) {
-                            tempx = Turbo.pltx[item];
-                            tempy = Turbo.plty[item];
-                            Turbo.pltx[item] = Turbo.pltx[i];
-                            Turbo.plty[item] = Turbo.plty[i];
-                            Turbo.pltx[i] = tempx;
-                            Turbo.plty[i] = tempy;
+                        if(turbo.pltx[i] < turbo.pltx[item]) {
+                            tempx = turbo.pltx[item];
+                            tempy = turbo.plty[item];
+                            turbo.pltx[item] = turbo.pltx[i];
+                            turbo.plty[item] = turbo.plty[i];
+                            turbo.pltx[i] = tempx;
+                            turbo.plty[i] = tempy;
                         }
                     }
                 }
@@ -450,101 +450,101 @@ public class PlotPanel extends Panel {
             v1 = V1;
             fl1 = (float)v1;
             if(turbo.nabs == 3) {  //  speed
-                Turbo.u0d = v1;
-                Turbo.vmn1 = Turbo.u0min;
-                Turbo.vmx1 = Turbo.u0max;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.u0d = v1 = Turbo.vmn1;
+                turbo.u0d = v1;
+                turbo.vmn1 = turbo.u0min;
+                turbo.vmx1 = turbo.u0max;
+                if(v1 < turbo.vmn1) {
+                    turbo.u0d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.u0d = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.u0d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
             }
             if(turbo.nabs == 4) {  //  altitude
-                Turbo.altd = v1;
-                Turbo.vmn1 = Turbo.altmin;
-                Turbo.vmx1 = Turbo.altmax;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.altd = v1 = Turbo.vmn1;
+                turbo.altd = v1;
+                turbo.vmn1 = turbo.altmin;
+                turbo.vmx1 = turbo.altmax;
+                if(v1 < turbo.vmn1) {
+                    turbo.altd = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.altd = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.altd = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
             }
             if(turbo.nabs == 5) {  //  throttle
-                Turbo.throtl = v1;
-                Turbo.vmn1 = Turbo.thrmin;
-                Turbo.vmx1 = Turbo.thrmax;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.throtl = v1 = Turbo.vmn1;
+                turbo.throtl = v1;
+                turbo.vmn1 = turbo.thrmin;
+                turbo.vmx1 = turbo.thrmax;
+                if(v1 < turbo.vmn1) {
+                    turbo.throtl = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.throtl = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.throtl = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
             }
             if(turbo.nabs == 6) {  //  Compressor pressure ratio
-                Turbo.prat[3] = Turbo.p3p2d = v1;
-                Turbo.vmn1 = Turbo.cprmin;
-                Turbo.vmx1 = Turbo.cprmax;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.prat[3] = Turbo.p3p2d = v1 = Turbo.vmn1;
+                turbo.prat[3] = turbo.p3p2d = v1;
+                turbo.vmn1 = turbo.cprmin;
+                turbo.vmx1 = turbo.cprmax;
+                if(v1 < turbo.vmn1) {
+                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.prat[3] = Turbo.p3p2d = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.prat[3] = turbo.p3p2d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
             }
             if(turbo.nabs == 7) {  // Burner temp
-                Turbo.tt4d = v1;
-                Turbo.vmn1 = Turbo.t4min;
-                Turbo.vmx1 = Turbo.t4max;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.tt4d = v1 = Turbo.vmn1;
+                turbo.tt4d = v1;
+                turbo.vmn1 = turbo.t4min;
+                turbo.vmx1 = turbo.t4max;
+                if(v1 < turbo.vmn1) {
+                    turbo.tt4d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.tt4d = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.tt4d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     fplt.setText(String.valueOf(fl1));
                 }
-                Turbo.tt4 = Turbo.tt4d / Turbo.tconv;
+                turbo.tt4 = turbo.tt4d / turbo.tconv;
             }
-            i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
+            i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
             plotRightPanel.splt.setValue(i1);
 
             turbo.solve.comPute();
 
             switch (turbo.nord) {
                 case 3:
-                    fl1 = (float)Turbo.fnlb;
+                    fl1 = (float)turbo.fnlb;
                     break;
                 case 4:
-                    fl1 = (float)Turbo.flflo;
+                    fl1 = (float)turbo.flflo;
                     break;
                 case 5:
-                    fl1 = (float)Turbo.sfc;
+                    fl1 = (float)turbo.sfc;
                     break;
                 case 6:
-                    fl1 = (float)Turbo.epr;
+                    fl1 = (float)turbo.epr;
                     break;
                 case 7:
-                    fl1 = (float)Turbo.etr;
+                    fl1 = (float)turbo.etr;
                     break;
             }
             oplt.setText(String.valueOf(fl1));

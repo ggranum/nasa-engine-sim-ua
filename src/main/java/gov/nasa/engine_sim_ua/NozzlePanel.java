@@ -50,9 +50,9 @@ public class NozzlePanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(7, 1, 10, 5));
 
-            i1 = (int)(((Turbo.tt7d - Turbo.t7min) / (Turbo.t7max - Turbo.t7min)) * 1000.);
-            i2 = (int)(((Turbo.eta[7] - Turbo.etmin) / (Turbo.etmax - Turbo.etmin)) * 1000.);
-            i3 = (int)(((Turbo.a8rat - Turbo.a8min) / (Turbo.a8max - Turbo.a8min)) * 1000.);
+            i1 = (int)(((turbo.tt7d - turbo.t7min) / (turbo.t7max - turbo.t7min)) * 1000.);
+            i2 = (int)(((turbo.eta[7] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
+            i3 = (int)(((turbo.a8rat - turbo.a8min) / (turbo.a8max - turbo.a8min)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
             s2 = new Scrollbar(Scrollbar.HORIZONTAL, i2, 10, 0, 1000);
@@ -123,48 +123,48 @@ public class NozzlePanel extends Panel {
                 nozzleLeftPanel.getF3().setForeground(Color.black);
             }
             // nozzle
-            Turbo.mnozl = nmat.getSelectedIndex();
-            if(Turbo.mnozl > 0) {
+            turbo.mnozl = nmat.getSelectedIndex();
+            if(turbo.mnozl > 0) {
                 nozzleLeftPanel.getTn().setBackground(Color.black);
                 nozzleLeftPanel.getTn().setForeground(Color.yellow);
                 nozzleLeftPanel.getDn().setBackground(Color.black);
                 nozzleLeftPanel.getDn().setForeground(Color.yellow);
             }
-            if(Turbo.mnozl == 0) {
+            if(turbo.mnozl == 0) {
                 nozzleLeftPanel.getTn().setBackground(Color.white);
                 nozzleLeftPanel.getTn().setForeground(Color.black);
                 nozzleLeftPanel.getDn().setBackground(Color.white);
                 nozzleLeftPanel.getDn().setForeground(Color.black);
             }
-            switch (Turbo.mnozl) {
+            switch (turbo.mnozl) {
                 case 0: {
                     V1 = Double.valueOf(nozzleLeftPanel.getDn().getText());
                     v1 = V1;
                     V2 = Double.valueOf(nozzleLeftPanel.getTn().getText());
                     v2 = V2;
-                    Turbo.dnozl = v1 / Turbo.dconv;
-                    Turbo.tnozl = v2 / Turbo.tconv;
+                    turbo.dnozl = v1 / turbo.dconv;
+                    turbo.tnozl = v2 / turbo.tconv;
                     break;
                 }
                 case 1:
-                    Turbo.dnozl = 293.02;
-                    Turbo.tnozl = 1500.;
+                    turbo.dnozl = 293.02;
+                    turbo.tnozl = 1500.;
                     break;
                 case 2:
-                    Turbo.dnozl = 476.56;
-                    Turbo.tnozl = 2000.;
+                    turbo.dnozl = 476.56;
+                    turbo.tnozl = 2000.;
                     break;
                 case 3:
-                    Turbo.dnozl = 515.2;
-                    Turbo.tnozl = 2500.;
+                    turbo.dnozl = 515.2;
+                    turbo.tnozl = 2500.;
                     break;
                 case 4:
-                    Turbo.dnozl = 164.2;
-                    Turbo.tnozl = 3000.;
+                    turbo.dnozl = 164.2;
+                    turbo.tnozl = 3000.;
                     break;
                 case 5:
-                    Turbo.dnozl = 400.2;
-                    Turbo.tnozl = 4100.;
+                    turbo.dnozl = 400.2;
+                    turbo.tnozl = 4100.;
                     break;
             }
             turbo.solve.comPute();
@@ -183,38 +183,38 @@ public class NozzlePanel extends Panel {
             i3 = s3.getValue();
 
             if(turbo.lunits <= 1) {
-                Turbo.vmn1 = Turbo.t7min;
-                Turbo.vmx1 = Turbo.t7max;
-                Turbo.vmn2 = Turbo.etmin;
-                Turbo.vmx2 = Turbo.etmax;
-                Turbo.vmn3 = Turbo.a8min;
-                Turbo.vmx3 = Turbo.a8max;
+                turbo.vmn1 = turbo.t7min;
+                turbo.vmx1 = turbo.t7max;
+                turbo.vmn2 = turbo.etmin;
+                turbo.vmx2 = turbo.etmax;
+                turbo.vmn3 = turbo.a8min;
+                turbo.vmx3 = turbo.a8max;
             }
             if(turbo.lunits == 2) {
-                Turbo.vmn1 = -10.0;
-                Turbo.vmx1 = 10.0;
-                Turbo.vmx2 = 100.0 - 100.0 * Turbo.et7ref;
-                Turbo.vmn2 = Turbo.vmx2 - 20.0;
-                Turbo.vmn3 = -10.0;
-                Turbo.vmx3 = 10.0;
+                turbo.vmn1 = -10.0;
+                turbo.vmx1 = 10.0;
+                turbo.vmx2 = 100.0 - 100.0 * turbo.et7ref;
+                turbo.vmn2 = turbo.vmx2 - 20.0;
+                turbo.vmn3 = -10.0;
+                turbo.vmx3 = 10.0;
             }
 
-            v1 = i1 * (Turbo.vmx1 - Turbo.vmn1) / 1000. + Turbo.vmn1;
-            v2 = i2 * (Turbo.vmx2 - Turbo.vmn2) / 1000. + Turbo.vmn2;
-            v3 = i3 * (Turbo.vmx3 - Turbo.vmn3) / 1000. + Turbo.vmn3;
+            v1 = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
+            v2 = i2 * (turbo.vmx2 - turbo.vmn2) / 1000. + turbo.vmn2;
+            v3 = i3 * (turbo.vmx3 - turbo.vmn3) / 1000. + turbo.vmn3;
 
             // nozzle design
             if(turbo.lunits <= 1) {
-                Turbo.tt7d = v1;
-                Turbo.eta[7] = v2;
-                Turbo.a8rat = v3;
+                turbo.tt7d = v1;
+                turbo.eta[7] = v2;
+                turbo.a8rat = v3;
             }
             if(turbo.lunits == 2) {
-                Turbo.tt7d = v1 * Turbo.t7ref / 100. + Turbo.t7ref;
-                Turbo.eta[7] = Turbo.et7ref + v2 / 100.;
-                Turbo.a8rat = v3 * Turbo.a8ref / 100. + Turbo.a8ref;
+                turbo.tt7d = v1 * turbo.t7ref / 100. + turbo.t7ref;
+                turbo.eta[7] = turbo.et7ref + v2 / 100.;
+                turbo.a8rat = v3 * turbo.a8ref / 100. + turbo.a8ref;
             }
-            Turbo.tt7 = Turbo.tt7d / Turbo.tconv;
+            turbo.tt7 = turbo.tt7d / turbo.tconv;
 
             nozzleLeftPanel.getF1().setText(String.valueOf((float)v1));
             nozzleLeftPanel.getF2().setText(String.valueOf((float)v2));
@@ -244,12 +244,12 @@ public class NozzlePanel extends Panel {
             setLayout(new GridLayout(7, 2, 5, 5));
 
             l1 = new Label("Tmax -R", Label.CENTER);
-            setF1(new TextField(String.valueOf((float)Turbo.tt7d), 5));
+            setF1(new TextField(String.valueOf((float)turbo.tt7d), 5));
 
             l2 = new Label("Efficiency", Label.CENTER);
-            setF2(new TextField(String.valueOf((float)Turbo.eta[7]), 5));
+            setF2(new TextField(String.valueOf((float)turbo.eta[7]), 5));
 
-            setF3(new TextField(String.valueOf((float)Turbo.a8rat), 5));
+            setF3(new TextField(String.valueOf((float)turbo.a8rat), 5));
             getF3().setBackground(Color.black);
             getF3().setForeground(Color.yellow);
 
@@ -260,10 +260,10 @@ public class NozzlePanel extends Panel {
             l5 = new Label("Density", Label.CENTER);
             l5.setForeground(Color.blue);
 
-            setDn(new TextField(String.valueOf((float)Turbo.dnozl), 5));
+            setDn(new TextField(String.valueOf((float)turbo.dnozl), 5));
             getDn().setBackground(Color.black);
             getDn().setForeground(Color.yellow);
-            setTn(new TextField(String.valueOf((float)Turbo.tnozl), 5));
+            setTn(new TextField(String.valueOf((float)turbo.tnozl), 5));
             getTn().setBackground(Color.black);
             getTn().setForeground(Color.yellow);
 
@@ -323,113 +323,113 @@ public class NozzlePanel extends Panel {
             v8 = V8;
 
             // Materials
-            if(Turbo.mnozl == 0) {
-                if(v7 <= 1.0 * Turbo.dconv) {
-                    v7 = 1.0 * Turbo.dconv;
-                    getDn().setText(String.format("%.0f", v7 * Turbo.dconv));
+            if(turbo.mnozl == 0) {
+                if(v7 <= 1.0 * turbo.dconv) {
+                    v7 = 1.0 * turbo.dconv;
+                    getDn().setText(String.format("%.0f", v7 * turbo.dconv));
                 }
-                Turbo.dnozl = v7 / Turbo.dconv;
-                if(v8 <= 500. * Turbo.tconv) {
-                    v8 = 500. * Turbo.tconv;
-                    getTn().setText(String.format("%.0f", v8 * Turbo.tconv));
+                turbo.dnozl = v7 / turbo.dconv;
+                if(v8 <= 500. * turbo.tconv) {
+                    v8 = 500. * turbo.tconv;
+                    getTn().setText(String.format("%.0f", v8 * turbo.tconv));
                 }
-                Turbo.tnozl = v8 / Turbo.tconv;
+                turbo.tnozl = v8 / turbo.tconv;
             }
 
             if(turbo.lunits <= 1) {
                 // Max afterburner temp
-                Turbo.tt7d = v1;
-                Turbo.vmn1 = Turbo.t7min;
-                Turbo.vmx1 = Turbo.t7max;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.tt7d = v1 = Turbo.vmn1;
+                turbo.tt7d = v1;
+                turbo.vmn1 = turbo.t7min;
+                turbo.vmx1 = turbo.t7max;
+                if(v1 < turbo.vmn1) {
+                    turbo.tt7d = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.tt7d = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.tt7d = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                Turbo.tt7 = Turbo.tt7d / Turbo.tconv;
+                turbo.tt7 = turbo.tt7d / turbo.tconv;
                 // nozzle  efficiency
-                Turbo.eta[7] = v2;
-                Turbo.vmn2 = Turbo.etmin;
-                Turbo.vmx2 = Turbo.etmax;
-                if(v2 < Turbo.vmn2) {
-                    Turbo.eta[7] = v2 = Turbo.vmn2;
+                turbo.eta[7] = v2;
+                turbo.vmn2 = turbo.etmin;
+                turbo.vmx2 = turbo.etmax;
+                if(v2 < turbo.vmn2) {
+                    turbo.eta[7] = v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                if(v2 > Turbo.vmx2) {
-                    Turbo.eta[7] = v2 = Turbo.vmx2;
+                if(v2 > turbo.vmx2) {
+                    turbo.eta[7] = v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
                 //  nozzle area ratio
-                Turbo.a8rat = v3;
-                Turbo.vmn3 = Turbo.a8min;
-                Turbo.vmx3 = Turbo.a8max;
-                if(v3 < Turbo.vmn3) {
-                    Turbo.a8rat = v3 = Turbo.vmn3;
+                turbo.a8rat = v3;
+                turbo.vmn3 = turbo.a8min;
+                turbo.vmx3 = turbo.a8max;
+                if(v3 < turbo.vmn3) {
+                    turbo.a8rat = v3 = turbo.vmn3;
                     fl1 = (float)v3;
                     getF3().setText(String.valueOf(fl1));
                 }
-                if(v3 > Turbo.vmx3) {
-                    Turbo.a8rat = v3 = Turbo.vmx3;
+                if(v3 > turbo.vmx3) {
+                    turbo.a8rat = v3 = turbo.vmx3;
                     fl1 = (float)v3;
                     getF3().setText(String.valueOf(fl1));
                 }
             }
             if(turbo.lunits == 2) {
                 // Max afterburner temp
-                Turbo.vmn1 = -10.0;
-                Turbo.vmx1 = 10.0;
-                if(v1 < Turbo.vmn1) {
-                    v1 = Turbo.vmn1;
+                turbo.vmn1 = -10.0;
+                turbo.vmx1 = 10.0;
+                if(v1 < turbo.vmn1) {
+                    v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                Turbo.tt7d = v1 * Turbo.t7ref / 100. + Turbo.t7ref;
-                Turbo.tt7 = Turbo.tt7d / Turbo.tconv;
+                turbo.tt7d = v1 * turbo.t7ref / 100. + turbo.t7ref;
+                turbo.tt7 = turbo.tt7d / turbo.tconv;
                 // nozzl e  efficiency
-                Turbo.vmx2 = 100.0 - 100.0 * Turbo.et7ref;
-                Turbo.vmn2 = Turbo.vmx2 - 20.0;
-                if(v2 < Turbo.vmn2) {
-                    v2 = Turbo.vmn2;
+                turbo.vmx2 = 100.0 - 100.0 * turbo.et7ref;
+                turbo.vmn2 = turbo.vmx2 - 20.0;
+                if(v2 < turbo.vmn2) {
+                    v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                if(v2 > Turbo.vmx2) {
-                    v2 = Turbo.vmx2;
+                if(v2 > turbo.vmx2) {
+                    v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     getF2().setText(String.valueOf(fl1));
                 }
-                Turbo.eta[7] = Turbo.et7ref + v2 / 100.;
+                turbo.eta[7] = turbo.et7ref + v2 / 100.;
                 //  nozzle area ratio
-                Turbo.vmn3 = -10.0;
-                Turbo.vmx3 = 10.0;
-                if(v3 < Turbo.vmn3) {
-                    v3 = Turbo.vmn3;
+                turbo.vmn3 = -10.0;
+                turbo.vmx3 = 10.0;
+                if(v3 < turbo.vmn3) {
+                    v3 = turbo.vmn3;
                     fl1 = (float)v3;
                     getF3().setText(String.valueOf(fl1));
                 }
-                if(v3 > Turbo.vmx3) {
-                    v3 = Turbo.vmx3;
+                if(v3 > turbo.vmx3) {
+                    v3 = turbo.vmx3;
                     fl1 = (float)v3;
                     getF3().setText(String.valueOf(fl1));
                 }
-                Turbo.a8rat = v3 * Turbo.a8ref / 100. + Turbo.a8ref;
+                turbo.a8rat = v3 * turbo.a8ref / 100. + turbo.a8ref;
             }
 
-            i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
-            i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
-            i3 = (int)(((v3 - Turbo.vmn3) / (Turbo.vmx3 - Turbo.vmn3)) * 1000.);
+            i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
+            i2 = (int)(((v2 - turbo.vmn2) / (turbo.vmx2 - turbo.vmn2)) * 1000.);
+            i3 = (int)(((v3 - turbo.vmn3) / (turbo.vmx3 - turbo.vmn3)) * 1000.);
 
             nozzleRightPanel.s1.setValue(i1);
             nozzleRightPanel.s2.setValue(i2);

@@ -2,10 +2,7 @@ package gov.nasa.engine_sim_ua;
 
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -57,7 +54,6 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         runner = null;
 
         this.addMouseListener(new MouseAdapter() {
-
             @Override
             public void mousePressed(MouseEvent e) {
                 onMouseDown(e);
@@ -67,8 +63,6 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             public void mouseReleased(MouseEvent e) {
                 onMouseUp(e);
             }
-
-
         });
 
         this.addMouseMotionListener(new MouseMotionAdapter() {
@@ -77,8 +71,6 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 onMouseDrag(e);
             }
         });
-
-        //         displimg = getImage(getCodeBase(),"ab1.gif") ;
     }
 
     private void onMouseDown(MouseEvent event) {
@@ -100,8 +92,8 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             runner = new Thread(this);
             runner.start();
         }
-        Turbo.antim = 0;
-        Turbo.ancol = 1;
+        turbo.antim = 0;
+        turbo.ancol = 1;
         turbo.counter = 0;
     }
 
@@ -109,25 +101,25 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         //noinspection InfiniteLoopStatement
         while (true) {
             turbo.counter++;
-            ++Turbo.antim;
+            ++turbo.antim;
 /*
        if (inflag == 0 && fireflag == 0) {
-          runner = null ;
+          runner = null;
           return;
        }
-       if(entype == 0) displimg = antjimg[counter-1] ;
-       if(entype == 1) displimg = anabimg[counter-1] ;
-       if(entype == 2) displimg = anfnimg[counter-1] ;
-       if(entype == 3) displimg = anrmimg[counter-1] ;
+       if(entype == 0) displimg = antjimg[counter-1];
+       if(entype == 1) displimg = anabimg[counter-1];
+       if(entype == 2) displimg = anfnimg[counter-1];
+       if(entype == 3) displimg = anrmimg[counter-1];
 */
             try { Thread.sleep(100); } catch (InterruptedException ignored) {}
             turbo.view.repaint();
             if(turbo.counter == 3) {
                 turbo.counter = 0;
             }
-            if(Turbo.antim == 3) {
-                Turbo.antim = 0;
-                Turbo.ancol = -Turbo.ancol;
+            if(turbo.antim == 3) {
+                turbo.antim = 0;
+                turbo.ancol = -turbo.ancol;
             }
         }
     }
@@ -142,14 +134,14 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
 
         if(y > 42) {      // Zoom widget
             if(x <= 35) {
-                Turbo.sldloc = y;
-                if(Turbo.sldloc < 50) {
-                    Turbo.sldloc = 50;
+                turbo.sldloc = y;
+                if(turbo.sldloc < 50) {
+                    turbo.sldloc = 50;
                 }
-                if(Turbo.sldloc > 160) {
-                    Turbo.sldloc = 160;
+                if(turbo.sldloc > 160) {
+                    turbo.sldloc = 160;
                 }
-                Turbo.factor = 10.0 + (Turbo.sldloc - 50) * 1.0;
+                turbo.factor = 10.0 + (turbo.sldloc - 50) * 1.0;
 
                 turbo.view.repaint();
                 return;
@@ -158,22 +150,21 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
 
         if(y >= 42 && x >= 35) {      //  move the engine
             locate = new Point(x, y);
-            Turbo.xtrans = Turbo.xtrans + (int)(.2 * (locate.x - anchor.x));
-            Turbo.ytrans = Turbo.ytrans + (int)(.2 * (locate.y - anchor.y));
-            if(Turbo.xtrans > 320) {
-                Turbo.xtrans = 320;
+            turbo.xtrans = turbo.xtrans + (int)(.2 * (locate.x - anchor.x));
+            turbo.ytrans = turbo.ytrans + (int)(.2 * (locate.y - anchor.y));
+            if(turbo.xtrans > 320) {
+                turbo.xtrans = 320;
             }
-            if(Turbo.xtrans < -280) {
-                Turbo.xtrans = -280;
+            if(turbo.xtrans < -280) {
+                turbo.xtrans = -280;
             }
-            if(Turbo.ytrans > 300) {
-                Turbo.ytrans = 300;
+            if(turbo.ytrans > 300) {
+                turbo.ytrans = 300;
             }
-            if(Turbo.ytrans < -300) {
-                Turbo.ytrans = -300;
+            if(turbo.ytrans < -300) {
+                turbo.ytrans = -300;
             }
             turbo.view.repaint();
-            return;
         }
     }
 
@@ -205,10 +196,10 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 turbo.varflag = 9;
             }
             if(x >= 245) {   // find plotPanel
-                Turbo.xtrans = 125.0;
-                Turbo.ytrans = 115.0;
-                Turbo.factor = 35.;
-                Turbo.sldloc = 75;
+                turbo.xtrans = 125.0;
+                turbo.ytrans = 115.0;
+                turbo.factor = 35.;
+                turbo.sldloc = 75;
             }
             turbo.solve.comPute();
             turbo.view.repaint();
@@ -282,75 +273,75 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             }
             if(x >= 213 && x <= 300) {   // ramjet
                 turbo.entype = 3;
-                Turbo.u0d = 1500.;
-                Turbo.altd = 35000.;
+                turbo.u0d = 1500.;
+                turbo.altd = 35000.;
             }
             turbo.varflag = 0;
             turbo.layin.show(turbo.inputPanel, "first");
             // reset limits
             if(turbo.entype <= 2) {
                 if(turbo.lunits != 1) {
-                    Turbo.u0max = 1500.;
-                    Turbo.altmax = 60000.;
-                    Turbo.t4max = 3200.;
-                    Turbo.t7max = 4100.;
+                    turbo.u0max = 1500.;
+                    turbo.altmax = 60000.;
+                    turbo.t4max = 3200.;
+                    turbo.t7max = 4100.;
                 }
                 if(turbo.lunits == 1) {
-                    Turbo.u0max = 2500.;
-                    Turbo.altmax = 20000.;
-                    Turbo.t4max = 1800.;
-                    Turbo.t7max = 2100.;
+                    turbo.u0max = 2500.;
+                    turbo.altmax = 20000.;
+                    turbo.t4max = 1800.;
+                    turbo.t7max = 2100.;
                 }
-                if(Turbo.u0d > Turbo.u0max) {
-                    Turbo.u0d = Turbo.u0max;
+                if(turbo.u0d > turbo.u0max) {
+                    turbo.u0d = turbo.u0max;
                 }
-                if(Turbo.altd > Turbo.altmax) {
-                    Turbo.altd = Turbo.altmax;
+                if(turbo.altd > turbo.altmax) {
+                    turbo.altd = turbo.altmax;
                 }
-                if(Turbo.tt4d > Turbo.t4max) {
-                    Turbo.tt4 = Turbo.tt4d = Turbo.t4max;
+                if(turbo.tt4d > turbo.t4max) {
+                    turbo.tt4 = turbo.tt4d = turbo.t4max;
                 }
-                if(Turbo.tt7d > Turbo.t7max) {
-                    Turbo.tt7 = Turbo.tt7d = Turbo.t7max;
+                if(turbo.tt7d > turbo.t7max) {
+                    turbo.tt7 = turbo.tt7d = turbo.t7max;
                 }
             } else {
                 if(turbo.lunits != 1) {
-                    Turbo.u0max = 4500.;
-                    Turbo.altmax = 100000.;
-                    Turbo.t4max = 4500.;
-                    Turbo.t7max = 4500.;
+                    turbo.u0max = 4500.;
+                    turbo.altmax = 100000.;
+                    turbo.t4max = 4500.;
+                    turbo.t7max = 4500.;
                 }
                 if(turbo.lunits == 1) {
-                    Turbo.u0max = 7500.;
-                    Turbo.altmax = 35000.;
-                    Turbo.t4max = 2500.;
-                    Turbo.t7max = 2200.;
+                    turbo.u0max = 7500.;
+                    turbo.altmax = 35000.;
+                    turbo.t4max = 2500.;
+                    turbo.t7max = 2200.;
                 }
             }
             // get the areas correct
             if(turbo.entype != 2) {
-                Turbo.a2 = Turbo.acore;
-                Turbo.a2d = Turbo.a2 * Turbo.aconv;
+                turbo.a2 = turbo.acore;
+                turbo.a2d = turbo.a2 * turbo.aconv;
             }
             if(turbo.entype == 2) {
-                Turbo.afan = Turbo.acore * (1.0 + Turbo.byprat);
-                Turbo.a2 = Turbo.afan;
-                Turbo.a2d = Turbo.a2 * Turbo.aconv;
+                turbo.afan = turbo.acore * (1.0 + turbo.byprat);
+                turbo.a2 = turbo.afan;
+                turbo.a2d = turbo.a2 * turbo.aconv;
             }
-            Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
+            turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
             // set the abflag correctly
             if(turbo.entype == 1) {
                 turbo.abflag = 1;
-                Turbo.mnozl = 5;
-                Turbo.dnozl = 400.2;
-                Turbo.tnozl = 4100.;
+                turbo.mnozl = 5;
+                turbo.dnozl = 400.2;
+                turbo.tnozl = 4100.;
                 turbo.inputPanel.flightPanel.flightRightPanel.nozch.select(turbo.abflag);
             }
             if(turbo.entype != 1) {
                 turbo.abflag = 0;
-                Turbo.mnozl = 3;
-                Turbo.dnozl = 515.2;
-                Turbo.tnozl = 2500.;
+                turbo.mnozl = 3;
+                turbo.dnozl = 515.2;
+                turbo.tnozl = 2500.;
                 turbo.inputPanel.flightPanel.flightRightPanel.nozch.select(turbo.abflag);
             }
 
@@ -373,22 +364,22 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
 
         lxhst = 5.;
 
-        Turbo.scale = Math.sqrt(Turbo.acore / 3.1415926);
-        if(Turbo.scale > 10.0) {
-            Turbo.scale = Turbo.scale / 10.0;
+        turbo.scale = Math.sqrt(turbo.acore / 3.1415926);
+        if(turbo.scale > 10.0) {
+            turbo.scale = turbo.scale / 10.0;
         }
 
-        if(Turbo.ncflag == 0) {
-            Turbo.ncomp = (int)(1.0 + Turbo.p3p2d / 1.5);
-            if(Turbo.ncomp > 15) {
-                Turbo.ncomp = 15;
+        if(turbo.ncflag == 0) {
+            turbo.ncomp = (int)(1.0 + turbo.p3p2d / 1.5);
+            if(turbo.ncomp > 15) {
+                turbo.ncomp = 15;
             }
-            turbo.inputPanel.compressorPanel.compressorLeftPanel.getF3().setText(String.valueOf(Turbo.ncomp));
+            turbo.inputPanel.compressorPanel.compressorLeftPanel.getF3().setText(String.valueOf(turbo.ncomp));
         }
         sblade = .02;
         hblade = Math.sqrt(2.0 / 3.1415926);
         tblade = .2 * hblade;
-        r0 = Math.sqrt(2.0 * Turbo.mfr / 3.1415926);
+        r0 = Math.sqrt(2.0 * turbo.mfr / 3.1415926);
         x0 = -4.0 * hblade;
 
         radius = .3 * hblade;
@@ -396,15 +387,15 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         liprad = .1 * hblade;
         xcowl = -hblade - liprad;
         xfan = 0.0;
-        xcomp = Turbo.ncomp * (tblade + sblade);
-        Turbo.ncompd = Turbo.ncomp;
+        xcomp = turbo.ncomp * (tblade + sblade);
+        turbo.ncompd = turbo.ncomp;
         if(turbo.entype == 2) {                    /* fanPanel geometry */
-            Turbo.ncompd = Turbo.ncomp + 3;
-            fblade = Math.sqrt(2.0 * (1.0 + Turbo.byprat) / 3.1415926);
+            turbo.ncompd = turbo.ncomp + 3;
+            fblade = Math.sqrt(2.0 * (1.0 + turbo.byprat) / 3.1415926);
             rcowl = fblade;
-            r0 = Math.sqrt(2.0 * (1.0 + Turbo.byprat) * Turbo.mfr / 3.1415926);
+            r0 = Math.sqrt(2.0 * (1.0 + turbo.byprat) * turbo.mfr / 3.1415926);
             xfan = 3.0 * (tblade + sblade);
-            xcomp = Turbo.ncompd * (tblade + sblade);
+            xcomp = turbo.ncompd * (tblade + sblade);
         }
         if(r0 < rcowl) {
             capc = (rcowl - r0) / ((xcowl - x0) * (xcowl - x0));
@@ -415,111 +406,111 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             capb = -2.0 * capc * xcowl;
             capa = rcowl + capc * xcowl * xcowl;
         }
-        Turbo.lcomp = xcomp;
-        Turbo.lburn = hblade;
-        xburn = xcomp + Turbo.lburn;
+        turbo.lcomp = xcomp;
+        turbo.lburn = hblade;
+        xburn = xcomp + turbo.lburn;
         rburn = .2 * hblade;
 
-        if(Turbo.ntflag == 0) {
-            Turbo.nturb = 1 + Turbo.ncomp / 4;
-            turbo.inputPanel.turbinePanel.turbineLeftPanel.getF3().setText(String.valueOf(Turbo.nturb));
+        if(turbo.ntflag == 0) {
+            turbo.nturb = 1 + turbo.ncomp / 4;
+            turbo.inputPanel.turbinePanel.turbineLeftPanel.getF3().setText(String.valueOf(turbo.nturb));
             if(turbo.entype == 2) {
-                Turbo.nturb = Turbo.nturb + 1;
+                turbo.nturb = turbo.nturb + 1;
             }
         }
-        Turbo.lturb = Turbo.nturb * (tblade + sblade);
-        xturb = xburn + Turbo.lturb;
+        turbo.lturb = turbo.nturb * (tblade + sblade);
+        xturb = xburn + turbo.lturb;
         xturbh = xturb - 2.0 * (tblade + sblade);
-        Turbo.lnoz = Turbo.lburn;
+        turbo.lnoz = turbo.lburn;
         if(turbo.entype == 1) {
-            Turbo.lnoz = 3.0 * Turbo.lburn;
+            turbo.lnoz = 3.0 * turbo.lburn;
         }
         if(turbo.entype == 3) {
-            Turbo.lnoz = 3.0 * Turbo.lburn;
+            turbo.lnoz = 3.0 * turbo.lburn;
         }
-        xnoz = xturb + Turbo.lburn;
-        xflame = xturb + Turbo.lnoz;
+        xnoz = xturb + turbo.lburn;
+        xflame = xturb + turbo.lnoz;
         xit = xflame + hblade;
         if(turbo.entype <= 2) {
-            rnoz = Math.sqrt(Turbo.a8rat * 2.0 / 3.1415926);
+            rnoz = Math.sqrt(turbo.a8rat * 2.0 / 3.1415926);
             cepc = -rnoz / (lxhst * lxhst);
             cepb = -2.0 * cepc * (xit + lxhst);
             cepa = rnoz - cepb * xit - cepc * xit * xit;
         }
         if(turbo.entype == 3) {
-            rnoz = Math.sqrt(Turbo.arthd * Turbo.arexitd * 2.0 / 3.1415926);
-            rthroat = Math.sqrt(Turbo.arthd * 2.0 / 3.1415926);
+            rnoz = Math.sqrt(turbo.arthd * turbo.arexitd * 2.0 / 3.1415926);
+            rthroat = Math.sqrt(turbo.arthd * 2.0 / 3.1415926);
         }
         // animated flow field
         for (i = 0; i <= 5; ++i) {   // upstream
-            Turbo.xg[4][i] = Turbo.xg[0][i] = i * (xcowl - x0) / 5.0 + x0;
-            Turbo.yg[0][i] = .9 * hblade;
-            Turbo.yg[4][i] = 0.0;
+            turbo.xg[4][i] = turbo.xg[0][i] = i * (xcowl - x0) / 5.0 + x0;
+            turbo.yg[0][i] = .9 * hblade;
+            turbo.yg[4][i] = 0.0;
         }
         for (i = 6; i <= 14; ++i) {  // compress
-            Turbo.xg[4][i] = Turbo.xg[0][i] = (i - 5) * (xcomp - xcowl) / 9.0 + xcowl;
-            Turbo.yg[0][i] = .9 * hblade;
-            Turbo.yg[4][i] = (i - 5) * (1.5 * radius) / 9.0;
+            turbo.xg[4][i] = turbo.xg[0][i] = (i - 5) * (xcomp - xcowl) / 9.0 + xcowl;
+            turbo.yg[0][i] = .9 * hblade;
+            turbo.yg[4][i] = (i - 5) * (1.5 * radius) / 9.0;
         }
         for (i = 15; i <= 18; ++i) {  // burnerPanel
-            Turbo.xg[0][i] = (i - 14) * (xburn - xcomp) / 4.0 + xcomp;
-            Turbo.yg[0][i] = .9 * hblade;
-            Turbo.yg[4][i] = .5 * radius;
+            turbo.xg[0][i] = (i - 14) * (xburn - xcomp) / 4.0 + xcomp;
+            turbo.yg[0][i] = .9 * hblade;
+            turbo.yg[4][i] = .5 * radius;
         }
         for (i = 19; i <= 23; ++i) {  // turbinePanel
-            Turbo.xg[0][i] = (i - 18) * (xturb - xburn) / 5.0 + xburn;
-            Turbo.yg[0][i] = .9 * hblade;
-            Turbo.yg[4][i] = (i - 18) * (-.5 * radius) / 5.0 + radius;
+            turbo.xg[0][i] = (i - 18) * (xturb - xburn) / 5.0 + xburn;
+            turbo.yg[0][i] = .9 * hblade;
+            turbo.yg[4][i] = (i - 18) * (-.5 * radius) / 5.0 + radius;
         }
         for (i = 24; i <= 29; ++i) { // nozzl
-            Turbo.xg[0][i] = (i - 23) * (xit - xturb) / 6.0 + xturb;
+            turbo.xg[0][i] = (i - 23) * (xit - xturb) / 6.0 + xturb;
             if(turbo.entype != 3) {
-                Turbo.yg[0][i] = (i - 23) * (rnoz - hblade) / 6.0 + hblade;
+                turbo.yg[0][i] = (i - 23) * (rnoz - hblade) / 6.0 + hblade;
             }
             if(turbo.entype == 3) {
-                Turbo.yg[0][i] = (i - 23) * (rthroat - hblade) / 6.0 + hblade;
+                turbo.yg[0][i] = (i - 23) * (rthroat - hblade) / 6.0 + hblade;
             }
-            Turbo.yg[4][i] = 0.0;
+            turbo.yg[4][i] = 0.0;
         }
         for (i = 29; i <= 34; ++i) { // external
-            Turbo.xg[0][i] = (i - 28) * (3.0) / 3.0 + xit;
+            turbo.xg[0][i] = (i - 28) * (3.0) / 3.0 + xit;
             if(turbo.entype != 3) {
-                Turbo.yg[0][i] = (i - 28) * (rnoz) / 3.0 + rnoz;
+                turbo.yg[0][i] = (i - 28) * (rnoz) / 3.0 + rnoz;
             }
             if(turbo.entype == 3) {
-                Turbo.yg[0][i] = (i - 28) * (rthroat) / 3.0 + rthroat;
+                turbo.yg[0][i] = (i - 28) * (rthroat) / 3.0 + rthroat;
             }
-            Turbo.yg[4][i] = 0.0;
+            turbo.yg[4][i] = 0.0;
         }
 
         for (j = 1; j <= 3; ++j) {
             for (i = 0; i <= 34; ++i) {
-                Turbo.xg[j][i] = Turbo.xg[0][i];
-                Turbo.yg[j][i] = (1.0 - .25 * j) * (Turbo.yg[0][i] - Turbo.yg[4][i]) + Turbo.yg[4][i];
+                turbo.xg[j][i] = turbo.xg[0][i];
+                turbo.yg[j][i] = (1.0 - .25 * j) * (turbo.yg[0][i] - turbo.yg[4][i]) + turbo.yg[4][i];
             }
         }
         for (j = 5; j <= 8; ++j) {
             for (i = 0; i <= 34; ++i) {
-                Turbo.xg[j][i] = Turbo.xg[0][i];
-                Turbo.yg[j][i] = -Turbo.yg[8 - j][i];
+                turbo.xg[j][i] = turbo.xg[0][i];
+                turbo.yg[j][i] = -turbo.yg[8 - j][i];
             }
         }
         if(turbo.entype == 2) {  // fanPanel flow
             for (i = 0; i <= 5; ++i) {   // upstream
-                Turbo.xg[9][i] = Turbo.xg[0][i];
-                Turbo.xg[10][i] = Turbo.xg[0][i];
-                Turbo.xg[11][i] = Turbo.xg[0][i];
-                Turbo.xg[12][i] = Turbo.xg[0][i];
+                turbo.xg[9][i] = turbo.xg[0][i];
+                turbo.xg[10][i] = turbo.xg[0][i];
+                turbo.xg[11][i] = turbo.xg[0][i];
+                turbo.xg[12][i] = turbo.xg[0][i];
             }
             for (i = 6; i <= 34; ++i) {  // compress
-                Turbo.xg[9][i] = Turbo.xg[10][i] = Turbo.xg[11][i] = Turbo.xg[12][i] =
+                turbo.xg[9][i] = turbo.xg[10][i] = turbo.xg[11][i] = turbo.xg[12][i] =
                     (i - 6) * (7.0 - xcowl) / 28.0 + xcowl;
             }
             for (i = 0; i <= 34; ++i) {  // compress
-                Turbo.yg[9][i] = .5 * (hblade + .9 * rcowl);
-                Turbo.yg[10][i] = .9 * rcowl;
-                Turbo.yg[11][i] = -.5 * (hblade + .9 * rcowl);
-                Turbo.yg[12][i] = -.9 * rcowl;
+                turbo.yg[9][i] = .5 * (hblade + .9 * rcowl);
+                turbo.yg[10][i] = .9 * rcowl;
+                turbo.yg[11][i] = -.5 * (hblade + .9 * rcowl);
+                turbo.yg[12][i] = -.9 * rcowl;
             }
         }
     }
@@ -538,8 +529,8 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
 
         bcol = 0;
         dcol = 7;
-        xl = Turbo.factor * 0.0 + Turbo.xtrans;
-        yl = Turbo.factor * 0.0 + Turbo.ytrans;
+        xl = turbo.factor * 0.0 + turbo.xtrans;
+        yl = turbo.factor * 0.0 + turbo.ytrans;
 
         turbo.offsGg.setColor(Color.black);
         turbo.offsGg.fillRect(0, 0, 500, 500);
@@ -547,30 +538,30 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         for (j = 0; j <= 20; ++j) {
             exes[0] = 0;
             exes[1] = 500;
-            whys[0] = whys[1] = (int)(yl + Turbo.factor * (20. / Turbo.scale * j) / 25.0);
+            whys[0] = whys[1] = (int)(yl + turbo.factor * (20. / turbo.scale * j) / 25.0);
             turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-            whys[0] = whys[1] = (int)(yl - Turbo.factor * (20. / Turbo.scale * j) / 25.0);
+            whys[0] = whys[1] = (int)(yl - turbo.factor * (20. / turbo.scale * j) / 25.0);
             turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
         }
         for (j = 0; j <= 40; ++j) {
             whys[0] = 0;
             whys[1] = 500;
-            exes[0] = exes[1] = (int)(xl + Turbo.factor * (20. / Turbo.scale * j) / 25.0);
+            exes[0] = exes[1] = (int)(xl + turbo.factor * (20. / turbo.scale * j) / 25.0);
             turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-            exes[0] = exes[1] = (int)(xl - Turbo.factor * (20. / Turbo.scale * j) / 25.0);
+            exes[0] = exes[1] = (int)(xl - turbo.factor * (20. / turbo.scale * j) / 25.0);
             turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
         }
 
         if(turbo.entype <= 2) {
                       /* blades */
             turbo.offsGg.setColor(Color.white);
-            for (j = 1; j <= Turbo.ncompd; ++j) {
-                exes[0] = (int)(xl + Turbo.factor * (.02 + (j - 1) * (tblade + sblade)));
-                whys[0] = (int)(Turbo.factor * hblade + Turbo.ytrans);
-                exes[1] = exes[0] + (int)(Turbo.factor * tblade);
+            for (j = 1; j <= turbo.ncompd; ++j) {
+                exes[0] = (int)(xl + turbo.factor * (.02 + (j - 1) * (tblade + sblade)));
+                whys[0] = (int)(turbo.factor * hblade + turbo.ytrans);
+                exes[1] = exes[0] + (int)(turbo.factor * tblade);
                 whys[1] = whys[0];
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -hblade + turbo.ytrans);
                 exes[3] = exes[0];
                 whys[3] = whys[2];
                 turbo.offsGg.fillPolygon(exes, whys, 4);
@@ -585,12 +576,12 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                     if(j == 3 && bcol == 7) {
                         turbo.offsGg.setColor(Color.white);
                     }
-                    exes[0] = (int)(xl + Turbo.factor * (.02 + (j - 1) * (tblade + sblade)));
-                    whys[0] = (int)(Turbo.factor * fblade + Turbo.ytrans);
-                    exes[1] = exes[0] + (int)(Turbo.factor * tblade);
+                    exes[0] = (int)(xl + turbo.factor * (.02 + (j - 1) * (tblade + sblade)));
+                    whys[0] = (int)(turbo.factor * fblade + turbo.ytrans);
+                    exes[1] = exes[0] + (int)(turbo.factor * tblade);
                     whys[1] = whys[0];
                     exes[2] = exes[1];
-                    whys[2] = (int)(Turbo.factor * -fblade + Turbo.ytrans);
+                    whys[2] = (int)(turbo.factor * -fblade + turbo.ytrans);
                     exes[3] = exes[0];
                     whys[3] = whys[2];
                     turbo.offsGg.fillPolygon(exes, whys, 4);
@@ -601,42 +592,42 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 4) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            turbo.offsGg.fillArc((int)(xl - Turbo.factor * radius), (int)(yl - Turbo.factor * radius),
-                                 (int)(2.0 * Turbo.factor * radius), (int)(2.0 * Turbo.factor * radius), 90, 180);
+            turbo.offsGg.fillArc((int)(xl - turbo.factor * radius), (int)(yl - turbo.factor * radius),
+                                 (int)(2.0 * turbo.factor * radius), (int)(2.0 * turbo.factor * radius), 90, 180);
             exes[0] = (int)(xl);
-            whys[0] = (int)(Turbo.factor * radius + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * radius + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             exes[3] = exes[0];
-            whys[3] = (int)(Turbo.factor * -radius + Turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -radius + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
             if(turbo.entype == 2) {  // fanPanel
                 turbo.offsGg.setColor(Color.green);
                 if(turbo.varflag == 3) {
                     turbo.offsGg.setColor(Color.yellow);
                 }
-                turbo.offsGg.fillArc((int)(xl - Turbo.factor * radius), (int)(yl - Turbo.factor * radius),
-                                     (int)(2.0 * Turbo.factor * radius), (int)(2.0 * Turbo.factor * radius), 90, 180);
+                turbo.offsGg.fillArc((int)(xl - turbo.factor * radius), (int)(yl - turbo.factor * radius),
+                                     (int)(2.0 * turbo.factor * radius), (int)(2.0 * turbo.factor * radius), 90, 180);
                 exes[0] = (int)(xl);
-                whys[0] = (int)(Turbo.factor * radius + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * xfan + Turbo.xtrans);
-                whys[1] = (int)(Turbo.factor * 1.2 * radius + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * radius + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * xfan + turbo.xtrans);
+                whys[1] = (int)(turbo.factor * 1.2 * radius + turbo.ytrans);
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * -1.2 * radius + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -1.2 * radius + turbo.ytrans);
                 exes[3] = exes[0];
-                whys[3] = (int)(Turbo.factor * -radius + Turbo.ytrans);
+                whys[3] = (int)(turbo.factor * -radius + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
             }
 /* combustor */
             turbo.offsGg.setColor(Color.black);
-            exes[0] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * hblade + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * hblade + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * hblade + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * hblade + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -hblade + turbo.ytrans);
             exes[3] = exes[0];
             whys[3] = whys[2];
             turbo.offsGg.fillPolygon(exes, whys, 4);
@@ -644,50 +635,50 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             turbo.offsGg.setColor(Color.white);
             xl = xcomp + .05 + rburn;
             yl = .6 * hblade;
-            turbo.offsGg.drawArc((int)(Turbo.factor * (xl - rburn) + Turbo.xtrans), (int)(Turbo.factor * (yl - rburn) + Turbo.ytrans),
-                                 (int)(2.0 * Turbo.factor * rburn), (int)(2.0 * Turbo.factor * rburn), 90, 180);
-            turbo.offsGg.drawArc((int)(Turbo.factor * (xl - rburn) + Turbo.xtrans), (int)(Turbo.factor * (-yl - rburn) + Turbo.ytrans),
-                                 (int)(2.0 * Turbo.factor * rburn), (int)(2.0 * Turbo.factor * rburn), 90, 180);
+            turbo.offsGg.drawArc((int)(turbo.factor * (xl - rburn) + turbo.xtrans), (int)(turbo.factor * (yl - rburn) + turbo.ytrans),
+                                 (int)(2.0 * turbo.factor * rburn), (int)(2.0 * turbo.factor * rburn), 90, 180);
+            turbo.offsGg.drawArc((int)(turbo.factor * (xl - rburn) + turbo.xtrans), (int)(turbo.factor * (-yl - rburn) + turbo.ytrans),
+                                 (int)(2.0 * turbo.factor * rburn), (int)(2.0 * turbo.factor * rburn), 90, 180);
                                /* core */
             turbo.offsGg.setColor(Color.red);
             if(turbo.varflag == 5) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xcomp + .25 * Turbo.lburn + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * .8 * radius + Turbo.ytrans);
-            exes[2] = (int)(Turbo.factor * (xcomp + .75 * Turbo.lburn) + Turbo.xtrans);
-            whys[2] = (int)(Turbo.factor * .8 * radius + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xcomp + .25 * turbo.lburn + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * .8 * radius + turbo.ytrans);
+            exes[2] = (int)(turbo.factor * (xcomp + .75 * turbo.lburn) + turbo.xtrans);
+            whys[2] = (int)(turbo.factor * .8 * radius + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
             exes[4] = exes[3];
-            whys[4] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[4] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             exes[5] = exes[2];
-            whys[5] = (int)(Turbo.factor * -.8 * radius + Turbo.ytrans);
+            whys[5] = (int)(turbo.factor * -.8 * radius + turbo.ytrans);
             exes[6] = exes[1];
-            whys[6] = (int)(Turbo.factor * -.8 * radius + Turbo.ytrans);
+            whys[6] = (int)(turbo.factor * -.8 * radius + turbo.ytrans);
             exes[7] = exes[0];
-            whys[7] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[7] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 8);
 /* turbine */
                       /* blades */
-            for (j = 1; j <= Turbo.nturb; ++j) {
+            for (j = 1; j <= turbo.nturb; ++j) {
                 turbo.offsGg.setColor(Color.white);
                 if(turbo.entype == 2) {
-                    if(j == (Turbo.nturb - 1) && bcol == 0) {
+                    if(j == (turbo.nturb - 1) && bcol == 0) {
                         turbo.offsGg.setColor(Color.black);
                     }
-                    if(j == (Turbo.nturb - 1) && bcol == 7) {
+                    if(j == (turbo.nturb - 1) && bcol == 7) {
                         turbo.offsGg.setColor(Color.white);
                     }
                 }
-                exes[0] = (int)(Turbo.factor * (xburn + .02 + (j - 1) * (tblade + sblade)) + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * hblade + Turbo.ytrans);
-                exes[1] = exes[0] + (int)(Turbo.factor * tblade);
+                exes[0] = (int)(turbo.factor * (xburn + .02 + (j - 1) * (tblade + sblade)) + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * hblade + turbo.ytrans);
+                exes[1] = exes[0] + (int)(turbo.factor * tblade);
                 whys[1] = whys[0];
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -hblade + turbo.ytrans);
                 exes[3] = exes[0];
                 whys[3] = whys[2];
                 turbo.offsGg.fillPolygon(exes, whys, 4);
@@ -697,12 +688,12 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 6) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xnoz + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * 0.0 + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xnoz + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * 0.0 + turbo.ytrans);
             exes[2] = exes[0];
-            whys[2] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 3);
 /* afterburner */
             if(turbo.entype == 1) {
@@ -715,17 +706,17 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 if(turbo.varflag == 7) {
                     turbo.offsGg.setColor(Color.yellow);
                 }
-                exes[0] = (int)(Turbo.factor * (xflame - .1 * Turbo.lnoz) + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * .6 * hblade + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * (xflame - .2 * Turbo.lnoz) + Turbo.xtrans);
-                whys[1] = (int)(Turbo.factor * .5 * hblade + Turbo.ytrans);
-                exes[2] = (int)(Turbo.factor * (xflame - .1 * Turbo.lnoz) + Turbo.xtrans);
-                whys[2] = (int)(Turbo.factor * .4 * hblade + Turbo.ytrans);
+                exes[0] = (int)(turbo.factor * (xflame - .1 * turbo.lnoz) + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * .6 * hblade + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * (xflame - .2 * turbo.lnoz) + turbo.xtrans);
+                whys[1] = (int)(turbo.factor * .5 * hblade + turbo.ytrans);
+                exes[2] = (int)(turbo.factor * (xflame - .1 * turbo.lnoz) + turbo.xtrans);
+                whys[2] = (int)(turbo.factor * .4 * hblade + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
                 turbo.offsGg.drawLine(exes[1], whys[1], exes[2], whys[2]);
-                whys[0] = (int)(Turbo.factor * -.6 * hblade + Turbo.ytrans);
-                whys[1] = (int)(Turbo.factor * -.5 * hblade + Turbo.ytrans);
-                whys[2] = (int)(Turbo.factor * -.4 * hblade + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * -.6 * hblade + turbo.ytrans);
+                whys[1] = (int)(turbo.factor * -.5 * hblade + turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -.4 * hblade + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
                 turbo.offsGg.drawLine(exes[1], whys[1], exes[2], whys[2]);
             }
@@ -743,45 +734,45 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 }
                 xl = xcowl + liprad;                /*   core cowl */
                 yl = rcowl;
-                turbo.offsGg.fillArc((int)(Turbo.factor * (xl - liprad) + Turbo.xtrans), (int)(Turbo.factor * (yl - liprad) + Turbo.ytrans),
-                                     (int)(2.0 * Turbo.factor * liprad), (int)(2.0 * Turbo.factor * liprad), 90, 180);
-                turbo.offsGg.fillArc((int)(Turbo.factor * (xl - liprad) + Turbo.xtrans), (int)(Turbo.factor * (-yl - liprad) + Turbo.ytrans),
-                                     (int)(2.0 * Turbo.factor * liprad), (int)(2.0 * Turbo.factor * liprad), 90, 180);
-                exes[0] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (yl + liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-                whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
+                turbo.offsGg.fillArc((int)(turbo.factor * (xl - liprad) + turbo.xtrans), (int)(turbo.factor * (yl - liprad) + turbo.ytrans),
+                                     (int)(2.0 * turbo.factor * liprad), (int)(2.0 * turbo.factor * liprad), 90, 180);
+                turbo.offsGg.fillArc((int)(turbo.factor * (xl - liprad) + turbo.xtrans), (int)(turbo.factor * (-yl - liprad) + turbo.ytrans),
+                                     (int)(2.0 * turbo.factor * liprad), (int)(2.0 * turbo.factor * liprad), 90, 180);
+                exes[0] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (yl + liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * -radius + turbo.xtrans);
+                whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * hblade + turbo.ytrans);
                 exes[3] = exes[0];
-                whys[3] = (int)(Turbo.factor * (yl - liprad) + Turbo.ytrans);
+                whys[3] = (int)(turbo.factor * (yl - liprad) + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
-                whys[0] = (int)(Turbo.factor * (-yl - liprad) + Turbo.ytrans);
-                whys[1] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-                whys[2] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
-                whys[3] = (int)(Turbo.factor * (-yl + liprad) + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * (-yl - liprad) + turbo.ytrans);
+                whys[1] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -hblade + turbo.ytrans);
+                whys[3] = (int)(turbo.factor * (-yl + liprad) + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
                 // compressor
                 turbo.offsGg.setColor(Color.cyan);
                 if(turbo.varflag == 4) {
                     turbo.offsGg.setColor(Color.yellow);
                 }
-                exes[0] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
+                exes[0] = (int)(turbo.factor * -radius + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * xcomp + turbo.xtrans);
                 whys[1] = whys[0];
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
-                exes[3] = (int)(Turbo.factor * .02 + Turbo.xtrans);
-                whys[3] = (int)(Turbo.factor * hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
+                exes[3] = (int)(turbo.factor * .02 + turbo.xtrans);
+                whys[3] = (int)(turbo.factor * hblade + turbo.ytrans);
                 exes[4] = exes[0];
                 whys[4] = whys[3];
                 turbo.offsGg.fillPolygon(exes, whys, 5);
 
-                whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
                 whys[1] = whys[0];
-                whys[2] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
-                whys[3] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
+                whys[3] = (int)(turbo.factor * -hblade + turbo.ytrans);
                 whys[4] = whys[3];
                 turbo.offsGg.fillPolygon(exes, whys, 5);
             }
@@ -792,25 +783,25 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 }
                 xl = xcowl + liprad;                     /*   inletPanel */
                 yl = rcowl;
-                turbo.offsGg.fillArc((int)(Turbo.factor * (xl - liprad) + Turbo.xtrans), (int)(Turbo.factor * (yl - liprad) + Turbo.ytrans),
-                                     (int)(2.0 * Turbo.factor * liprad), (int)(2.0 * Turbo.factor * liprad), 90, 180);
-                exes[0] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (yl + liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-                whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
+                turbo.offsGg.fillArc((int)(turbo.factor * (xl - liprad) + turbo.xtrans), (int)(turbo.factor * (yl - liprad) + turbo.ytrans),
+                                     (int)(2.0 * turbo.factor * liprad), (int)(2.0 * turbo.factor * liprad), 90, 180);
+                exes[0] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (yl + liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * -radius + turbo.xtrans);
+                whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * hblade + turbo.ytrans);
                 exes[3] = exes[0];
-                whys[3] = (int)(Turbo.factor * (yl - liprad) + Turbo.ytrans);
+                whys[3] = (int)(turbo.factor * (yl - liprad) + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
-                exes[0] = (int)(Turbo.factor * (xl + 1.5 * xcowl) + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * -radius + Turbo.xtrans);
+                exes[0] = (int)(turbo.factor * (xl + 1.5 * xcowl) + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * -radius + turbo.xtrans);
                 whys[1] = whys[0];
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
-                exes[3] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[3] = (int)(Turbo.factor * -.7 * hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -hblade + turbo.ytrans);
+                exes[3] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[3] = (int)(turbo.factor * -.7 * hblade + turbo.ytrans);
                 exes[4] = exes[0];
                 whys[4] = whys[0];
                 turbo.offsGg.fillPolygon(exes, whys, 5);
@@ -819,22 +810,22 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 if(turbo.varflag == 4) {
                     turbo.offsGg.setColor(Color.yellow);
                 }
-                exes[0] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
+                exes[0] = (int)(turbo.factor * -radius + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * xcomp + turbo.xtrans);
                 whys[1] = whys[0];
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
-                exes[3] = (int)(Turbo.factor * .02 + Turbo.xtrans);
-                whys[3] = (int)(Turbo.factor * hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
+                exes[3] = (int)(turbo.factor * .02 + turbo.xtrans);
+                whys[3] = (int)(turbo.factor * hblade + turbo.ytrans);
                 exes[4] = exes[0];
                 whys[4] = whys[3];
                 turbo.offsGg.fillPolygon(exes, whys, 5);
 
-                whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
                 whys[1] = whys[0];
-                whys[2] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
-                whys[3] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
+                whys[3] = (int)(turbo.factor * -hblade + turbo.ytrans);
                 whys[4] = whys[3];
                 turbo.offsGg.fillPolygon(exes, whys, 5);
             }
@@ -850,24 +841,24 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 }
                 xl = xcowl + liprad;                     /*   fanPanel cowl inletPanel */
                 yl = rcowl;
-                turbo.offsGg.fillArc((int)(Turbo.factor * (xl - liprad) + Turbo.xtrans), (int)(Turbo.factor * (yl - liprad) + Turbo.ytrans),
-                                     (int)(2.0 * Turbo.factor * liprad), (int)(2.0 * Turbo.factor * liprad), 90, 180);
-                turbo.offsGg.fillArc((int)(Turbo.factor * (xl - liprad) + Turbo.xtrans), (int)(Turbo.factor * (-yl - liprad) + Turbo.ytrans),
-                                     (int)(2.0 * Turbo.factor * liprad), (int)(2.0 * Turbo.factor * liprad), 90, 180);
-                exes[0] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (yl + liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-                whys[1] = (int)(Turbo.factor * (fblade + liprad) + Turbo.ytrans);
+                turbo.offsGg.fillArc((int)(turbo.factor * (xl - liprad) + turbo.xtrans), (int)(turbo.factor * (yl - liprad) + turbo.ytrans),
+                                     (int)(2.0 * turbo.factor * liprad), (int)(2.0 * turbo.factor * liprad), 90, 180);
+                turbo.offsGg.fillArc((int)(turbo.factor * (xl - liprad) + turbo.xtrans), (int)(turbo.factor * (-yl - liprad) + turbo.ytrans),
+                                     (int)(2.0 * turbo.factor * liprad), (int)(2.0 * turbo.factor * liprad), 90, 180);
+                exes[0] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (yl + liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * -radius + turbo.xtrans);
+                whys[1] = (int)(turbo.factor * (fblade + liprad) + turbo.ytrans);
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * fblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * fblade + turbo.ytrans);
                 exes[3] = exes[0];
-                whys[3] = (int)(Turbo.factor * (yl - liprad) + Turbo.ytrans);
+                whys[3] = (int)(turbo.factor * (yl - liprad) + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
 
-                whys[0] = (int)(Turbo.factor * (-yl - liprad) + Turbo.ytrans);
-                whys[1] = (int)(Turbo.factor * (-fblade - liprad) + Turbo.ytrans);
-                whys[2] = (int)(Turbo.factor * -fblade + Turbo.ytrans);
-                whys[3] = (int)(Turbo.factor * (-yl + liprad) + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * (-yl - liprad) + turbo.ytrans);
+                whys[1] = (int)(turbo.factor * (-fblade - liprad) + turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -fblade + turbo.ytrans);
+                whys[3] = (int)(turbo.factor * (-yl + liprad) + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
 
                 turbo.offsGg.setColor(Color.green);
@@ -876,21 +867,21 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 }
                 xl = xcowl + liprad;                     /*   fanPanel cowl */
                 yl = rcowl;
-                exes[0] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (fblade + liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * xcomp / 2.0 + Turbo.xtrans);
+                exes[0] = (int)(turbo.factor * -radius + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (fblade + liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * xcomp / 2.0 + turbo.xtrans);
                 whys[1] = whys[0];
-                exes[2] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-                whys[2] = (int)(Turbo.factor * fblade + Turbo.ytrans);
-                exes[3] = (int)(Turbo.factor * .02 + Turbo.xtrans);
-                whys[3] = (int)(Turbo.factor * fblade + Turbo.ytrans);
+                exes[2] = (int)(turbo.factor * xcomp + turbo.xtrans);
+                whys[2] = (int)(turbo.factor * fblade + turbo.ytrans);
+                exes[3] = (int)(turbo.factor * .02 + turbo.xtrans);
+                whys[3] = (int)(turbo.factor * fblade + turbo.ytrans);
                 exes[4] = exes[0];
                 whys[4] = whys[3];
                 turbo.offsGg.fillPolygon(exes, whys, 5);
 
-                whys[0] = (int)(Turbo.factor * (-fblade - liprad) + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * (-fblade - liprad) + turbo.ytrans);
                 whys[1] = whys[0];
-                whys[2] = (int)(Turbo.factor * -fblade + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -fblade + turbo.ytrans);
                 whys[3] = whys[2];
                 whys[4] = whys[2];
                 turbo.offsGg.fillPolygon(exes, whys, 5);
@@ -901,24 +892,24 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
                 if(turbo.varflag == 4) {
                     turbo.offsGg.setColor(Color.yellow);
                 }
-                turbo.offsGg.fillArc((int)(Turbo.factor * (xl - liprad) + Turbo.xtrans), (int)(Turbo.factor * (yl - liprad) + Turbo.ytrans),
-                                     (int)(2.0 * Turbo.factor * liprad), (int)(2.0 * Turbo.factor * liprad), 90, 180);
-                turbo.offsGg.fillArc((int)(Turbo.factor * (xl - liprad) + Turbo.xtrans), (int)(Turbo.factor * (-yl - liprad) + Turbo.ytrans),
-                                     (int)(2.0 * Turbo.factor * liprad), (int)(2.0 * Turbo.factor * liprad), 90, 180);
-                exes[0] = (int)(Turbo.factor * (xl - .01) + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-                exes[1] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
+                turbo.offsGg.fillArc((int)(turbo.factor * (xl - liprad) + turbo.xtrans), (int)(turbo.factor * (yl - liprad) + turbo.ytrans),
+                                     (int)(2.0 * turbo.factor * liprad), (int)(2.0 * turbo.factor * liprad), 90, 180);
+                turbo.offsGg.fillArc((int)(turbo.factor * (xl - liprad) + turbo.xtrans), (int)(turbo.factor * (-yl - liprad) + turbo.ytrans),
+                                     (int)(2.0 * turbo.factor * liprad), (int)(2.0 * turbo.factor * liprad), 90, 180);
+                exes[0] = (int)(turbo.factor * (xl - .01) + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+                exes[1] = (int)(turbo.factor * xcomp + turbo.xtrans);
                 whys[1] = whys[0];
                 exes[2] = exes[1];
-                whys[2] = (int)(Turbo.factor * (.8 * hblade) + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * (.8 * hblade) + turbo.ytrans);
                 exes[3] = exes[0];
-                whys[3] = (int)(Turbo.factor * (hblade - liprad) + Turbo.ytrans);
+                whys[3] = (int)(turbo.factor * (hblade - liprad) + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
 
-                whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
+                whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
                 whys[1] = whys[0];
-                whys[2] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
-                whys[3] = (int)(Turbo.factor * (-hblade + liprad) + Turbo.ytrans);
+                whys[2] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
+                whys[3] = (int)(turbo.factor * (-hblade + liprad) + turbo.ytrans);
                 turbo.offsGg.fillPolygon(exes, whys, 4);
             }
                                                  /* combustor */
@@ -926,46 +917,46 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 5) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * (xcomp + .75 * Turbo.lburn) + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
-            exes[4] = (int)(Turbo.factor * (xcomp + .25 * Turbo.lburn) + Turbo.xtrans);
-            whys[4] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
-            exes[5] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[5] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * (xcomp + .75 * turbo.lburn) + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
+            exes[4] = (int)(turbo.factor * (xcomp + .25 * turbo.lburn) + turbo.xtrans);
+            whys[4] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
+            exes[5] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[5] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 6);
 
-            whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
-            whys[4] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
-            whys[5] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
+            whys[4] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
+            whys[5] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 6);
                                                   /* turbine */
             turbo.offsGg.setColor(Color.magenta);
             if(turbo.varflag == 6) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xturb + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xturb + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
 
-            whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
                                                  /* nozzle */
             if(dcol == 0) {
@@ -977,110 +968,110 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 7) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xturb + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xflame + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[2] = (int)(Turbo.factor * xit + Turbo.xtrans);
-            whys[2] = (int)(Turbo.factor * rnoz + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * xflame + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
-            exes[4] = (int)(Turbo.factor * xturb + Turbo.xtrans);
-            whys[4] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xturb + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xflame + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[2] = (int)(turbo.factor * xit + turbo.xtrans);
+            whys[2] = (int)(turbo.factor * rnoz + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * xflame + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
+            exes[4] = (int)(turbo.factor * xturb + turbo.xtrans);
+            whys[4] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 5);
 
-            whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -rnoz + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
-            whys[4] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -rnoz + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
+            whys[4] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 5);
             //   show stations
             if(turbo.showcom == 1) {
                 turbo.offsGg.setColor(Color.white);
-                ylabel = (int)(Turbo.factor * 1.5 * hblade + 20. + Turbo.ytrans);
+                ylabel = (int)(turbo.factor * 1.5 * hblade + 20. + turbo.ytrans);
                 whys[1] = 370;
 
                 xl = xcomp - .1;                   /* burner entrance */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("3", xlabel, ylabel);
 
                 xl = xburn - .1;                   /* turbine entrance */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("4", xlabel, ylabel);
 
                 xl = xnoz;            /* Afterburner entry */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("6", xlabel, ylabel);
 
                 if(turbo.entype == 1) {
                     xl = xflame;               /* Afterburner exit */
-                    exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                    whys[0] = (int)(Turbo.factor * .2 + Turbo.ytrans);
+                    exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                    whys[0] = (int)(turbo.factor * .2 + turbo.ytrans);
                     turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                    xlabel = exes[0] + (int)(Turbo.factor * .05);
+                    xlabel = exes[0] + (int)(turbo.factor * .05);
                     turbo.offsGg.drawString("7", xlabel, ylabel);
                 }
 
                 xl = xit;                    /* nozzle exit */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * .2 + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * .2 + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] - (int)(Turbo.factor * .2);
+                xlabel = exes[0] - (int)(turbo.factor * .2);
                 turbo.offsGg.drawString("8", xlabel, ylabel);
 
                 if(turbo.entype < 2) {
                     xl = -radius;                   /* compressor entrance */
-                    exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                    whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                    exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                    whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                     turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                    xlabel = exes[0] + (int)(Turbo.factor * .05);
+                    xlabel = exes[0] + (int)(turbo.factor * .05);
                     turbo.offsGg.drawString("2", xlabel, ylabel);
 
                     xl = xturb + .1;                   /* turbine exit */
-                    exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                    whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                    exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                    whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                     turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                    xlabel = exes[0] + (int)(Turbo.factor * .05);
+                    xlabel = exes[0] + (int)(turbo.factor * .05);
                     turbo.offsGg.drawString("5", xlabel, ylabel);
                 }
                 if(turbo.entype == 2) {
                     xl = xturbh;               /*high pressturbine exit*/
-                    exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                    whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                    exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                    whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                     turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                    xlabel = exes[0] + (int)(Turbo.factor * .05);
+                    xlabel = exes[0] + (int)(turbo.factor * .05);
                     turbo.offsGg.drawString("5", xlabel, ylabel);
 
                     xl = 0.0 - .1;                            /* fanPanel entrance */
-                    exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                    whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                    exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                    whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                     turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                    xlabel = exes[0] - (int)(Turbo.factor * .2);
+                    xlabel = exes[0] - (int)(turbo.factor * .2);
                     turbo.offsGg.drawString("1", xlabel, ylabel);
 
                     xl = 3.0 * tblade;                            /* fanPanel exit */
-                    exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                    whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                    exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                    whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                     turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                    xlabel = exes[0] + (int)(Turbo.factor * .12);
+                    xlabel = exes[0] + (int)(turbo.factor * .12);
                     turbo.offsGg.drawString("2", xlabel, ylabel);
                 }
 
                 xl = -2.0;                   /* free stream */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("0", xlabel, ylabel);
             }
 
@@ -1130,14 +1121,14 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(dcol == 7) {
                 turbo.offsGg.setColor(Color.white);
             }
-            exes[0] = (int)(Turbo.factor * -2.0 + Turbo.xtrans);
-            whys[0] = (int)(0.0 + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * -2.0 + turbo.xtrans);
+            whys[0] = (int)(0.0 + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             exes[3] = exes[0];
-            whys[3] = (int)(0.0 + Turbo.ytrans);
+            whys[3] = (int)(0.0 + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
                              /* spraybars */
             turbo.offsGg.setColor(Color.white);
@@ -1146,32 +1137,32 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             }
             xl = xcomp + .05 + rburn;
             yl = .6 * hblade;
-            turbo.offsGg.drawArc((int)(Turbo.factor * (xl - rburn) + Turbo.xtrans), (int)(Turbo.factor * (yl - rburn) + Turbo.ytrans),
-                                 (int)(2.0 * Turbo.factor * rburn), (int)(2.0 * Turbo.factor * rburn), 90, 180);
-            turbo.offsGg.drawArc((int)(Turbo.factor * (xl - rburn) + Turbo.xtrans), (int)(Turbo.factor * (-yl - rburn) + Turbo.ytrans),
-                                 (int)(2.0 * Turbo.factor * rburn), (int)(2.0 * Turbo.factor * rburn), 90, 180);
+            turbo.offsGg.drawArc((int)(turbo.factor * (xl - rburn) + turbo.xtrans), (int)(turbo.factor * (yl - rburn) + turbo.ytrans),
+                                 (int)(2.0 * turbo.factor * rburn), (int)(2.0 * turbo.factor * rburn), 90, 180);
+            turbo.offsGg.drawArc((int)(turbo.factor * (xl - rburn) + turbo.xtrans), (int)(turbo.factor * (-yl - rburn) + turbo.ytrans),
+                                 (int)(2.0 * turbo.factor * rburn), (int)(2.0 * turbo.factor * rburn), 90, 180);
             if(dcol == 0) {
                 turbo.offsGg.setColor(Color.black);
             }
             if(dcol == 7) {
                 turbo.offsGg.setColor(Color.white);
             }
-            exes[0] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xcomp + .25 * Turbo.lburn + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * .8 * radius + Turbo.ytrans);
-            exes[2] = (int)(Turbo.factor * (xcomp + .75 * Turbo.lburn) + Turbo.xtrans);
-            whys[2] = (int)(Turbo.factor * .8 * radius + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xcomp + .25 * turbo.lburn + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * .8 * radius + turbo.ytrans);
+            exes[2] = (int)(turbo.factor * (xcomp + .75 * turbo.lburn) + turbo.xtrans);
+            whys[2] = (int)(turbo.factor * .8 * radius + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
             exes[4] = exes[3];
-            whys[4] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[4] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             exes[5] = exes[2];
-            whys[5] = (int)(Turbo.factor * -.8 * radius + Turbo.ytrans);
+            whys[5] = (int)(turbo.factor * -.8 * radius + turbo.ytrans);
             exes[6] = exes[1];
-            whys[6] = (int)(Turbo.factor * -.8 * radius + Turbo.ytrans);
+            whys[6] = (int)(turbo.factor * -.8 * radius + turbo.ytrans);
             exes[7] = exes[0];
-            whys[7] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[7] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 8);
                      /* aft cone */
             if(dcol == 0) {
@@ -1180,29 +1171,29 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(dcol == 7) {
                 turbo.offsGg.setColor(Color.white);
             }
-            exes[0] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * 1.5 * radius + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xnoz + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * 0.0 + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * 1.5 * radius + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xnoz + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * 0.0 + turbo.ytrans);
             exes[2] = exes[0];
-            whys[2] = (int)(Turbo.factor * -1.5 * radius + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -1.5 * radius + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 3);
                        /* fame holders */
             turbo.offsGg.setColor(Color.white);
             if(turbo.varflag == 5) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * (xnoz + .2 * Turbo.lnoz) + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * .6 * hblade + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * (xnoz + .1 * Turbo.lnoz) + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * .5 * hblade + Turbo.ytrans);
-            exes[2] = (int)(Turbo.factor * (xnoz + .2 * Turbo.lnoz) + Turbo.xtrans);
-            whys[2] = (int)(Turbo.factor * .4 * hblade + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * (xnoz + .2 * turbo.lnoz) + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * .6 * hblade + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * (xnoz + .1 * turbo.lnoz) + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * .5 * hblade + turbo.ytrans);
+            exes[2] = (int)(turbo.factor * (xnoz + .2 * turbo.lnoz) + turbo.xtrans);
+            whys[2] = (int)(turbo.factor * .4 * hblade + turbo.ytrans);
             turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
             turbo.offsGg.drawLine(exes[1], whys[1], exes[2], whys[2]);
-            whys[0] = (int)(Turbo.factor * -.6 * hblade + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * -.5 * hblade + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -.4 * hblade + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * -.6 * hblade + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * -.5 * hblade + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -.4 * hblade + turbo.ytrans);
             turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
             turbo.offsGg.drawLine(exes[1], whys[1], exes[2], whys[2]);
 
@@ -1218,19 +1209,19 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
 
             xl = xcowl + liprad;                /*   core cowl */
             yl = rcowl;
-            exes[0] = (int)(Turbo.factor * xl + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (yl) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xl + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (yl) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * -radius + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * hblade + turbo.ytrans);
             exes[3] = exes[0];
-            whys[3] = (int)(Turbo.factor * (yl) + Turbo.ytrans);
+            whys[3] = (int)(turbo.factor * (yl) + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
-            whys[0] = (int)(Turbo.factor * (-yl) + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * (-yl) + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-yl) + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -hblade + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * (-yl) + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
             // compressor
             if(dcol == 0) {
@@ -1242,22 +1233,22 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 2) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * -radius + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
+            exes[0] = (int)(turbo.factor * -radius + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xcomp + turbo.xtrans);
             whys[1] = whys[0];
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * .02 + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * .02 + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * hblade + turbo.ytrans);
             exes[4] = exes[0];
             whys[4] = whys[3];
             turbo.offsGg.fillPolygon(exes, whys, 5);
 
-            whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
             whys[1] = whys[0];
-            whys[2] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * -hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -hblade + turbo.ytrans);
             whys[4] = whys[3];
             turbo.offsGg.fillPolygon(exes, whys, 5);
                                                  /* combustor */
@@ -1270,26 +1261,26 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 5) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * (xcomp + .75 * Turbo.lburn) + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
-            exes[4] = (int)(Turbo.factor * (xcomp + .25 * Turbo.lburn) + Turbo.xtrans);
-            whys[4] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
-            exes[5] = (int)(Turbo.factor * xcomp + Turbo.xtrans);
-            whys[5] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * (xcomp + .75 * turbo.lburn) + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
+            exes[4] = (int)(turbo.factor * (xcomp + .25 * turbo.lburn) + turbo.xtrans);
+            whys[4] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
+            exes[5] = (int)(turbo.factor * xcomp + turbo.xtrans);
+            whys[5] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 6);
 
-            whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
-            whys[4] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
-            whys[5] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
+            whys[4] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
+            whys[5] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 6);
                                                   /* turbine */
             if(dcol == 0) {
@@ -1301,20 +1292,20 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 5) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xturb + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xturb + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
             exes[2] = exes[1];
-            whys[2] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * xburn + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * .8 * hblade + Turbo.ytrans);
+            whys[2] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * xburn + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * .8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
 
-            whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * -.8 * hblade + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -.8 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
                                                 /* nozzle */
             if(dcol == 0) {
@@ -1326,61 +1317,61 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             if(turbo.varflag == 7) {
                 turbo.offsGg.setColor(Color.yellow);
             }
-            exes[0] = (int)(Turbo.factor * xturb + Turbo.xtrans);
-            whys[0] = (int)(Turbo.factor * (hblade + liprad) + Turbo.ytrans);
-            exes[1] = (int)(Turbo.factor * xit + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * rnoz + Turbo.ytrans);
-            exes[2] = (int)(Turbo.factor * xflame + Turbo.xtrans);
-            whys[2] = (int)(Turbo.factor * rthroat + Turbo.ytrans);
-            exes[3] = (int)(Turbo.factor * xturb + Turbo.xtrans);
-            whys[3] = (int)(Turbo.factor * .9 * hblade + Turbo.ytrans);
+            exes[0] = (int)(turbo.factor * xturb + turbo.xtrans);
+            whys[0] = (int)(turbo.factor * (hblade + liprad) + turbo.ytrans);
+            exes[1] = (int)(turbo.factor * xit + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * rnoz + turbo.ytrans);
+            exes[2] = (int)(turbo.factor * xflame + turbo.xtrans);
+            whys[2] = (int)(turbo.factor * rthroat + turbo.ytrans);
+            exes[3] = (int)(turbo.factor * xturb + turbo.xtrans);
+            whys[3] = (int)(turbo.factor * .9 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
 
-            whys[0] = (int)(Turbo.factor * (-hblade - liprad) + Turbo.ytrans);
-            whys[1] = (int)(Turbo.factor * -rnoz + Turbo.ytrans);
-            whys[2] = (int)(Turbo.factor * -rthroat + Turbo.ytrans);
-            whys[3] = (int)(Turbo.factor * -.9 * hblade + Turbo.ytrans);
+            whys[0] = (int)(turbo.factor * (-hblade - liprad) + turbo.ytrans);
+            whys[1] = (int)(turbo.factor * -rnoz + turbo.ytrans);
+            whys[2] = (int)(turbo.factor * -rthroat + turbo.ytrans);
+            whys[3] = (int)(turbo.factor * -.9 * hblade + turbo.ytrans);
             turbo.offsGg.fillPolygon(exes, whys, 4);
 
             //   show stations
             if(turbo.showcom == 1) {
                 turbo.offsGg.setColor(Color.white);
-                ylabel = (int)(Turbo.factor * 1.5 * hblade + 20. + Turbo.ytrans);
+                ylabel = (int)(turbo.factor * 1.5 * hblade + 20. + turbo.ytrans);
                 whys[1] = 370;
 
                 xl = xcomp - .1;                   /* burner entrance */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("3", xlabel, ylabel);
 
-                xl = xnoz + .1 * Turbo.lnoz;        /* flame holders */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * .2 + Turbo.ytrans);
+                xl = xnoz + .1 * turbo.lnoz;        /* flame holders */
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * .2 + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("4", xlabel, ylabel);
 
                 xl = xflame;               /* Afterburner exit */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * .2 + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * .2 + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("7", xlabel, ylabel);
 
                 xl = xit;                    /* nozzle exit */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * .2 + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * .2 + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] - (int)(Turbo.factor * .2);
+                xlabel = exes[0] - (int)(turbo.factor * .2);
                 turbo.offsGg.drawString("8", xlabel, ylabel);
 
                 xl = -2.0;                   /* free stream */
-                exes[0] = exes[1] = (int)(Turbo.factor * xl + Turbo.xtrans);
-                whys[0] = (int)(Turbo.factor * (hblade - .2) + Turbo.ytrans);
+                exes[0] = exes[1] = (int)(turbo.factor * xl + turbo.xtrans);
+                whys[0] = (int)(turbo.factor * (hblade - .2) + turbo.ytrans);
                 turbo.offsGg.drawLine(exes[0], whys[0], exes[1], whys[1]);
-                xlabel = exes[0] + (int)(Turbo.factor * .05);
+                xlabel = exes[0] + (int)(turbo.factor * .05);
                 turbo.offsGg.drawString("0", xlabel, ylabel);
             }
 
@@ -1406,46 +1397,46 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         }
 /* animated flow */
         for (j = 1; j <= 8; ++j) {
-            exes[1] = (int)(Turbo.factor * Turbo.xg[j][0] + Turbo.xtrans);
-            whys[1] = (int)(Turbo.factor * Turbo.yg[j][0] + Turbo.ytrans);
+            exes[1] = (int)(turbo.factor * turbo.xg[j][0] + turbo.xtrans);
+            whys[1] = (int)(turbo.factor * turbo.yg[j][0] + turbo.ytrans);
             for (i = 1; i <= 34; ++i) {
                 exes[0] = exes[1];
                 whys[0] = whys[1];
-                exes[1] = (int)(Turbo.factor * Turbo.xg[j][i] + Turbo.xtrans);
-                whys[1] = (int)(Turbo.factor * Turbo.yg[j][i] + Turbo.ytrans);
-                if((i - Turbo.antim) / 3 * 3 == (i - Turbo.antim)) {
+                exes[1] = (int)(turbo.factor * turbo.xg[j][i] + turbo.xtrans);
+                whys[1] = (int)(turbo.factor * turbo.yg[j][i] + turbo.ytrans);
+                if((i - turbo.antim) / 3 * 3 == (i - turbo.antim)) {
                     if(i < 15) {
-                        if(Turbo.ancol == -1) {
-                            if((i - Turbo.antim) / 6 * 6 == (i - Turbo.antim)) {
+                        if(turbo.ancol == -1) {
+                            if((i - turbo.antim) / 6 * 6 == (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.white);
                             }
-                            if((i - Turbo.antim) / 6 * 6 != (i - Turbo.antim)) {
+                            if((i - turbo.antim) / 6 * 6 != (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.cyan);
                             }
                         }
-                        if(Turbo.ancol == 1) {
-                            if((i - Turbo.antim) / 6 * 6 == (i - Turbo.antim)) {
+                        if(turbo.ancol == 1) {
+                            if((i - turbo.antim) / 6 * 6 == (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.cyan);
                             }
-                            if((i - Turbo.antim) / 6 * 6 != (i - Turbo.antim)) {
+                            if((i - turbo.antim) / 6 * 6 != (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.white);
                             }
                         }
                     }
                     if(i >= 16) {
-                        if(Turbo.ancol == -1) {
-                            if((i - Turbo.antim) / 6 * 6 == (i - Turbo.antim)) {
+                        if(turbo.ancol == -1) {
+                            if((i - turbo.antim) / 6 * 6 == (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.yellow);
                             }
-                            if((i - Turbo.antim) / 6 * 6 != (i - Turbo.antim)) {
+                            if((i - turbo.antim) / 6 * 6 != (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.red);
                             }
                         }
-                        if(Turbo.ancol == 1) {
-                            if((i - Turbo.antim) / 6 * 6 == (i - Turbo.antim)) {
+                        if(turbo.ancol == 1) {
+                            if((i - turbo.antim) / 6 * 6 == (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.red);
                             }
-                            if((i - Turbo.antim) / 6 * 6 != (i - Turbo.antim)) {
+                            if((i - turbo.antim) / 6 * 6 != (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.yellow);
                             }
                         }
@@ -1456,27 +1447,27 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         }
         if(turbo.entype == 2) {   // fanPanel flow
             for (j = 9; j <= 12; ++j) {
-                exes[1] = (int)(Turbo.factor * Turbo.xg[j][0] + Turbo.xtrans);
-                whys[1] = (int)(Turbo.factor * Turbo.yg[j][0] + Turbo.ytrans);
+                exes[1] = (int)(turbo.factor * turbo.xg[j][0] + turbo.xtrans);
+                whys[1] = (int)(turbo.factor * turbo.yg[j][0] + turbo.ytrans);
                 for (i = 1; i <= 34; ++i) {
                     exes[0] = exes[1];
                     whys[0] = whys[1];
-                    exes[1] = (int)(Turbo.factor * Turbo.xg[j][i] + Turbo.xtrans);
-                    whys[1] = (int)(Turbo.factor * Turbo.yg[j][i] + Turbo.ytrans);
-                    if((i - Turbo.antim) / 3 * 3 == (i - Turbo.antim)) {
-                        if(Turbo.ancol == -1) {
-                            if((i - Turbo.antim) / 6 * 6 == (i - Turbo.antim)) {
+                    exes[1] = (int)(turbo.factor * turbo.xg[j][i] + turbo.xtrans);
+                    whys[1] = (int)(turbo.factor * turbo.yg[j][i] + turbo.ytrans);
+                    if((i - turbo.antim) / 3 * 3 == (i - turbo.antim)) {
+                        if(turbo.ancol == -1) {
+                            if((i - turbo.antim) / 6 * 6 == (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.white);
                             }
-                            if((i - Turbo.antim) / 6 * 6 != (i - Turbo.antim)) {
+                            if((i - turbo.antim) / 6 * 6 != (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.cyan);
                             }
                         }
-                        if(Turbo.ancol == 1) {
-                            if((i - Turbo.antim) / 6 * 6 == (i - Turbo.antim)) {
+                        if(turbo.ancol == 1) {
+                            if((i - turbo.antim) / 6 * 6 == (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.cyan);
                             }
-                            if((i - Turbo.antim) / 6 * 6 != (i - Turbo.antim)) {
+                            if((i - turbo.antim) / 6 * 6 != (i - turbo.antim)) {
                                 turbo.offsGg.setColor(Color.white);
                             }
                         }
@@ -1521,7 +1512,7 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
         turbo.offsGg.setColor(Color.cyan);
         turbo.offsGg.drawString("Zoom", 5, 180);
         turbo.offsGg.drawLine(15, 50, 15, 165);
-        turbo.offsGg.fillRect(5, Turbo.sldloc, 20, 5);
+        turbo.offsGg.fillRect(5, turbo.sldloc, 20, 5);
 
         if(turbo.inflag == 0) { // engine labels for design mode
             turbo.offsGg.setColor(Color.green);
@@ -1554,7 +1545,7 @@ public class EngineModelViewCanvas extends Canvas implements Runnable {
             turbo.offsGg.drawString("Ramjet", 225, 25);
         }
         // temp limit warning
-        if(Turbo.fireflag == 1) {
+        if(turbo.fireflag == 1) {
             turbo.offsGg.setColor(Color.yellow);
             turbo.offsGg.fillRect(50, 80, 200, 30);
             if(turbo.counter == 1) {

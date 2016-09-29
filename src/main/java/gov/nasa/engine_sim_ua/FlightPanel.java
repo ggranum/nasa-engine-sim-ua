@@ -54,9 +54,9 @@ public class FlightPanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(7, 1, 10, 5));
 
-            i1 = (int)(((Turbo.u0d - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
-            i2 = (int)(((Turbo.altd - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
-            i3 = (int)(((Turbo.throtl - Turbo.vmn3) / (Turbo.vmx3 - Turbo.vmn3)) * 1000.);
+            i1 = (int)(((turbo.u0d - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
+            i2 = (int)(((turbo.altd - turbo.vmn2) / (turbo.vmx2 - turbo.vmn2)) * 1000.);
+            i3 = (int)(((turbo.throtl - turbo.vmn3) / (turbo.vmx3 - turbo.vmn3)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
             s2 = new Scrollbar(Scrollbar.HORIZONTAL, i2, 10, 0, 1000);
@@ -155,25 +155,25 @@ public class FlightPanel extends Panel {
             }
 
             if(turbo.lunits <= 1) {
-                Turbo.vmn1 = Turbo.u0min;
-                Turbo.vmx1 = Turbo.u0max;
-                Turbo.vmn2 = Turbo.altmin;
-                Turbo.vmx2 = Turbo.altmax;
-                Turbo.vmn3 = Turbo.thrmin;
-                Turbo.vmx3 = Turbo.thrmax;
+                turbo.vmn1 = turbo.u0min;
+                turbo.vmx1 = turbo.u0max;
+                turbo.vmn2 = turbo.altmin;
+                turbo.vmx2 = turbo.altmax;
+                turbo.vmn3 = turbo.thrmin;
+                turbo.vmx3 = turbo.thrmax;
             }
             if(turbo.lunits == 2) {
-                Turbo.vmn1 = -10.0;
-                Turbo.vmx1 = 10.0;
-                Turbo.vmn2 = -10.0;
-                Turbo.vmx2 = 10.0;
-                Turbo.vmn3 = -10.0;
-                Turbo.vmx3 = 10.0;
+                turbo.vmn1 = -10.0;
+                turbo.vmx1 = 10.0;
+                turbo.vmn2 = -10.0;
+                turbo.vmx2 = 10.0;
+                turbo.vmn3 = -10.0;
+                turbo.vmx3 = 10.0;
             }
 
-            v1 = i1 * (Turbo.vmx1 - Turbo.vmn1) / 1000. + Turbo.vmn1;
-            v2 = i2 * (Turbo.vmx2 - Turbo.vmn2) / 1000. + Turbo.vmn2;
-            v3 = i3 * (Turbo.vmx3 - Turbo.vmn3) / 1000. + Turbo.vmn3;
+            v1 = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
+            v2 = i2 * (turbo.vmx2 - turbo.vmn2) / 1000. + turbo.vmn2;
+            v3 = i3 * (turbo.vmx3 - turbo.vmn3) / 1000. + turbo.vmn3;
 
             if(turbo.inptype >= 2) {
                 v2 = 0.0;
@@ -184,44 +184,44 @@ public class FlightPanel extends Panel {
                 v6 = V6;
                 V7 = Double.valueOf(flightLeftPanel.o3.getText());
                 v7 = V7;
-                Turbo.ps0 = v6;
+                turbo.ps0 = v6;
                 if(v6 <= 0.0) {
-                    Turbo.ps0 = v6 = 0.0;
+                    turbo.ps0 = v6 = 0.0;
                     fl1 = (float)v6;
                     flightLeftPanel.o2.setText(String.valueOf(fl1));
                 }
-                if(v6 >= Turbo.pmax) {
-                    Turbo.ps0 = v6 = Turbo.pmax;
+                if(v6 >= turbo.pmax) {
+                    turbo.ps0 = v6 = turbo.pmax;
                     fl1 = (float)v6;
                     flightLeftPanel.o2.setText(String.valueOf(fl1));
                 }
-                Turbo.ps0 = Turbo.ps0 / Turbo.pconv;
-                Turbo.ts0 = v7 + Turbo.tref;
-                if(Turbo.ts0 <= Turbo.tmin) {
-                    Turbo.ts0 = Turbo.tmin;
-                    v7 = Turbo.ts0 - Turbo.tref;
+                turbo.ps0 = turbo.ps0 / turbo.pconv;
+                turbo.ts0 = v7 + turbo.tref;
+                if(turbo.ts0 <= turbo.tmin) {
+                    turbo.ts0 = turbo.tmin;
+                    v7 = turbo.ts0 - turbo.tref;
                     fl1 = (float)v7;
                     flightLeftPanel.o3.setText(String.valueOf(fl1));
                 }
-                if(Turbo.ts0 >= Turbo.tmax) {
-                    Turbo.ts0 = Turbo.tmax;
-                    v7 = Turbo.ts0 - Turbo.tref;
+                if(turbo.ts0 >= turbo.tmax) {
+                    turbo.ts0 = turbo.tmax;
+                    v7 = turbo.ts0 - turbo.tref;
                     fl1 = (float)v7;
                     flightLeftPanel.o3.setText(String.valueOf(fl1));
                 }
-                Turbo.ts0 = Turbo.ts0 / Turbo.tconv;
+                turbo.ts0 = turbo.ts0 / turbo.tconv;
             }
 
             // flightPanel conditions
             if(turbo.lunits <= 1) {
-                Turbo.u0d = v1;
-                Turbo.altd = v2;
-                Turbo.throtl = v3;
+                turbo.u0d = v1;
+                turbo.altd = v2;
+                turbo.throtl = v3;
             }
             if(turbo.lunits == 2) {
-                Turbo.u0d = v1 * Turbo.u0ref / 100. + Turbo.u0ref;
-                Turbo.altd = v2 * Turbo.altref / 100. + Turbo.altref;
-                Turbo.throtl = v3 * Turbo.thrref / 100. + Turbo.thrref;
+                turbo.u0d = v1 * turbo.u0ref / 100. + turbo.u0ref;
+                turbo.altd = v2 * turbo.altref / 100. + turbo.altref;
+                turbo.throtl = v3 * turbo.thrref / 100. + turbo.thrref;
             }
 
             if(turbo.entype == 1) {
@@ -258,26 +258,26 @@ public class FlightPanel extends Panel {
             setLayout(new GridLayout(7, 2, 5, 5));
 
             l1 = new Label("Speed-mph", Label.CENTER);
-            f1 = new TextField(String.valueOf((float)Turbo.u0d), 5);
+            f1 = new TextField(String.valueOf((float)turbo.u0d), 5);
             f1.setBackground(Color.white);
             f1.setForeground(Color.black);
 
             l2 = new Label("Altitude-ft", Label.CENTER);
-            f2 = new TextField(String.valueOf((float)Turbo.altd), 5);
+            f2 = new TextField(String.valueOf((float)turbo.altd), 5);
             f2.setBackground(Color.white);
             f2.setForeground(Color.black);
 
             l3 = new Label("Throttle", Label.CENTER);
-            f3 = new TextField(String.valueOf((float)Turbo.throtl), 5);
+            f3 = new TextField(String.valueOf((float)turbo.throtl), 5);
 
             inpch = new Choice();
             inpch.addItem("Gamma");
             inpch.addItem("Gam(T)");
             inpch.select(1);
-            f4 = new TextField(String.valueOf((float)Turbo.gama), 5);
+            f4 = new TextField(String.valueOf((float)turbo.gama), 5);
 
             lmach = new Label("Mach", Label.CENTER);
-            o1 = new TextField(String.valueOf((float)Turbo.fsmach), 5);
+            o1 = new TextField(String.valueOf((float)turbo.fsmach), 5);
             o1.setBackground(Color.black);
             o1.setForeground(Color.yellow);
 
@@ -357,162 +357,162 @@ public class FlightPanel extends Panel {
             if(turbo.lunits <= 1) {
                 // Airspeed
                 if(turbo.inptype == 0 || turbo.inptype == 2) {
-                    Turbo.u0d = v1;
-                    Turbo.vmn1 = Turbo.u0min;
-                    Turbo.vmx1 = Turbo.u0max;
-                    if(v1 < Turbo.vmn1) {
-                        Turbo.u0d = v1 = Turbo.vmn1;
+                    turbo.u0d = v1;
+                    turbo.vmn1 = turbo.u0min;
+                    turbo.vmx1 = turbo.u0max;
+                    if(v1 < turbo.vmn1) {
+                        turbo.u0d = v1 = turbo.vmn1;
                         fl1 = (float)v1;
                         f1.setText(String.valueOf(fl1));
                     }
-                    if(v1 > Turbo.vmx1) {
-                        Turbo.u0d = v1 = Turbo.vmx1;
+                    if(v1 > turbo.vmx1) {
+                        turbo.u0d = v1 = turbo.vmx1;
                         fl1 = (float)v1;
                         f1.setText(String.valueOf(fl1));
                     }
                 }
                 // Mach
                 if(turbo.inptype == 1 || turbo.inptype == 3) {
-                    Turbo.fsmach = v5;
-                    if(Turbo.fsmach < 0.0) {
-                        Turbo.fsmach = v5 = 0.0;
+                    turbo.fsmach = v5;
+                    if(turbo.fsmach < 0.0) {
+                        turbo.fsmach = v5 = 0.0;
                         fl1 = (float)v5;
                         o1.setText(String.valueOf(fl1));
                     }
-                    if(Turbo.fsmach > 2.25 && turbo.entype <= 2) {
-                        Turbo.fsmach = v5 = 2.25;
+                    if(turbo.fsmach > 2.25 && turbo.entype <= 2) {
+                        turbo.fsmach = v5 = 2.25;
                         fl1 = (float)v5;
                         o1.setText(String.valueOf(fl1));
                     }
-                    if(Turbo.fsmach > 6.75 && turbo.entype == 3) {
-                        Turbo.fsmach = v5 = 6.75;
+                    if(turbo.fsmach > 6.75 && turbo.entype == 3) {
+                        turbo.fsmach = v5 = 6.75;
                         fl1 = (float)v5;
                         o1.setText(String.valueOf(fl1));
                     }
                 }
                 // Altitude
                 if(turbo.inptype <= 1) {
-                    Turbo.altd = v2;
-                    Turbo.vmn2 = Turbo.altmin;
-                    Turbo.vmx2 = Turbo.altmax;
-                    if(v2 < Turbo.vmn2) {
-                        Turbo.altd = v2 = Turbo.vmn2;
+                    turbo.altd = v2;
+                    turbo.vmn2 = turbo.altmin;
+                    turbo.vmx2 = turbo.altmax;
+                    if(v2 < turbo.vmn2) {
+                        turbo.altd = v2 = turbo.vmn2;
                         fl1 = (float)v2;
                         f2.setText(String.valueOf(fl1));
                     }
-                    if(v2 > Turbo.vmx2) {
-                        Turbo.altd = v2 = Turbo.vmx2;
+                    if(v2 > turbo.vmx2) {
+                        turbo.altd = v2 = turbo.vmx2;
                         fl1 = (float)v2;
                         f2.setText(String.valueOf(fl1));
                     }
                 }
                 // Pres and Temp
                 if(turbo.inptype >= 2) {
-                    Turbo.altd = v2 = 0.0;
+                    turbo.altd = v2 = 0.0;
                     fl1 = (float)v2;
                     f2.setText(String.valueOf(fl1));
-                    Turbo.ps0 = v6;
+                    turbo.ps0 = v6;
                     if(v6 <= 0.0) {
-                        Turbo.ps0 = v6 = 0.0;
+                        turbo.ps0 = v6 = 0.0;
                         fl1 = (float)v6;
                         o2.setText(String.valueOf(fl1));
                     }
-                    if(v6 >= Turbo.pmax) {
-                        Turbo.ps0 = v6 = Turbo.pmax;
+                    if(v6 >= turbo.pmax) {
+                        turbo.ps0 = v6 = turbo.pmax;
                         fl1 = (float)v6;
                         o2.setText(String.valueOf(fl1));
                     }
-                    Turbo.ps0 = Turbo.ps0 / Turbo.pconv;
-                    Turbo.ts0 = v7 + Turbo.tref;
-                    if(Turbo.ts0 <= Turbo.tmin) {
-                        Turbo.ts0 = Turbo.tmin;
-                        v7 = Turbo.ts0 - Turbo.tref;
+                    turbo.ps0 = turbo.ps0 / turbo.pconv;
+                    turbo.ts0 = v7 + turbo.tref;
+                    if(turbo.ts0 <= turbo.tmin) {
+                        turbo.ts0 = turbo.tmin;
+                        v7 = turbo.ts0 - turbo.tref;
                         fl1 = (float)v7;
                         o3.setText(String.valueOf(fl1));
                     }
-                    if(Turbo.ts0 >= Turbo.tmax) {
-                        Turbo.ts0 = Turbo.tmax;
-                        v7 = Turbo.ts0 - Turbo.tref;
+                    if(turbo.ts0 >= turbo.tmax) {
+                        turbo.ts0 = turbo.tmax;
+                        v7 = turbo.ts0 - turbo.tref;
                         fl1 = (float)v7;
                         o3.setText(String.valueOf(fl1));
                     }
-                    Turbo.ts0 = Turbo.ts0 / Turbo.tconv;
+                    turbo.ts0 = turbo.ts0 / turbo.tconv;
                 }
                 // Throttle
-                Turbo.throtl = v3;
-                Turbo.vmn3 = Turbo.thrmin;
-                Turbo.vmx3 = Turbo.thrmax;
-                if(v3 < Turbo.vmn3) {
-                    Turbo.throtl = v3 = Turbo.vmn3;
+                turbo.throtl = v3;
+                turbo.vmn3 = turbo.thrmin;
+                turbo.vmx3 = turbo.thrmax;
+                if(v3 < turbo.vmn3) {
+                    turbo.throtl = v3 = turbo.vmn3;
                     fl1 = (float)v3;
                     f3.setText(String.valueOf(fl1));
                 }
-                if(v3 > Turbo.vmx3) {
-                    Turbo.throtl = v3 = Turbo.vmx3;
+                if(v3 > turbo.vmx3) {
+                    turbo.throtl = v3 = turbo.vmx3;
                     fl1 = (float)v3;
                     f3.setText(String.valueOf(fl1));
                 }
             }
             if(turbo.lunits == 2) {
                 // Airspeed
-                Turbo.vmn1 = -10.0;
-                Turbo.vmx1 = 10.0;
-                if(v1 < Turbo.vmn1) {
-                    v1 = Turbo.vmn1;
+                turbo.vmn1 = -10.0;
+                turbo.vmx1 = 10.0;
+                if(v1 < turbo.vmn1) {
+                    v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     f1.setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     f1.setText(String.valueOf(fl1));
                 }
-                Turbo.u0d = v1 * Turbo.u0ref / 100. + Turbo.u0ref;
+                turbo.u0d = v1 * turbo.u0ref / 100. + turbo.u0ref;
                 // Altitude
-                Turbo.vmn2 = -10.0;
-                Turbo.vmx2 = 10.0;
-                if(v2 < Turbo.vmn2) {
-                    v2 = Turbo.vmn2;
+                turbo.vmn2 = -10.0;
+                turbo.vmx2 = 10.0;
+                if(v2 < turbo.vmn2) {
+                    v2 = turbo.vmn2;
                     fl1 = (float)v2;
                     f2.setText(String.valueOf(fl1));
                 }
-                if(v2 > Turbo.vmx2) {
-                    v2 = Turbo.vmx2;
+                if(v2 > turbo.vmx2) {
+                    v2 = turbo.vmx2;
                     fl1 = (float)v2;
                     f2.setText(String.valueOf(fl1));
                 }
-                Turbo.altd = v2 * Turbo.altref / 100. + Turbo.altref;
+                turbo.altd = v2 * turbo.altref / 100. + turbo.altref;
                 // Throttle
-                Turbo.vmn3 = -10.0;
-                Turbo.vmx3 = 10.0;
-                if(v3 < Turbo.vmn3) {
-                    v3 = Turbo.vmn3;
+                turbo.vmn3 = -10.0;
+                turbo.vmx3 = 10.0;
+                if(v3 < turbo.vmn3) {
+                    v3 = turbo.vmn3;
                     fl1 = (float)v3;
                     f3.setText(String.valueOf(fl1));
                 }
-                if(v3 > Turbo.vmx3) {
-                    v3 = Turbo.vmx3;
+                if(v3 > turbo.vmx3) {
+                    v3 = turbo.vmx3;
                     fl1 = (float)v3;
                     f3.setText(String.valueOf(fl1));
                 }
-                Turbo.throtl = v3 * Turbo.thrref / 100. + Turbo.thrref;
+                turbo.throtl = v3 * turbo.thrref / 100. + turbo.thrref;
             }
             // Gamma
-            Turbo.gama = v4;
+            turbo.gama = v4;
             if(v4 < 1.0) {
-                Turbo.gama = v4 = 1.0;
+                turbo.gama = v4 = 1.0;
                 fl1 = (float)v4;
                 f4.setText(String.valueOf(fl1));
             }
             if(v4 > 2.0) {
-                Turbo.gama = v4 = 2.0;
+                turbo.gama = v4 = 2.0;
                 fl1 = (float)v4;
                 f4.setText(String.valueOf(fl1));
             }
 
-            i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
-            i2 = (int)(((v2 - Turbo.vmn2) / (Turbo.vmx2 - Turbo.vmn2)) * 1000.);
-            i3 = (int)(((v3 - Turbo.vmn3) / (Turbo.vmx3 - Turbo.vmn3)) * 1000.);
+            i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
+            i2 = (int)(((v2 - turbo.vmn2) / (turbo.vmx2 - turbo.vmn2)) * 1000.);
+            i3 = (int)(((v3 - turbo.vmn3) / (turbo.vmx3 - turbo.vmn3)) * 1000.);
 
             flightRightPanel.s1.setValue(i1);
             flightRightPanel.s2.setValue(i2);

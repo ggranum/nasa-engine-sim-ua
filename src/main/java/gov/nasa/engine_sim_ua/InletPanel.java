@@ -51,7 +51,7 @@ public class InletPanel extends Panel {
             inltch.addItem("Input Recovery");
             inltch.select(0);
 
-            i1 = (int)(((Turbo.eta[2] - Turbo.etmin) / (Turbo.etmax - Turbo.etmin)) * 1000.);
+            i1 = (int)(((turbo.eta[2] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
 
             s1 = new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000);
 
@@ -114,48 +114,48 @@ public class InletPanel extends Panel {
                 inletLeftPanel.getF1().setBackground(Color.white);
                 inletLeftPanel.getF1().setForeground(Color.black);
             }
-            Turbo.minlt = imat.getSelectedIndex();
-            if(Turbo.minlt > 0) {
+            turbo.minlt = imat.getSelectedIndex();
+            if(turbo.minlt > 0) {
                 inletLeftPanel.getDi().setBackground(Color.black);
                 inletLeftPanel.getDi().setForeground(Color.yellow);
                 inletLeftPanel.getTi().setBackground(Color.black);
                 inletLeftPanel.getTi().setForeground(Color.yellow);
             }
-            if(Turbo.minlt == 0) {
+            if(turbo.minlt == 0) {
                 inletLeftPanel.getDi().setBackground(Color.white);
                 inletLeftPanel.getDi().setForeground(Color.blue);
                 inletLeftPanel.getTi().setBackground(Color.white);
                 inletLeftPanel.getTi().setForeground(Color.blue);
             }
-            switch (Turbo.minlt) {
+            switch (turbo.minlt) {
                 case 0: {
                     V1 = Double.valueOf(inletLeftPanel.getDi().getText());
                     v1 = V1;
                     V2 = Double.valueOf(inletLeftPanel.getTi().getText());
                     v2 = V2;
-                    Turbo.dinlt = v1 / Turbo.dconv;
-                    Turbo.tinlt = v2 / Turbo.tconv;
+                    turbo.dinlt = v1 / turbo.dconv;
+                    turbo.tinlt = v2 / turbo.tconv;
                     break;
                 }
                 case 1:
-                    Turbo.dinlt = 170.7;
-                    Turbo.tinlt = 900.;
+                    turbo.dinlt = 170.7;
+                    turbo.tinlt = 900.;
                     break;
                 case 2:
-                    Turbo.dinlt = 293.02;
-                    Turbo.tinlt = 1500.;
+                    turbo.dinlt = 293.02;
+                    turbo.tinlt = 1500.;
                     break;
                 case 3:
-                    Turbo.dinlt = 476.56;
-                    Turbo.tinlt = 2000.;
+                    turbo.dinlt = 476.56;
+                    turbo.tinlt = 2000.;
                     break;
                 case 4:
-                    Turbo.dinlt = 515.2;
-                    Turbo.tinlt = 2500.;
+                    turbo.dinlt = 515.2;
+                    turbo.tinlt = 2500.;
                     break;
                 case 5:
-                    Turbo.dinlt = 515.2;
-                    Turbo.tinlt = 4000.;
+                    turbo.dinlt = 515.2;
+                    turbo.tinlt = 4000.;
                     break;
             }
             turbo.solve.comPute();
@@ -168,22 +168,22 @@ public class InletPanel extends Panel {
             i1 = s1.getValue();
 
             if(turbo.lunits <= 1) {
-                Turbo.vmn1 = Turbo.etmin;
-                Turbo.vmx1 = Turbo.etmax;
+                turbo.vmn1 = turbo.etmin;
+                turbo.vmx1 = turbo.etmax;
             }
             if(turbo.lunits == 2) {
-                Turbo.vmx1 = 100.0 - 100.0 * Turbo.et2ref;
-                Turbo.vmn1 = Turbo.vmx1 - 20.0;
+                turbo.vmx1 = 100.0 - 100.0 * turbo.et2ref;
+                turbo.vmn1 = turbo.vmx1 - 20.0;
             }
 
-            v1 = i1 * (Turbo.vmx1 - Turbo.vmn1) / 1000. + Turbo.vmn1;
+            v1 = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
 
             // inletPanel design
             if(turbo.lunits <= 1) {
-                Turbo.eta[2] = v1;
+                turbo.eta[2] = v1;
             }
             if(turbo.lunits == 2) {
-                Turbo.eta[2] = Turbo.et2ref + v1 / 100.;
+                turbo.eta[2] = turbo.et2ref + v1 / 100.;
             }
 
             inletLeftPanel.getF1().setText(String.format("%.3f", v1));
@@ -209,7 +209,7 @@ public class InletPanel extends Panel {
             setLayout(new GridLayout(6, 2, 5, 5));
 
             l1 = new Label("Pres Recov.", Label.CENTER);
-            setF1(new TextField(String.valueOf((float)Turbo.eta[2]), 5));
+            setF1(new TextField(String.valueOf((float)turbo.eta[2]), 5));
             getF1().setBackground(Color.black);
             getF1().setForeground(Color.yellow);
             lmat = new Label("T lim -R", Label.CENTER);
@@ -219,10 +219,10 @@ public class InletPanel extends Panel {
             l5 = new Label("Density", Label.CENTER);
             l5.setForeground(Color.blue);
 
-            setTi(new TextField(String.valueOf((float)Turbo.tinlt), 5));
+            setTi(new TextField(String.valueOf((float)turbo.tinlt), 5));
             getTi().setBackground(Color.black);
             getTi().setForeground(Color.yellow);
-            setDi(new TextField(String.valueOf((float)Turbo.dinlt), 5));
+            setDi(new TextField(String.valueOf((float)turbo.dinlt), 5));
             getDi().setBackground(Color.black);
             getDi().setForeground(Color.yellow);
 
@@ -264,51 +264,51 @@ public class InletPanel extends Panel {
             v5 = V5;
 
             // materials
-            if(Turbo.minlt == 0) {
-                if(v3 <= 1.0 * Turbo.dconv) {
-                    v3 = 1.0 * Turbo.dconv;
-                    getDi().setText(String.format("%.0f", v3 * Turbo.dconv));
+            if(turbo.minlt == 0) {
+                if(v3 <= 1.0 * turbo.dconv) {
+                    v3 = 1.0 * turbo.dconv;
+                    getDi().setText(String.format("%.0f", v3 * turbo.dconv));
                 }
-                Turbo.dinlt = v3 / Turbo.dconv;
-                if(v5 <= 500. * Turbo.tconv) {
-                    v5 = 500. * Turbo.tconv;
-                    getTi().setText(String.format("%.0f", v5 * Turbo.tconv));
+                turbo.dinlt = v3 / turbo.dconv;
+                if(v5 <= 500. * turbo.tconv) {
+                    v5 = 500. * turbo.tconv;
+                    getTi().setText(String.format("%.0f", v5 * turbo.tconv));
                 }
-                Turbo.tinlt = v5 / Turbo.tconv;
+                turbo.tinlt = v5 / turbo.tconv;
             }
             // InletPanel pressure ratio
             if(turbo.lunits <= 1) {
-                Turbo.eta[2] = v1;
-                Turbo.vmn1 = Turbo.etmin;
-                Turbo.vmx1 = Turbo.etmax;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.eta[2] = v1 = Turbo.vmn1;
+                turbo.eta[2] = v1;
+                turbo.vmn1 = turbo.etmin;
+                turbo.vmx1 = turbo.etmax;
+                if(v1 < turbo.vmn1) {
+                    turbo.eta[2] = v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.eta[2] = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.eta[2] = v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
             }
             if(turbo.lunits == 2) {
-                Turbo.vmx1 = 100.0 - 100.0 * Turbo.et2ref;
-                Turbo.vmn1 = Turbo.vmx1 - 20.0;
-                if(v1 < Turbo.vmn1) {
-                    v1 = Turbo.vmn1;
+                turbo.vmx1 = 100.0 - 100.0 * turbo.et2ref;
+                turbo.vmn1 = turbo.vmx1 - 20.0;
+                if(v1 < turbo.vmn1) {
+                    v1 = turbo.vmn1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    v1 = turbo.vmx1;
                     fl1 = (float)v1;
                     getF1().setText(String.valueOf(fl1));
                 }
-                Turbo.eta[2] = Turbo.et2ref + v1 / 100.;
+                turbo.eta[2] = turbo.et2ref + v1 / 100.;
             }
 
-            i1 = (int)(((v1 - Turbo.vmn1) / (Turbo.vmx1 - Turbo.vmn1)) * 1000.);
+            i1 = (int)(((v1 - turbo.vmn1) / (turbo.vmx1 - turbo.vmn1)) * 1000.);
 
             inletRightPanel.s1.setValue(i1);
 

@@ -39,25 +39,25 @@ public class LimitsPanel extends Panel {
         setLayout(new GridLayout(6, 4, 10, 10));
 
         l1 = new Label("Speed-max", Label.CENTER);
-        f1 = new TextField(String.valueOf((float)Turbo.u0max), 5);
+        f1 = new TextField(String.valueOf((float)turbo.u0max), 5);
         l2 = new Label("Alt-max", Label.CENTER);
-        f2 = new TextField(String.valueOf((float)Turbo.altmax), 5);
+        f2 = new TextField(String.valueOf((float)turbo.altmax), 5);
         l3 = new Label("A2-min", Label.CENTER);
-        f3 = new TextField(String.valueOf((float)Turbo.a2min), 3);
+        f3 = new TextField(String.valueOf((float)turbo.a2min), 3);
         l4 = new Label("A2-max", Label.CENTER);
-        f4 = new TextField(String.valueOf((float)Turbo.a2max), 5);
+        f4 = new TextField(String.valueOf((float)turbo.a2max), 5);
         l5 = new Label("CPR-max", Label.CENTER);
-        f5 = new TextField(String.valueOf((float)Turbo.cprmax), 5);
+        f5 = new TextField(String.valueOf((float)turbo.cprmax), 5);
         l6 = new Label("T4-max", Label.CENTER);
-        f6 = new TextField(String.valueOf((float)Turbo.t4max), 5);
+        f6 = new TextField(String.valueOf((float)turbo.t4max), 5);
         l7 = new Label("T7-max", Label.CENTER);
-        f7 = new TextField(String.valueOf((float)Turbo.t7max), 5);
+        f7 = new TextField(String.valueOf((float)turbo.t7max), 5);
         l9 = new Label("FPR-max", Label.CENTER);
-        f9 = new TextField(String.valueOf((float)Turbo.fprmax), 5);
+        f9 = new TextField(String.valueOf((float)turbo.fprmax), 5);
         l10 = new Label("BPR-max", Label.CENTER);
-        f10 = new TextField(String.valueOf((float)Turbo.bypmax), 5);
+        f10 = new TextField(String.valueOf((float)turbo.bypmax), 5);
         l11 = new Label("Pt4/Pt3-max", Label.CENTER);
-        f11 = new TextField(String.valueOf((float)Turbo.pt4max), 5);
+        f11 = new TextField(String.valueOf((float)turbo.pt4max), 5);
 
         submit = new Button("Submit");
         submit.setBackground(Color.blue);
@@ -126,56 +126,56 @@ public class LimitsPanel extends Panel {
         V4 = Double.valueOf(f4.getText());
         v4 = V4;
 
-        Turbo.u0max = v1;
-        Turbo.altmax = v2;
-        Turbo.a2min = v3;
-        Turbo.a2max = v4;
+        turbo.u0max = v1;
+        turbo.altmax = v2;
+        turbo.a2min = v3;
+        turbo.a2max = v4;
         if(turbo.entype <= 2) {
-            Turbo.u0mt = Turbo.u0max;
-            Turbo.altmt = Turbo.altmax;
+            turbo.u0mt = turbo.u0max;
+            turbo.altmt = turbo.altmax;
         }
         if(turbo.entype == 3) {
-            Turbo.u0mr = Turbo.u0max;
-            Turbo.altmr = Turbo.altmax;
+            turbo.u0mr = turbo.u0max;
+            turbo.altmr = turbo.altmax;
         }
 
         // look for exceeding limits
 
-        if(Turbo.u0d > Turbo.u0max) {
-            if(Turbo.u0max < 0) {
-                Turbo.u0max = Turbo.u0d + .1;
+        if(turbo.u0d > turbo.u0max) {
+            if(turbo.u0max < 0) {
+                turbo.u0max = turbo.u0d + .1;
             }
-            Turbo.u0d = Turbo.u0max;
+            turbo.u0d = turbo.u0max;
         }
-        if(Turbo.altd > Turbo.altmax) {
-            if(Turbo.altmax < 0) {
-                Turbo.altmax = Turbo.altd + .1;
+        if(turbo.altd > turbo.altmax) {
+            if(turbo.altmax < 0) {
+                turbo.altmax = turbo.altd + .1;
             }
-            Turbo.altd = Turbo.altmax;
+            turbo.altd = turbo.altmax;
         }
-        if(Turbo.a2max <= Turbo.a2min) {
-            Turbo.a2max = Turbo.a2min + .1;
+        if(turbo.a2max <= turbo.a2min) {
+            turbo.a2max = turbo.a2min + .1;
         }
-        if(Turbo.a2d > Turbo.a2max) {
-            Turbo.a2d = Turbo.a2max;
-            Turbo.a2 = Turbo.a2d / Turbo.aconv;
+        if(turbo.a2d > turbo.a2max) {
+            turbo.a2d = turbo.a2max;
+            turbo.a2 = turbo.a2d / turbo.aconv;
             if(turbo.entype != 2) {
-                Turbo.acore = Turbo.a2;
+                turbo.acore = turbo.a2;
             }
             if(turbo.entype == 2) {
-                Turbo.afan = Turbo.a2;
-                Turbo.acore = Turbo.afan / (1.0 + Turbo.byprat);
+                turbo.afan = turbo.a2;
+                turbo.acore = turbo.afan / (1.0 + turbo.byprat);
             }
         }
-        if(Turbo.a2d < Turbo.a2min) {
-            Turbo.a2d = Turbo.a2min;
-            Turbo.a2 = Turbo.a2d / Turbo.aconv;
+        if(turbo.a2d < turbo.a2min) {
+            turbo.a2d = turbo.a2min;
+            turbo.a2 = turbo.a2d / turbo.aconv;
             if(turbo.entype != 2) {
-                Turbo.acore = Turbo.a2;
+                turbo.acore = turbo.a2;
             }
             if(turbo.entype == 2) {
-                Turbo.afan = Turbo.a2;
-                Turbo.acore = Turbo.afan / (1.0 + Turbo.byprat);
+                turbo.afan = turbo.a2;
+                turbo.acore = turbo.afan / (1.0 + turbo.byprat);
             }
         }
 
@@ -186,31 +186,31 @@ public class LimitsPanel extends Panel {
         V3 = Double.valueOf(f7.getText());
         v3 = V3;
 
-        Turbo.cprmax = v1;
-        Turbo.t4max = v2;
-        Turbo.t7max = v3;
+        turbo.cprmax = v1;
+        turbo.t4max = v2;
+        turbo.t7max = v3;
 
         // look for exceeding limits
 
-        if(Turbo.cprmax <= Turbo.cprmin) {
-            Turbo.cprmax = Turbo.cprmin + .1;
+        if(turbo.cprmax <= turbo.cprmin) {
+            turbo.cprmax = turbo.cprmin + .1;
         }
-        if(Turbo.p3p2d > Turbo.cprmax) {
-            Turbo.p3p2d = Turbo.cprmax;
+        if(turbo.p3p2d > turbo.cprmax) {
+            turbo.p3p2d = turbo.cprmax;
         }
-        if(Turbo.t4max <= Turbo.t4min) {
-            Turbo.t4max = Turbo.t4min + .1;
+        if(turbo.t4max <= turbo.t4min) {
+            turbo.t4max = turbo.t4min + .1;
         }
-        if(Turbo.tt4d > Turbo.t4max) {
-            Turbo.tt4d = Turbo.t4max;
-            Turbo.tt4 = Turbo.tt4d / Turbo.tconv;
+        if(turbo.tt4d > turbo.t4max) {
+            turbo.tt4d = turbo.t4max;
+            turbo.tt4 = turbo.tt4d / turbo.tconv;
         }
-        if(Turbo.t7max <= Turbo.t7min) {
-            Turbo.t7max = Turbo.t7min + .1;
+        if(turbo.t7max <= turbo.t7min) {
+            turbo.t7max = turbo.t7min + .1;
         }
-        if(Turbo.tt7d > Turbo.t7max) {
-            Turbo.tt7d = Turbo.t7max;
-            Turbo.tt7 = Turbo.tt7d / Turbo.tconv;
+        if(turbo.tt7d > turbo.t7max) {
+            turbo.tt7d = turbo.t7max;
+            turbo.tt7 = turbo.tt7d / turbo.tconv;
         }
 
         V1 = Double.valueOf(f9.getText());
@@ -220,28 +220,28 @@ public class LimitsPanel extends Panel {
         V3 = Double.valueOf(f11.getText());
         v3 = V3;
 
-        Turbo.fprmax = v1;
-        Turbo.bypmax = v2;
-        Turbo.pt4max = v3;
+        turbo.fprmax = v1;
+        turbo.bypmax = v2;
+        turbo.pt4max = v3;
 
-        if(Turbo.fprmax <= Turbo.fprmin) {
-            Turbo.fprmax = Turbo.fprmin + .1;
+        if(turbo.fprmax <= turbo.fprmin) {
+            turbo.fprmax = turbo.fprmin + .1;
         }
-        if(Turbo.p3fp2d > Turbo.fprmax) {
-            Turbo.p3fp2d = Turbo.fprmax;
+        if(turbo.p3fp2d > turbo.fprmax) {
+            turbo.p3fp2d = turbo.fprmax;
         }
-        if(Turbo.bypmax <= Turbo.bypmin) {
-            Turbo.bypmax = Turbo.bypmin + .1;
+        if(turbo.bypmax <= turbo.bypmin) {
+            turbo.bypmax = turbo.bypmin + .1;
         }
-        if(Turbo.byprat > Turbo.bypmax) {
-            Turbo.byprat = Turbo.bypmax;
-            Turbo.acore = Turbo.afan / (1.0 + Turbo.byprat);
+        if(turbo.byprat > turbo.bypmax) {
+            turbo.byprat = turbo.bypmax;
+            turbo.acore = turbo.afan / (1.0 + turbo.byprat);
         }
-        if(Turbo.pt4max <= Turbo.etmin) {
-            Turbo.pt4max = Turbo.etmin + .1;
+        if(turbo.pt4max <= turbo.etmin) {
+            turbo.pt4max = turbo.etmin + .1;
         }
-        if(Turbo.prat[4] > Turbo.pt4max) {
-            Turbo.prat[4] = Turbo.pt4max;
+        if(turbo.prat[4] > turbo.pt4max) {
+            turbo.prat[4] = turbo.pt4max;
         }
 
         turbo.varflag = 0;

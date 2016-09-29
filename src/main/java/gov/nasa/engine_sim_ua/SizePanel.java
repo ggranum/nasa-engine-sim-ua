@@ -48,7 +48,7 @@ public class SizePanel extends Panel {
             turbo = target;
             setLayout(new GridLayout(6, 1, 10, 5));
 
-            i1 = (int)(((Turbo.a2d - Turbo.a2min) / (Turbo.a2max - Turbo.a2min)) * 1000.);
+            i1 = (int)(((turbo.a2d - turbo.a2min) / (turbo.a2max - turbo.a2min)) * 1000.);
             setS1(new Scrollbar(Scrollbar.HORIZONTAL, i1, 10, 0, 1000));
 
             setChmat(new Choice());
@@ -102,11 +102,11 @@ public class SizePanel extends Panel {
             if(turbo.siztype == 0) {
                 // area input
                 i1 = getS1().getValue();
-                Turbo.vmn1 = Turbo.a2min;
-                Turbo.vmx1 = Turbo.a2max;
+                turbo.vmn1 = turbo.a2min;
+                turbo.vmx1 = turbo.a2max;
 
-                Turbo.a2d = i1 * (Turbo.vmx1 - Turbo.vmn1) / 1000. + Turbo.vmn1;
-                Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
+                turbo.a2d = i1 * (turbo.vmx1 - turbo.vmn1) / 1000. + turbo.vmn1;
+                turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
 
                 sizeLeftPanel.f1.setBackground(Color.white);
                 sizeLeftPanel.f1.setForeground(Color.black);
@@ -117,9 +117,9 @@ public class SizePanel extends Panel {
             if(turbo.siztype == 1) {
                 // diameter input
                 V3 = Double.valueOf(sizeLeftPanel.f3.getText());
-                Turbo.diameng = v3 = V3;
+                turbo.diameng = v3 = V3;
 
-                Turbo.a2d = 3.14159 * Turbo.diameng * Turbo.diameng / 4.0;
+                turbo.a2d = 3.14159 * turbo.diameng * turbo.diameng / 4.0;
 
                 sizeLeftPanel.f1.setBackground(Color.black);
                 sizeLeftPanel.f1.setForeground(Color.yellow);
@@ -127,12 +127,12 @@ public class SizePanel extends Panel {
                 sizeLeftPanel.f3.setForeground(Color.black);
             }
 
-            Turbo.a2 = Turbo.a2d / Turbo.aconv;
+            turbo.a2 = turbo.a2d / turbo.aconv;
             if(turbo.entype == 2) {
-                Turbo.afan = Turbo.a2;
-                Turbo.acore = Turbo.afan / (1.0 + Turbo.byprat);
+                turbo.afan = turbo.a2;
+                turbo.acore = turbo.afan / (1.0 + turbo.byprat);
             } else {
-                Turbo.acore = Turbo.a2;
+                turbo.acore = turbo.a2;
             }
 
             // compute or input weight
@@ -142,9 +142,9 @@ public class SizePanel extends Panel {
                 sizeLeftPanel.f2.setBackground(Color.white);
                 V2 = Double.valueOf(sizeLeftPanel.f2.getText());
                 v2 = V2;
-                Turbo.weight = v2 / Turbo.fconv;
-                if(Turbo.weight < 10.0) {
-                    Turbo.weight = v2 = 10.0;
+                turbo.weight = v2 / turbo.fconv;
+                if(turbo.weight < 10.0) {
+                    turbo.weight = v2 = 10.0;
                     sizeLeftPanel.f2.setText(String.valueOf((float)v2));
                 }
             }
@@ -153,8 +153,8 @@ public class SizePanel extends Panel {
                 sizeLeftPanel.f2.setBackground(Color.black);
             }
 
-            sizeLeftPanel.f1.setText(String.format("%.3f", Turbo.a2d));
-            sizeLeftPanel.f3.setText(String.format("%.3f", Turbo.diameng));
+            sizeLeftPanel.f1.setText(String.format("%.3f", turbo.a2d));
+            sizeLeftPanel.f3.setText(String.format("%.3f", turbo.diameng));
 
             turbo.solve.comPute();
         }  // end handle
@@ -192,17 +192,17 @@ public class SizePanel extends Panel {
             setLayout(new GridLayout(6, 2, 5, 5));
 
             l1 = new Label("Area-sq ft", Label.CENTER);
-            f1 = new TextField(String.valueOf((float)Turbo.a2d), 5);
+            f1 = new TextField(String.valueOf((float)turbo.a2d), 5);
             f1.setBackground(Color.white);
             f1.setForeground(Color.black);
 
             l2 = new Label("Weight-lbs", Label.CENTER);
-            f2 = new TextField(String.valueOf((float)Turbo.weight), 5);
+            f2 = new TextField(String.valueOf((float)turbo.weight), 5);
             f2.setBackground(Color.black);
             f2.setForeground(Color.yellow);
 
             l3 = new Label("Diameter-ft", Label.CENTER);
-            f3 = new TextField(String.valueOf((float)Turbo.diameng), 5);
+            f3 = new TextField(String.valueOf((float)turbo.diameng), 5);
             f3.setBackground(Color.black);
             f3.setForeground(Color.yellow);
 
@@ -243,52 +243,52 @@ public class SizePanel extends Panel {
             v3 = V3;
             // area input
             if(turbo.siztype == 0) {
-                Turbo.a2d = v1;
-                Turbo.vmn1 = Turbo.a2min;
-                Turbo.vmx1 = Turbo.a2max;
-                if(v1 < Turbo.vmn1) {
-                    Turbo.a2d = v1 = Turbo.vmn1;
+                turbo.a2d = v1;
+                turbo.vmn1 = turbo.a2min;
+                turbo.vmx1 = turbo.a2max;
+                if(v1 < turbo.vmn1) {
+                    turbo.a2d = v1 = turbo.vmn1;
                     f1.setText(String.valueOf((float)v1));
                 }
-                if(v1 > Turbo.vmx1) {
-                    Turbo.a2d = v1 = Turbo.vmx1;
+                if(v1 > turbo.vmx1) {
+                    turbo.a2d = v1 = turbo.vmx1;
                     f1.setText(String.valueOf((float)v1));
                 }
-                Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
-                f3.setText(String.format("%.3f", Turbo.diameng));
+                turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
+                f3.setText(String.format("%.3f", turbo.diameng));
             }
             // diameter input
             if(turbo.siztype == 1) {
-                Turbo.diameng = v3;
-                Turbo.vmn1 = Turbo.diamin;
-                Turbo.vmx1 = Turbo.diamax;
-                if(v3 < Turbo.vmn1) {
-                    Turbo.diameng = v3 = Turbo.vmn1;
+                turbo.diameng = v3;
+                turbo.vmn1 = turbo.diamin;
+                turbo.vmx1 = turbo.diamax;
+                if(v3 < turbo.vmn1) {
+                    turbo.diameng = v3 = turbo.vmn1;
                     f3.setText(String.valueOf((float)v3));
                 }
-                if(v3 > Turbo.vmx1) {
-                    Turbo.diameng = v3 = Turbo.vmx1;
+                if(v3 > turbo.vmx1) {
+                    turbo.diameng = v3 = turbo.vmx1;
                     f3.setText(String.valueOf((float)v3));
                 }
-                Turbo.a2d = 3.14159 * Turbo.diameng * Turbo.diameng / 4.0;
-                f1.setText(String.format("%.3f", Turbo.a2d));
+                turbo.a2d = 3.14159 * turbo.diameng * turbo.diameng / 4.0;
+                f1.setText(String.format("%.3f", turbo.a2d));
             }
 
-            Turbo.a2 = Turbo.a2d / Turbo.aconv;
+            turbo.a2 = turbo.a2d / turbo.aconv;
             if(turbo.entype == 2) {
-                Turbo.afan = Turbo.a2;
-                Turbo.acore = Turbo.afan / (1.0 + Turbo.byprat);
+                turbo.afan = turbo.a2;
+                turbo.acore = turbo.afan / (1.0 + turbo.byprat);
             } else {
-                Turbo.acore = Turbo.a2;
+                turbo.acore = turbo.a2;
             }
 
-            Turbo.weight = v2 / Turbo.fconv;
-            if(Turbo.weight < 10.0) {
-                Turbo.weight = v2 = 10.0;
+            turbo.weight = v2 / turbo.fconv;
+            if(turbo.weight < 10.0) {
+                turbo.weight = v2 = 10.0;
                 f2.setText(String.valueOf((float)v2));
             }
 
-            i1 = (int)(((Turbo.a2d - Turbo.a2min) / (Turbo.a2max - Turbo.a2min)) * 1000.);
+            i1 = (int)(((turbo.a2d - turbo.a2min) / (turbo.a2max - turbo.a2min)) * 1000.);
 
             sizeRightPanel.getS1().setValue(i1);
 

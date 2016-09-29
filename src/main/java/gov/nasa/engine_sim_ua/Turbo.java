@@ -56,231 +56,231 @@ public class Turbo extends Applet {
     int inflag;
     int varflag;
     int pt2flag;
-    int wtflag ;
+    int wtflag;
     int pltkeep;
     int iprint;
     int numeng;
     int gamopt;
     int arsched;
     int plttyp;
-    int showcom ;
+    int showcom;
     int athsched;
     int aexsched;
     int fueltype;
     int inptype;
-    int siztype ;
+    int siztype;
     // Flow variables
-    static double g0d;
-    static double g0;
-    static double rgas;
-    static double gama;
-    static double cpair ;
-    static double tt4;
-    static double tt4d;
-    static double tt7;
-    static double tt7d;
-    static double t8;
-    static double p3p2d;
-    static double p3fp2d;
-    static double byprat;
-    static double throtl;
-    static double fsmach;
-    static double altd;
-    static double alt;
-    static double ts0;
-    static double ps0;
-    static double q0;
-    static double u0d;
-    static double u0;
-    static double a0;
-    static double rho0;
-    static double tsout;
-    static double psout;
-    static double epr;
-    static double etr;
-    static double npr;
-    static double snpr;
-    static double fnet;
-    static double fgros;
-    static double dram;
-    static double sfc;
-    static double fa;
-    static double eair;
-    static double uexit;
-    static double ues;
-    static double fnlb;
-    static double fglb;
-    static double drlb;
-    static double flflo;
-    static double fuelrat;
-    static double fntot;
-    static double eteng;
-    static double arth;
-    static double arthd;
-    static double arexit;
-    static double arexitd ;
-    static double mexit;
-    static double pexit;
-    static double pfexit ;
-    static double arthmn;
-    static double arthmx;
-    static double arexmn;
-    static double arexmx ;
-    static double a8;
-    static double a8rat;
-    static double a8d;
-    static double afan;
-    static double a7;
-    static double m2;
-    static double isp;
-    static double ac;
-    static double a2;
-    static double a2d;
-    static double acore;
-    static double a4;
-    static double a4p;
-    static double fhv;
-    static double fhvd;
-    static double mfr;
-    static double diameng ;
-    static double altmin;
-    static double altmax;
-    static double u0min;
-    static double u0max;
-    static double thrmin;
-    static double thrmax;
-    static double pmax;
-    static double tmin;
-    static double tmax;
-    static double u0mt;
-    static double u0mr;
-    static double altmt;
-    static double altmr;
-    static double etmin;
-    static double etmax;
-    static double cprmin;
-    static double cprmax;
-    static double t4min;
-    static double t4max;
-    static double pt4max;
-    static double a2min;
-    static double a2max;
-    static double a8min;
-    static double a8max;
-    static double t7min;
-    static double t7max;
-    static double diamin;
-    static double diamax;
-    static double bypmin;
-    static double bypmax;
-    static double fprmin;
-    static double fprmax;
-    static double vmn1;
-    static double vmn2;
-    static double vmn3;
-    static double vmn4;
-    static double vmx1;
-    static double vmx2;
-    static double vmx3;
-    static double vmx4 ;
-    static double lconv1;
-    static double lconv2;
-    static double fconv;
-    static double pconv;
-    static double tconv;
-    static double tref;
-    static double mconv1;
-    static double mconv2;
-    static double econv;
-    static double econv2 ;
-    static double aconv;
-    static double bconv;
-    static double dconv;
-    static double flconv ;
+    double g0d;
+    double g0;
+    double rgas;
+    double gama;
+    double cpair;
+    double tt4;
+    double tt4d;
+    double tt7;
+    double tt7d;
+    double t8;
+    double p3p2d;
+    double p3fp2d;
+    double byprat;
+    double throtl;
+    double fsmach;
+    double altd;
+    double alt;
+    double ts0;
+    double ps0;
+    double q0;
+    double u0d;
+    double u0;
+    double a0;
+    double rho0;
+    double tsout;
+    double psout;
+    double epr;
+    double etr;
+    double npr;
+    double snpr;
+    double fnet;
+    double fgros;
+    double dram;
+    double sfc;
+    double fa;
+    double eair;
+    double uexit;
+    double ues;
+    double fnlb;
+    double fglb;
+    double drlb;
+    double flflo;
+    double fuelrat;
+    double fntot;
+    double eteng;
+    double arth;
+    double arthd;
+    double arexit;
+    double arexitd;
+    double mexit;
+    double pexit;
+    double pfexit;
+    double arthmn;
+    double arthmx;
+    double arexmn;
+    double arexmx;
+    double a8;
+    double a8rat;
+    double a8d;
+    double afan;
+    double a7;
+    double m2;
+    double isp;
+    double ac;
+    double a2;
+    double a2d;
+    double acore;
+    double a4;
+    double a4p;
+    double fhv;
+    double fhvd;
+    double mfr;
+    double diameng;
+    double altmin;
+    double altmax;
+    double u0min;
+    double u0max;
+    double thrmin;
+    double thrmax;
+    double pmax;
+    double tmin;
+    double tmax;
+    double u0mt;
+    double u0mr;
+    double altmt;
+    double altmr;
+    double etmin;
+    double etmax;
+    double cprmin;
+    double cprmax;
+    double t4min;
+    double t4max;
+    double pt4max;
+    double a2min;
+    double a2max;
+    double a8min;
+    double a8max;
+    double t7min;
+    double t7max;
+    double diamin;
+    double diamax;
+    double bypmin;
+    double bypmax;
+    double fprmin;
+    double fprmax;
+    double vmn1;
+    double vmn2;
+    double vmn3;
+    double vmn4;
+    double vmx1;
+    double vmx2;
+    double vmx3;
+    double vmx4;
+    double lconv1;
+    double lconv2;
+    double fconv;
+    double pconv;
+    double tconv;
+    double tref;
+    double mconv1;
+    double mconv2;
+    double econv;
+    double econv2;
+    double aconv;
+    double bconv;
+    double dconv;
+    double flconv;
     // weight and materials
-    static double weight;
-    static double wtref;
-    static double wfref ;
-    static int mcomp;
-    static int mfan;
-    static int mturbin;
-    static int mburner;
-    static int minlt;
-    static int mnozl;
-    static int mnozr ;
-    static int ncflag;
-    static int ncomp;
-    static int ntflag;
-    static int nturb;
-    static int fireflag;
-    static double dcomp;
-    static double dfan;
-    static double dturbin;
-    static double dburner ;
-    static double tcomp;
-    static double tfan;
-    static double tturbin;
-    static double tburner ;
-    static double tinlt;
-    static double dinlt;
-    static double tnozl;
-    static double dnozl;
-    static double tnozr;
-    static double dnozr ;
-    static double lcomp;
-    static double lburn;
-    static double lturb;
-    static double lnoz;   // component length
+    double weight;
+    double wtref;
+    double wfref;
+    int mcomp;
+    int mfan;
+    int mturbin;
+    int mburner;
+    int minlt;
+    int mnozl;
+    int mnozr;
+    int ncflag;
+    int ncomp;
+    int ntflag;
+    int nturb;
+    int fireflag;
+    double dcomp;
+    double dfan;
+    double dturbin;
+    double dburner;
+    double tcomp;
+    double tfan;
+    double tturbin;
+    double tburner;
+    double tinlt;
+    double dinlt;
+    double tnozl;
+    double dnozl;
+    double tnozr;
+    double dnozr;
+    double lcomp;
+    double lburn;
+    double lturb;
+    double lnoz;   // component length
     // Station Variables
-    static double[] trat = new double[20] ;
-    static double[] tt   = new double[20] ;
-    static double[] prat = new double[20] ;
-    static double[] pt   = new double[20] ;
-    static double[] eta  = new double[20] ;
-    static double[] gam  = new double[20] ;
-    static double[] cp   = new double[20] ;
-    static double[] s    = new double[20] ;
-    static double[] v    = new double[20] ;
+    double[] trat = new double[20];
+    double[] tt   = new double[20];
+    double[] prat = new double[20];
+    double[] pt   = new double[20];
+    double[] eta  = new double[20];
+    double[] gam  = new double[20];
+    double[] cp   = new double[20];
+    double[] s    = new double[20];
+    double[] v    = new double[20];
     /* drawing geometry  */
-    static double xtrans;
-    static double ytrans;
-    static double factor;
-    static double scale ;
-    static double xtranp;
-    static double ytranp;
-    static double factp ;
-    static double xg[][]  = new double[13][45] ;
-    static double yg[][]  = new double[13][45] ;
-    static int sldloc;
-    static int sldplt;
-    static int ncompd;
-    static int antim;
-    static int ancol ;
+    double xtrans;
+    double ytrans;
+    double factor;
+    double scale;
+    double xtranp;
+    double ytranp;
+    double factp;
+    double xg[][]  = new double[13][45];
+    double yg[][]  = new double[13][45];
+    int sldloc;
+    int sldplt;
+    int ncompd;
+    int antim;
+    int ancol;
     //  Percentage  variables
-    static double u0ref;
-    static double altref;
-    static double thrref;
-    static double a2ref;
-    static double et2ref;
-    static double fpref;
-    static double et13ref;
-    static double bpref ;
-    static double cpref;
-    static double et3ref;
-    static double et4ref;
-    static double et5ref;
-    static double t4ref;
-    static double p4ref;
-    static double t7ref;
-    static double et7ref;
-    static double a8ref;
-    static double fnref;
-    static double fuelref;
-    static double sfcref;
-    static double airref;
-    static double epref;
-    static double etref;
-    static double faref ;
+    double u0ref;
+    double altref;
+    double thrref;
+    double a2ref;
+    double et2ref;
+    double fpref;
+    double et13ref;
+    double bpref;
+    double cpref;
+    double et3ref;
+    double et4ref;
+    double et5ref;
+    double t4ref;
+    double p4ref;
+    double t7ref;
+    double et7ref;
+    double a8ref;
+    double fnref;
+    double fuelref;
+    double sfcref;
+    double airref;
+    double epref;
+    double etref;
+    double faref;
     // save design
     int ensav;
     int absav;
@@ -289,34 +289,34 @@ public class Turbo extends Applet {
     int arssav;
     int arthsav;
     int arxsav;
-    int flsav ;
-    static double fhsav;
-    static double t4sav;
-    static double t7sav;
-    static double p3sav;
-    static double p3fsav;
-    static double bysav;
-    static double acsav ;
-    static double a2sav;
-    static double a4sav;
-    static double a4psav;
-    static double gamsav;
-    static double et2sav;
-    static double pr2sav;
-    static double pr4sav ;
-    static double et3sav;
-    static double et4sav;
-    static double et5sav;
-    static double et7sav;
-    static double et13sav;
-    static double a8sav;
-    static double a8mxsav ;
-    static double a8rtsav;
-    static double u0mxsav;
-    static double u0sav;
-    static double altsav ;
-    static double artsav;
-    static double arexsav ;
+    int flsav;
+    double fhsav;
+    double t4sav;
+    double t7sav;
+    double p3sav;
+    double p3fsav;
+    double bysav;
+    double acsav;
+    double a2sav;
+    double a4sav;
+    double a4psav;
+    double gamsav;
+    double et2sav;
+    double pr2sav;
+    double pr4sav;
+    double et3sav;
+    double et4sav;
+    double et5sav;
+    double et7sav;
+    double et13sav;
+    double a8sav;
+    double a8mxsav;
+    double a8rtsav;
+    double u0mxsav;
+    double u0sav;
+    double altsav;
+    double artsav;
+    double arexsav;
     // save materials info
     int wtfsav;
     int minsav;
@@ -328,41 +328,41 @@ public class Turbo extends Applet {
     int mnrsav;
     int ncsav;
     int ntsav;
-    static double wtsav;
-    static double dinsav;
-    static double tinsav;
-    static double dfnsav;
-    static double tfnsav;
-    static double dcmsav;
-    static double tcmsav;
-    static double dbrsav;
-    static double tbrsav;
-    static double dtrsav;
-    static double ttrsav;
-    static double dnlsav;
-    static double tnlsav;
-    static double dnrsav;
-    static double tnrsav;
+    double wtsav;
+    double dinsav;
+    double tinsav;
+    double dfnsav;
+    double tfnsav;
+    double dcmsav;
+    double tcmsav;
+    double dbrsav;
+    double tbrsav;
+    double dtrsav;
+    double ttrsav;
+    double dnlsav;
+    double tnlsav;
+    double dnrsav;
+    double tnrsav;
     // plotPanel variables
     int lines;
     int nord;
     int nabs;
     int npt;
     int ntikx;
-    int ntiky ;
-    int counter ;
+    int ntiky;
+    int counter;
     int ordkeep;
-    int abskeep ;
-    static double begx;
-    static double endx;
-    static double begy;
-    static double endy ;
-    static double[] pltx = new double[26] ;
-    static double[] plty = new double[26] ;
-    static String labx;
-    static String laby;
-    static String labyu;
-    static String labxu ;
+    int abskeep;
+    double begx;
+    double endx;
+    double begy;
+    double endy;
+    double[] pltx = new double[26];
+    double[] plty = new double[26];
+    String labx;
+    String laby;
+    String labyu;
+    String labxu;
     // print variables
     int pall;
     int pfs;
@@ -376,53 +376,53 @@ public class Turbo extends Applet {
     int pentr;
     int pgam;
     int peta;
-    int parea ;
+    int parea;
 
-    Solver solve ;
-    EngineModelViewCanvas view ;
+    Solver solve;
+    EngineModelViewCanvas view;
     CardLayout layin;
-    CardLayout layout ;
+    CardLayout layout;
     FlightConditionsPanel flightConditionsPanel;
     InputPanel inputPanel;
     OutputPanel outputPanel;
-    Image offscreenImg ;
-    Graphics offsGg ;
-    Image offImg1 ;
-    Graphics off1Gg ;
+    Image offscreenImg;
+    Graphics offsGg;
+    Image offImg1;
+    Graphics off1Gg;
 
-    static Frame f ;
-    static PrintStream prnt ;
-    static OutputStream pfile;
-    static OutputStream sfilo ;
-    static InputStream sfili;
-    static DataInputStream savin ;
-    static DataOutputStream savout;
+    Frame f;
+    PrintStream prnt;
+    OutputStream pfile;
+    OutputStream sfilo;
+    InputStream sfili;
+    DataInputStream savin;
+    DataOutputStream savout;
 
     public void init() {
         solve = new Solver(this);
 
         offscreenImg = createImage(this.getSize().width,
-                                   this.getSize().height) ;
-        offsGg = offscreenImg.getGraphics() ;
+                                   this.getSize().height);
+        offsGg = offscreenImg.getGraphics();
         offImg1 = createImage(this.getSize().width,
-                              this.getSize().height) ;
-        off1Gg = offImg1.getGraphics() ;
+                              this.getSize().height);
+        off1Gg = offImg1.getGraphics();
 
-        setLayout(new GridLayout(2, 2, 5, 5)) ;
+        setLayout(new GridLayout(2, 2, 5, 5));
 
         solve.setDefaults();
 
         view = new EngineModelViewCanvas(this);
-        flightConditionsPanel = new FlightConditionsPanel(this) ;
+        flightConditionsPanel = new FlightConditionsPanel(this);
         inputPanel = new InputPanel(this);
         outputPanel = new OutputPanel(this);
 
         add(view);
-        add(flightConditionsPanel) ;
+        add(flightConditionsPanel);
         add(inputPanel);
-        add(outputPanel) ;
+        add(outputPanel);
 
-        Turbo.f.setVisible(true); ;
+        f.setVisible(true);;
 
         solve.comPute();
         layout.show(outputPanel, "first");
@@ -431,7 +431,7 @@ public class Turbo extends Applet {
     }
 
     public Insets getInsets() {
-        return new Insets(10, 10, 10, 10) ;
+        return new Insets(10, 10, 10, 10);
     }
 
     public double getGama(double temp, int opt) {
@@ -440,17 +440,17 @@ public class Turbo extends Applet {
         double a;
         double b;
         double c;
-        double d ;
+        double d;
         a =  -7.6942651e-13;
         b =  1.3764661e-08;
         c =  -7.8185709e-05;
         d =  1.436914;
         if(opt == 0) {
-            number = 1.4 ;
+            number = 1.4;
         } else {
-            number = a*temp*temp*temp + b*temp*temp + c*temp +d ;
+            number = a*temp*temp*temp + b*temp*temp + c*temp +d;
         }
-        return(number) ;
+        return(number);
     }
 
     public double getCp(double temp, int opt)  {
@@ -459,18 +459,18 @@ public class Turbo extends Applet {
         double a;
         double b;
         double c;
-        double d ;
+        double d;
                               /* BTU/R */
         a =  -4.4702130e-13;
         b =  -5.1286514e-10;
         c =   2.8323331e-05;
         d =  0.2245283;
         if(opt == 0) {
-            number = .2399 ;
+            number = .2399;
         } else {
-            number = a*temp*temp*temp + b*temp*temp + c*temp +d ;
+            number = a*temp*temp*temp + b*temp*temp + c*temp +d;
         }
-        return(number) ;
+        return(number);
     }
 
     public double getMach (int sub, double corair, double gamma) {
@@ -482,14 +482,14 @@ public class Turbo extends Applet {
         double macho;
         double airo;
         double airn;
-        int iter ;
+        int iter;
 
-        chokair = getAir(1.0, gamma) ;
+        chokair = getAir(1.0, gamma);
         if (corair > chokair) {
-            number = 1.0 ;
-            return (number) ;
+            number = 1.0;
+            return (number);
         } else {
-            airo = .25618 ;                 /* initial guess */
+            airo = .25618;                 /* initial guess */
             if (sub == 1) {
                 macho = 1.0;   /* sonic */
             } else {
@@ -498,25 +498,25 @@ public class Turbo extends Applet {
                 } else {
                     macho = .5;                /* subsonic */
                 }
-                iter = 1 ;
-                machn = macho - .2  ;
+                iter = 1;
+                machn = macho - .2 ;
                 while (Math.abs(corair - airo) > .0001 && iter < 20) {
-                    airn =  getAir(machn,gamma) ;
-                    deriv = (airn-airo)/(machn-macho) ;
-                    airo = airn ;
-                    macho = machn ;
-                    machn = macho + (corair - airo)/deriv ;
-                    ++ iter ;
+                    airn =  getAir(machn,gamma);
+                    deriv = (airn-airo)/(machn-macho);
+                    airo = airn;
+                    macho = machn;
+                    machn = macho + (corair - airo)/deriv;
+                    ++ iter;
                 }
             }
-            number = macho ;
+            number = macho;
         }
-        return(number) ;
+        return(number);
     }
 
     public double getRayleighLoss(double mach1, double ttrat, double tlow) {
                                          /* analysis for rayleigh flow */
-        double number ;
+        double number;
         double wc1;
         double wc2;
         double mgueso;
@@ -524,32 +524,32 @@ public class Turbo extends Applet {
         double g1;
         double gm1;
         double g2;
-        double gm2 ;
+        double gm2;
         double fac1;
         double fac2;
         double fac3;
         double fac4;
 
         g1 = getGama(tlow,gamopt);
-        gm1 = g1 - 1.0 ;
+        gm1 = g1 - 1.0;
         wc1 = getAir(mach1,g1);
         g2 = getGama(tlow*ttrat,gamopt);
-        gm2 = g2 - 1.0 ;
-        number = .95 ;
+        gm2 = g2 - 1.0;
+        number = .95;
                              /* iterate for mach downstream */
-        mgueso = .4 ;                 /* initial guess */
-        mach2 = .5 ;
+        mgueso = .4;                 /* initial guess */
+        mach2 = .5;
         while (Math.abs(mach2 - mgueso) > .0001) {
-            mgueso = mach2 ;
-            fac1 = 1.0 + g1 * mach1 * mach1 ;
-            fac2 = 1.0 + g2 * mach2 * mach2 ;
-            fac3 = Math.pow((1.0 + .5 * gm1 * mach1 * mach1),(g1/gm1)) ;
-            fac4 = Math.pow((1.0 + .5 * gm2 * mach2 * mach2),(g2/gm2)) ;
-            number = fac1 * fac4 / fac2 / fac3 ;
-            wc2 = wc1 * Math.sqrt(ttrat) / number ;
-            mach2 = getMach(0,wc2,g2) ;
+            mgueso = mach2;
+            fac1 = 1.0 + g1 * mach1 * mach1;
+            fac2 = 1.0 + g2 * mach2 * mach2;
+            fac3 = Math.pow((1.0 + .5 * gm1 * mach1 * mach1),(g1/gm1));
+            fac4 = Math.pow((1.0 + .5 * gm2 * mach2 * mach2),(g2/gm2));
+            number = fac1 * fac4 / fac2 / fac3;
+            wc2 = wc1 * Math.sqrt(ttrat) / number;
+            mach2 = getMach(0,wc2,g2);
         }
-        return(number) ;
+        return(number);
     }
 
     public double getAir(double mach, double gamma) {
@@ -557,15 +557,16 @@ public class Turbo extends Applet {
         double number;
         double fac1;
         double fac2;
-        fac2 = (gamma + 1.0) / (2.0 * (gamma - 1.0)) ;
+        fac2 = (gamma + 1.0) / (2.0 * (gamma - 1.0));
         fac1 = Math.pow((1.0 + .5 * (gamma - 1.0) * mach * mach), fac2);
-        number = .50161 * Math.sqrt(gamma) * mach / fac1 ;
+        number = .50161 * Math.sqrt(gamma) * mach / fac1;
 
-        return(number) ;
+        return(number);
     }
 
     public class InputPanel extends Panel {
 
+        private final Turbo turbo;
         FlightPanel flightPanel;
         InletPanel inletPanel;
         SizePanel sizePanel;
@@ -581,6 +582,7 @@ public class Turbo extends Applet {
         FilePrintPanel filePrintPanel;
 
         InputPanel(Turbo turbo) {
+            this.turbo = turbo;
 
             layin = new CardLayout();
             setLayout(layin);
@@ -615,30 +617,30 @@ public class Turbo extends Applet {
         }
 
         public void fillBox() {
-            inletPanel.inletLeftPanel.getDi().setText(String.format("%.0f", Turbo.dinlt * Turbo.dconv));
-            fanPanel.leftPanel.getDf().setText(String.format("%.0f", Turbo.dfan * Turbo.dconv));
-            compressorPanel.compressorLeftPanel.getDc().setText(String.format("%.0f", Turbo.dcomp * Turbo.dconv));
-            burnerPanel.burnerLeftPanel.getDb().setText(String.format("%.0f", Turbo.dburner * Turbo.dconv));
-            turbinePanel.turbineLeftPanel.getDt().setText(String.format("%.0f", Turbo.dturbin * Turbo.dconv));
-            nozzlePanel.nozzleLeftPanel.getDn().setText(String.format("%.0f", Turbo.dnozl * Turbo.dconv));
-            ramjetNozzlePanel.ramjetNozzleLeftPanel.getDn().setText(String.format("%.0f", Turbo.dnozr * Turbo.dconv));
-            inletPanel.inletLeftPanel.getTi().setText(String.format("%.0f", Turbo.tinlt * Turbo.tconv));
-            fanPanel.leftPanel.getTf().setText(String.format("%.0f", Turbo.tfan * Turbo.tconv));
-            compressorPanel.compressorLeftPanel.getTc().setText(String.format("%.0f", Turbo.tcomp * Turbo.tconv));
-            burnerPanel.burnerLeftPanel.getTb().setText(String.format("%.0f", Turbo.tburner * Turbo.tconv));
-            turbinePanel.turbineLeftPanel.getTt().setText(String.format("%.0f", Turbo.tturbin * Turbo.tconv));
-            nozzlePanel.nozzleLeftPanel.getTn().setText(String.format("%.0f", Turbo.tnozl * Turbo.tconv));
-            ramjetNozzlePanel.ramjetNozzleLeftPanel.getTn().setText(String.format("%.0f", Turbo.tnozr * Turbo.tconv));
+            inletPanel.inletLeftPanel.getDi().setText(String.format("%.0f", turbo.dinlt * turbo.dconv));
+            fanPanel.leftPanel.getDf().setText(String.format("%.0f", turbo.dfan * turbo.dconv));
+            compressorPanel.compressorLeftPanel.getDc().setText(String.format("%.0f", turbo.dcomp * turbo.dconv));
+            burnerPanel.burnerLeftPanel.getDb().setText(String.format("%.0f", turbo.dburner * turbo.dconv));
+            turbinePanel.turbineLeftPanel.getDt().setText(String.format("%.0f", turbo.dturbin * turbo.dconv));
+            nozzlePanel.nozzleLeftPanel.getDn().setText(String.format("%.0f", turbo.dnozl * turbo.dconv));
+            ramjetNozzlePanel.ramjetNozzleLeftPanel.getDn().setText(String.format("%.0f", turbo.dnozr * turbo.dconv));
+            inletPanel.inletLeftPanel.getTi().setText(String.format("%.0f", turbo.tinlt * turbo.tconv));
+            fanPanel.leftPanel.getTf().setText(String.format("%.0f", turbo.tfan * turbo.tconv));
+            compressorPanel.compressorLeftPanel.getTc().setText(String.format("%.0f", turbo.tcomp * turbo.tconv));
+            burnerPanel.burnerLeftPanel.getTb().setText(String.format("%.0f", turbo.tburner * turbo.tconv));
+            turbinePanel.turbineLeftPanel.getTt().setText(String.format("%.0f", turbo.tturbin * turbo.tconv));
+            nozzlePanel.nozzleLeftPanel.getTn().setText(String.format("%.0f", turbo.tnozl * turbo.tconv));
+            ramjetNozzlePanel.ramjetNozzleLeftPanel.getTn().setText(String.format("%.0f", turbo.tnozr * turbo.tconv));
         }
     }  // end Inppnl
 
     public static void main(String args[]) {
         Turbo turbo = new Turbo();
 
-        Turbo.f = new Frame("EngineSim Application Version 1.7a");
-        Turbo.f.add("Center", turbo);
-        Turbo.f.setSize(710, 450);
-        Turbo.f.setVisible(true);
+        turbo.f = new Frame("EngineSim Application Version 1.7a");
+        turbo.f.add("Center", turbo);
+        turbo.f.setSize(710, 450);
+        turbo.f.setVisible(true);
 
         turbo.init();
         turbo.start();

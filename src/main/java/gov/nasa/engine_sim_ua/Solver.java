@@ -16,7 +16,7 @@ class Solver {
     public void comPute() {
 
         turbo.numeng = 1;
-        Turbo.fireflag = 0;
+        turbo.fireflag = 0;
 
         getFreeStream();
 
@@ -27,7 +27,7 @@ class Solver {
         }
         if(turbo.inflag == 1) {
             if(turbo.entype < 3) {
-                Turbo.a8 = Turbo.a8d * Math.sqrt(Turbo.trat[7]) / Turbo.prat[7];
+                turbo.a8 = turbo.a8d * Math.sqrt(turbo.trat[7]) / turbo.prat[7];
             }
         }
 
@@ -57,21 +57,21 @@ class Solver {
         turbo.inptype = 0;
         turbo.siztype = 0;
         turbo.lunits = 0;
-        Turbo.lconv1 = 1.0;
-        Turbo.lconv2 = 1.0;
-        Turbo.fconv = 1.0;
-        Turbo.mconv1 = 1.0;
-        Turbo.pconv = 1.0;
-        Turbo.econv = 1.0;
-        Turbo.aconv = 1.0;
-        Turbo.bconv = 1.0;
-        Turbo.mconv2 = 1.0;
-        Turbo.dconv = 1.0;
-        Turbo.flconv = 1.0;
-        Turbo.econv2 = 1.0;
-        Turbo.tconv = 1.0;
-        Turbo.tref = 459.6;
-        Turbo.g0 = Turbo.g0d = 32.2;
+        turbo.lconv1 = 1.0;
+        turbo.lconv2 = 1.0;
+        turbo.fconv = 1.0;
+        turbo.mconv1 = 1.0;
+        turbo.pconv = 1.0;
+        turbo.econv = 1.0;
+        turbo.aconv = 1.0;
+        turbo.bconv = 1.0;
+        turbo.mconv2 = 1.0;
+        turbo.dconv = 1.0;
+        turbo.flconv = 1.0;
+        turbo.econv2 = 1.0;
+        turbo.tconv = 1.0;
+        turbo.tref = 459.6;
+        turbo.g0 = turbo.g0d = 32.2;
 
         turbo.counter = 0;
         turbo.showcom = 0;
@@ -82,124 +82,124 @@ class Solver {
         turbo.varflag = 0;
         turbo.pt2flag = 0;
         turbo.wtflag = 0;
-        Turbo.fireflag = 0;
-        Turbo.gama = 1.4;
+        turbo.fireflag = 0;
+        turbo.gama = 1.4;
         turbo.gamopt = 1;
-        Turbo.u0d = 0.0;
-        Turbo.altd = 0.0;
-        Turbo.throtl = 100.;
+        turbo.u0d = 0.0;
+        turbo.altd = 0.0;
+        turbo.throtl = 100.;
 
         for (i = 0; i <= 19; ++i) {
-            Turbo.trat[i] = 1.0;
-            Turbo.tt[i] = 518.6;
-            Turbo.prat[i] = 1.0;
-            Turbo.pt[i] = 14.7;
-            Turbo.eta[i] = 1.0;
+            turbo.trat[i] = 1.0;
+            turbo.tt[i] = 518.6;
+            turbo.prat[i] = 1.0;
+            turbo.pt[i] = 14.7;
+            turbo.eta[i] = 1.0;
         }
-        Turbo.tt[4] = Turbo.tt4 = Turbo.tt4d = 2500.;
-        Turbo.tt[7] = Turbo.tt7 = Turbo.tt7d = 2500.;
-        Turbo.prat[3] = Turbo.p3p2d = 8.0;
-        Turbo.prat[13] = Turbo.p3fp2d = 2.0;
-        Turbo.byprat = 1.0;
+        turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2500.;
+        turbo.tt[7] = turbo.tt7 = turbo.tt7d = 2500.;
+        turbo.prat[3] = turbo.p3p2d = 8.0;
+        turbo.prat[13] = turbo.p3fp2d = 2.0;
+        turbo.byprat = 1.0;
         turbo.abflag = 0;
 
         turbo.fueltype = 0;
-        Turbo.fhvd = Turbo.fhv = 18600.;
-        Turbo.a2d = Turbo.a2 = Turbo.acore = 2.0;
-        Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
-        Turbo.ac = .9 * Turbo.a2;
-        Turbo.a8rat = .35;
-        Turbo.a8 = .7;
-        Turbo.a8d = .40;
+        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.a2d = turbo.a2 = turbo.acore = 2.0;
+        turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
+        turbo.ac = .9 * turbo.a2;
+        turbo.a8rat = .35;
+        turbo.a8 = .7;
+        turbo.a8d = .40;
         turbo.arsched = 0;
-        Turbo.afan = 2.0;
-        Turbo.a4 = .418;
+        turbo.afan = 2.0;
+        turbo.a4 = .418;
 
         turbo.athsched = 1;
         turbo.aexsched = 1;
-        Turbo.arthmn = 0.1;
-        Turbo.arthmx = 1.5;
-        Turbo.arexmn = 1.0;
-        Turbo.arexmx = 10.0;
-        Turbo.arthd = Turbo.arth = .4;
-        Turbo.arexit = Turbo.arexitd = 3.0;
+        turbo.arthmn = 0.1;
+        turbo.arthmx = 1.5;
+        turbo.arexmn = 1.0;
+        turbo.arexmx = 10.0;
+        turbo.arthd = turbo.arth = .4;
+        turbo.arexit = turbo.arexitd = 3.0;
 
-        Turbo.u0mt = 1500.;
-        Turbo.u0mr = 4500.;
-        Turbo.altmt = 60000.;
-        Turbo.altmr = 100000.;
+        turbo.u0mt = 1500.;
+        turbo.u0mr = 4500.;
+        turbo.altmt = 60000.;
+        turbo.altmr = 100000.;
 
-        Turbo.u0min = 0.0;
-        Turbo.u0max = Turbo.u0mt;
-        Turbo.altmin = 0.0;
-        Turbo.altmax = Turbo.altmt;
-        Turbo.thrmin = 30;
-        Turbo.thrmax = 100;
-        Turbo.etmin = .5;
-        Turbo.etmax = 1.0;
-        Turbo.cprmin = 1.0;
-        Turbo.cprmax = 50.0;
-        Turbo.bypmin = 0.0;
-        Turbo.bypmax = 10.0;
-        Turbo.fprmin = 1.0;
-        Turbo.fprmax = 2.0;
-        Turbo.t4min = 1000.0;
-        Turbo.t4max = 3200.0;
-        Turbo.t7min = 1000.0;
-        Turbo.t7max = 4000.0;
-        Turbo.a8min = 0.1;
-        Turbo.a8max = 0.4;
-        Turbo.a2min = .001;
-        Turbo.a2max = 50.;
-        Turbo.pt4max = 1.0;
-        Turbo.diamin = Math.sqrt(4.0 * Turbo.a2min / 3.14159);
-        Turbo.diamax = Math.sqrt(4.0 * Turbo.a2max / 3.14159);
-        Turbo.pmax = 20.0;
-        Turbo.tmin = -100.0 + Turbo.tref;
-        Turbo.tmax = 100.0 + Turbo.tref;
-        Turbo.vmn1 = Turbo.u0min;
-        Turbo.vmx1 = Turbo.u0max;
-        Turbo.vmn2 = Turbo.altmin;
-        Turbo.vmx2 = Turbo.altmax;
-        Turbo.vmn3 = Turbo.thrmin;
-        Turbo.vmx3 = Turbo.thrmax;
-        Turbo.vmn4 = Turbo.arexmn;
-        Turbo.vmx4 = Turbo.arexmx;
+        turbo.u0min = 0.0;
+        turbo.u0max = turbo.u0mt;
+        turbo.altmin = 0.0;
+        turbo.altmax = turbo.altmt;
+        turbo.thrmin = 30;
+        turbo.thrmax = 100;
+        turbo.etmin = .5;
+        turbo.etmax = 1.0;
+        turbo.cprmin = 1.0;
+        turbo.cprmax = 50.0;
+        turbo.bypmin = 0.0;
+        turbo.bypmax = 10.0;
+        turbo.fprmin = 1.0;
+        turbo.fprmax = 2.0;
+        turbo.t4min = 1000.0;
+        turbo.t4max = 3200.0;
+        turbo.t7min = 1000.0;
+        turbo.t7max = 4000.0;
+        turbo.a8min = 0.1;
+        turbo.a8max = 0.4;
+        turbo.a2min = .001;
+        turbo.a2max = 50.;
+        turbo.pt4max = 1.0;
+        turbo.diamin = Math.sqrt(4.0 * turbo.a2min / 3.14159);
+        turbo.diamax = Math.sqrt(4.0 * turbo.a2max / 3.14159);
+        turbo.pmax = 20.0;
+        turbo.tmin = -100.0 + turbo.tref;
+        turbo.tmax = 100.0 + turbo.tref;
+        turbo.vmn1 = turbo.u0min;
+        turbo.vmx1 = turbo.u0max;
+        turbo.vmn2 = turbo.altmin;
+        turbo.vmx2 = turbo.altmax;
+        turbo.vmn3 = turbo.thrmin;
+        turbo.vmx3 = turbo.thrmax;
+        turbo.vmn4 = turbo.arexmn;
+        turbo.vmx4 = turbo.arexmx;
 
-        Turbo.xtrans = 125.0;
-        Turbo.ytrans = 115.0;
-        Turbo.factor = 35.;
-        Turbo.sldloc = 75;
+        turbo.xtrans = 125.0;
+        turbo.ytrans = 115.0;
+        turbo.factor = 35.;
+        turbo.sldloc = 75;
 
-        Turbo.xtranp = 80.0;
-        Turbo.ytranp = 180.0;
-        Turbo.factp = 27.;
-        Turbo.sldplt = 130;
+        turbo.xtranp = 80.0;
+        turbo.ytranp = 180.0;
+        turbo.factp = 27.;
+        turbo.sldplt = 130;
 
-        Turbo.weight = 1000.;
-        Turbo.minlt = 1;
-        Turbo.dinlt = 170.2;
-        Turbo.tinlt = 900.;
-        Turbo.mfan = 2;
-        Turbo.dfan = 293.02;
-        Turbo.tfan = 1500.;
-        Turbo.mcomp = 2;
-        Turbo.dcomp = 293.02;
-        Turbo.tcomp = 1500.;
-        Turbo.mburner = 4;
-        Turbo.dburner = 515.2;
-        Turbo.tburner = 2500.;
-        Turbo.mturbin = 4;
-        Turbo.dturbin = 515.2;
-        Turbo.tturbin = 2500.;
-        Turbo.mnozl = 3;
-        Turbo.dnozl = 515.2;
-        Turbo.tnozl = 2500.;
-        Turbo.mnozr = 5;
-        Turbo.dnozr = 515.2;
-        Turbo.tnozr = 4500.;
-        Turbo.ncflag = 0;
-        Turbo.ntflag = 0;
+        turbo.weight = 1000.;
+        turbo.minlt = 1;
+        turbo.dinlt = 170.2;
+        turbo.tinlt = 900.;
+        turbo.mfan = 2;
+        turbo.dfan = 293.02;
+        turbo.tfan = 1500.;
+        turbo.mcomp = 2;
+        turbo.dcomp = 293.02;
+        turbo.tcomp = 1500.;
+        turbo.mburner = 4;
+        turbo.dburner = 515.2;
+        turbo.tburner = 2500.;
+        turbo.mturbin = 4;
+        turbo.dturbin = 515.2;
+        turbo.tturbin = 2500.;
+        turbo.mnozl = 3;
+        turbo.dnozl = 515.2;
+        turbo.tnozl = 2500.;
+        turbo.mnozr = 5;
+        turbo.dnozr = 515.2;
+        turbo.tnozr = 4500.;
+        turbo.ncflag = 0;
+        turbo.ntflag = 0;
 
         turbo.iprint = 0;
         turbo.pall = 0;
@@ -224,67 +224,67 @@ class Solver {
         turbo.ensav = turbo.entype;
         turbo.absav = turbo.abflag;
         turbo.flsav = turbo.fueltype;
-        Turbo.fhsav = Turbo.fhvd / Turbo.flconv;
-        Turbo.t4sav = Turbo.tt4d / Turbo.tconv;
-        Turbo.t7sav = Turbo.tt7d / Turbo.tconv;
-        Turbo.p3sav = Turbo.p3p2d;
-        Turbo.p3fsav = Turbo.p3fp2d;
-        Turbo.bysav = Turbo.byprat;
-        Turbo.acsav = Turbo.acore;
-        Turbo.a2sav = Turbo.a2d / Turbo.aconv;
-        Turbo.a4sav = Turbo.a4;
-        Turbo.a4psav = Turbo.a4p;
-        Turbo.gamsav = Turbo.gama;
+        turbo.fhsav = turbo.fhvd / turbo.flconv;
+        turbo.t4sav = turbo.tt4d / turbo.tconv;
+        turbo.t7sav = turbo.tt7d / turbo.tconv;
+        turbo.p3sav = turbo.p3p2d;
+        turbo.p3fsav = turbo.p3fp2d;
+        turbo.bysav = turbo.byprat;
+        turbo.acsav = turbo.acore;
+        turbo.a2sav = turbo.a2d / turbo.aconv;
+        turbo.a4sav = turbo.a4;
+        turbo.a4psav = turbo.a4p;
+        turbo.gamsav = turbo.gama;
         turbo.gamosav = turbo.gamopt;
         turbo.ptfsav = turbo.pt2flag;
-        Turbo.et2sav = Turbo.eta[2];
-        Turbo.pr2sav = Turbo.prat[2];
-        Turbo.pr4sav = Turbo.prat[4];
-        Turbo.et3sav = Turbo.eta[3];
-        Turbo.et4sav = Turbo.eta[4];
-        Turbo.et5sav = Turbo.eta[5];
-        Turbo.et7sav = Turbo.eta[7];
-        Turbo.et13sav = Turbo.eta[13];
-        Turbo.a8sav = Turbo.a8d / Turbo.aconv;
-        Turbo.a8mxsav = Turbo.a8max / Turbo.aconv;
-        Turbo.a8rtsav = Turbo.a8rat;
+        turbo.et2sav = turbo.eta[2];
+        turbo.pr2sav = turbo.prat[2];
+        turbo.pr4sav = turbo.prat[4];
+        turbo.et3sav = turbo.eta[3];
+        turbo.et4sav = turbo.eta[4];
+        turbo.et5sav = turbo.eta[5];
+        turbo.et7sav = turbo.eta[7];
+        turbo.et13sav = turbo.eta[13];
+        turbo.a8sav = turbo.a8d / turbo.aconv;
+        turbo.a8mxsav = turbo.a8max / turbo.aconv;
+        turbo.a8rtsav = turbo.a8rat;
 
-        Turbo.u0mxsav = Turbo.u0max / Turbo.lconv2;
-        Turbo.u0sav = Turbo.u0d / Turbo.lconv2;
-        Turbo.altsav = Turbo.altd / Turbo.lconv1;
+        turbo.u0mxsav = turbo.u0max / turbo.lconv2;
+        turbo.u0sav = turbo.u0d / turbo.lconv2;
+        turbo.altsav = turbo.altd / turbo.lconv1;
         turbo.arssav = turbo.arsched;
 
         turbo.wtfsav = turbo.wtflag;
-        Turbo.wtsav = Turbo.weight;
-        turbo.minsav = Turbo.minlt;
-        Turbo.dinsav = Turbo.dinlt;
-        Turbo.tinsav = Turbo.tinlt;
-        turbo.mfnsav = Turbo.mfan;
-        Turbo.dfnsav = Turbo.dfan;
-        Turbo.tfnsav = Turbo.tfan;
-        turbo.mcmsav = Turbo.mcomp;
-        Turbo.dcmsav = Turbo.dcomp;
-        Turbo.tcmsav = Turbo.tcomp;
-        turbo.mbrsav = Turbo.mburner;
-        Turbo.dbrsav = Turbo.dburner;
-        Turbo.tbrsav = Turbo.tburner;
-        turbo.mtrsav = Turbo.mturbin;
-        Turbo.dtrsav = Turbo.dturbin;
-        Turbo.ttrsav = Turbo.tturbin;
-        turbo.mnlsav = Turbo.mnozl;
-        Turbo.dnlsav = Turbo.dnozl;
-        Turbo.tnlsav = Turbo.tnozl;
-        turbo.mnrsav = Turbo.mnozr;
-        Turbo.dnrsav = Turbo.dnozr;
-        Turbo.tnrsav = Turbo.tnozr;
-        turbo.ncsav = Turbo.ncflag;
-        turbo.ntsav = Turbo.ntflag;
+        turbo.wtsav = turbo.weight;
+        turbo.minsav = turbo.minlt;
+        turbo.dinsav = turbo.dinlt;
+        turbo.tinsav = turbo.tinlt;
+        turbo.mfnsav = turbo.mfan;
+        turbo.dfnsav = turbo.dfan;
+        turbo.tfnsav = turbo.tfan;
+        turbo.mcmsav = turbo.mcomp;
+        turbo.dcmsav = turbo.dcomp;
+        turbo.tcmsav = turbo.tcomp;
+        turbo.mbrsav = turbo.mburner;
+        turbo.dbrsav = turbo.dburner;
+        turbo.tbrsav = turbo.tburner;
+        turbo.mtrsav = turbo.mturbin;
+        turbo.dtrsav = turbo.dturbin;
+        turbo.ttrsav = turbo.tturbin;
+        turbo.mnlsav = turbo.mnozl;
+        turbo.dnlsav = turbo.dnozl;
+        turbo.tnlsav = turbo.tnozl;
+        turbo.mnrsav = turbo.mnozr;
+        turbo.dnrsav = turbo.dnozr;
+        turbo.tnrsav = turbo.tnozr;
+        turbo.ncsav = turbo.ncflag;
+        turbo.ntsav = turbo.ntflag;
 
         if(turbo.entype == 3) {
             turbo.arthsav = turbo.athsched;
             turbo.arxsav = turbo.aexsched;
-            Turbo.artsav = Turbo.arthd;
-            Turbo.arexsav = Turbo.arexitd;
+            turbo.artsav = turbo.arthd;
+            turbo.arexsav = turbo.arexitd;
         }
 
         return;
@@ -295,70 +295,70 @@ class Solver {
         turbo.entype = turbo.ensav;
         turbo.abflag = turbo.absav;
         turbo.fueltype = turbo.flsav;
-        Turbo.fhvd = Turbo.fhv = Turbo.fhsav;
-        Turbo.tt[4] = Turbo.tt4 = Turbo.tt4d = Turbo.t4sav;
-        Turbo.tt[7] = Turbo.tt7 = Turbo.tt7d = Turbo.t7sav;
-        Turbo.prat[3] = Turbo.p3p2d = Turbo.p3sav;
-        Turbo.prat[13] = Turbo.p3fp2d = Turbo.p3fsav;
-        Turbo.byprat = Turbo.bysav;
-        Turbo.acore = Turbo.acsav;
-        Turbo.afan = Turbo.acore * (1.0 + Turbo.byprat);
-        Turbo.a2d = Turbo.a2 = Turbo.a2sav;
-        Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
-        Turbo.a4 = Turbo.a4sav;
-        Turbo.a4p = Turbo.a4psav;
-        Turbo.ac = .9 * Turbo.a2;
-        Turbo.gama = Turbo.gamsav;
+        turbo.fhvd = turbo.fhv = turbo.fhsav;
+        turbo.tt[4] = turbo.tt4 = turbo.tt4d = turbo.t4sav;
+        turbo.tt[7] = turbo.tt7 = turbo.tt7d = turbo.t7sav;
+        turbo.prat[3] = turbo.p3p2d = turbo.p3sav;
+        turbo.prat[13] = turbo.p3fp2d = turbo.p3fsav;
+        turbo.byprat = turbo.bysav;
+        turbo.acore = turbo.acsav;
+        turbo.afan = turbo.acore * (1.0 + turbo.byprat);
+        turbo.a2d = turbo.a2 = turbo.a2sav;
+        turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
+        turbo.a4 = turbo.a4sav;
+        turbo.a4p = turbo.a4psav;
+        turbo.ac = .9 * turbo.a2;
+        turbo.gama = turbo.gamsav;
         turbo.gamopt = turbo.gamosav;
         turbo.pt2flag = turbo.ptfsav;
-        Turbo.eta[2] = Turbo.et2sav;
-        Turbo.prat[2] = Turbo.pr2sav;
-        Turbo.prat[4] = Turbo.pr4sav;
-        Turbo.eta[3] = Turbo.et3sav;
-        Turbo.eta[4] = Turbo.et4sav;
-        Turbo.eta[5] = Turbo.et5sav;
-        Turbo.eta[7] = Turbo.et7sav;
-        Turbo.eta[13] = Turbo.et13sav;
-        Turbo.a8d = Turbo.a8sav;
-        Turbo.a8max = Turbo.a8mxsav;
-        Turbo.a8rat = Turbo.a8rtsav;
+        turbo.eta[2] = turbo.et2sav;
+        turbo.prat[2] = turbo.pr2sav;
+        turbo.prat[4] = turbo.pr4sav;
+        turbo.eta[3] = turbo.et3sav;
+        turbo.eta[4] = turbo.et4sav;
+        turbo.eta[5] = turbo.et5sav;
+        turbo.eta[7] = turbo.et7sav;
+        turbo.eta[13] = turbo.et13sav;
+        turbo.a8d = turbo.a8sav;
+        turbo.a8max = turbo.a8mxsav;
+        turbo.a8rat = turbo.a8rtsav;
 
-        Turbo.u0max = Turbo.u0mxsav;
-        Turbo.u0d = Turbo.u0sav;
-        Turbo.altd = Turbo.altsav;
+        turbo.u0max = turbo.u0mxsav;
+        turbo.u0d = turbo.u0sav;
+        turbo.altd = turbo.altsav;
         turbo.arsched = turbo.arssav;
 
         turbo.wtflag = turbo.wtfsav;
-        Turbo.weight = Turbo.wtsav;
-        Turbo.minlt = turbo.minsav;
-        Turbo.dinlt = Turbo.dinsav;
-        Turbo.tinlt = Turbo.tinsav;
-        Turbo.mfan = turbo.mfnsav;
-        Turbo.dfan = Turbo.dfnsav;
-        Turbo.tfan = Turbo.tfnsav;
-        Turbo.mcomp = turbo.mcmsav;
-        Turbo.dcomp = Turbo.dcmsav;
-        Turbo.tcomp = Turbo.tcmsav;
-        Turbo.mburner = turbo.mbrsav;
-        Turbo.dburner = Turbo.dbrsav;
-        Turbo.tburner = Turbo.tbrsav;
-        Turbo.mturbin = turbo.mtrsav;
-        Turbo.dturbin = Turbo.dtrsav;
-        Turbo.tturbin = Turbo.ttrsav;
-        Turbo.mnozl = turbo.mnlsav;
-        Turbo.dnozl = Turbo.dnlsav;
-        Turbo.tnozl = Turbo.tnlsav;
-        Turbo.mnozr = turbo.mnrsav;
-        Turbo.dnozr = Turbo.dnrsav;
-        Turbo.tnozr = Turbo.tnrsav;
-        Turbo.ncflag = turbo.ncsav;
-        Turbo.ntflag = turbo.ntsav;
+        turbo.weight = turbo.wtsav;
+        turbo.minlt = turbo.minsav;
+        turbo.dinlt = turbo.dinsav;
+        turbo.tinlt = turbo.tinsav;
+        turbo.mfan = turbo.mfnsav;
+        turbo.dfan = turbo.dfnsav;
+        turbo.tfan = turbo.tfnsav;
+        turbo.mcomp = turbo.mcmsav;
+        turbo.dcomp = turbo.dcmsav;
+        turbo.tcomp = turbo.tcmsav;
+        turbo.mburner = turbo.mbrsav;
+        turbo.dburner = turbo.dbrsav;
+        turbo.tburner = turbo.tbrsav;
+        turbo.mturbin = turbo.mtrsav;
+        turbo.dturbin = turbo.dtrsav;
+        turbo.tturbin = turbo.ttrsav;
+        turbo.mnozl = turbo.mnlsav;
+        turbo.dnozl = turbo.dnlsav;
+        turbo.tnozl = turbo.tnlsav;
+        turbo.mnozr = turbo.mnrsav;
+        turbo.dnozr = turbo.dnrsav;
+        turbo.tnozr = turbo.tnrsav;
+        turbo.ncflag = turbo.ncsav;
+        turbo.ntflag = turbo.ntsav;
 
         if(turbo.entype == 3) {
             turbo.athsched = turbo.arthsav;
             turbo.aexsched = turbo.arxsav;
-            Turbo.arthd = Turbo.artsav;
-            Turbo.arexitd = Turbo.arexsav;
+            turbo.arthd = turbo.artsav;
+            turbo.arexitd = turbo.arexsav;
         }
 
         turbo.flightConditionsPanel.setPanl();
@@ -370,62 +370,62 @@ class Solver {
         turbo.entype = 2;
         turbo.abflag = 0;
         turbo.fueltype = 0;
-        Turbo.fhvd = Turbo.fhv = 18600.;
-        Turbo.tt[4] = Turbo.tt4 = Turbo.tt4d = 2500.;
-        Turbo.tt[7] = Turbo.tt7 = Turbo.tt7d = 2500.;
-        Turbo.prat[3] = Turbo.p3p2d = 21.86;
-        Turbo.prat[13] = Turbo.p3fp2d = 1.745;
-        Turbo.byprat = 3.3;
-        Turbo.acore = 6.965;
-        Turbo.afan = Turbo.acore * (1.0 + Turbo.byprat);
-        Turbo.a2d = Turbo.a2 = Turbo.afan;
-        Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
-        Turbo.a4 = .290;
-        Turbo.a4p = 1.131;
-        Turbo.ac = .9 * Turbo.a2;
-        Turbo.gama = 1.4;
+        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2500.;
+        turbo.tt[7] = turbo.tt7 = turbo.tt7d = 2500.;
+        turbo.prat[3] = turbo.p3p2d = 21.86;
+        turbo.prat[13] = turbo.p3fp2d = 1.745;
+        turbo.byprat = 3.3;
+        turbo.acore = 6.965;
+        turbo.afan = turbo.acore * (1.0 + turbo.byprat);
+        turbo.a2d = turbo.a2 = turbo.afan;
+        turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
+        turbo.a4 = .290;
+        turbo.a4p = 1.131;
+        turbo.ac = .9 * turbo.a2;
+        turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        Turbo.eta[2] = 1.0;
-        Turbo.prat[2] = 1.0;
-        Turbo.prat[4] = 1.0;
-        Turbo.eta[3] = .959;
-        Turbo.eta[4] = .984;
-        Turbo.eta[5] = .982;
-        Turbo.eta[7] = 1.0;
-        Turbo.eta[13] = 1.0;
-        Turbo.a8d = 2.436;
-        Turbo.a8max = .35;
-        Turbo.a8rat = .35;
+        turbo.eta[2] = 1.0;
+        turbo.prat[2] = 1.0;
+        turbo.prat[4] = 1.0;
+        turbo.eta[3] = .959;
+        turbo.eta[4] = .984;
+        turbo.eta[5] = .982;
+        turbo.eta[7] = 1.0;
+        turbo.eta[13] = 1.0;
+        turbo.a8d = 2.436;
+        turbo.a8max = .35;
+        turbo.a8rat = .35;
 
-        Turbo.u0max = Turbo.u0mt;
-        Turbo.u0d = 0.0;
-        Turbo.altmax = Turbo.altmt;
-        Turbo.altd = 0.0;
+        turbo.u0max = turbo.u0mt;
+        turbo.u0d = 0.0;
+        turbo.altmax = turbo.altmt;
+        turbo.altd = 0.0;
         turbo.arsched = 0;
 
         turbo.wtflag = 0;
-        Turbo.weight = 8229.;
-        Turbo.minlt = 1;
-        Turbo.dinlt = 170.;
-        Turbo.tinlt = 900.;
-        Turbo.mfan = 2;
-        Turbo.dfan = 293.;
-        Turbo.tfan = 1500.;
-        Turbo.mcomp = 0;
-        Turbo.dcomp = 293.;
-        Turbo.tcomp = 1600.;
-        Turbo.mburner = 4;
-        Turbo.dburner = 515.;
-        Turbo.tburner = 2500.;
-        Turbo.mturbin = 4;
-        Turbo.dturbin = 515.;
-        Turbo.tturbin = 2500.;
-        Turbo.mnozl = 3;
-        Turbo.dnozl = 515.;
-        Turbo.tnozl = 2500.;
-        Turbo.ncflag = 0;
-        Turbo.ntflag = 0;
+        turbo.weight = 8229.;
+        turbo.minlt = 1;
+        turbo.dinlt = 170.;
+        turbo.tinlt = 900.;
+        turbo.mfan = 2;
+        turbo.dfan = 293.;
+        turbo.tfan = 1500.;
+        turbo.mcomp = 0;
+        turbo.dcomp = 293.;
+        turbo.tcomp = 1600.;
+        turbo.mburner = 4;
+        turbo.dburner = 515.;
+        turbo.tburner = 2500.;
+        turbo.mturbin = 4;
+        turbo.dturbin = 515.;
+        turbo.tturbin = 2500.;
+        turbo.mnozl = 3;
+        turbo.dnozl = 515.;
+        turbo.tnozl = 2500.;
+        turbo.ncflag = 0;
+        turbo.ntflag = 0;
 
         turbo.flightConditionsPanel.setPanl();
         return;
@@ -436,61 +436,61 @@ class Solver {
         turbo.entype = 0;
         turbo.abflag = 0;
         turbo.fueltype = 0;
-        Turbo.fhvd = Turbo.fhv = 18600.;
-        Turbo.tt[4] = Turbo.tt4 = Turbo.tt4d = 2260.;
-        Turbo.tt[7] = Turbo.tt7 = Turbo.tt7d = 4000.;
-        Turbo.prat[3] = Turbo.p3p2d = 8.3;
-        Turbo.prat[13] = Turbo.p3fp2d = 1.0;
-        Turbo.byprat = 0.0;
-        Turbo.a2d = Turbo.a2 = Turbo.acore = 1.753;
-        Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
-        Turbo.afan = Turbo.acore * (1.0 + Turbo.byprat);
-        Turbo.a4 = .323;
-        Turbo.a4p = .818;
-        Turbo.ac = .9 * Turbo.a2;
-        Turbo.gama = 1.4;
+        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2260.;
+        turbo.tt[7] = turbo.tt7 = turbo.tt7d = 4000.;
+        turbo.prat[3] = turbo.p3p2d = 8.3;
+        turbo.prat[13] = turbo.p3fp2d = 1.0;
+        turbo.byprat = 0.0;
+        turbo.a2d = turbo.a2 = turbo.acore = 1.753;
+        turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
+        turbo.afan = turbo.acore * (1.0 + turbo.byprat);
+        turbo.a4 = .323;
+        turbo.a4p = .818;
+        turbo.ac = .9 * turbo.a2;
+        turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        Turbo.eta[2] = 1.0;
-        Turbo.prat[2] = 1.0;
-        Turbo.prat[4] = .85;
-        Turbo.eta[3] = .822;
-        Turbo.eta[4] = .982;
-        Turbo.eta[5] = .882;
-        Turbo.eta[7] = .978;
-        Turbo.eta[13] = 1.0;
-        Turbo.a8d = .818;
-        Turbo.a8max = .467;
-        Turbo.a8rat = .467;
+        turbo.eta[2] = 1.0;
+        turbo.prat[2] = 1.0;
+        turbo.prat[4] = .85;
+        turbo.eta[3] = .822;
+        turbo.eta[4] = .982;
+        turbo.eta[5] = .882;
+        turbo.eta[7] = .978;
+        turbo.eta[13] = 1.0;
+        turbo.a8d = .818;
+        turbo.a8max = .467;
+        turbo.a8rat = .467;
 
-        Turbo.u0max = Turbo.u0mt;
-        Turbo.u0d = 0.0;
-        Turbo.altmax = Turbo.altmt;
-        Turbo.altd = 0.0;
+        turbo.u0max = turbo.u0mt;
+        turbo.u0d = 0.0;
+        turbo.altmax = turbo.altmt;
+        turbo.altd = 0.0;
         turbo.arsched = 1;
 
         turbo.wtflag = 0;
-        Turbo.weight = 561.;
-        Turbo.minlt = 1;
-        Turbo.dinlt = 170.;
-        Turbo.tinlt = 900.;
-        Turbo.mfan = 2;
-        Turbo.dfan = 293.;
-        Turbo.tfan = 1500.;
-        Turbo.mcomp = 2;
-        Turbo.dcomp = 293.;
-        Turbo.tcomp = 1500.;
-        Turbo.mburner = 4;
-        Turbo.dburner = 515.;
-        Turbo.tburner = 2500.;
-        Turbo.mturbin = 4;
-        Turbo.dturbin = 515.;
-        Turbo.tturbin = 2500.;
-        Turbo.mnozl = 5;
-        Turbo.dnozl = 600.;
-        Turbo.tnozl = 4100.;
-        Turbo.ncflag = 0;
-        Turbo.ntflag = 0;
+        turbo.weight = 561.;
+        turbo.minlt = 1;
+        turbo.dinlt = 170.;
+        turbo.tinlt = 900.;
+        turbo.mfan = 2;
+        turbo.dfan = 293.;
+        turbo.tfan = 1500.;
+        turbo.mcomp = 2;
+        turbo.dcomp = 293.;
+        turbo.tcomp = 1500.;
+        turbo.mburner = 4;
+        turbo.dburner = 515.;
+        turbo.tburner = 2500.;
+        turbo.mturbin = 4;
+        turbo.dturbin = 515.;
+        turbo.tturbin = 2500.;
+        turbo.mnozl = 5;
+        turbo.dnozl = 600.;
+        turbo.tnozl = 4100.;
+        turbo.ncflag = 0;
+        turbo.ntflag = 0;
 
         turbo.flightConditionsPanel.setPanl();
         return;
@@ -501,61 +501,61 @@ class Solver {
         turbo.entype = 1;
         turbo.abflag = 1;
         turbo.fueltype = 0;
-        Turbo.fhvd = Turbo.fhv = 18600.;
-        Turbo.tt[4] = Turbo.tt4 = Turbo.tt4d = 2499.;
-        Turbo.tt[7] = Turbo.tt7 = Turbo.tt7d = 3905.;
-        Turbo.prat[3] = Turbo.p3p2d = 20.04;
-        Turbo.prat[13] = Turbo.p3fp2d = 1.745;
-        Turbo.byprat = 0.0;
-        Turbo.a2d = Turbo.a2 = Turbo.acore = 6.00;
-        Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
-        Turbo.afan = Turbo.acore * (1.0 + Turbo.byprat);
-        Turbo.a4 = .472;
-        Turbo.a4p = 1.524;
-        Turbo.ac = .9 * Turbo.a2;
-        Turbo.gama = 1.4;
+        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.tt[4] = turbo.tt4 = turbo.tt4d = 2499.;
+        turbo.tt[7] = turbo.tt7 = turbo.tt7d = 3905.;
+        turbo.prat[3] = turbo.p3p2d = 20.04;
+        turbo.prat[13] = turbo.p3fp2d = 1.745;
+        turbo.byprat = 0.0;
+        turbo.a2d = turbo.a2 = turbo.acore = 6.00;
+        turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
+        turbo.afan = turbo.acore * (1.0 + turbo.byprat);
+        turbo.a4 = .472;
+        turbo.a4p = 1.524;
+        turbo.ac = .9 * turbo.a2;
+        turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        Turbo.eta[2] = 1.0;
-        Turbo.prat[2] = 1.0;
-        Turbo.prat[4] = 1.0;
-        Turbo.eta[3] = .959;
-        Turbo.eta[4] = .984;
-        Turbo.eta[5] = .982;
-        Turbo.eta[7] = .92;
-        Turbo.eta[13] = 1.0;
-        Turbo.a8d = 1.524;
-        Turbo.a8max = .335;
-        Turbo.a8rat = .335;
+        turbo.eta[2] = 1.0;
+        turbo.prat[2] = 1.0;
+        turbo.prat[4] = 1.0;
+        turbo.eta[3] = .959;
+        turbo.eta[4] = .984;
+        turbo.eta[5] = .982;
+        turbo.eta[7] = .92;
+        turbo.eta[13] = 1.0;
+        turbo.a8d = 1.524;
+        turbo.a8max = .335;
+        turbo.a8rat = .335;
 
-        Turbo.u0max = Turbo.u0mt;
-        Turbo.u0d = 0.0;
-        Turbo.altmax = Turbo.altmt;
-        Turbo.altd = 0.0;
+        turbo.u0max = turbo.u0mt;
+        turbo.u0d = 0.0;
+        turbo.altmax = turbo.altmt;
+        turbo.altd = 0.0;
         turbo.arsched = 0;
 
         turbo.wtflag = 0;
-        Turbo.weight = 3875.;
-        Turbo.minlt = 1;
-        Turbo.dinlt = 170.;
-        Turbo.tinlt = 900.;
-        Turbo.mfan = 2;
-        Turbo.dfan = 293.;
-        Turbo.tfan = 1500.;
-        Turbo.mcomp = 2;
-        Turbo.dcomp = 293.;
-        Turbo.tcomp = 1500.;
-        Turbo.mburner = 4;
-        Turbo.dburner = 515.;
-        Turbo.tburner = 2500.;
-        Turbo.mturbin = 4;
-        Turbo.dturbin = 515.;
-        Turbo.tturbin = 2500.;
-        Turbo.mnozl = 5;
-        Turbo.dnozl = 400.2;
-        Turbo.tnozl = 4100.;
-        Turbo.ncflag = 0;
-        Turbo.ntflag = 0;
+        turbo.weight = 3875.;
+        turbo.minlt = 1;
+        turbo.dinlt = 170.;
+        turbo.tinlt = 900.;
+        turbo.mfan = 2;
+        turbo.dfan = 293.;
+        turbo.tfan = 1500.;
+        turbo.mcomp = 2;
+        turbo.dcomp = 293.;
+        turbo.tcomp = 1500.;
+        turbo.mburner = 4;
+        turbo.dburner = 515.;
+        turbo.tburner = 2500.;
+        turbo.mturbin = 4;
+        turbo.dturbin = 515.;
+        turbo.tturbin = 2500.;
+        turbo.mnozl = 5;
+        turbo.dnozl = 400.2;
+        turbo.tnozl = 4100.;
+        turbo.ncflag = 0;
+        turbo.ntflag = 0;
 
         turbo.flightConditionsPanel.setPanl();
         return;
@@ -566,117 +566,117 @@ class Solver {
         turbo.entype = 3;
         turbo.athsched = 1;
         turbo.aexsched = 1;
-        Turbo.arthd = .4;
-        Turbo.arexitd = 3.0;
+        turbo.arthd = .4;
+        turbo.arexitd = 3.0;
         turbo.abflag = 0;
         turbo.fueltype = 0;
-        Turbo.fhvd = Turbo.fhv = 18600.;
-        Turbo.tt[4] = Turbo.tt4 = Turbo.tt4d = 4000.;
-        Turbo.t4max = 4500.;
-        Turbo.tt[7] = Turbo.tt7 = Turbo.tt7d = 4000.;
-        Turbo.prat[3] = Turbo.p3p2d = 1.0;
-        Turbo.prat[13] = Turbo.p3fp2d = 1.0;
-        Turbo.byprat = 0.0;
-        Turbo.a2d = Turbo.a2 = Turbo.acore = 1.753;
-        Turbo.diameng = Math.sqrt(4.0 * Turbo.a2d / 3.14159);
-        Turbo.afan = Turbo.acore * (1.0 + Turbo.byprat);
-        Turbo.a4 = .323;
-        Turbo.a4p = .818;
-        Turbo.ac = .9 * Turbo.a2;
-        Turbo.gama = 1.4;
+        turbo.fhvd = turbo.fhv = 18600.;
+        turbo.tt[4] = turbo.tt4 = turbo.tt4d = 4000.;
+        turbo.t4max = 4500.;
+        turbo.tt[7] = turbo.tt7 = turbo.tt7d = 4000.;
+        turbo.prat[3] = turbo.p3p2d = 1.0;
+        turbo.prat[13] = turbo.p3fp2d = 1.0;
+        turbo.byprat = 0.0;
+        turbo.a2d = turbo.a2 = turbo.acore = 1.753;
+        turbo.diameng = Math.sqrt(4.0 * turbo.a2d / 3.14159);
+        turbo.afan = turbo.acore * (1.0 + turbo.byprat);
+        turbo.a4 = .323;
+        turbo.a4p = .818;
+        turbo.ac = .9 * turbo.a2;
+        turbo.gama = 1.4;
         turbo.gamopt = 1;
         turbo.pt2flag = 0;
-        Turbo.eta[2] = 1.0;
-        Turbo.prat[2] = 1.0;
-        Turbo.prat[4] = 1.0;
-        Turbo.eta[3] = 1.0;
-        Turbo.eta[4] = .982;
-        Turbo.eta[5] = 1.0;
-        Turbo.eta[7] = 1.0;
-        Turbo.eta[13] = 1.0;
-        Turbo.a8 = Turbo.a8d = 2.00;
-        Turbo.a8max = 15.;
-        Turbo.a8rat = 4.0;
-        Turbo.a7 = .50;
+        turbo.eta[2] = 1.0;
+        turbo.prat[2] = 1.0;
+        turbo.prat[4] = 1.0;
+        turbo.eta[3] = 1.0;
+        turbo.eta[4] = .982;
+        turbo.eta[5] = 1.0;
+        turbo.eta[7] = 1.0;
+        turbo.eta[13] = 1.0;
+        turbo.a8 = turbo.a8d = 2.00;
+        turbo.a8max = 15.;
+        turbo.a8rat = 4.0;
+        turbo.a7 = .50;
 
-        Turbo.u0max = Turbo.u0mr;
-        Turbo.u0d = 2200.0;
-        Turbo.altmax = Turbo.altmr;
-        Turbo.altd = 10000.0;
+        turbo.u0max = turbo.u0mr;
+        turbo.u0d = 2200.0;
+        turbo.altmax = turbo.altmr;
+        turbo.altd = 10000.0;
         turbo.arsched = 0;
 
         turbo.wtflag = 0;
-        Turbo.weight = 976.;
-        Turbo.minlt = 2;
-        Turbo.dinlt = 293.;
-        Turbo.tinlt = 1500.;
-        Turbo.mfan = 2;
-        Turbo.dfan = 293.;
-        Turbo.tfan = 1500.;
-        Turbo.mcomp = 2;
-        Turbo.dcomp = 293.;
-        Turbo.tcomp = 1500.;
-        Turbo.mburner = 7;
-        Turbo.dburner = 515.;
-        Turbo.tburner = 4500.;
-        Turbo.mturbin = 4;
-        Turbo.dturbin = 515.;
-        Turbo.tturbin = 2500.;
-        Turbo.mnozr = 5;
-        Turbo.dnozr = 515.2;
-        Turbo.tnozr = 4500.;
-        Turbo.ncflag = 0;
-        Turbo.ntflag = 0;
+        turbo.weight = 976.;
+        turbo.minlt = 2;
+        turbo.dinlt = 293.;
+        turbo.tinlt = 1500.;
+        turbo.mfan = 2;
+        turbo.dfan = 293.;
+        turbo.tfan = 1500.;
+        turbo.mcomp = 2;
+        turbo.dcomp = 293.;
+        turbo.tcomp = 1500.;
+        turbo.mburner = 7;
+        turbo.dburner = 515.;
+        turbo.tburner = 4500.;
+        turbo.mturbin = 4;
+        turbo.dturbin = 515.;
+        turbo.tturbin = 2500.;
+        turbo.mnozr = 5;
+        turbo.dnozr = 515.2;
+        turbo.tnozr = 4500.;
+        turbo.ncflag = 0;
+        turbo.ntflag = 0;
 
         turbo.flightConditionsPanel.setPanl();
         return;
     }
 
     public void getFreeStream() {
-        Turbo.rgas = 1718.;                /* ft2/sec2 R */
+        turbo.rgas = 1718.;                /* ft2/sec2 R */
         if(turbo.inptype >= 2) {
-            Turbo.ps0 = Turbo.ps0 * 144.;
+            turbo.ps0 = turbo.ps0 * 144.;
         }
         if(turbo.inptype <= 1) {            /* input altitude */
-            Turbo.alt = Turbo.altd / Turbo.lconv1;
-            if(Turbo.alt < 36152.) {
-                Turbo.ts0 = 518.6 - 3.56 * Turbo.alt / 1000.;
-                Turbo.ps0 = 2116. * Math.pow(Turbo.ts0 / 518.6, 5.256);
+            turbo.alt = turbo.altd / turbo.lconv1;
+            if(turbo.alt < 36152.) {
+                turbo.ts0 = 518.6 - 3.56 * turbo.alt / 1000.;
+                turbo.ps0 = 2116. * Math.pow(turbo.ts0 / 518.6, 5.256);
             }
-            if(Turbo.alt >= 36152. && Turbo.alt <= 82345.) {   // Stratosphere
-                Turbo.ts0 = 389.98;
-                Turbo.ps0 = 2116. * .2236 *
-                            Math.exp((36000. - Turbo.alt) / (53.35 * 389.98));
+            if(turbo.alt >= 36152. && turbo.alt <= 82345.) {   // Stratosphere
+                turbo.ts0 = 389.98;
+                turbo.ps0 = 2116. * .2236 *
+                            Math.exp((36000. - turbo.alt) / (53.35 * 389.98));
             }
-            if(Turbo.alt >= 82345.) {
-                Turbo.ts0 = 389.98 + 1.645 * (Turbo.alt - 82345) / 1000.;
-                Turbo.ps0 = 2116. * .02456 * Math.pow(Turbo.ts0 / 389.98, -11.388);
+            if(turbo.alt >= 82345.) {
+                turbo.ts0 = 389.98 + 1.645 * (turbo.alt - 82345) / 1000.;
+                turbo.ps0 = 2116. * .02456 * Math.pow(turbo.ts0 / 389.98, -11.388);
             }
         }
-        Turbo.a0 = Math.sqrt(Turbo.gama * Turbo.rgas * Turbo.ts0);             /* speed of sound ft/sec */
+        turbo.a0 = Math.sqrt(turbo.gama * turbo.rgas * turbo.ts0);             /* speed of sound ft/sec */
         if(turbo.inptype == 0 || turbo.inptype == 2) {           /* input speed  */
-            Turbo.u0 = Turbo.u0d / Turbo.lconv2 * 5280. / 3600.;           /* airspeed ft/sec */
-            Turbo.fsmach = Turbo.u0 / Turbo.a0;
-            Turbo.q0 = Turbo.gama / 2.0 * Turbo.fsmach * Turbo.fsmach * Turbo.ps0;
+            turbo.u0 = turbo.u0d / turbo.lconv2 * 5280. / 3600.;           /* airspeed ft/sec */
+            turbo.fsmach = turbo.u0 / turbo.a0;
+            turbo.q0 = turbo.gama / 2.0 * turbo.fsmach * turbo.fsmach * turbo.ps0;
         }
         if(turbo.inptype == 1 || turbo.inptype == 3) {            /* input mach */
-            Turbo.u0 = Turbo.fsmach * Turbo.a0;
-            Turbo.u0d = Turbo.u0 * Turbo.lconv2 / 5280. * 3600.;      /* airspeed ft/sec */
-            Turbo.q0 = Turbo.gama / 2.0 * Turbo.fsmach * Turbo.fsmach * Turbo.ps0;
+            turbo.u0 = turbo.fsmach * turbo.a0;
+            turbo.u0d = turbo.u0 * turbo.lconv2 / 5280. * 3600.;      /* airspeed ft/sec */
+            turbo.q0 = turbo.gama / 2.0 * turbo.fsmach * turbo.fsmach * turbo.ps0;
         }
-        if(Turbo.u0 > .0001) {
-            Turbo.rho0 = Turbo.q0 / (Turbo.u0 * Turbo.u0);
+        if(turbo.u0 > .0001) {
+            turbo.rho0 = turbo.q0 / (turbo.u0 * turbo.u0);
         } else {
-            Turbo.rho0 = 1.0;
+            turbo.rho0 = 1.0;
         }
 
-        Turbo.tt[0] = Turbo.ts0 * (1.0 + .5 * (Turbo.gama - 1.0) * Turbo.fsmach * Turbo.fsmach);
-        Turbo.pt[0] = Turbo.ps0 * Math.pow(Turbo.tt[0] / Turbo.ts0, Turbo.gama / (Turbo.gama - 1.0));
-        Turbo.ps0 = Turbo.ps0 / 144.;
-        Turbo.pt[0] = Turbo.pt[0] / 144.;
-        Turbo.cpair = turbo.getCp(Turbo.tt[0], turbo.gamopt);              /*BTU/lbm R */
-        Turbo.tsout = Turbo.ts0;
-        Turbo.psout = Turbo.ps0;
+        turbo.tt[0] = turbo.ts0 * (1.0 + .5 * (turbo.gama - 1.0) * turbo.fsmach * turbo.fsmach);
+        turbo.pt[0] = turbo.ps0 * Math.pow(turbo.tt[0] / turbo.ts0, turbo.gama / (turbo.gama - 1.0));
+        turbo.ps0 = turbo.ps0 / 144.;
+        turbo.pt[0] = turbo.pt[0] / 144.;
+        turbo.cpair = turbo.getCp(turbo.tt[0], turbo.gamopt);              /*BTU/lbm R */
+        turbo.tsout = turbo.ts0;
+        turbo.psout = turbo.ps0;
 
         return;
     }
@@ -700,345 +700,345 @@ class Solver {
         int i1;
                                      /*   inletPanel recovery  */
         if(turbo.pt2flag == 0) {                    /*     mil spec      */
-            if(Turbo.fsmach > 1.0) {          /* supersonic */
-                Turbo.prat[2] = 1.0 - .075 * Math.pow(Turbo.fsmach - 1.0, 1.35);
+            if(turbo.fsmach > 1.0) {          /* supersonic */
+                turbo.prat[2] = 1.0 - .075 * Math.pow(turbo.fsmach - 1.0, 1.35);
             } else {
-                Turbo.prat[2] = 1.0;
+                turbo.prat[2] = 1.0;
             }
-            Turbo.eta[2] = Turbo.prat[2];
-            turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.format("%.3f", Turbo.prat[2]));
-            i1 = (int)(((Turbo.prat[2] - Turbo.etmin) / (Turbo.etmax - Turbo.etmin)) * 1000.);
+            turbo.eta[2] = turbo.prat[2];
+            turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.format("%.3f", turbo.prat[2]));
+            i1 = (int)(((turbo.prat[2] - turbo.etmin) / (turbo.etmax - turbo.etmin)) * 1000.);
             turbo.inputPanel.inletPanel.inletRightPanel.s1.setValue(i1);
         } else {                       /* enter value */
-            Turbo.prat[2] = Turbo.eta[2];
+            turbo.prat[2] = turbo.eta[2];
         }
                            /* protection for overwriting input */
-        if(Turbo.eta[3] < .5) {
-            Turbo.eta[3] = .5;
+        if(turbo.eta[3] < .5) {
+            turbo.eta[3] = .5;
         }
-        if(Turbo.eta[5] < .5) {
-            Turbo.eta[5] = .5;
+        if(turbo.eta[5] < .5) {
+            turbo.eta[5] = .5;
         }
-        Turbo.trat[7] = 1.0;
-        Turbo.prat[7] = 1.0;
-        Turbo.tt[2] = Turbo.tt[1] = Turbo.tt[0];
-        Turbo.pt[1] = Turbo.pt[0];
-        Turbo.gam[2] = turbo.getGama(Turbo.tt[2], turbo.gamopt);
-        Turbo.cp[2] = turbo.getCp(Turbo.tt[2], turbo.gamopt);
-        Turbo.pt[2] = Turbo.pt[1] * Turbo.prat[2];
+        turbo.trat[7] = 1.0;
+        turbo.prat[7] = 1.0;
+        turbo.tt[2] = turbo.tt[1] = turbo.tt[0];
+        turbo.pt[1] = turbo.pt[0];
+        turbo.gam[2] = turbo.getGama(turbo.tt[2], turbo.gamopt);
+        turbo.cp[2] = turbo.getCp(turbo.tt[2], turbo.gamopt);
+        turbo.pt[2] = turbo.pt[1] * turbo.prat[2];
     /* design - p3p2 specified - tt4 specified */
         if(turbo.inflag == 0) {
 
             if(turbo.entype <= 1) {              /* turbojet */
-                Turbo.prat[3] = Turbo.p3p2d;                      /* core compressor */
-                if(Turbo.prat[3] < .5) {
-                    Turbo.prat[3] = .5;
+                turbo.prat[3] = turbo.p3p2d;                      /* core compressor */
+                if(turbo.prat[3] < .5) {
+                    turbo.prat[3] = .5;
                 }
-                delhc = (Turbo.cp[2] * Turbo.tt[2] / Turbo.eta[3]) *
-                        (Math.pow(Turbo.prat[3], (Turbo.gam[2] - 1.0) / Turbo.gam[2]) - 1.0);
-                deltc = delhc / Turbo.cp[2];
-                Turbo.pt[3] = Turbo.pt[2] * Turbo.prat[3];
-                Turbo.tt[3] = Turbo.tt[2] + deltc;
-                Turbo.trat[3] = Turbo.tt[3] / Turbo.tt[2];
-                Turbo.gam[3] = turbo.getGama(Turbo.tt[3], turbo.gamopt);
-                Turbo.cp[3] = turbo.getCp(Turbo.tt[3], turbo.gamopt);
-                Turbo.tt[4] = Turbo.tt4 * Turbo.throtl / 100.0;
-                Turbo.gam[4] = turbo.getGama(Turbo.tt[4], turbo.gamopt);
-                Turbo.cp[4] = turbo.getCp(Turbo.tt[4], turbo.gamopt);
-                Turbo.trat[4] = Turbo.tt[4] / Turbo.tt[3];
-                Turbo.pt[4] = Turbo.pt[3] * Turbo.prat[4];
+                delhc = (turbo.cp[2] * turbo.tt[2] / turbo.eta[3]) *
+                        (Math.pow(turbo.prat[3], (turbo.gam[2] - 1.0) / turbo.gam[2]) - 1.0);
+                deltc = delhc / turbo.cp[2];
+                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
+                turbo.tt[3] = turbo.tt[2] + deltc;
+                turbo.trat[3] = turbo.tt[3] / turbo.tt[2];
+                turbo.gam[3] = turbo.getGama(turbo.tt[3], turbo.gamopt);
+                turbo.cp[3] = turbo.getCp(turbo.tt[3], turbo.gamopt);
+                turbo.tt[4] = turbo.tt4 * turbo.throtl / 100.0;
+                turbo.gam[4] = turbo.getGama(turbo.tt[4], turbo.gamopt);
+                turbo.cp[4] = turbo.getCp(turbo.tt[4], turbo.gamopt);
+                turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
+                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
                 delhht = delhc;
-                deltht = delhht / Turbo.cp[4];
-                Turbo.tt[5] = Turbo.tt[4] - deltht;
-                Turbo.gam[5] = turbo.getGama(Turbo.tt[5], turbo.gamopt);
-                Turbo.cp[5] = turbo.getCp(Turbo.tt[5], turbo.gamopt);
-                Turbo.trat[5] = Turbo.tt[5] / Turbo.tt[4];
-                Turbo.prat[5] = Math.pow((1.0 - delhht / Turbo.cp[4] / Turbo.tt[4] / Turbo.eta[5]),
-                                         (Turbo.gam[4] / (Turbo.gam[4] - 1.0)));
-                Turbo.pt[5] = Turbo.pt[4] * Turbo.prat[5];
+                deltht = delhht / turbo.cp[4];
+                turbo.tt[5] = turbo.tt[4] - deltht;
+                turbo.gam[5] = turbo.getGama(turbo.tt[5], turbo.gamopt);
+                turbo.cp[5] = turbo.getCp(turbo.tt[5], turbo.gamopt);
+                turbo.trat[5] = turbo.tt[5] / turbo.tt[4];
+                turbo.prat[5] = Math.pow((1.0 - delhht / turbo.cp[4] / turbo.tt[4] / turbo.eta[5]),
+                                         (turbo.gam[4] / (turbo.gam[4] - 1.0)));
+                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
                                     /* fanPanel conditions */
-                Turbo.prat[13] = 1.0;
-                Turbo.trat[13] = 1.0;
-                Turbo.tt[13] = Turbo.tt[2];
-                Turbo.pt[13] = Turbo.pt[2];
-                Turbo.gam[13] = Turbo.gam[2];
-                Turbo.cp[13] = Turbo.cp[2];
-                Turbo.prat[15] = 1.0;
-                Turbo.pt[15] = Turbo.pt[5];
-                Turbo.trat[15] = 1.0;
-                Turbo.tt[15] = Turbo.tt[5];
-                Turbo.gam[15] = Turbo.gam[5];
-                Turbo.cp[15] = Turbo.cp[5];
+                turbo.prat[13] = 1.0;
+                turbo.trat[13] = 1.0;
+                turbo.tt[13] = turbo.tt[2];
+                turbo.pt[13] = turbo.pt[2];
+                turbo.gam[13] = turbo.gam[2];
+                turbo.cp[13] = turbo.cp[2];
+                turbo.prat[15] = 1.0;
+                turbo.pt[15] = turbo.pt[5];
+                turbo.trat[15] = 1.0;
+                turbo.tt[15] = turbo.tt[5];
+                turbo.gam[15] = turbo.gam[5];
+                turbo.cp[15] = turbo.cp[5];
             }
 
             if(turbo.entype == 2) {                         /* turbofan */
-                Turbo.prat[13] = Turbo.p3fp2d;
-                if(Turbo.prat[13] < .5) {
-                    Turbo.prat[13] = .5;
+                turbo.prat[13] = turbo.p3fp2d;
+                if(turbo.prat[13] < .5) {
+                    turbo.prat[13] = .5;
                 }
-                delhf = (Turbo.cp[2] * Turbo.tt[2] / Turbo.eta[13]) *
-                        (Math.pow(Turbo.prat[13], (Turbo.gam[2] - 1.0) / Turbo.gam[2]) - 1.0);
-                deltf = delhf / Turbo.cp[2];
-                Turbo.tt[13] = Turbo.tt[2] + deltf;
-                Turbo.pt[13] = Turbo.pt[2] * Turbo.prat[13];
-                Turbo.trat[13] = Turbo.tt[13] / Turbo.tt[2];
-                Turbo.gam[13] = turbo.getGama(Turbo.tt[13], turbo.gamopt);
-                Turbo.cp[13] = turbo.getCp(Turbo.tt[13], turbo.gamopt);
-                Turbo.prat[3] = Turbo.p3p2d;                      /* core compressor */
-                if(Turbo.prat[3] < .5) {
-                    Turbo.prat[3] = .5;
+                delhf = (turbo.cp[2] * turbo.tt[2] / turbo.eta[13]) *
+                        (Math.pow(turbo.prat[13], (turbo.gam[2] - 1.0) / turbo.gam[2]) - 1.0);
+                deltf = delhf / turbo.cp[2];
+                turbo.tt[13] = turbo.tt[2] + deltf;
+                turbo.pt[13] = turbo.pt[2] * turbo.prat[13];
+                turbo.trat[13] = turbo.tt[13] / turbo.tt[2];
+                turbo.gam[13] = turbo.getGama(turbo.tt[13], turbo.gamopt);
+                turbo.cp[13] = turbo.getCp(turbo.tt[13], turbo.gamopt);
+                turbo.prat[3] = turbo.p3p2d;                      /* core compressor */
+                if(turbo.prat[3] < .5) {
+                    turbo.prat[3] = .5;
                 }
-                delhc = (Turbo.cp[13] * Turbo.tt[13] / Turbo.eta[3]) *
-                        (Math.pow(Turbo.prat[3], (Turbo.gam[13] - 1.0) / Turbo.gam[13]) - 1.0);
-                deltc = delhc / Turbo.cp[13];
-                Turbo.tt[3] = Turbo.tt[13] + deltc;
-                Turbo.pt[3] = Turbo.pt[13] * Turbo.prat[3];
-                Turbo.trat[3] = Turbo.tt[3] / Turbo.tt[13];
-                Turbo.gam[3] = turbo.getGama(Turbo.tt[3], turbo.gamopt);
-                Turbo.cp[3] = turbo.getCp(Turbo.tt[3], turbo.gamopt);
-                Turbo.tt[4] = Turbo.tt4 * Turbo.throtl / 100.0;
-                Turbo.pt[4] = Turbo.pt[3] * Turbo.prat[4];
-                Turbo.gam[4] = turbo.getGama(Turbo.tt[4], turbo.gamopt);
-                Turbo.cp[4] = turbo.getCp(Turbo.tt[4], turbo.gamopt);
-                Turbo.trat[4] = Turbo.tt[4] / Turbo.tt[3];
+                delhc = (turbo.cp[13] * turbo.tt[13] / turbo.eta[3]) *
+                        (Math.pow(turbo.prat[3], (turbo.gam[13] - 1.0) / turbo.gam[13]) - 1.0);
+                deltc = delhc / turbo.cp[13];
+                turbo.tt[3] = turbo.tt[13] + deltc;
+                turbo.pt[3] = turbo.pt[13] * turbo.prat[3];
+                turbo.trat[3] = turbo.tt[3] / turbo.tt[13];
+                turbo.gam[3] = turbo.getGama(turbo.tt[3], turbo.gamopt);
+                turbo.cp[3] = turbo.getCp(turbo.tt[3], turbo.gamopt);
+                turbo.tt[4] = turbo.tt4 * turbo.throtl / 100.0;
+                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.gam[4] = turbo.getGama(turbo.tt[4], turbo.gamopt);
+                turbo.cp[4] = turbo.getCp(turbo.tt[4], turbo.gamopt);
+                turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
                 delhht = delhc;
-                deltht = delhht / Turbo.cp[4];
-                Turbo.tt[5] = Turbo.tt[4] - deltht;
-                Turbo.gam[5] = turbo.getGama(Turbo.tt[5], turbo.gamopt);
-                Turbo.cp[5] = turbo.getCp(Turbo.tt[5], turbo.gamopt);
-                Turbo.trat[5] = Turbo.tt[5] / Turbo.tt[4];
-                Turbo.prat[5] = Math.pow((1.0 - delhht / Turbo.cp[4] / Turbo.tt[4] / Turbo.eta[5]),
-                                         (Turbo.gam[4] / (Turbo.gam[4] - 1.0)));
-                Turbo.pt[5] = Turbo.pt[4] * Turbo.prat[5];
-                delhlt = (1.0 + Turbo.byprat) * delhf;
-                deltlt = delhlt / Turbo.cp[5];
-                Turbo.tt[15] = Turbo.tt[5] - deltlt;
-                Turbo.gam[15] = turbo.getGama(Turbo.tt[15], turbo.gamopt);
-                Turbo.cp[15] = turbo.getCp(Turbo.tt[15], turbo.gamopt);
-                Turbo.trat[15] = Turbo.tt[15] / Turbo.tt[5];
-                Turbo.prat[15] = Math.pow((1.0 - delhlt / Turbo.cp[5] / Turbo.tt[5] / Turbo.eta[5]),
-                                          (Turbo.gam[5] / (Turbo.gam[5] - 1.0)));
-                Turbo.pt[15] = Turbo.pt[5] * Turbo.prat[15];
+                deltht = delhht / turbo.cp[4];
+                turbo.tt[5] = turbo.tt[4] - deltht;
+                turbo.gam[5] = turbo.getGama(turbo.tt[5], turbo.gamopt);
+                turbo.cp[5] = turbo.getCp(turbo.tt[5], turbo.gamopt);
+                turbo.trat[5] = turbo.tt[5] / turbo.tt[4];
+                turbo.prat[5] = Math.pow((1.0 - delhht / turbo.cp[4] / turbo.tt[4] / turbo.eta[5]),
+                                         (turbo.gam[4] / (turbo.gam[4] - 1.0)));
+                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
+                delhlt = (1.0 + turbo.byprat) * delhf;
+                deltlt = delhlt / turbo.cp[5];
+                turbo.tt[15] = turbo.tt[5] - deltlt;
+                turbo.gam[15] = turbo.getGama(turbo.tt[15], turbo.gamopt);
+                turbo.cp[15] = turbo.getCp(turbo.tt[15], turbo.gamopt);
+                turbo.trat[15] = turbo.tt[15] / turbo.tt[5];
+                turbo.prat[15] = Math.pow((1.0 - delhlt / turbo.cp[5] / turbo.tt[5] / turbo.eta[5]),
+                                          (turbo.gam[5] / (turbo.gam[5] - 1.0)));
+                turbo.pt[15] = turbo.pt[5] * turbo.prat[15];
             }
 
             if(turbo.entype == 3) {              /* ramjet */
-                Turbo.prat[3] = 1.0;
-                Turbo.pt[3] = Turbo.pt[2] * Turbo.prat[3];
-                Turbo.tt[3] = Turbo.tt[2];
-                Turbo.trat[3] = 1.0;
-                Turbo.gam[3] = turbo.getGama(Turbo.tt[3], turbo.gamopt);
-                Turbo.cp[3] = turbo.getCp(Turbo.tt[3], turbo.gamopt);
-                Turbo.tt[4] = Turbo.tt4 * Turbo.throtl / 100.0;
-                Turbo.gam[4] = turbo.getGama(Turbo.tt[4], turbo.gamopt);
-                Turbo.cp[4] = turbo.getCp(Turbo.tt[4], turbo.gamopt);
-                Turbo.trat[4] = Turbo.tt[4] / Turbo.tt[3];
-                Turbo.pt[4] = Turbo.pt[3] * Turbo.prat[4];
-                Turbo.tt[5] = Turbo.tt[4];
-                Turbo.gam[5] = turbo.getGama(Turbo.tt[5], turbo.gamopt);
-                Turbo.cp[5] = turbo.getCp(Turbo.tt[5], turbo.gamopt);
-                Turbo.trat[5] = 1.0;
-                Turbo.prat[5] = 1.0;
-                Turbo.pt[5] = Turbo.pt[4];
+                turbo.prat[3] = 1.0;
+                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
+                turbo.tt[3] = turbo.tt[2];
+                turbo.trat[3] = 1.0;
+                turbo.gam[3] = turbo.getGama(turbo.tt[3], turbo.gamopt);
+                turbo.cp[3] = turbo.getCp(turbo.tt[3], turbo.gamopt);
+                turbo.tt[4] = turbo.tt4 * turbo.throtl / 100.0;
+                turbo.gam[4] = turbo.getGama(turbo.tt[4], turbo.gamopt);
+                turbo.cp[4] = turbo.getCp(turbo.tt[4], turbo.gamopt);
+                turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
+                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.tt[5] = turbo.tt[4];
+                turbo.gam[5] = turbo.getGama(turbo.tt[5], turbo.gamopt);
+                turbo.cp[5] = turbo.getCp(turbo.tt[5], turbo.gamopt);
+                turbo.trat[5] = 1.0;
+                turbo.prat[5] = 1.0;
+                turbo.pt[5] = turbo.pt[4];
                                     /* fanPanel conditions */
-                Turbo.prat[13] = 1.0;
-                Turbo.trat[13] = 1.0;
-                Turbo.tt[13] = Turbo.tt[2];
-                Turbo.pt[13] = Turbo.pt[2];
-                Turbo.gam[13] = Turbo.gam[2];
-                Turbo.cp[13] = Turbo.cp[2];
-                Turbo.prat[15] = 1.0;
-                Turbo.pt[15] = Turbo.pt[5];
-                Turbo.trat[15] = 1.0;
-                Turbo.tt[15] = Turbo.tt[5];
-                Turbo.gam[15] = Turbo.gam[5];
-                Turbo.cp[15] = Turbo.cp[5];
+                turbo.prat[13] = 1.0;
+                turbo.trat[13] = 1.0;
+                turbo.tt[13] = turbo.tt[2];
+                turbo.pt[13] = turbo.pt[2];
+                turbo.gam[13] = turbo.gam[2];
+                turbo.cp[13] = turbo.cp[2];
+                turbo.prat[15] = 1.0;
+                turbo.pt[15] = turbo.pt[5];
+                turbo.trat[15] = 1.0;
+                turbo.tt[15] = turbo.tt[5];
+                turbo.gam[15] = turbo.gam[5];
+                turbo.cp[15] = turbo.cp[5];
             }
 
-            Turbo.tt[7] = Turbo.tt7;
+            turbo.tt[7] = turbo.tt7;
         }
          /* analysis -assume flow choked at both turbine entrances */
                               /* and nozzle throat ... then*/
         else {
-            Turbo.tt[4] = Turbo.tt4 * Turbo.throtl / 100.0;
-            Turbo.gam[4] = turbo.getGama(Turbo.tt[4], turbo.gamopt);
-            Turbo.cp[4] = turbo.getCp(Turbo.tt[4], turbo.gamopt);
-            if(Turbo.a4 < .02) {
-                Turbo.a4 = .02;
+            turbo.tt[4] = turbo.tt4 * turbo.throtl / 100.0;
+            turbo.gam[4] = turbo.getGama(turbo.tt[4], turbo.gamopt);
+            turbo.cp[4] = turbo.getCp(turbo.tt[4], turbo.gamopt);
+            if(turbo.a4 < .02) {
+                turbo.a4 = .02;
             }
 
             if(turbo.entype <= 1) {              /* turbojet */
                 dela = .2;                           /* iterate to get t5t4 */
-                Turbo.trat[5] = 1.0;
+                turbo.trat[5] = 1.0;
                 t5t4n = .5;
                 itcount = 0;
                 while (Math.abs(dela) > .001 && itcount < 20) {
                     ++itcount;
-                    delan = Turbo.a8d / Turbo.a4 - Math.sqrt(t5t4n) *
-                                                   Math.pow((1.0 - (1.0 / Turbo.eta[5]) * (1.0 - t5t4n)),
-                                                            -Turbo.gam[4] / (Turbo.gam[4] - 1.0));
-                    deriv = (delan - dela) / (t5t4n - Turbo.trat[5]);
+                    delan = turbo.a8d / turbo.a4 - Math.sqrt(t5t4n) *
+                                                   Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - t5t4n)),
+                                                            -turbo.gam[4] / (turbo.gam[4] - 1.0));
+                    deriv = (delan - dela) / (t5t4n - turbo.trat[5]);
                     dela = delan;
-                    Turbo.trat[5] = t5t4n;
-                    t5t4n = Turbo.trat[5] - dela / deriv;
+                    turbo.trat[5] = t5t4n;
+                    t5t4n = turbo.trat[5] - dela / deriv;
                 }
-                Turbo.tt[5] = Turbo.tt[4] * Turbo.trat[5];
-                Turbo.gam[5] = turbo.getGama(Turbo.tt[5], turbo.gamopt);
-                Turbo.cp[5] = turbo.getCp(Turbo.tt[5], turbo.gamopt);
-                deltht = Turbo.tt[5] - Turbo.tt[4];
-                delhht = Turbo.cp[4] * deltht;
-                Turbo.prat[5] = Math.pow((1.0 - (1.0 / Turbo.eta[5]) * (1.0 - Turbo.trat[5])),
-                                         Turbo.gam[4] / (Turbo.gam[4] - 1.0));
+                turbo.tt[5] = turbo.tt[4] * turbo.trat[5];
+                turbo.gam[5] = turbo.getGama(turbo.tt[5], turbo.gamopt);
+                turbo.cp[5] = turbo.getCp(turbo.tt[5], turbo.gamopt);
+                deltht = turbo.tt[5] - turbo.tt[4];
+                delhht = turbo.cp[4] * deltht;
+                turbo.prat[5] = Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - turbo.trat[5])),
+                                         turbo.gam[4] / (turbo.gam[4] - 1.0));
                 delhc = delhht;           /* compressor work */
-                deltc = -delhc / Turbo.cp[2];
-                Turbo.tt[3] = Turbo.tt[2] + deltc;
-                Turbo.gam[3] = turbo.getGama(Turbo.tt[3], turbo.gamopt);
-                Turbo.cp[3] = turbo.getCp(Turbo.tt[3], turbo.gamopt);
-                Turbo.trat[3] = Turbo.tt[3] / Turbo.tt[2];
-                Turbo.prat[3] = Math.pow((1.0 + Turbo.eta[3] * (Turbo.trat[3] - 1.0)),
-                                         Turbo.gam[2] / (Turbo.gam[2] - 1.0));
-                Turbo.trat[4] = Turbo.tt[4] / Turbo.tt[3];
-                Turbo.pt[3] = Turbo.pt[2] * Turbo.prat[3];
-                Turbo.pt[4] = Turbo.pt[3] * Turbo.prat[4];
-                Turbo.pt[5] = Turbo.pt[4] * Turbo.prat[5];
+                deltc = -delhc / turbo.cp[2];
+                turbo.tt[3] = turbo.tt[2] + deltc;
+                turbo.gam[3] = turbo.getGama(turbo.tt[3], turbo.gamopt);
+                turbo.cp[3] = turbo.getCp(turbo.tt[3], turbo.gamopt);
+                turbo.trat[3] = turbo.tt[3] / turbo.tt[2];
+                turbo.prat[3] = Math.pow((1.0 + turbo.eta[3] * (turbo.trat[3] - 1.0)),
+                                         turbo.gam[2] / (turbo.gam[2] - 1.0));
+                turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
+                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
+                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
                                     /* fanPanel conditions */
-                Turbo.prat[13] = 1.0;
-                Turbo.trat[13] = 1.0;
-                Turbo.tt[13] = Turbo.tt[2];
-                Turbo.pt[13] = Turbo.pt[2];
-                Turbo.gam[13] = Turbo.gam[2];
-                Turbo.cp[13] = Turbo.cp[2];
-                Turbo.prat[15] = 1.0;
-                Turbo.pt[15] = Turbo.pt[5];
-                Turbo.trat[15] = 1.0;
-                Turbo.tt[15] = Turbo.tt[5];
-                Turbo.gam[15] = Turbo.gam[5];
-                Turbo.cp[15] = Turbo.cp[5];
+                turbo.prat[13] = 1.0;
+                turbo.trat[13] = 1.0;
+                turbo.tt[13] = turbo.tt[2];
+                turbo.pt[13] = turbo.pt[2];
+                turbo.gam[13] = turbo.gam[2];
+                turbo.cp[13] = turbo.cp[2];
+                turbo.prat[15] = 1.0;
+                turbo.pt[15] = turbo.pt[5];
+                turbo.trat[15] = 1.0;
+                turbo.tt[15] = turbo.tt[5];
+                turbo.gam[15] = turbo.gam[5];
+                turbo.cp[15] = turbo.cp[5];
             }
 
             if(turbo.entype == 2) {                        /*  turbofan */
                 dela = .2;                           /* iterate to get t5t4 */
-                Turbo.trat[5] = 1.0;
+                turbo.trat[5] = 1.0;
                 t5t4n = .5;
                 itcount = 0;
                 while (Math.abs(dela) > .001 && itcount < 20) {
                     ++itcount;
-                    delan = Turbo.a4p / Turbo.a4 - Math.sqrt(t5t4n) *
-                                                   Math.pow((1.0 - (1.0 / Turbo.eta[5]) * (1.0 - t5t4n)),
-                                                            -Turbo.gam[4] / (Turbo.gam[4] - 1.0));
-                    deriv = (delan - dela) / (t5t4n - Turbo.trat[5]);
+                    delan = turbo.a4p / turbo.a4 - Math.sqrt(t5t4n) *
+                                                   Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - t5t4n)),
+                                                            -turbo.gam[4] / (turbo.gam[4] - 1.0));
+                    deriv = (delan - dela) / (t5t4n - turbo.trat[5]);
                     dela = delan;
-                    Turbo.trat[5] = t5t4n;
-                    t5t4n = Turbo.trat[5] - dela / deriv;
+                    turbo.trat[5] = t5t4n;
+                    t5t4n = turbo.trat[5] - dela / deriv;
                 }
-                Turbo.tt[5] = Turbo.tt[4] * Turbo.trat[5];
-                Turbo.gam[5] = turbo.getGama(Turbo.tt[5], turbo.gamopt);
-                Turbo.cp[5] = turbo.getCp(Turbo.tt[5], turbo.gamopt);
-                deltht = Turbo.tt[5] - Turbo.tt[4];
-                delhht = Turbo.cp[4] * deltht;
-                Turbo.prat[5] = Math.pow((1.0 - (1.0 / Turbo.eta[5]) * (1.0 - Turbo.trat[5])),
-                                         Turbo.gam[4] / (Turbo.gam[4] - 1.0));
+                turbo.tt[5] = turbo.tt[4] * turbo.trat[5];
+                turbo.gam[5] = turbo.getGama(turbo.tt[5], turbo.gamopt);
+                turbo.cp[5] = turbo.getCp(turbo.tt[5], turbo.gamopt);
+                deltht = turbo.tt[5] - turbo.tt[4];
+                delhht = turbo.cp[4] * deltht;
+                turbo.prat[5] = Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - turbo.trat[5])),
+                                         turbo.gam[4] / (turbo.gam[4] - 1.0));
                                    /* iterate to get t15t14 */
                 dela = .2;
-                Turbo.trat[15] = 1.0;
+                turbo.trat[15] = 1.0;
                 t5t4n = .5;
                 itcount = 0;
                 while (Math.abs(dela) > .001 && itcount < 20) {
                     ++itcount;
-                    delan = Turbo.a8d / Turbo.a4p - Math.sqrt(t5t4n) *
-                                                    Math.pow((1.0 - (1.0 / Turbo.eta[5]) * (1.0 - t5t4n)),
-                                                             -Turbo.gam[5] / (Turbo.gam[5] - 1.0));
-                    deriv = (delan - dela) / (t5t4n - Turbo.trat[15]);
+                    delan = turbo.a8d / turbo.a4p - Math.sqrt(t5t4n) *
+                                                    Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - t5t4n)),
+                                                             -turbo.gam[5] / (turbo.gam[5] - 1.0));
+                    deriv = (delan - dela) / (t5t4n - turbo.trat[15]);
                     dela = delan;
-                    Turbo.trat[15] = t5t4n;
-                    t5t4n = Turbo.trat[15] - dela / deriv;
+                    turbo.trat[15] = t5t4n;
+                    t5t4n = turbo.trat[15] - dela / deriv;
                 }
-                Turbo.tt[15] = Turbo.tt[5] * Turbo.trat[15];
-                Turbo.gam[15] = turbo.getGama(Turbo.tt[15], turbo.gamopt);
-                Turbo.cp[15] = turbo.getCp(Turbo.tt[15], turbo.gamopt);
-                deltlt = Turbo.tt[15] - Turbo.tt[5];
-                delhlt = Turbo.cp[5] * deltlt;
-                Turbo.prat[15] = Math.pow((1.0 - (1.0 / Turbo.eta[5]) * (1.0 - Turbo.trat[15])),
-                                          Turbo.gam[5] / (Turbo.gam[5] - 1.0));
-                Turbo.byprat = Turbo.afan / Turbo.acore - 1.0;
-                delhf = delhlt / (1.0 + Turbo.byprat);              /* fanPanel work */
-                deltf = -delhf / Turbo.cp[2];
-                Turbo.tt[13] = Turbo.tt[2] + deltf;
-                Turbo.gam[13] = turbo.getGama(Turbo.tt[13], turbo.gamopt);
-                Turbo.cp[13] = turbo.getCp(Turbo.tt[13], turbo.gamopt);
-                Turbo.trat[13] = Turbo.tt[13] / Turbo.tt[2];
-                Turbo.prat[13] = Math.pow((1.0 + Turbo.eta[13] * (Turbo.trat[13] - 1.0)),
-                                          Turbo.gam[2] / (Turbo.gam[2] - 1.0));
+                turbo.tt[15] = turbo.tt[5] * turbo.trat[15];
+                turbo.gam[15] = turbo.getGama(turbo.tt[15], turbo.gamopt);
+                turbo.cp[15] = turbo.getCp(turbo.tt[15], turbo.gamopt);
+                deltlt = turbo.tt[15] - turbo.tt[5];
+                delhlt = turbo.cp[5] * deltlt;
+                turbo.prat[15] = Math.pow((1.0 - (1.0 / turbo.eta[5]) * (1.0 - turbo.trat[15])),
+                                          turbo.gam[5] / (turbo.gam[5] - 1.0));
+                turbo.byprat = turbo.afan / turbo.acore - 1.0;
+                delhf = delhlt / (1.0 + turbo.byprat);              /* fanPanel work */
+                deltf = -delhf / turbo.cp[2];
+                turbo.tt[13] = turbo.tt[2] + deltf;
+                turbo.gam[13] = turbo.getGama(turbo.tt[13], turbo.gamopt);
+                turbo.cp[13] = turbo.getCp(turbo.tt[13], turbo.gamopt);
+                turbo.trat[13] = turbo.tt[13] / turbo.tt[2];
+                turbo.prat[13] = Math.pow((1.0 + turbo.eta[13] * (turbo.trat[13] - 1.0)),
+                                          turbo.gam[2] / (turbo.gam[2] - 1.0));
                 delhc = delhht;                         /* compressor work */
-                deltc = -delhc / Turbo.cp[13];
-                Turbo.tt[3] = Turbo.tt[13] + deltc;
-                Turbo.gam[3] = turbo.getGama(Turbo.tt[3], turbo.gamopt);
-                Turbo.cp[3] = turbo.getCp(Turbo.tt[3], turbo.gamopt);
-                Turbo.trat[3] = Turbo.tt[3] / Turbo.tt[13];
-                Turbo.prat[3] = Math.pow((1.0 + Turbo.eta[3] * (Turbo.trat[3] - 1.0)),
-                                         Turbo.gam[13] / (Turbo.gam[13] - 1.0));
-                Turbo.trat[4] = Turbo.tt[4] / Turbo.tt[3];
-                Turbo.pt[13] = Turbo.pt[2] * Turbo.prat[13];
-                Turbo.pt[3] = Turbo.pt[13] * Turbo.prat[3];
-                Turbo.pt[4] = Turbo.pt[3] * Turbo.prat[4];
-                Turbo.pt[5] = Turbo.pt[4] * Turbo.prat[5];
-                Turbo.pt[15] = Turbo.pt[5] * Turbo.prat[15];
+                deltc = -delhc / turbo.cp[13];
+                turbo.tt[3] = turbo.tt[13] + deltc;
+                turbo.gam[3] = turbo.getGama(turbo.tt[3], turbo.gamopt);
+                turbo.cp[3] = turbo.getCp(turbo.tt[3], turbo.gamopt);
+                turbo.trat[3] = turbo.tt[3] / turbo.tt[13];
+                turbo.prat[3] = Math.pow((1.0 + turbo.eta[3] * (turbo.trat[3] - 1.0)),
+                                         turbo.gam[13] / (turbo.gam[13] - 1.0));
+                turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
+                turbo.pt[13] = turbo.pt[2] * turbo.prat[13];
+                turbo.pt[3] = turbo.pt[13] * turbo.prat[3];
+                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.pt[5] = turbo.pt[4] * turbo.prat[5];
+                turbo.pt[15] = turbo.pt[5] * turbo.prat[15];
             }
 
             if(turbo.entype == 3) {              /* ramjet */
-                Turbo.prat[3] = 1.0;
-                Turbo.pt[3] = Turbo.pt[2] * Turbo.prat[3];
-                Turbo.tt[3] = Turbo.tt[2];
-                Turbo.trat[3] = 1.0;
-                Turbo.gam[3] = turbo.getGama(Turbo.tt[3], turbo.gamopt);
-                Turbo.cp[3] = turbo.getCp(Turbo.tt[3], turbo.gamopt);
-                Turbo.tt[4] = Turbo.tt4 * Turbo.throtl / 100.0;
-                Turbo.trat[4] = Turbo.tt[4] / Turbo.tt[3];
-                Turbo.pt[4] = Turbo.pt[3] * Turbo.prat[4];
-                Turbo.tt[5] = Turbo.tt[4];
-                Turbo.gam[5] = turbo.getGama(Turbo.tt[5], turbo.gamopt);
-                Turbo.cp[5] = turbo.getCp(Turbo.tt[5], turbo.gamopt);
-                Turbo.trat[5] = 1.0;
-                Turbo.prat[5] = 1.0;
-                Turbo.pt[5] = Turbo.pt[4];
+                turbo.prat[3] = 1.0;
+                turbo.pt[3] = turbo.pt[2] * turbo.prat[3];
+                turbo.tt[3] = turbo.tt[2];
+                turbo.trat[3] = 1.0;
+                turbo.gam[3] = turbo.getGama(turbo.tt[3], turbo.gamopt);
+                turbo.cp[3] = turbo.getCp(turbo.tt[3], turbo.gamopt);
+                turbo.tt[4] = turbo.tt4 * turbo.throtl / 100.0;
+                turbo.trat[4] = turbo.tt[4] / turbo.tt[3];
+                turbo.pt[4] = turbo.pt[3] * turbo.prat[4];
+                turbo.tt[5] = turbo.tt[4];
+                turbo.gam[5] = turbo.getGama(turbo.tt[5], turbo.gamopt);
+                turbo.cp[5] = turbo.getCp(turbo.tt[5], turbo.gamopt);
+                turbo.trat[5] = 1.0;
+                turbo.prat[5] = 1.0;
+                turbo.pt[5] = turbo.pt[4];
                                      /* fanPanel conditions */
-                Turbo.prat[13] = 1.0;
-                Turbo.trat[13] = 1.0;
-                Turbo.tt[13] = Turbo.tt[2];
-                Turbo.pt[13] = Turbo.pt[2];
-                Turbo.gam[13] = Turbo.gam[2];
-                Turbo.cp[13] = Turbo.cp[2];
-                Turbo.prat[15] = 1.0;
-                Turbo.pt[15] = Turbo.pt[5];
-                Turbo.trat[15] = 1.0;
-                Turbo.tt[15] = Turbo.tt[5];
-                Turbo.gam[15] = Turbo.gam[5];
-                Turbo.cp[15] = Turbo.cp[5];
+                turbo.prat[13] = 1.0;
+                turbo.trat[13] = 1.0;
+                turbo.tt[13] = turbo.tt[2];
+                turbo.pt[13] = turbo.pt[2];
+                turbo.gam[13] = turbo.gam[2];
+                turbo.cp[13] = turbo.cp[2];
+                turbo.prat[15] = 1.0;
+                turbo.pt[15] = turbo.pt[5];
+                turbo.trat[15] = 1.0;
+                turbo.tt[15] = turbo.tt[5];
+                turbo.gam[15] = turbo.gam[5];
+                turbo.cp[15] = turbo.cp[5];
             }
 
             if(turbo.abflag == 1) {
-                Turbo.tt[7] = Turbo.tt7;
+                turbo.tt[7] = turbo.tt7;
             }
         }
 
-        Turbo.prat[6] = 1.0;
-        Turbo.pt[6] = Turbo.pt[15];
-        Turbo.trat[6] = 1.0;
-        Turbo.tt[6] = Turbo.tt[15];
-        Turbo.gam[6] = turbo.getGama(Turbo.tt[6], turbo.gamopt);
-        Turbo.cp[6] = turbo.getCp(Turbo.tt[6], turbo.gamopt);
+        turbo.prat[6] = 1.0;
+        turbo.pt[6] = turbo.pt[15];
+        turbo.trat[6] = 1.0;
+        turbo.tt[6] = turbo.tt[15];
+        turbo.gam[6] = turbo.getGama(turbo.tt[6], turbo.gamopt);
+        turbo.cp[6] = turbo.getCp(turbo.tt[6], turbo.gamopt);
         if(turbo.abflag > 0) {                   /* afterburner */
-            Turbo.trat[7] = Turbo.tt[7] / Turbo.tt[6];
-            m5 = turbo.getMach(0, turbo.getAir(1.0, Turbo.gam[5]) * Turbo.a4 / Turbo.acore, Turbo.gam[5]);
-            Turbo.prat[7] = turbo.getRayleighLoss(m5, Turbo.trat[7], Turbo.tt[6]);
+            turbo.trat[7] = turbo.tt[7] / turbo.tt[6];
+            m5 = turbo.getMach(0, turbo.getAir(1.0, turbo.gam[5]) * turbo.a4 / turbo.acore, turbo.gam[5]);
+            turbo.prat[7] = turbo.getRayleighLoss(m5, turbo.trat[7], turbo.tt[6]);
         }
-        Turbo.tt[7] = Turbo.tt[6] * Turbo.trat[7];
-        Turbo.pt[7] = Turbo.pt[6] * Turbo.prat[7];
-        Turbo.gam[7] = turbo.getGama(Turbo.tt[7], turbo.gamopt);
-        Turbo.cp[7] = turbo.getCp(Turbo.tt[7], turbo.gamopt);
+        turbo.tt[7] = turbo.tt[6] * turbo.trat[7];
+        turbo.pt[7] = turbo.pt[6] * turbo.prat[7];
+        turbo.gam[7] = turbo.getGama(turbo.tt[7], turbo.gamopt);
+        turbo.cp[7] = turbo.getCp(turbo.tt[7], turbo.gamopt);
              /* engine press ratio EPR*/
-        Turbo.epr = Turbo.prat[7] * Turbo.prat[15] * Turbo.prat[5] * Turbo.prat[4] * Turbo.prat[3] * Turbo.prat[13];
+        turbo.epr = turbo.prat[7] * turbo.prat[15] * turbo.prat[5] * turbo.prat[4] * turbo.prat[3] * turbo.prat[13];
           /* engine temp ratio ETR */
-        Turbo.etr = Turbo.trat[7] * Turbo.trat[15] * Turbo.trat[5] * Turbo.trat[4] * Turbo.trat[3] * Turbo.trat[13];
+        turbo.etr = turbo.trat[7] * turbo.trat[15] * turbo.trat[5] * turbo.trat[4] * turbo.trat[3] * turbo.trat[13];
         return;
     }
 
@@ -1053,158 +1053,158 @@ class Solver {
         int index;
 
         rg1 = 53.3;
-        rg = Turbo.cpair * (Turbo.gama - 1.0) / Turbo.gama;
-        cp3 = turbo.getCp(Turbo.tt[3], turbo.gamopt);                  /*BTU/lbm R */
-        Turbo.g0 = 32.2;
-        Turbo.ues = 0.0;
-        game = turbo.getGama(Turbo.tt[5], turbo.gamopt);
+        rg = turbo.cpair * (turbo.gama - 1.0) / turbo.gama;
+        cp3 = turbo.getCp(turbo.tt[3], turbo.gamopt);                  /*BTU/lbm R */
+        turbo.g0 = 32.2;
+        turbo.ues = 0.0;
+        game = turbo.getGama(turbo.tt[5], turbo.gamopt);
         fac1 = (game - 1.0) / game;
-        cpe = turbo.getCp(Turbo.tt[5], turbo.gamopt);
-        if(Turbo.eta[7] < .8) {
-            Turbo.eta[7] = .8;    /* protection during overwriting */
+        cpe = turbo.getCp(turbo.tt[5], turbo.gamopt);
+        if(turbo.eta[7] < .8) {
+            turbo.eta[7] = .8;    /* protection during overwriting */
         }
-        if(Turbo.eta[4] < .8) {
-            Turbo.eta[4] = .8;
+        if(turbo.eta[4] < .8) {
+            turbo.eta[4] = .8;
         }
 
    /*  specific net thrust  - thrust / (g0*airflow) -   lbf/lbm/sec  */
         // turbine engine core
         if(turbo.entype <= 2) {
                         /* airflow determined at choked nozzle exit */
-            Turbo.pt[8] = Turbo.epr * Turbo.prat[2] * Turbo.pt[0];
-            Turbo.eair = turbo.getAir(1.0, game) * 144. * Turbo.a8 * Turbo.pt[8] / 14.7 /
-                         Math.sqrt(Turbo.etr * Turbo.tt[0] / 518.);
-            Turbo.m2 = turbo.getMach(0, Turbo.eair * Math.sqrt(Turbo.tt[0] / 518.) /
-                                        (Turbo.prat[2] * Turbo.pt[0] / 14.7 * Turbo.acore * 144.), Turbo.gama);
-            Turbo.npr = Turbo.pt[8] / Turbo.ps0;
-            Turbo.uexit = Math.sqrt(2.0 * Turbo.rgas / fac1 * Turbo.etr * Turbo.tt[0] * Turbo.eta[7] *
-                                    (1.0 - Math.pow(1.0 / Turbo.npr, fac1)));
-            if(Turbo.npr <= 1.893) {
-                Turbo.pexit = Turbo.ps0;
+            turbo.pt[8] = turbo.epr * turbo.prat[2] * turbo.pt[0];
+            turbo.eair = turbo.getAir(1.0, game) * 144. * turbo.a8 * turbo.pt[8] / 14.7 /
+                         Math.sqrt(turbo.etr * turbo.tt[0] / 518.);
+            turbo.m2 = turbo.getMach(0, turbo.eair * Math.sqrt(turbo.tt[0] / 518.) /
+                                        (turbo.prat[2] * turbo.pt[0] / 14.7 * turbo.acore * 144.), turbo.gama);
+            turbo.npr = turbo.pt[8] / turbo.ps0;
+            turbo.uexit = Math.sqrt(2.0 * turbo.rgas / fac1 * turbo.etr * turbo.tt[0] * turbo.eta[7] *
+                                    (1.0 - Math.pow(1.0 / turbo.npr, fac1)));
+            if(turbo.npr <= 1.893) {
+                turbo.pexit = turbo.ps0;
             } else {
-                Turbo.pexit = .52828 * Turbo.pt[8];
+                turbo.pexit = .52828 * turbo.pt[8];
             }
-            Turbo.fgros = (Turbo.uexit + (Turbo.pexit - Turbo.ps0) * 144. * Turbo.a8 / Turbo.eair) / Turbo.g0;
+            turbo.fgros = (turbo.uexit + (turbo.pexit - turbo.ps0) * 144. * turbo.a8 / turbo.eair) / turbo.g0;
         }
 
         // turbo fanPanel -- added terms for fanPanel flow
         if(turbo.entype == 2) {
-            fac1 = (Turbo.gama - 1.0) / Turbo.gama;
-            Turbo.snpr = Turbo.pt[13] / Turbo.ps0;
-            Turbo.ues = Math.sqrt(2.0 * Turbo.rgas / fac1 * Turbo.tt[13] * Turbo.eta[7] *
-                                  (1.0 - Math.pow(1.0 / Turbo.snpr, fac1)));
-            Turbo.m2 = turbo.getMach(0, Turbo.eair * (1.0 + Turbo.byprat) * Math.sqrt(Turbo.tt[0] / 518.) /
-                                        (Turbo.prat[2] * Turbo.pt[0] / 14.7 * Turbo.afan * 144.), Turbo.gama);
-            if(Turbo.snpr <= 1.893) {
-                Turbo.pfexit = Turbo.ps0;
+            fac1 = (turbo.gama - 1.0) / turbo.gama;
+            turbo.snpr = turbo.pt[13] / turbo.ps0;
+            turbo.ues = Math.sqrt(2.0 * turbo.rgas / fac1 * turbo.tt[13] * turbo.eta[7] *
+                                  (1.0 - Math.pow(1.0 / turbo.snpr, fac1)));
+            turbo.m2 = turbo.getMach(0, turbo.eair * (1.0 + turbo.byprat) * Math.sqrt(turbo.tt[0] / 518.) /
+                                        (turbo.prat[2] * turbo.pt[0] / 14.7 * turbo.afan * 144.), turbo.gama);
+            if(turbo.snpr <= 1.893) {
+                turbo.pfexit = turbo.ps0;
             } else {
-                Turbo.pfexit = .52828 * Turbo.pt[13];
+                turbo.pfexit = .52828 * turbo.pt[13];
             }
-            Turbo.fgros = Turbo.fgros + (Turbo.byprat * Turbo.ues + (Turbo.pfexit - Turbo.ps0) * 144. * Turbo.byprat * Turbo.acore / Turbo.eair) / Turbo.g0;
+            turbo.fgros = turbo.fgros + (turbo.byprat * turbo.ues + (turbo.pfexit - turbo.ps0) * 144. * turbo.byprat * turbo.acore / turbo.eair) / turbo.g0;
         }
 
         // ramjets
         if(turbo.entype == 3) {
                        /* airflow determined at nozzle throat */
-            Turbo.eair = turbo.getAir(1.0, game) * 144.0 * Turbo.a2 * Turbo.arthd * Turbo.epr * Turbo.prat[2] * Turbo.pt[0] / 14.7 /
-                         Math.sqrt(Turbo.etr * Turbo.tt[0] / 518.);
-            Turbo.m2 = turbo.getMach(0, Turbo.eair * Math.sqrt(Turbo.tt[0] / 518.) /
-                                        (Turbo.prat[2] * Turbo.pt[0] / 14.7 * Turbo.acore * 144.), Turbo.gama);
-            Turbo.mexit = turbo.getMach(2, (turbo.getAir(1.0, game) / Turbo.arexitd), game);
-            Turbo.uexit = Turbo.mexit * Math.sqrt(game * Turbo.rgas * Turbo.etr * Turbo.tt[0] * Turbo.eta[7] /
-                                                  (1.0 + .5 * (game - 1.0) * Turbo.mexit * Turbo.mexit));
-            Turbo.pexit = Math.pow((1.0 + .5 * (game - 1.0) * Turbo.mexit * Turbo.mexit), (-game / (game - 1.0)))
-                          * Turbo.epr * Turbo.prat[2] * Turbo.pt[0];
-            Turbo.fgros = (Turbo.uexit + (Turbo.pexit - Turbo.ps0) * Turbo.arexitd * Turbo.arthd * Turbo.a2 / Turbo.eair / 144.) / Turbo.g0;
+            turbo.eair = turbo.getAir(1.0, game) * 144.0 * turbo.a2 * turbo.arthd * turbo.epr * turbo.prat[2] * turbo.pt[0] / 14.7 /
+                         Math.sqrt(turbo.etr * turbo.tt[0] / 518.);
+            turbo.m2 = turbo.getMach(0, turbo.eair * Math.sqrt(turbo.tt[0] / 518.) /
+                                        (turbo.prat[2] * turbo.pt[0] / 14.7 * turbo.acore * 144.), turbo.gama);
+            turbo.mexit = turbo.getMach(2, (turbo.getAir(1.0, game) / turbo.arexitd), game);
+            turbo.uexit = turbo.mexit * Math.sqrt(game * turbo.rgas * turbo.etr * turbo.tt[0] * turbo.eta[7] /
+                                                  (1.0 + .5 * (game - 1.0) * turbo.mexit * turbo.mexit));
+            turbo.pexit = Math.pow((1.0 + .5 * (game - 1.0) * turbo.mexit * turbo.mexit), (-game / (game - 1.0)))
+                          * turbo.epr * turbo.prat[2] * turbo.pt[0];
+            turbo.fgros = (turbo.uexit + (turbo.pexit - turbo.ps0) * turbo.arexitd * turbo.arthd * turbo.a2 / turbo.eair / 144.) / turbo.g0;
         }
 
         // ram drag
-        Turbo.dram = Turbo.u0 / Turbo.g0;
+        turbo.dram = turbo.u0 / turbo.g0;
         if(turbo.entype == 2) {
-            Turbo.dram = Turbo.dram + Turbo.u0 * Turbo.byprat / Turbo.g0;
+            turbo.dram = turbo.dram + turbo.u0 * turbo.byprat / turbo.g0;
         }
         // mass flow ratio
-        if(Turbo.fsmach > .01) {
-            Turbo.mfr = turbo.getAir(Turbo.m2, Turbo.gama) * Turbo.prat[2] / turbo.getAir(Turbo.fsmach, Turbo.gama);
+        if(turbo.fsmach > .01) {
+            turbo.mfr = turbo.getAir(turbo.m2, turbo.gama) * turbo.prat[2] / turbo.getAir(turbo.fsmach, turbo.gama);
         } else {
-            Turbo.mfr = 5.;
+            turbo.mfr = 5.;
         }
 
         // net thrust
-        Turbo.fnet = Turbo.fgros - Turbo.dram;
-        if(turbo.entype == 3 && Turbo.fsmach < .3) {
-            Turbo.fnet = 0.0;
-            Turbo.fgros = 0.0;
+        turbo.fnet = turbo.fgros - turbo.dram;
+        if(turbo.entype == 3 && turbo.fsmach < .3) {
+            turbo.fnet = 0.0;
+            turbo.fgros = 0.0;
         }
 
         // thrust inputPanel pounds
-        Turbo.fnlb = Turbo.fnet * Turbo.eair;
-        Turbo.fglb = Turbo.fgros * Turbo.eair;
-        Turbo.drlb = Turbo.dram * Turbo.eair;
+        turbo.fnlb = turbo.fnet * turbo.eair;
+        turbo.fglb = turbo.fgros * turbo.eair;
+        turbo.drlb = turbo.dram * turbo.eair;
 
         //fuel-air ratio and sfc
-        Turbo.fa = (Turbo.trat[4] - 1.0) / (Turbo.eta[4] * Turbo.fhv / (cp3 * Turbo.tt[3]) - Turbo.trat[4]) +
-                   (Turbo.trat[7] - 1.0) / (Turbo.fhv / (cpe * Turbo.tt[15]) - Turbo.trat[7]);
-        if(Turbo.fnet > 0.0) {
-            Turbo.sfc = 3600. * Turbo.fa / Turbo.fnet;
-            Turbo.flflo = Turbo.sfc * Turbo.fnlb;
-            Turbo.isp = (Turbo.fnlb / Turbo.flflo) * 3600.;
+        turbo.fa = (turbo.trat[4] - 1.0) / (turbo.eta[4] * turbo.fhv / (cp3 * turbo.tt[3]) - turbo.trat[4]) +
+                   (turbo.trat[7] - 1.0) / (turbo.fhv / (cpe * turbo.tt[15]) - turbo.trat[7]);
+        if(turbo.fnet > 0.0) {
+            turbo.sfc = 3600. * turbo.fa / turbo.fnet;
+            turbo.flflo = turbo.sfc * turbo.fnlb;
+            turbo.isp = (turbo.fnlb / turbo.flflo) * 3600.;
         } else {
-            Turbo.fnlb = 0.0;
-            Turbo.flflo = 0.0;
-            Turbo.sfc = 0.0;
-            Turbo.isp = 0.0;
+            turbo.fnlb = 0.0;
+            turbo.flflo = 0.0;
+            turbo.sfc = 0.0;
+            turbo.isp = 0.0;
         }
-        Turbo.tt[8] = Turbo.tt[7];
-        Turbo.t8 = Turbo.etr * Turbo.tt[0] - Turbo.uexit * Turbo.uexit / (2.0 * Turbo.rgas * game / (game - 1.0));
-        Turbo.trat[8] = 1.0;
-        p8p5 = Turbo.ps0 / (Turbo.epr * Turbo.prat[2] * Turbo.pt[0]);
-        Turbo.cp[8] = turbo.getCp(Turbo.tt[8], turbo.gamopt);
-        Turbo.pt[8] = Turbo.pt[7];
-        Turbo.prat[8] = Turbo.pt[8] / Turbo.pt[7];
+        turbo.tt[8] = turbo.tt[7];
+        turbo.t8 = turbo.etr * turbo.tt[0] - turbo.uexit * turbo.uexit / (2.0 * turbo.rgas * game / (game - 1.0));
+        turbo.trat[8] = 1.0;
+        p8p5 = turbo.ps0 / (turbo.epr * turbo.prat[2] * turbo.pt[0]);
+        turbo.cp[8] = turbo.getCp(turbo.tt[8], turbo.gamopt);
+        turbo.pt[8] = turbo.pt[7];
+        turbo.prat[8] = turbo.pt[8] / turbo.pt[7];
     /* thermal effeciency */
         if(turbo.entype == 2) {
-            Turbo.eteng = (Turbo.a0 * Turbo.a0 * ((1.0 + Turbo.fa) * (Turbo.uexit * Turbo.uexit / (Turbo.a0 * Turbo.a0))
-                                                  + Turbo.byprat * (Turbo.ues * Turbo.ues / (Turbo.a0 * Turbo.a0))
-                                                  - (1.0 + Turbo.byprat) * Turbo.fsmach * Turbo.fsmach)) / (2.0 * Turbo.g0 * Turbo.fa * Turbo.fhv * 778.16);
+            turbo.eteng = (turbo.a0 * turbo.a0 * ((1.0 + turbo.fa) * (turbo.uexit * turbo.uexit / (turbo.a0 * turbo.a0))
+                                                  + turbo.byprat * (turbo.ues * turbo.ues / (turbo.a0 * turbo.a0))
+                                                  - (1.0 + turbo.byprat) * turbo.fsmach * turbo.fsmach)) / (2.0 * turbo.g0 * turbo.fa * turbo.fhv * 778.16);
         } else {
-            Turbo.eteng = (Turbo.a0 * Turbo.a0 * ((1.0 + Turbo.fa) * (Turbo.uexit * Turbo.uexit / (Turbo.a0 * Turbo.a0))
-                                                  - Turbo.fsmach * Turbo.fsmach)) / (2.0 * Turbo.g0 * Turbo.fa * Turbo.fhv * 778.16);
+            turbo.eteng = (turbo.a0 * turbo.a0 * ((1.0 + turbo.fa) * (turbo.uexit * turbo.uexit / (turbo.a0 * turbo.a0))
+                                                  - turbo.fsmach * turbo.fsmach)) / (2.0 * turbo.g0 * turbo.fa * turbo.fhv * 778.16);
         }
 
-        Turbo.s[0] = Turbo.s[1] = .2;
-        Turbo.v[0] = Turbo.v[1] = rg1 * Turbo.ts0 / (Turbo.ps0 * 144.);
+        turbo.s[0] = turbo.s[1] = .2;
+        turbo.v[0] = turbo.v[1] = rg1 * turbo.ts0 / (turbo.ps0 * 144.);
         for (index = 2; index <= 7; ++index) {     /* compute entropy */
-            Turbo.s[index] = Turbo.s[index - 1] + Turbo.cpair * Math.log(Turbo.trat[index])
-                             - rg * Math.log(Turbo.prat[index]);
-            Turbo.v[index] = rg1 * Turbo.tt[index] / (Turbo.pt[index] * 144.);
+            turbo.s[index] = turbo.s[index - 1] + turbo.cpair * Math.log(turbo.trat[index])
+                             - rg * Math.log(turbo.prat[index]);
+            turbo.v[index] = rg1 * turbo.tt[index] / (turbo.pt[index] * 144.);
         }
-        Turbo.s[13] = Turbo.s[2] + Turbo.cpair * Math.log(Turbo.trat[13]) - rg * Math.log(Turbo.prat[13]);
-        Turbo.v[13] = rg1 * Turbo.tt[13] / (Turbo.pt[13] * 144.);
-        Turbo.s[15] = Turbo.s[5] + Turbo.cpair * Math.log(Turbo.trat[15]) - rg * Math.log(Turbo.prat[15]);
-        Turbo.v[15] = rg1 * Turbo.tt[15] / (Turbo.pt[15] * 144.);
-        Turbo.s[8] = Turbo.s[7] + Turbo.cpair * Math.log(Turbo.t8 / (Turbo.etr * Turbo.tt[0])) - rg * Math.log(p8p5);
-        Turbo.v[8] = rg1 * Turbo.t8 / (Turbo.ps0 * 144.);
-        Turbo.cp[0] = turbo.getCp(Turbo.tt[0], turbo.gamopt);
+        turbo.s[13] = turbo.s[2] + turbo.cpair * Math.log(turbo.trat[13]) - rg * Math.log(turbo.prat[13]);
+        turbo.v[13] = rg1 * turbo.tt[13] / (turbo.pt[13] * 144.);
+        turbo.s[15] = turbo.s[5] + turbo.cpair * Math.log(turbo.trat[15]) - rg * Math.log(turbo.prat[15]);
+        turbo.v[15] = rg1 * turbo.tt[15] / (turbo.pt[15] * 144.);
+        turbo.s[8] = turbo.s[7] + turbo.cpair * Math.log(turbo.t8 / (turbo.etr * turbo.tt[0])) - rg * Math.log(p8p5);
+        turbo.v[8] = rg1 * turbo.t8 / (turbo.ps0 * 144.);
+        turbo.cp[0] = turbo.getCp(turbo.tt[0], turbo.gamopt);
 
-        Turbo.fntot = turbo.numeng * Turbo.fnlb;
-        Turbo.fuelrat = turbo.numeng * Turbo.flflo;
+        turbo.fntot = turbo.numeng * turbo.fnlb;
+        turbo.fuelrat = turbo.numeng * turbo.flflo;
         // weight  calculation
         if(turbo.wtflag == 0) {
             if(turbo.entype == 0) {
-                Turbo.weight = .132 * Math.sqrt(Turbo.acore * Turbo.acore * Turbo.acore) *
-                               (Turbo.dcomp * Turbo.lcomp + Turbo.dburner * Turbo.lburn + Turbo.dturbin * Turbo.lturb + Turbo.dnozl * Turbo.lnoz);
+                turbo.weight = .132 * Math.sqrt(turbo.acore * turbo.acore * turbo.acore) *
+                               (turbo.dcomp * turbo.lcomp + turbo.dburner * turbo.lburn + turbo.dturbin * turbo.lturb + turbo.dnozl * turbo.lnoz);
             }
             if(turbo.entype == 1) {
-                Turbo.weight = .100 * Math.sqrt(Turbo.acore * Turbo.acore * Turbo.acore) *
-                               (Turbo.dcomp * Turbo.lcomp + Turbo.dburner * Turbo.lburn + Turbo.dturbin * Turbo.lturb + Turbo.dnozl * Turbo.lnoz);
+                turbo.weight = .100 * Math.sqrt(turbo.acore * turbo.acore * turbo.acore) *
+                               (turbo.dcomp * turbo.lcomp + turbo.dburner * turbo.lburn + turbo.dturbin * turbo.lturb + turbo.dnozl * turbo.lnoz);
             }
             if(turbo.entype == 2) {
-                Turbo.weight = .0932 * Turbo.acore * ((1.0 + Turbo.byprat) * Turbo.dfan * 4.0 + Turbo.dcomp * (Turbo.ncomp - 3) +
-                                                      Turbo.dburner + Turbo.dturbin * Turbo.nturb + Turbo.dburner * 2.0) * Math.sqrt(Turbo.acore / 6.965);
+                turbo.weight = .0932 * turbo.acore * ((1.0 + turbo.byprat) * turbo.dfan * 4.0 + turbo.dcomp * (turbo.ncomp - 3) +
+                                                      turbo.dburner + turbo.dturbin * turbo.nturb + turbo.dburner * 2.0) * Math.sqrt(turbo.acore / 6.965);
             }
             if(turbo.entype == 3) {
-                Turbo.weight = .1242 * Turbo.acore * (Turbo.dburner + Turbo.dnozr * 6. + Turbo.dinlt * 3.) * Math.sqrt(Turbo.acore / 1.753);
+                turbo.weight = .1242 * turbo.acore * (turbo.dburner + turbo.dnozr * 6. + turbo.dinlt * 3.) * Math.sqrt(turbo.acore / 1.753);
             }
         }
         // check for temp limits
@@ -1216,52 +1216,52 @@ class Solver {
         turbo.outputPanel.outputVariablesPanel.to6.setForeground(Color.yellow);
         turbo.outputPanel.outputVariablesPanel.to7.setForeground(Color.yellow);
         if(turbo.entype < 3) {
-            if(Turbo.tt[2] > Turbo.tinlt) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[2] > turbo.tinlt) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to1.setForeground(Color.red);
                 turbo.outputPanel.outputVariablesPanel.to2.setForeground(Color.red);
             }
-            if(Turbo.tt[13] > Turbo.tfan) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[13] > turbo.tfan) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to2.setForeground(Color.red);
             }
-            if(Turbo.tt[3] > Turbo.tcomp) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[3] > turbo.tcomp) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to3.setForeground(Color.red);
             }
-            if(Turbo.tt[4] > Turbo.tburner) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[4] > turbo.tburner) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to4.setForeground(Color.red);
             }
-            if(Turbo.tt[5] > Turbo.tturbin) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[5] > turbo.tturbin) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to5.setForeground(Color.red);
             }
-            if(Turbo.tt[7] > Turbo.tnozl) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[7] > turbo.tnozl) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to6.setForeground(Color.red);
                 turbo.outputPanel.outputVariablesPanel.to7.setForeground(Color.red);
             }
         }
         if(turbo.entype == 3) {
-            if(Turbo.tt[3] > Turbo.tinlt) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[3] > turbo.tinlt) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to1.setForeground(Color.red);
                 turbo.outputPanel.outputVariablesPanel.to2.setForeground(Color.red);
                 turbo.outputPanel.outputVariablesPanel.to3.setForeground(Color.red);
             }
-            if(Turbo.tt[4] > Turbo.tburner) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[4] > turbo.tburner) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to4.setForeground(Color.red);
             }
-            if(Turbo.tt[7] > Turbo.tnozr) {
-                Turbo.fireflag = 1;
+            if(turbo.tt[7] > turbo.tnozr) {
+                turbo.fireflag = 1;
                 turbo.outputPanel.outputVariablesPanel.to5.setForeground(Color.red);
                 turbo.outputPanel.outputVariablesPanel.to6.setForeground(Color.red);
                 turbo.outputPanel.outputVariablesPanel.to7.setForeground(Color.red);
             }
         }
-        if(Turbo.fireflag == 1) {
+        if(turbo.fireflag == 1) {
             turbo.view.start();
         }
     }
@@ -1272,71 +1272,71 @@ class Solver {
         int i1;
 
         if(turbo.entype <= 2) {          // turbine engines
-            if(Turbo.afan < Turbo.acore) {
-                Turbo.afan = Turbo.acore;
+            if(turbo.afan < turbo.acore) {
+                turbo.afan = turbo.acore;
             }
-            Turbo.a8max = .75 * Math.sqrt(Turbo.etr) / Turbo.epr; /* limits compressor face  */
+            turbo.a8max = .75 * Math.sqrt(turbo.etr) / turbo.epr; /* limits compressor face  */
                                            /*  mach number  to < .5   */
-            if(Turbo.a8max > 1.0) {
-                Turbo.a8max = 1.0;
+            if(turbo.a8max > 1.0) {
+                turbo.a8max = 1.0;
             }
-            if(Turbo.a8rat > Turbo.a8max) {
-                Turbo.a8rat = Turbo.a8max;
+            if(turbo.a8rat > turbo.a8max) {
+                turbo.a8rat = turbo.a8max;
                 if(turbo.lunits <= 1) {
-                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", Turbo.a8rat));
-                    i1 = (int)(((Turbo.a8rat - Turbo.a8min) / (Turbo.a8max - Turbo.a8min)) * 1000.);
+                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", turbo.a8rat));
+                    i1 = (int)(((turbo.a8rat - turbo.a8min) / (turbo.a8max - turbo.a8min)) * 1000.);
                     turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
                 }
                 if(turbo.lunits == 2) {
                     turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(String.format("%.3f",
-                                                                                                              100. * (Turbo.a8rat - Turbo.a8ref) / Turbo.a8ref)));
-                    i1 = (int)((((100. * (Turbo.a8rat - Turbo.a8ref) / Turbo.a8ref) + 10.0) / 20.0) * 1000.);
+                                                                                                              100. * (turbo.a8rat - turbo.a8ref) / turbo.a8ref)));
+                    i1 = (int)((((100. * (turbo.a8rat - turbo.a8ref) / turbo.a8ref) + 10.0) / 20.0) * 1000.);
                     turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
                 }
             }
           /*    dumb flightConditionsLowerPanel limit - a8 schedule */
             if(turbo.arsched == 0) {
-                Turbo.a8rat = Turbo.a8max;
-                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", Turbo.a8rat));
-                i1 = (int)(((Turbo.a8rat - Turbo.a8min) / (Turbo.a8max - Turbo.a8min)) * 1000.);
+                turbo.a8rat = turbo.a8max;
+                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.format("%.3f", turbo.a8rat));
+                i1 = (int)(((turbo.a8rat - turbo.a8min) / (turbo.a8max - turbo.a8min)) * 1000.);
                 turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
             }
-            Turbo.a8 = Turbo.a8rat * Turbo.acore;
-            Turbo.a8d = Turbo.a8 * Turbo.prat[7] / Math.sqrt(Turbo.trat[7]);
+            turbo.a8 = turbo.a8rat * turbo.acore;
+            turbo.a8d = turbo.a8 * turbo.prat[7] / Math.sqrt(turbo.trat[7]);
          /* assumes choked a8 and a4 */
-            Turbo.a4 = Turbo.a8 * Turbo.prat[5] * Turbo.prat[15] * Turbo.prat[7] /
-                       Math.sqrt(Turbo.trat[7] * Turbo.trat[5] * Turbo.trat[15]);
-            Turbo.a4p = Turbo.a8 * Turbo.prat[15] * Turbo.prat[7] / Math.sqrt(Turbo.trat[7] * Turbo.trat[15]);
-            Turbo.ac = .9 * Turbo.a2;
+            turbo.a4 = turbo.a8 * turbo.prat[5] * turbo.prat[15] * turbo.prat[7] /
+                       Math.sqrt(turbo.trat[7] * turbo.trat[5] * turbo.trat[15]);
+            turbo.a4p = turbo.a8 * turbo.prat[15] * turbo.prat[7] / Math.sqrt(turbo.trat[7] * turbo.trat[15]);
+            turbo.ac = .9 * turbo.a2;
         }
 
         if(turbo.entype == 3) {      // ramjets
-            game = turbo.getGama(Turbo.tt[4], turbo.gamopt);
+            game = turbo.getGama(turbo.tt[4], turbo.gamopt);
             if(turbo.athsched == 0) {   // scheduled throat area
-                Turbo.arthd = turbo.getAir(Turbo.fsmach, Turbo.gama) * Math.sqrt(Turbo.etr) /
-                              (turbo.getAir(1.0, game) * Turbo.epr * Turbo.prat[2]);
-                if(Turbo.arthd < Turbo.arthmn) {
-                    Turbo.arthd = Turbo.arthmn;
+                turbo.arthd = turbo.getAir(turbo.fsmach, turbo.gama) * Math.sqrt(turbo.etr) /
+                              (turbo.getAir(1.0, game) * turbo.epr * turbo.prat[2]);
+                if(turbo.arthd < turbo.arthmn) {
+                    turbo.arthd = turbo.arthmn;
                 }
-                if(Turbo.arthd > Turbo.arthmx) {
-                    Turbo.arthd = Turbo.arthmx;
+                if(turbo.arthd > turbo.arthmx) {
+                    turbo.arthd = turbo.arthmx;
                 }
-                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF3().setText(String.format("%.3f", Turbo.arthd));
-                i1 = (int)(((Turbo.arthd - Turbo.arthmn) / (Turbo.arthmx - Turbo.arthmn)) * 1000.);
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF3().setText(String.format("%.3f", turbo.arthd));
+                i1 = (int)(((turbo.arthd - turbo.arthmn) / (turbo.arthmx - turbo.arthmn)) * 1000.);
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.s3.setValue(i1);
             }
             if(turbo.aexsched == 0) {   // scheduled exit area
-                Turbo.mexit = Math.sqrt((2.0 / (game - 1.0)) * ((1.0 + .5 * (Turbo.gama - 1.0) * Turbo.fsmach * Turbo.fsmach)
-                                                                * Math.pow((Turbo.epr * Turbo.prat[2]), (game - 1.0) / game) - 1.0));
-                Turbo.arexitd = turbo.getAir(1.0, game) / turbo.getAir(Turbo.mexit, game);
-                if(Turbo.arexitd < Turbo.arexmn) {
-                    Turbo.arexitd = Turbo.arexmn;
+                turbo.mexit = Math.sqrt((2.0 / (game - 1.0)) * ((1.0 + .5 * (turbo.gama - 1.0) * turbo.fsmach * turbo.fsmach)
+                                                                * Math.pow((turbo.epr * turbo.prat[2]), (game - 1.0) / game) - 1.0));
+                turbo.arexitd = turbo.getAir(1.0, game) / turbo.getAir(turbo.mexit, game);
+                if(turbo.arexitd < turbo.arexmn) {
+                    turbo.arexitd = turbo.arexmn;
                 }
-                if(Turbo.arexitd > Turbo.arexmx) {
-                    Turbo.arexitd = Turbo.arexmx;
+                if(turbo.arexitd > turbo.arexmx) {
+                    turbo.arexitd = turbo.arexmx;
                 }
-                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF4().setText(String.format("%.3f", Turbo.arexitd));
-                i1 = (int)(((Turbo.arexitd - Turbo.arexmn) / (Turbo.arexmx - Turbo.arexmn)) * 1000.);
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF4().setText(String.format("%.3f", turbo.arexitd));
+                i1 = (int)(((turbo.arexitd - turbo.arexmn) / (turbo.arexmx - turbo.arexmn)) * 1000.);
                 turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.s4.setValue(i1);
             }
         }
