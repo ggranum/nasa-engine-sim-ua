@@ -7,13 +7,13 @@ import java.awt.Panel;
 import java.awt.TextField;
 
 /**
- * @author Geoff M. Granum
+ *
  */
-class Down extends Panel {
+class FlightConditionsLowerPanel extends Panel {
 
     TextField o4, o5, o6, o10, o11, o12, o14, o15;
 
-    Down() {
+    FlightConditionsLowerPanel() {
         setLayout(new GridLayout(4, 4, 1, 5));
 
         o4 = new TextField();
@@ -61,5 +61,5 @@ class Down extends Panel {
         add(new Label("Weight", Label.CENTER));
         add(o11);
     }
-}  // end Down
+}  // end FlightConditionsLowerPanel
  

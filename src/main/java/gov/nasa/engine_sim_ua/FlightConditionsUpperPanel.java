@@ -10,18 +10,18 @@ import java.awt.Label;
 import java.awt.Panel;
 
 /**
- * @author Geoff M. Granum
+ *
  */
-class Up extends Panel {
+class FlightConditionsUpperPanel extends Panel {
 
-    private final Con con;
+    private final FlightConditionsPanel flightConditionsPanel;
     private final Turbo turbo;
     Button setref, endit, record;
     Choice engch, modch, arch, pltch, untch;
     Label l1, l2, l3;
 
-    Up(Con con, Turbo target) {
-        this.con = con;
+    FlightConditionsUpperPanel(FlightConditionsPanel flightConditionsPanel, Turbo target) {
+        this.flightConditionsPanel = flightConditionsPanel;
         this.turbo = target;
         setLayout(new GridLayout(4, 3, 5, 5));
 
@@ -133,50 +133,50 @@ class Up extends Panel {
                 Turbo.faref = Turbo.fa;
                 Turbo.wtref = Turbo.weight;
                 Turbo.wfref = Turbo.fnlb / Turbo.weight;
-                con.setPanl();
+                flightConditionsPanel.setPanl();
 
-                turbo.out.box.loadOut();
-                turbo.out.vars.loadOut();
+                turbo.outputPanel.outputMainPanel.loadOut();
+                turbo.outputPanel.outputVariablesPanel.loadOut();
             } else {
                 turbo.solve.setDefaults();
-                con.setUnits();
-                turbo.con.setPanl();
-                turbo.layin.show(turbo.in, "first");
-                turbo.layout.show(turbo.out, "first");
-                turbo.con.up.engch.select(0);
-                turbo.con.up.modch.select(0);
-                turbo.con.up.pltch.select(1);
-                turbo.con.up.untch.select(0);
-                turbo.in.flight.left.o1.setBackground(Color.black);
-                turbo.in.flight.left.o1.setForeground(Color.yellow);
-                turbo.in.flight.left.o2.setBackground(Color.black);
-                turbo.in.flight.left.o2.setForeground(Color.yellow);
-                turbo.in.flight.left.o3.setBackground(Color.black);
-                turbo.in.flight.left.o3.setForeground(Color.yellow);
-                turbo.in.flight.left.f1.setBackground(Color.white);
-                turbo.in.flight.left.f1.setForeground(Color.black);
-                turbo.in.flight.left.f2.setBackground(Color.white);
-                turbo.in.flight.left.f2.setForeground(Color.black);
-                turbo.in.size.right.sizch.select(0);
-                turbo.in.size.left.f1.setBackground(Color.white);
-                turbo.in.size.left.f1.setForeground(Color.black);
-                turbo.in.size.left.f3.setBackground(Color.black);
-                turbo.in.size.left.f3.setForeground(Color.yellow);
-                turbo.in.comp.right.stgch.select(0);
-                turbo.in.comp.left.f3.setBackground(Color.black);
-                turbo.in.comp.left.f3.setForeground(Color.yellow);
-                turbo.in.turb.right.stgch.select(0);
-                turbo.in.turb.left.f3.setBackground(Color.black);
-                turbo.in.turb.left.f3.setForeground(Color.yellow);
-                turbo.in.inlet.right.imat.select(Turbo.minlt);
-                turbo.in.fan.right.fmat.select(Turbo.mfan);
-                turbo.in.comp.right.cmat.select(Turbo.mcomp);
-                turbo.in.burn.right.bmat.select(Turbo.mburner);
-                turbo.in.turb.right.tmat.select(Turbo.mturbin);
-                turbo.in.nozl.right.nmat.select(Turbo.mnozl);
-                turbo.in.nozr.right.nrmat.select(Turbo.mnozr);
+                flightConditionsPanel.setUnits();
+                turbo.flightConditionsPanel.setPanl();
+                turbo.layin.show(turbo.inputPanel, "first");
+                turbo.layout.show(turbo.outputPanel, "first");
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.engch.select(0);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.modch.select(0);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.pltch.select(1);
+                turbo.flightConditionsPanel.flightConditionsUpperPanel.untch.select(0);
+                turbo.inputPanel.flightPanel.flightLeftPanel.o1.setBackground(Color.black);
+                turbo.inputPanel.flightPanel.flightLeftPanel.o1.setForeground(Color.yellow);
+                turbo.inputPanel.flightPanel.flightLeftPanel.o2.setBackground(Color.black);
+                turbo.inputPanel.flightPanel.flightLeftPanel.o2.setForeground(Color.yellow);
+                turbo.inputPanel.flightPanel.flightLeftPanel.o3.setBackground(Color.black);
+                turbo.inputPanel.flightPanel.flightLeftPanel.o3.setForeground(Color.yellow);
+                turbo.inputPanel.flightPanel.flightLeftPanel.f1.setBackground(Color.white);
+                turbo.inputPanel.flightPanel.flightLeftPanel.f1.setForeground(Color.black);
+                turbo.inputPanel.flightPanel.flightLeftPanel.f2.setBackground(Color.white);
+                turbo.inputPanel.flightPanel.flightLeftPanel.f2.setForeground(Color.black);
+                turbo.inputPanel.sizePanel.sizeRightPanel.sizch.select(0);
+                turbo.inputPanel.sizePanel.sizeLeftPanel.f1.setBackground(Color.white);
+                turbo.inputPanel.sizePanel.sizeLeftPanel.f1.setForeground(Color.black);
+                turbo.inputPanel.sizePanel.sizeLeftPanel.f3.setBackground(Color.black);
+                turbo.inputPanel.sizePanel.sizeLeftPanel.f3.setForeground(Color.yellow);
+                turbo.inputPanel.compressorPanel.compressorRightPanel.stgch.select(0);
+                turbo.inputPanel.compressorPanel.compressorLeftPanel.getF3().setBackground(Color.black);
+                turbo.inputPanel.compressorPanel.compressorLeftPanel.getF3().setForeground(Color.yellow);
+                turbo.inputPanel.turbinePanel.turbineRightPanel.stgch.select(0);
+                turbo.inputPanel.turbinePanel.turbineLeftPanel.getF3().setBackground(Color.black);
+                turbo.inputPanel.turbinePanel.turbineLeftPanel.getF3().setForeground(Color.yellow);
+                turbo.inputPanel.inletPanel.inletRightPanel.imat.select(Turbo.minlt);
+                turbo.inputPanel.fanPanel.rightPanel.fmat.select(Turbo.mfan);
+                turbo.inputPanel.compressorPanel.compressorRightPanel.cmat.select(Turbo.mcomp);
+                turbo.inputPanel.burnerPanel.burnerRightPanel.bmat.select(Turbo.mburner);
+                turbo.inputPanel.turbinePanel.turbineRightPanel.tmat.select(Turbo.mturbin);
+                turbo.inputPanel.nozzlePanel.nozzleRightPanel.nmat.select(Turbo.mnozl);
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.nrmat.select(Turbo.mnozr);
                 turbo.solve.comPute();
-                turbo.out.plot.repaint();
+                turbo.outputPanel.outputPlotCanvas.repaint();
             }
         }
         if(label.equals("Print Data")) {
@@ -226,7 +226,7 @@ class Up extends Panel {
                 Turbo.prnt.println(smode + sgamop);
                 if(turbo.pall == 1 || turbo.pfs == 1) {
                     Turbo.prnt.println(" ");
-                    Turbo.prnt.println("Flight Conditions: ");
+                    Turbo.prnt.println("FlightPanel Conditions: ");
                     if(turbo.lunits == 0) {
                         Turbo.prnt.println("  Mach = " + String.valueOf(turbo.filter3(Turbo.fsmach))
                                            + ",  V0 = " + String.valueOf(turbo.filter0(Turbo.u0d)) + " mph ");
@@ -298,7 +298,7 @@ class Up extends Panel {
                    turbo.ptrat == 1 || turbo.pttot == 1 || turbo.pentr == 1 || turbo.pgam == 1 || turbo.parea == 1) {
                     Turbo.prnt.println(" ");
                     Turbo.prnt.println("Component Performance :");
-                    Turbo.prnt.println("   Variable \tInlet \tFan \tComp \tBurn \tH-Tur \tL-Tur \tNoz \tExhst");
+                    Turbo.prnt.println("   Variable \tInletPanel \tFanPanel \tCompressorPanel \tBurnerPanel \tH-Tur \tL-Tur \tNoz \tExhst");
                 }
                 if(turbo.pall == 1 || turbo.peta == 1) {
                     Turbo.prnt.println(" Efficiency"
@@ -578,26 +578,26 @@ class Up extends Panel {
             // units change
             if(label.equals("English")) {
                 turbo.lunits = 0;
-                con.setUnits();
-                con.setPanl();
+                flightConditionsPanel.setUnits();
+                flightConditionsPanel.setPanl();
                 if(turbo.plttyp >= 3) {
-                    con.setPlot();
+                    flightConditionsPanel.setPlot();
                 }
             }
             if(label.equals("Metric")) {
                 turbo.lunits = 1;
-                con.setUnits();
-                con.setPanl();
+                flightConditionsPanel.setUnits();
+                flightConditionsPanel.setPanl();
                 if(turbo.plttyp >= 3) {
-                    con.setPlot();
+                    flightConditionsPanel.setPlot();
                 }
             }
             if(label.equals("% Change")) {
                 turbo.lunits = 2;
-                con.setUnits();
-                con.setPanl();
+                flightConditionsPanel.setUnits();
+                flightConditionsPanel.setPanl();
                 if(turbo.plttyp >= 3) {
-                    con.setPlot();
+                    flightConditionsPanel.setPlot();
                 }
             }
             // mode
@@ -607,73 +607,73 @@ class Up extends Panel {
             if(label.equals("Test")) {
                 turbo.inflag = 1;
                 turbo.lunits = 0;
-                con.setUnits();
+                flightConditionsPanel.setUnits();
                 untch.select(turbo.lunits);
                 turbo.solve.comPute();
                 turbo.solve.myDesign();
                 Turbo.ytrans = 115.0;
                 turbo.view.start();
                 turbo.varflag = 0;
-                turbo.layin.show(turbo.in, "first");
+                turbo.layin.show(turbo.inputPanel, "first");
             }
 
             if(label.equals("My Design")) {
                 turbo.varflag = 0;
-                turbo.layin.show(turbo.in, "first");
+                turbo.layin.show(turbo.inputPanel, "first");
                 turbo.lunits = 0;
-                con.setUnits();
+                flightConditionsPanel.setUnits();
                 untch.select(turbo.lunits);
                 turbo.solve.loadMine();
             }
             if(label.equals("J85 Model")) {
                 turbo.varflag = 0;
-                turbo.layin.show(turbo.in, "first");
+                turbo.layin.show(turbo.inputPanel, "first");
                 turbo.lunits = 0;
-                con.setUnits();
+                flightConditionsPanel.setUnits();
                 untch.select(turbo.lunits);
                 turbo.solve.loadJ85();
             }
             if(label.equals("F100 Model")) {
                 turbo.varflag = 0;
-                turbo.layin.show(turbo.in, "first");
+                turbo.layin.show(turbo.inputPanel, "first");
                 turbo.lunits = 0;
-                con.setUnits();
+                flightConditionsPanel.setUnits();
                 untch.select(turbo.lunits);
                 turbo.solve.loadF100();
             }
             if(label.equals("CF6 Model")) {
                 turbo.varflag = 0;
-                turbo.layin.show(turbo.in, "first");
+                turbo.layin.show(turbo.inputPanel, "first");
                 turbo.lunits = 0;
-                con.setUnits();
+                flightConditionsPanel.setUnits();
                 untch.select(turbo.lunits);
                 turbo.solve.loadCF6();
             }
             if(label.equals("Ramjet Model")) {
                 turbo.varflag = 0;
-                turbo.layin.show(turbo.in, "first");
+                turbo.layin.show(turbo.inputPanel, "first");
                 turbo.lunits = 0;
-                con.setUnits();
+                flightConditionsPanel.setUnits();
                 untch.select(turbo.lunits);
                 turbo.solve.loadRamj();
             }
 
             if(label.equals("Engine Performance")) {
                 turbo.plttyp = 0;
-                turbo.layout.show(turbo.out, "first");
+                turbo.layout.show(turbo.outputPanel, "first");
                 turbo.showcom = 0;
             }
             if(label.equals("Component Performance")) {
                 turbo.plttyp = 0;
-                turbo.layout.show(turbo.out, "third");
+                turbo.layout.show(turbo.outputPanel, "third");
                 turbo.showcom = 1;
             }
             if(label.equals("Graphs")) {
                 turbo.plttyp = 3;
                 turbo.showcom = 0;
-                turbo.layout.show(turbo.out, "second");
-                con.setPlot();
-                turbo.out.plot.repaint();
+                turbo.layout.show(turbo.outputPanel, "second");
+                flightConditionsPanel.setPlot();
+                turbo.outputPanel.outputPlotCanvas.repaint();
             }
             turbo.solve.comPute();
         }

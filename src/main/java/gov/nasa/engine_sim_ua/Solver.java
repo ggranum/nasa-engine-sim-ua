@@ -3,7 +3,7 @@ package gov.nasa.engine_sim_ua;
 import java.awt.Color;
 
 /**
- * @author Geoff M. Granum
+ *
  */
 class Solver {
 
@@ -23,7 +23,7 @@ class Solver {
         getThermo();
 
         if(turbo.inflag == 0) {
-            getGeo(); /* determine engine size and geometry */
+            getGeo(); /* determine engine sizePanel and geometry */
         }
         if(turbo.inflag == 1) {
             if(turbo.entype < 3) {
@@ -35,13 +35,13 @@ class Solver {
 
         getPerform();
 
-        turbo.out.box.loadOut();
-        turbo.out.vars.loadOut();
-        turbo.in.fillBox();
+        turbo.outputPanel.outputMainPanel.loadOut();
+        turbo.outputPanel.outputVariablesPanel.loadOut();
+        turbo.inputPanel.fillBox();
 
         if(turbo.plttyp >= 3 && turbo.plttyp <= 7) {
-            turbo.out.plot.loadPlot();
-            turbo.out.plot.repaint();
+            turbo.outputPanel.outputPlotCanvas.loadPlot();
+            turbo.outputPanel.outputPlotCanvas.repaint();
         }
 
         turbo.view.repaint();
@@ -362,7 +362,7 @@ class Solver {
             Turbo.arexitd = Turbo.arexsav;
         }
 
-        turbo.con.setPanl();
+        turbo.flightConditionsPanel.setPanl();
         return;
     }
 
@@ -428,7 +428,7 @@ class Solver {
         Turbo.ncflag = 0;
         Turbo.ntflag = 0;
 
-        turbo.con.setPanl();
+        turbo.flightConditionsPanel.setPanl();
         return;
     }
 
@@ -493,7 +493,7 @@ class Solver {
         Turbo.ncflag = 0;
         Turbo.ntflag = 0;
 
-        turbo.con.setPanl();
+        turbo.flightConditionsPanel.setPanl();
         return;
     }
 
@@ -558,7 +558,7 @@ class Solver {
         Turbo.ncflag = 0;
         Turbo.ntflag = 0;
 
-        turbo.con.setPanl();
+        turbo.flightConditionsPanel.setPanl();
         return;
     }
 
@@ -629,7 +629,7 @@ class Solver {
         Turbo.ncflag = 0;
         Turbo.ntflag = 0;
 
-        turbo.con.setPanl();
+        turbo.flightConditionsPanel.setPanl();
         return;
     }
 
@@ -689,7 +689,7 @@ class Solver {
         int itcount, index;
         float fl1;
         int i1;
-                                     /*   inlet recovery  */
+                                     /*   inletPanel recovery  */
         if(turbo.pt2flag == 0) {                    /*     mil spec      */
             if(Turbo.fsmach > 1.0) {          /* supersonic */
                 Turbo.prat[2] = 1.0 - .075 * Math.pow(Turbo.fsmach - 1.0, 1.35);
@@ -698,9 +698,9 @@ class Solver {
             }
             Turbo.eta[2] = Turbo.prat[2];
             fl1 = turbo.filter3(Turbo.prat[2]);
-            turbo.in.inlet.left.f1.setText(String.valueOf(fl1));
+            turbo.inputPanel.inletPanel.inletLeftPanel.getF1().setText(String.valueOf(fl1));
             i1 = (int)(((Turbo.prat[2] - Turbo.etmin) / (Turbo.etmax - Turbo.etmin)) * 1000.);
-            turbo.in.inlet.right.s1.setValue(i1);
+            turbo.inputPanel.inletPanel.inletRightPanel.s1.setValue(i1);
         } else {                       /* enter value */
             Turbo.prat[2] = Turbo.eta[2];
         }
@@ -748,7 +748,7 @@ class Solver {
                 Turbo.prat[5] = Math.pow((1.0 - delhht / Turbo.cp[4] / Turbo.tt[4] / Turbo.eta[5]),
                                          (Turbo.gam[4] / (Turbo.gam[4] - 1.0)));
                 Turbo.pt[5] = Turbo.pt[4] * Turbo.prat[5];
-                                    /* fan conditions */
+                                    /* fanPanel conditions */
                 Turbo.prat[13] = 1.0;
                 Turbo.trat[13] = 1.0;
                 Turbo.tt[13] = Turbo.tt[2];
@@ -831,7 +831,7 @@ class Solver {
                 Turbo.trat[5] = 1.0;
                 Turbo.prat[5] = 1.0;
                 Turbo.pt[5] = Turbo.pt[4];
-                                    /* fan conditions */
+                                    /* fanPanel conditions */
                 Turbo.prat[13] = 1.0;
                 Turbo.trat[13] = 1.0;
                 Turbo.tt[13] = Turbo.tt[2];
@@ -892,7 +892,7 @@ class Solver {
                 Turbo.pt[3] = Turbo.pt[2] * Turbo.prat[3];
                 Turbo.pt[4] = Turbo.pt[3] * Turbo.prat[4];
                 Turbo.pt[5] = Turbo.pt[4] * Turbo.prat[5];
-                                    /* fan conditions */
+                                    /* fanPanel conditions */
                 Turbo.prat[13] = 1.0;
                 Turbo.trat[13] = 1.0;
                 Turbo.tt[13] = Turbo.tt[2];
@@ -952,7 +952,7 @@ class Solver {
                 Turbo.prat[15] = Math.pow((1.0 - (1.0 / Turbo.eta[5]) * (1.0 - Turbo.trat[15])),
                                           Turbo.gam[5] / (Turbo.gam[5] - 1.0));
                 Turbo.byprat = Turbo.afan / Turbo.acore - 1.0;
-                delhf = delhlt / (1.0 + Turbo.byprat);              /* fan work */
+                delhf = delhlt / (1.0 + Turbo.byprat);              /* fanPanel work */
                 deltf = -delhf / Turbo.cp[2];
                 Turbo.tt[13] = Turbo.tt[2] + deltf;
                 Turbo.gam[13] = turbo.getGama(Turbo.tt[13], turbo.gamopt);
@@ -992,7 +992,7 @@ class Solver {
                 Turbo.trat[5] = 1.0;
                 Turbo.prat[5] = 1.0;
                 Turbo.pt[5] = Turbo.pt[4];
-                                     /* fan conditions */
+                                     /* fanPanel conditions */
                 Turbo.prat[13] = 1.0;
                 Turbo.trat[13] = 1.0;
                 Turbo.tt[13] = Turbo.tt[2];
@@ -1073,7 +1073,7 @@ class Solver {
             Turbo.fgros = (Turbo.uexit + (Turbo.pexit - Turbo.ps0) * 144. * Turbo.a8 / Turbo.eair) / Turbo.g0;
         }
 
-        // turbo fan -- added terms for fan flow
+        // turbo fanPanel -- added terms for fanPanel flow
         if(turbo.entype == 2) {
             fac1 = (Turbo.gama - 1.0) / Turbo.gama;
             Turbo.snpr = Turbo.pt[13] / Turbo.ps0;
@@ -1123,7 +1123,7 @@ class Solver {
             Turbo.fgros = 0.0;
         }
 
-        // thrust in pounds
+        // thrust inputPanel pounds
         Turbo.fnlb = Turbo.fnet * Turbo.eair;
         Turbo.fglb = Turbo.fgros * Turbo.eair;
         Turbo.drlb = Turbo.dram * Turbo.eair;
@@ -1194,57 +1194,57 @@ class Solver {
             }
         }
         // check for temp limits
-        turbo.out.vars.to1.setForeground(Color.yellow);
-        turbo.out.vars.to2.setForeground(Color.yellow);
-        turbo.out.vars.to3.setForeground(Color.yellow);
-        turbo.out.vars.to4.setForeground(Color.yellow);
-        turbo.out.vars.to5.setForeground(Color.yellow);
-        turbo.out.vars.to6.setForeground(Color.yellow);
-        turbo.out.vars.to7.setForeground(Color.yellow);
+        turbo.outputPanel.outputVariablesPanel.to1.setForeground(Color.yellow);
+        turbo.outputPanel.outputVariablesPanel.to2.setForeground(Color.yellow);
+        turbo.outputPanel.outputVariablesPanel.to3.setForeground(Color.yellow);
+        turbo.outputPanel.outputVariablesPanel.to4.setForeground(Color.yellow);
+        turbo.outputPanel.outputVariablesPanel.to5.setForeground(Color.yellow);
+        turbo.outputPanel.outputVariablesPanel.to6.setForeground(Color.yellow);
+        turbo.outputPanel.outputVariablesPanel.to7.setForeground(Color.yellow);
         if(turbo.entype < 3) {
             if(Turbo.tt[2] > Turbo.tinlt) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to1.setForeground(Color.red);
-                turbo.out.vars.to2.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to1.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to2.setForeground(Color.red);
             }
             if(Turbo.tt[13] > Turbo.tfan) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to2.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to2.setForeground(Color.red);
             }
             if(Turbo.tt[3] > Turbo.tcomp) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to3.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to3.setForeground(Color.red);
             }
             if(Turbo.tt[4] > Turbo.tburner) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to4.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to4.setForeground(Color.red);
             }
             if(Turbo.tt[5] > Turbo.tturbin) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to5.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to5.setForeground(Color.red);
             }
             if(Turbo.tt[7] > Turbo.tnozl) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to6.setForeground(Color.red);
-                turbo.out.vars.to7.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to6.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to7.setForeground(Color.red);
             }
         }
         if(turbo.entype == 3) {
             if(Turbo.tt[3] > Turbo.tinlt) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to1.setForeground(Color.red);
-                turbo.out.vars.to2.setForeground(Color.red);
-                turbo.out.vars.to3.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to1.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to2.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to3.setForeground(Color.red);
             }
             if(Turbo.tt[4] > Turbo.tburner) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to4.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to4.setForeground(Color.red);
             }
             if(Turbo.tt[7] > Turbo.tnozr) {
                 Turbo.fireflag = 1;
-                turbo.out.vars.to5.setForeground(Color.red);
-                turbo.out.vars.to6.setForeground(Color.red);
-                turbo.out.vars.to7.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to5.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to6.setForeground(Color.red);
+                turbo.outputPanel.outputVariablesPanel.to7.setForeground(Color.red);
             }
         }
         if(Turbo.fireflag == 1) {
@@ -1271,24 +1271,24 @@ class Solver {
                 Turbo.a8rat = Turbo.a8max;
                 if(turbo.lunits <= 1) {
                     fl1 = turbo.filter3(Turbo.a8rat);
-                    turbo.in.nozl.left.f3.setText(String.valueOf(fl1));
+                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(fl1));
                     i1 = (int)(((Turbo.a8rat - Turbo.a8min) / (Turbo.a8max - Turbo.a8min)) * 1000.);
-                    turbo.in.nozl.right.s3.setValue(i1);
+                    turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
                 }
                 if(turbo.lunits == 2) {
                     fl1 = turbo.filter3(100. * (Turbo.a8rat - Turbo.a8ref) / Turbo.a8ref);
-                    turbo.in.nozl.left.f3.setText(String.valueOf(fl1));
+                    turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(fl1));
                     i1 = (int)((((100. * (Turbo.a8rat - Turbo.a8ref) / Turbo.a8ref) + 10.0) / 20.0) * 1000.);
-                    turbo.in.nozl.right.s3.setValue(i1);
+                    turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
                 }
             }
-          /*    dumb down limit - a8 schedule */
+          /*    dumb flightConditionsLowerPanel limit - a8 schedule */
             if(turbo.arsched == 0) {
                 Turbo.a8rat = Turbo.a8max;
                 fl1 = turbo.filter3(Turbo.a8rat);
-                turbo.in.nozl.left.f3.setText(String.valueOf(fl1));
+                turbo.inputPanel.nozzlePanel.nozzleLeftPanel.getF3().setText(String.valueOf(fl1));
                 i1 = (int)(((Turbo.a8rat - Turbo.a8min) / (Turbo.a8max - Turbo.a8min)) * 1000.);
-                turbo.in.nozl.right.s3.setValue(i1);
+                turbo.inputPanel.nozzlePanel.nozzleRightPanel.s3.setValue(i1);
             }
             Turbo.a8 = Turbo.a8rat * Turbo.acore;
             Turbo.a8d = Turbo.a8 * Turbo.prat[7] / Math.sqrt(Turbo.trat[7]);
@@ -1311,9 +1311,9 @@ class Solver {
                     Turbo.arthd = Turbo.arthmx;
                 }
                 fl1 = turbo.filter3(Turbo.arthd);
-                turbo.in.nozr.left.f3.setText(String.valueOf(fl1));
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF3().setText(String.valueOf(fl1));
                 i1 = (int)(((Turbo.arthd - Turbo.arthmn) / (Turbo.arthmx - Turbo.arthmn)) * 1000.);
-                turbo.in.nozr.right.s3.setValue(i1);
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.s3.setValue(i1);
             }
             if(turbo.aexsched == 0) {   // scheduled exit area
                 Turbo.mexit = Math.sqrt((2.0 / (game - 1.0)) * ((1.0 + .5 * (Turbo.gama - 1.0) * Turbo.fsmach * Turbo.fsmach)
@@ -1326,9 +1326,9 @@ class Solver {
                     Turbo.arexitd = Turbo.arexmx;
                 }
                 fl1 = turbo.filter3(Turbo.arexitd);
-                turbo.in.nozr.left.f4.setText(String.valueOf(fl1));
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleLeftPanel.getF4().setText(String.valueOf(fl1));
                 i1 = (int)(((Turbo.arexitd - Turbo.arexmn) / (Turbo.arexmx - Turbo.arexmn)) * 1000.);
-                turbo.in.nozr.right.s4.setValue(i1);
+                turbo.inputPanel.ramjetNozzlePanel.ramjetNozzleRightPanel.s4.setValue(i1);
             }
         }
     }
